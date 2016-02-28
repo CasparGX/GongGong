@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ColorTranslucentTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- left swipe menu table row-->
+    <style name="DrawerMenuTableRowIcon">
+        <item name="android:layout_height">@dimen/img_icon_size_mini</item>
+        <item name="android:layout_width">@dimen/img_icon_size_mini</item>
+        <item name="android:layout_marginRight">@dimen/interval_mini</item>
+        <item name="android:layout_marginLeft">@dimen/interval_mini</item>
+    </style>
+
+    <style name="DrawerMenuTableRow">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/interval_mini</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/item_default</item>
+    </style>
+
+    <style name="DrawerMenuTableRowText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/interval_mini</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--header info text-->
+    <style name="HeaderInfoLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="HeaderInfoText">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

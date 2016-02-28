@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:paddingBottom="@dimen/interval_default">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="@dimen/avatar_bg_size_mini"
+            android:layout_height="@dimen/avatar_bg_size_mini"
+            android:layout_margin="@dimen/interval_default">
+
+            <include layout="@layout/include_user_avatar" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/img_btn_size_mini"
+            android:layout_height="@dimen/img_btn_size_mini"
+            android:layout_alignBottom="@+id/frameLayout"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/interval_mini"
+            android:background="@color/white" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/interval_default"
+        android:background="@color/white"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <TableRow
+            android:id="@+id/drawer_menu_item1"
+            style="@style/DrawerMenuTableRow">
+            <ImageView style="@style/DrawerMenuTableRowIcon"/>
+            <TextView
+                style="@style/DrawerMenuTableRowText"
+                android:text="Info"/>
+        </TableRow>
+        <TableRow
+            android:id="@+id/drawer_menu_item2"
+            style="@style/DrawerMenuTableRow">
+            <ImageView style="@style/DrawerMenuTableRowIcon"/>
+            <TextView
+                style="@style/DrawerMenuTableRowText"
+                android:text="Common"/>
+        </TableRow>
+        <TableRow
+            android:id="@+id/drawer_menu_item3"
+            style="@style/DrawerMenuTableRow">
+            <ImageView style="@style/DrawerMenuTableRowIcon"/>
+            <TextView
+                style="@style/DrawerMenuTableRowText"
+                android:text="About"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
