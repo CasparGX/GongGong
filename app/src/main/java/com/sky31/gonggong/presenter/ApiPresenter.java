@@ -19,18 +19,19 @@ import retrofit.Retrofit;
  */
 public class ApiPresenter {
     private ApiView apiView;
-
+    private ApiService apiService;
     public ApiPresenter(ApiView apiView) {
         this.apiView = apiView;
-    }
 
-
-    public void getBalance() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        ApiService apiService = retrofit.create(ApiService.class);
+        apiService = retrofit.create(ApiService.class);
+    }
+
+
+    public void getBalance() {
 
         Call<EcardModel> call = apiService.getBalance("2013960837","191515");
         call.enqueue(new Callback<EcardModel>() {
@@ -45,5 +46,9 @@ public class ApiPresenter {
                 Toast.makeText((Context) apiView,"Error",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void getStudentInfo() {
+
     }
 }

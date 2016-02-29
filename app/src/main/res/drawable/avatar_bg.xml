@@ -4,7 +4,7 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
             <solid android:color="@color/colorPrimaryDark" />
             <corners android:radius="@dimen/avatar_bg_size" />
-            <stroke android:width="@dimen/stroke_blod"
+            <stroke android:width="@dimen/stroke_default"
                 android:color="@color/white" />
         </shape>
     </item>

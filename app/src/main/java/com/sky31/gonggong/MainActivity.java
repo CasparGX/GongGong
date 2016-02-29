@@ -170,7 +170,7 @@ public class MainActivity extends BaseActivity implements ApiView {
         headerParam.height = homeLayoutHeight / 3;
         header.setLayoutParams(headerParam);
         headerHeight = homeLayoutHeight / 3;
-        App.getInstance().setHomeLayoutHeight(homeLayoutHeight);
+        App.getApp().setHomeLayoutHeight(homeLayoutHeight);
         FirstFragment.getInstance().initLayoutHeight();
     }
 

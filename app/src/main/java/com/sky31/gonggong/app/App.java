@@ -6,29 +6,28 @@ import android.app.Application;
  * Created by root on 16-2-24.
  */
 public class App extends Application {
-    private static App instance;
+    private App() {}
+    private static final App app = new App();
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
-    }
-
-    public static App getInstance() {
-        return instance;
+    public static App getApp() {
+        return app;
     }
 
     private int homeLayoutHeight;
     private int homeLayoutWidth;
+
     public int getHomeLayoutWidth() {
         return homeLayoutWidth;
     }
+
     public void setHomeLayoutWidth(int homeLayoutWidth) {
         this.homeLayoutWidth = homeLayoutWidth;
     }
+
     public int getHomeLayoutHeight() {
         return homeLayoutHeight;
     }
+
     public void setHomeLayoutHeight(int homeLayoutHeight) {
         this.homeLayoutHeight = homeLayoutHeight;
     }

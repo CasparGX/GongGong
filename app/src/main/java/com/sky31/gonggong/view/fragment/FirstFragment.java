@@ -51,7 +51,7 @@ public class FirstFragment extends Fragment {
     }
 
     public void initLayoutHeight() {
-        homeLayoutHeight = App.getInstance().getHomeLayoutHeight();
+        homeLayoutHeight = App.getApp().getHomeLayoutHeight();
         ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
         ViewGroup.LayoutParams projectLayoutParam = projectLayout.getLayoutParams();
         ViewGroup.LayoutParams countdownLayoutParam = countdownLayout.getLayoutParams();

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by root on 16-2-29.
  */
-public class StudentInfomodel {
+public class StudentInfoModel {
 
     /**
      * code : 0
