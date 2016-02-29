@@ -6,6 +6,11 @@
     <string name="default_username">亲爱的拱拱</string>
     <string name="default_stu_num">12345678</string>
 
+    <string name="ecard">校园卡</string>
+    <string name="balance">余额：</string>
+    <string name="unclaimed">待领：</string>
+    <string name="default_money">0.00</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

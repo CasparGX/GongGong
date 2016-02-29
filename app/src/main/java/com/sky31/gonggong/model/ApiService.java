@@ -16,6 +16,6 @@ import retrofit.http.QueryMap;
 public interface ApiService {
     String defaultParam = Constants.Key.ROLE+"="+Constants.Value.ROLE+"&"
             + Constants.Key.HASH+"="+Constants.Value.HASH;
-    @GET("ecard_balance.php?"+defaultParam)
+    @GET(Constants.Api.ECARD+"?"+defaultParam)
     Call<EcardModel> getBalance(@Query("sid") String sid, @Query("password") String password);
 }

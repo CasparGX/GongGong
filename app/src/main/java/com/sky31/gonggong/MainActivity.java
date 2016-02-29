@@ -15,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.model.EcardModel;
+import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
+import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
 
@@ -30,7 +32,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ApiView {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -64,11 +66,17 @@ public class MainActivity extends BaseActivity {
     TableRow drawerMenuItem3;
     @Bind(R.id.home_layout)
     RelativeLayout homeLayout;
+    @Bind(R.id.stu_num)
+    TextView stuNum;
+    @Bind(R.id.ecard_balance)
+    TextView ecardBalance;
+    @Bind(R.id.ecard_unclaimed)
+    TextView ecardUnclaimed;
 
     @OnClick(R.id.drawer_menu_item1)
     void DrawerMenuItem1() {
-        Toast.makeText(MainActivity.this, "12122133", Toast.LENGTH_SHORT).show();
-        Log.i("Menu", "12332132133213213");
+        ApiPresenter apiPresenter = new ApiPresenter(this);
+        apiPresenter.getBalance();
     }
 
 
@@ -159,10 +167,16 @@ public class MainActivity extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         homeLayoutHeight = homeLayout.getHeight();
         ViewGroup.LayoutParams headerParam = header.getLayoutParams();
-        headerParam.height = homeLayoutHeight/3;
+        headerParam.height = homeLayoutHeight / 3;
         header.setLayoutParams(headerParam);
-        headerHeight = homeLayoutHeight/3;
+        headerHeight = homeLayoutHeight / 3;
         App.getInstance().setHomeLayoutHeight(homeLayoutHeight);
         FirstFragment.getInstance().initLayoutHeight();
+    }
+
+    @Override
+    public void getBalance(EcardModel ecardModel) {
+        ecardBalance.setText(ecardModel.getData().getBalance() + "");
+        ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
     }
 }

@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.EcardModel;
-import com.sky31.gonggong.view.EcardView;
+import com.sky31.gonggong.view.ApiView;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -17,11 +17,11 @@ import retrofit.Retrofit;
 /**
  * Created by root on 16-2-29.
  */
-public class EcardPresenter {
-    private EcardView ecardView;
+public class ApiPresenter {
+    private ApiView apiView;
 
-    public EcardPresenter(EcardView ecardView) {
-        this.ecardView = ecardView;
+    public ApiPresenter(ApiView apiView) {
+        this.apiView = apiView;
     }
 
 
@@ -37,14 +37,13 @@ public class EcardPresenter {
             @Override
             public void onResponse(Response<EcardModel> response, Retrofit retrofit) {
                 EcardModel ecardModel = response.body();
-                ecardView.getBalance(ecardModel);
+                apiView.getBalance(ecardModel);
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText((Context) ecardView,"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText((Context) apiView,"Error",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

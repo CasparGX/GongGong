@@ -39,14 +39,20 @@
 
     <!--header info text-->
     <style name="HeaderInfoLayout">
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
-    <style name="HeaderInfoText">
+    <style name="HeaderInfoContent">
         <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="HeaderInfoTitle">
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/white</item>
