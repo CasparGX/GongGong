@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity implements EcardView, LoginView {
     @OnClick(R.id.btn_login)
     void showLoginDialog() {
         Dialog loginDialog = new Dialog(this);
+        loginDialog.show();
     }
 
     @OnClick(R.id.drawer_menu_item1)

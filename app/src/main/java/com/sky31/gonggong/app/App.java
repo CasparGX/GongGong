@@ -2,14 +2,19 @@ package com.sky31.gonggong.app;
 
 import android.app.Application;
 
-import com.sky31.gonggong.model.UserModel;
-
 /**
  * Created by root on 16-2-24.
  */
 public class App extends Application {
-    private App() {}
-    private static final App app = new App();
+    public App() {}
+
+    private static App app;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        app = this;
+    }
 
     public static App getApp() {
         return app;
