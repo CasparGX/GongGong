@@ -1,5 +1,6 @@
 package com.sky31.gonggong;
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,9 +20,12 @@ import android.widget.TextView;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.model.EcardModel;
+import com.sky31.gonggong.model.StudentInfoModel;
+import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
-import com.sky31.gonggong.view.ApiView;
+import com.sky31.gonggong.view.EcardView;
+import com.sky31.gonggong.view.LoginView;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
 
@@ -32,7 +36,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements ApiView {
+public class MainActivity extends BaseActivity implements EcardView, LoginView {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -72,6 +76,13 @@ public class MainActivity extends BaseActivity implements ApiView {
     TextView ecardBalance;
     @Bind(R.id.ecard_unclaimed)
     TextView ecardUnclaimed;
+    @Bind(R.id.btn_login)
+    TextView btnLogin;
+
+    @OnClick(R.id.btn_login)
+    void showLoginDialog() {
+        Dialog loginDialog = new Dialog(this);
+    }
 
     @OnClick(R.id.drawer_menu_item1)
     void DrawerMenuItem1() {
@@ -178,5 +189,11 @@ public class MainActivity extends BaseActivity implements ApiView {
     public void getBalance(EcardModel ecardModel) {
         ecardBalance.setText(ecardModel.getData().getBalance() + "");
         ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
+    }
+
+    @Override
+    public void login(StudentInfoModel studentInfoModel) {
+        stuNum.setText(UserModel.getUserModel().getSid());
+        username.setText(studentInfoModel.getData().getName());
     }
 }

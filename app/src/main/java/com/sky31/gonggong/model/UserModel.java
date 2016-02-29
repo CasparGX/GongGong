@@ -5,6 +5,12 @@ package com.sky31.gonggong.model;
  */
 public class UserModel {
 
+    private UserModel() {}
+    private static final UserModel userModel = new UserModel();
+    public static UserModel getUserModel(){
+        return userModel;
+    }
+
     private String sid = null;
 
     public String getSid() {
@@ -13,10 +19,6 @@ public class UserModel {
 
     public void setSid(String sid) {
         this.sid = sid;
-    }
-
-    public UserModel() {
-        //TODO read cache as info
     }
 
     private String password = null;

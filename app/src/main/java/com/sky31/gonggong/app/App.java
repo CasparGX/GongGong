@@ -2,6 +2,8 @@ package com.sky31.gonggong.app;
 
 import android.app.Application;
 
+import com.sky31.gonggong.model.UserModel;
+
 /**
  * Created by root on 16-2-24.
  */

@@ -5,6 +5,7 @@
 
     <string name="default_username">亲爱的拱拱</string>
     <string name="default_stu_num">12345678</string>
+    <string name="login">登录</string>
 
     <string name="ecard">校园卡</string>
     <string name="balance">余额：</string>
