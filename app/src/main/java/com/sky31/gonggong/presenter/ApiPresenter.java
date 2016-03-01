@@ -1,6 +1,7 @@
 package com.sky31.gonggong.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
@@ -38,7 +39,7 @@ public class ApiPresenter {
 
         //init sid and password
         UserModel userModel = UserModel.getUserModel();
-        if (userModel.getSid()!=null && userModel.getPassword()!=null) {
+        if (userModel.getSid() != null && userModel.getPassword() != null) {
             sid = userModel.getSid();
             password = userModel.getPassword();
         }
@@ -48,49 +49,61 @@ public class ApiPresenter {
 
     public void getBalance() {
 
-        Call<EcardModel> call = apiService.getBalance(sid,password);
+        Call<EcardModel> call = apiService.getBalance(sid, password);
         call.enqueue(new Callback<EcardModel>() {
             @Override
             public void onResponse(Response<EcardModel> response, Retrofit retrofit) {
-                if (response.body().getCode()!=-1){
+                int code = response.body().getCode();
+                if (code == 0) {
                     EcardModel ecardModel = response.body();
-                    apiView.getBalance(ecardModel);
+                    apiView.getBalance(code,ecardModel);
                 } else {
-
+                    apiView.login(code,null);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText((Context) apiView,"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void login(String sid, String password){
+    public void login(String sid, String password) {
         getStudentInfo(sid, password);
     }
 
     public void getStudentInfo(final String sid, final String password) {
-        Call<StudentInfoModel> call = apiService.getStudentInfo(sid,password);
+        Call<StudentInfoModel> call = apiService.getStudentInfo(sid, password);
         call.enqueue(new Callback<StudentInfoModel>() {
             @Override
             public void onResponse(Response<StudentInfoModel> response, Retrofit retrofit) {
-                switch (response.body().getCode()) {
-                    case 0:
-                        StudentInfoModel studentInfoModel = response.body();
-                        UserModel.getUserModel().setSid(sid);
-                        UserModel.getUserModel().setPassword(password);
-                        apiView.login(studentInfoModel);
-                        break;
+                int code = response.body().getCode();
+                if (code == 0) {
+                    StudentInfoModel studentInfoModel = response.body();
+                    Log.i("studentInfo",response.body().getData().toString());
+                    UserModel.getUserModel().setSid(sid);
+                    UserModel.getUserModel().setPassword(password);
+                    apiView.login(code,studentInfoModel);
+                } else {
+                    //Log.i("studentInfo",response.body().getData().toString());
+                    apiView.login(code,null);
                 }
 
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText((Context) apiView,"Error",Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
             }
         });
+    }
+
+    public void errorCode(int code) {
+        switch (code){
+            case -1:
+
+                break;
+        }
     }
 }
