@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,13 +20,13 @@ import android.widget.TextView;
 
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.LoginView;
 import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
@@ -79,13 +80,34 @@ public class MainActivity extends BaseActivity implements ApiView {
     TextView ecardUnclaimed;
     @Bind(R.id.btn_login)
     TextView btnLogin;
+    @Bind(R.id.ecard_none)
+    TextView ecardNone;
+    @Bind(R.id.ecard_info)
+    LinearLayout ecardInfo;
+    @Bind(R.id.ecard)
+    LinearLayout ecard;
 
     @OnClick(R.id.btn_login)
     void showLoginDialog() {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(loginIntent);
+        startActivityForResult(loginIntent, Constants.Value.RESULT_LOGIN);
         MainActivity.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Constants.Value.RESULT_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    stuNum.setText(UserModel.getUserModel().getSid());
+                    username.setText(data.getStringExtra("name"));
+                    btnLogin.setVisibility(View.GONE);
+                    stuNum.setVisibility(View.VISIBLE);
+                    ecard.setClickable(true);
+                }
+                break;
+        }
     }
 
     @OnClick(R.id.drawer_menu_item1)
@@ -93,6 +115,12 @@ public class MainActivity extends BaseActivity implements ApiView {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.getBalance();
     }
+
+    @OnClick(R.id.ecard) void onCLickEcard(){
+        ApiPresenter apiPresenter = new ApiPresenter(this);
+        apiPresenter.getBalance();
+    }
+
 
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -111,6 +139,9 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
     private void initView() {
+        ecardInfo.setVisibility(View.GONE);
+        ecard.setClickable(false);
+
         List<Fragment> mDatas = new ArrayList<Fragment>();
         final FirstFragment mFirstFragment = new FirstFragment();
         SecondFragment mSecondFragment = new SecondFragment();
@@ -193,11 +224,14 @@ public class MainActivity extends BaseActivity implements ApiView {
     public void getBalance(EcardModel ecardModel) {
         ecardBalance.setText(ecardModel.getData().getBalance() + "");
         ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
+        ecardNone.setVisibility(View.GONE);
+        ecardInfo.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void login(StudentInfoModel studentInfoModel) {
         stuNum.setText(UserModel.getUserModel().getSid());
         username.setText(studentInfoModel.getData().getName());
+
     }
 }

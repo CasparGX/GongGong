@@ -81,6 +81,7 @@ public class ApiPresenter {
                         StudentInfoModel studentInfoModel = response.body();
                         UserModel.getUserModel().setSid(sid);
                         UserModel.getUserModel().setPassword(password);
+                        apiView.login(studentInfoModel);
                         break;
                 }
 

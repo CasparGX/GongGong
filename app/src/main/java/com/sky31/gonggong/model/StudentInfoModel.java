@@ -7,6 +7,12 @@ import com.google.gson.annotations.SerializedName;
  */
 public class StudentInfoModel {
 
+    /*private StudentInfoModel() {}
+    private static final StudentInfoModel studentInfoModel = new StudentInfoModel();
+    public static StudentInfoModel getStudentInfoModel(){
+        return studentInfoModel;
+    }*/
+
     /**
      * code : 0
      * msg : OK

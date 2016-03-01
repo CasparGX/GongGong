@@ -33,5 +33,8 @@ public class Constants {
     public final class Value {
         public static final String ROLE = "test";
         public static final String HASH = "test";
+
+
+        public static final int RESULT_LOGIN = 1;
     }
 }

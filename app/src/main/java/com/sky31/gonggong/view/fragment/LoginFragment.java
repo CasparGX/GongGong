@@ -2,6 +2,7 @@ package com.sky31.gonggong.view.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
@@ -45,6 +47,7 @@ public class LoginFragment extends Fragment implements ApiView{
     @OnClick(R.id.btn_login) void btnLogin() {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.login(sid.getText()+"",password.getText()+"");
+        btnLogin.setText("");
     }
 
     // TODO: Rename and change types of parameters
@@ -120,7 +123,11 @@ public class LoginFragment extends Fragment implements ApiView{
 
     @Override
     public void login(StudentInfoModel studentInfoModel) {
-
+        Intent backIntent = new Intent();
+        backIntent.putExtra("name",studentInfoModel.getData().getName());
+        this.getActivity().setResult(Activity.RESULT_OK,backIntent);
+        this.getActivity().finish();
+        onDetach();
     }
 
     /**

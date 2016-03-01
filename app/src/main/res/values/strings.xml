@@ -8,6 +8,7 @@
     <string name="login">登录</string>
 
     <string name="ecard">校园卡</string>
+    <string name="click_get">点击获取</string>
     <string name="balance">余额：</string>
     <string name="unclaimed">待领：</string>
     <string name="default_money">0.00</string>
