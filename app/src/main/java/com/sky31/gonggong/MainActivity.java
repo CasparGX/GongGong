@@ -28,6 +28,7 @@ import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.activity.LoginActivity;
+import com.sky31.gonggong.view.activity.SwzlActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
 
@@ -64,9 +65,9 @@ public class MainActivity extends BaseActivity implements ApiView {
     FrameLayout frameLayout;
     @Bind(R.id.imageView)
     ImageView imageView;
-    @Bind(R.id.drawer_menu_item1)
+    @Bind(R.id.top_index)
     TableRow drawerMenuItem1;
-    @Bind(R.id.drawer_menu_item2)
+    @Bind(R.id.function)
     TableRow drawerMenuItem2;
     @Bind(R.id.drawer_menu_item3)
     TableRow drawerMenuItem3;
@@ -110,10 +111,21 @@ public class MainActivity extends BaseActivity implements ApiView {
         }
     }
 
-    @OnClick(R.id.drawer_menu_item1)
+    @OnClick(R.id.top_index)
     void DrawerMenuItem1() {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.getBalance();
+    }
+
+    @OnClick(R.id.function)
+    void jumpToLostAndFound(){
+        //调转到失物招
+        //
+        // 领
+        Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
+        startActivity(intent);
+
+
     }
 
     @OnClick(R.id.ecard) void onCLickEcard(){

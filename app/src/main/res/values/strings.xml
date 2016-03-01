@@ -19,6 +19,14 @@
     <string name="function">功能</string>
     <string name="found">发现</string>
 
+
+    <!-- swzl_toolbar_button -->
+
+    <string name="swzl_lost">丢东西</string>
+    <string name="swzl_get">找失主</string>
+    <string name="swzl_back">返回</string>
+    <string name="swzl_publish">我要发布</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
