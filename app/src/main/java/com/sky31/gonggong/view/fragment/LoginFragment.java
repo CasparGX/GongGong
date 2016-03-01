@@ -24,6 +24,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sky31.gonggong.base.CommonFunction.errorToast;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -32,7 +34,7 @@ import butterknife.OnClick;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements ApiView{
+public class LoginFragment extends Fragment implements ApiView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,9 +46,10 @@ public class LoginFragment extends Fragment implements ApiView{
     @Bind(R.id.btn_login)
     Button btnLogin;
 
-    @OnClick(R.id.btn_login) void btnLogin() {
+    @OnClick(R.id.btn_login)
+    void btnLogin() {
         ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.login(sid.getText()+"",password.getText()+"");
+        apiPresenter.login(sid.getText() + "", password.getText() + "");
         btnLogin.setText("");
     }
 
@@ -117,17 +120,22 @@ public class LoginFragment extends Fragment implements ApiView{
     }
 
     @Override
-    public void getBalance(EcardModel ecardModel) {
+    public void getBalance(int code, EcardModel ecardModel) {
 
     }
 
     @Override
-    public void login(StudentInfoModel studentInfoModel) {
-        Intent backIntent = new Intent();
-        backIntent.putExtra("name",studentInfoModel.getData().getName());
-        this.getActivity().setResult(Activity.RESULT_OK,backIntent);
-        this.getActivity().finish();
-        onDetach();
+    public void login(int code, StudentInfoModel studentInfoModel) {
+        if (code==0){
+
+            Intent backIntent = new Intent();
+            backIntent.putExtra("name", studentInfoModel.getData().getName());
+            this.getActivity().setResult(Activity.RESULT_OK, backIntent);
+            this.getActivity().finish();
+            onDetach();
+        }else{
+            errorToast(this.getActivity(),code);
+        }
     }
 
     /**

@@ -38,6 +38,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sky31.gonggong.base.CommonFunction.errorToast;
+
 public class MainActivity extends BaseActivity implements ApiView {
 
     @Bind(R.id.toolbar)
@@ -221,17 +223,21 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
     @Override
-    public void getBalance(EcardModel ecardModel) {
-        ecardBalance.setText(ecardModel.getData().getBalance() + "");
-        ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
-        ecardNone.setVisibility(View.GONE);
-        ecardInfo.setVisibility(View.VISIBLE);
+    public void getBalance(int code, EcardModel ecardModel) {
+        if (code==0){
+            ecardBalance.setText(ecardModel.getData().getBalance() + "");
+            ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
+            ecardNone.setVisibility(View.GONE);
+            ecardInfo.setVisibility(View.VISIBLE);
+        }else{
+            errorToast(this,code);
+        }
     }
 
     @Override
-    public void login(StudentInfoModel studentInfoModel) {
+    public void login(int code,StudentInfoModel studentInfoModel) {/*
         stuNum.setText(UserModel.getUserModel().getSid());
-        username.setText(studentInfoModel.getData().getName());
+        username.setText(studentInfoModel.getData().getName());*/
 
     }
 }
