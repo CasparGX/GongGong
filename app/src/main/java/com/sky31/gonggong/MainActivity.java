@@ -1,6 +1,6 @@
 package com.sky31.gonggong;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,8 +24,9 @@ import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
-import com.sky31.gonggong.view.EcardView;
+import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.LoginView;
+import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
 
@@ -36,7 +37,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements EcardView, LoginView {
+public class MainActivity extends BaseActivity implements ApiView {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -81,8 +82,10 @@ public class MainActivity extends BaseActivity implements EcardView, LoginView {
 
     @OnClick(R.id.btn_login)
     void showLoginDialog() {
-        Dialog loginDialog = new Dialog(this);
-        loginDialog.show();
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+        MainActivity.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
     }
 
     @OnClick(R.id.drawer_menu_item1)

@@ -6,7 +6,8 @@ import com.sky31.gonggong.model.StudentInfoModel;
 /**
  * Created by root on 16-2-29.
  */
-public interface EcardView {
+public interface ApiView {
     void getBalance(EcardModel ecardModel);
+    void login(StudentInfoModel studentInfoModel);
 
 }

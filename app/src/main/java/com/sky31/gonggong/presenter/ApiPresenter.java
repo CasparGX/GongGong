@@ -8,7 +8,8 @@ import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.view.EcardView;
+import com.sky31.gonggong.view.ApiView;
+import com.sky31.gonggong.view.LoginView;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -20,15 +21,14 @@ import retrofit.Retrofit;
  * Created by root on 16-2-29.
  */
 public class ApiPresenter {
-    private EcardView apiView;
+    private ApiView apiView;
     private ApiService apiService;
 
     private String sid = null;
     private String password = null;
 
-    public ApiPresenter(EcardView apiView) {
+    public ApiPresenter(ApiView apiView) {
         this.apiView = apiView;
-
         //init Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
@@ -42,6 +42,7 @@ public class ApiPresenter {
             sid = userModel.getSid();
             password = userModel.getPassword();
         }
+
     }
 
 
@@ -66,17 +67,23 @@ public class ApiPresenter {
         });
     }
 
-    public void login(){
-        getStudentInfo();
+    public void login(String sid, String password){
+        getStudentInfo(sid, password);
     }
 
-    public void getStudentInfo() {
+    public void getStudentInfo(final String sid, final String password) {
         Call<StudentInfoModel> call = apiService.getStudentInfo(sid,password);
         call.enqueue(new Callback<StudentInfoModel>() {
             @Override
             public void onResponse(Response<StudentInfoModel> response, Retrofit retrofit) {
-                StudentInfoModel studentInfoModel = response.body();
-                //apiView.getStudentInfoModel(studentInfoModel);
+                switch (response.body().getCode()) {
+                    case 0:
+                        StudentInfoModel studentInfoModel = response.body();
+                        UserModel.getUserModel().setSid(sid);
+                        UserModel.getUserModel().setPassword(password);
+                        break;
+                }
+
             }
 
             @Override
