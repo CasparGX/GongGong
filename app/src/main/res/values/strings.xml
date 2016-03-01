@@ -13,6 +13,12 @@
     <string name="unclaimed">待领：</string>
     <string name="default_money">0.00</string>
 
+    <!-- Menu Text-->
+
+    <string name="top_index">首页</string>
+    <string name="function">功能</string>
+    <string name="found">发现</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

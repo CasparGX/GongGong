@@ -47,7 +47,7 @@
             <ImageView style="@style/DrawerMenuTableRowIcon"/>
             <TextView
                 style="@style/DrawerMenuTableRowText"
-                android:text="Info"/>
+                android:text="@string/top_index"/>
         </TableRow>
         <TableRow
             android:id="@+id/drawer_menu_item2"
@@ -55,7 +55,7 @@
             <ImageView style="@style/DrawerMenuTableRowIcon"/>
             <TextView
                 style="@style/DrawerMenuTableRowText"
-                android:text="Common"/>
+                android:text="@string/function"/>
         </TableRow>
         <TableRow
             android:id="@+id/drawer_menu_item3"
@@ -63,7 +63,7 @@
             <ImageView style="@style/DrawerMenuTableRowIcon"/>
             <TextView
                 style="@style/DrawerMenuTableRowText"
-                android:text="About"/>
+                android:text="@string/found"/>
         </TableRow>
 
     </TableLayout>
