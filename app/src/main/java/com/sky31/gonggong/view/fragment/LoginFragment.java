@@ -1,6 +1,7 @@
 package com.sky31.gonggong.view.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +20,8 @@ import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.LoginView;
+
+import java.util.zip.Inflater;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,11 +49,17 @@ public class LoginFragment extends Fragment implements ApiView {
     @Bind(R.id.btn_login)
     Button btnLogin;
 
+    private AlertDialog dialogWait;
+
     @OnClick(R.id.btn_login)
     void btnLogin() {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_wait,null);
+        dialogWait = new AlertDialog.Builder(this.getActivity()).create();
+        dialogWait.setView(dialogView);
+        dialogWait.show();
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.login(sid.getText() + "", password.getText() + "");
-        btnLogin.setText("");
     }
 
     // TODO: Rename and change types of parameters
@@ -126,8 +135,8 @@ public class LoginFragment extends Fragment implements ApiView {
 
     @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
+        dialogWait.dismiss();
         if (code==0){
-
             Intent backIntent = new Intent();
             backIntent.putExtra("name", studentInfoModel.getData().getName());
             this.getActivity().setResult(Activity.RESULT_OK, backIntent);

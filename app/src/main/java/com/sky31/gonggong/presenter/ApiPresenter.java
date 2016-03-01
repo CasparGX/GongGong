@@ -1,6 +1,7 @@
 package com.sky31.gonggong.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
@@ -80,10 +81,12 @@ public class ApiPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     StudentInfoModel studentInfoModel = response.body();
+                    Log.i("studentInfo",response.body().getData().toString());
                     UserModel.getUserModel().setSid(sid);
                     UserModel.getUserModel().setPassword(password);
                     apiView.login(code,studentInfoModel);
                 } else {
+                    //Log.i("studentInfo",response.body().getData().toString());
                     apiView.login(code,null);
                 }
 
@@ -91,7 +94,7 @@ public class ApiPresenter {
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
             }
         });
     }

@@ -6,12 +6,23 @@
     <string name="default_username">亲爱的拱拱</string>
     <string name="default_stu_num">12345678</string>
     <string name="login">登录</string>
+    <string name="pls_wait">请稍候…</string>
 
     <string name="ecard">校园卡</string>
     <string name="click_get">点击获取</string>
     <string name="balance">余额：</string>
     <string name="unclaimed">待领：</string>
     <string name="default_money">0.00</string>
+
+    <string name="err_msg__1">Hash码错误，请联系官方QQ</string>
+    <string name="err_msg_1">失败：密码错误</string>
+    <string name="err_msg_2">失败：获取超时，请重试</string>
+    <string name="err_msg_3">教务系统无法连接，请等待教务系统恢复</string>
+    <string name="err_msg_4">失败：未知错误</string>
+    <string name="err_msg_5">未找到此学生</string>
+    <string name="err_msg_6">已续借</string>
+    <string name="err_msg_7">图书号错误</string>
+    <string name="err_msg_65535">失败：缺少参数</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
