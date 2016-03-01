@@ -42,6 +42,7 @@ public class Constants {
 
         public static final int RESULT_LOGIN = 1;
 
+        //
         //失物招领
         public static final String SWZL_ASK_METHOD_JSON = "json";
         public static final String SWZL_SUBMIT_LOST = "submit_lost";
