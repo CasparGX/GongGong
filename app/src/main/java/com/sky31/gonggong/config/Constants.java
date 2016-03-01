@@ -8,13 +8,21 @@ public class Constants {
     public final class Api {
 
         public static final String URL = "http://api.sky31.com";
+
+        public static final String STU_INFO = "edu_student_info.php";
+        public static final String COURSE = "edu_course.php";
+        public static final String GRADE_REPORT = "edu_grade_report.php";
+        public static final String GRADE_DETAILS = "edu_grade_details.php";
+        public static final String TERM_CODE = "edu_term_code.php";
+        public static final String RANK = "edu_rank.php";
+
         public static final String ECARD = "ecard_balance.php";
-        public static final String STU_INFO = "student_info.php";
-        public static final String COURSE = "course.php";
-        public static final String GRADE_REPORT = "grade_report.php";
-        public static final String GRADE_DETAILS = "grade_details.php";
-        public static final String TERM_CODE = "term_code.php";
-        public static final String SEARCH_STUDENT = "search_student.php";
+
+        public static final String SEARCH_MATE = "search_mate.php";
+
+        public static final String LIBRARY_READER_INFO = "library_reader_info.php";
+        public static final String LIBRARY_RENT_LIST = "library_rent_list.php";
+        public static final String LIBRARY_RENEW = "library_renew.php";
     }
     public final class Key {
         public static final String ROLE = "role";
