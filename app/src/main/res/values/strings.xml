@@ -14,7 +14,7 @@
     <string name="unclaimed">待领：</string>
     <string name="default_money">0.00</string>
 
-<<<<<<< HEAD
+
     <!-- Menu Text-->
 
     <string name="top_index">首页</string>
@@ -28,7 +28,7 @@
     <string name="swzl_get">找失主</string>
     <string name="swzl_back">返回</string>
     <string name="swzl_publish">我要发布</string>
-=======
+
     <string name="err_msg__1">Hash码错误，请联系官方QQ</string>
     <string name="err_msg_1">失败：密码错误</string>
     <string name="err_msg_2">失败：获取超时，请重试</string>
@@ -38,7 +38,7 @@
     <string name="err_msg_6">已续借</string>
     <string name="err_msg_7">图书号错误</string>
     <string name="err_msg_65535">失败：缺少参数</string>
->>>>>>> 2f0eb0d307e583435c0ffdad1f7e6d6690ab88b4
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
