@@ -24,7 +24,16 @@
             android:name=".base.BaseActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity android:name=".view.activity.LoginActivity" />
+<<<<<<< HEAD
         <activity android:name=".view.activity.SwzlActivity"></activity>
+=======
+        <activity android:name=".view.activity.SwzlActivity" >
+        </activity>
+        <activity
+            android:name=".view.activity.PublishSwzlActivity"
+            android:label="@string/title_activity_publish_swzl" >
+        </activity>
+>>>>>>> 943526afc68ac0aff4715b8197f65be624ab4483
     </application>
 
 </manifest>

@@ -23,4 +23,12 @@
 
     <dimen name="img_icon_size_mini">20dp</dimen>
 
+
+
+
+
+    <!-- SWZL form size -->
+    <dimen name="swzl_title_size">35sp</dimen>
+    <dimen name="swzl_attention_size">20sp</dimen>
+    <dimen name="swzl_util_marginTop">20dp</dimen>
 </resources>

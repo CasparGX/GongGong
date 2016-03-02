@@ -1,6 +1,7 @@
 package com.sky31.gonggong.view.activity;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -114,8 +115,13 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         getButton.setClickable(true);
         Log.d(msg, "open swzl_lost_fragment");
     }
+
+
     @OnClick(R.id.swzl_publish)
     void jump2PublishAct(){
+        Intent intent = new Intent(SwzlActivity.this,PublishSwzlActivity.class);
+
+        startActivity(intent);
         Log.d(msg, "open swzl_publish_activity.");
     }
 
