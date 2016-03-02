@@ -14,14 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.LoginView;
-
-import java.util.zip.Inflater;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -66,6 +62,8 @@ public class LoginFragment extends Fragment implements ApiView {
     private String mParam1;
     private String mParam2;
 
+    private Context context;
+
     private OnFragmentInteractionListener mListener;
 
     public LoginFragment() {
@@ -105,6 +103,7 @@ public class LoginFragment extends Fragment implements ApiView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
+        context = this.getActivity();
         return view;
     }
 
@@ -145,6 +144,11 @@ public class LoginFragment extends Fragment implements ApiView {
         }else{
             errorToast(this.getActivity(),code);
         }
+    }
+
+    @Override
+    public Context getViewContext() {
+        return context;
     }
 
     /**
