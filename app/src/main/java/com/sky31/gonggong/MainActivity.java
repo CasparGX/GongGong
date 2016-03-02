@@ -1,6 +1,8 @@
 package com.sky31.gonggong;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,7 @@ import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
+import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.activity.SwzlActivity;
@@ -83,64 +86,45 @@ public class MainActivity extends BaseActivity implements ApiView {
     TextView ecardUnclaimed;
     @Bind(R.id.btn_login)
     TextView btnLogin;
-    @Bind(R.id.ecard_none)
-    TextView ecardNone;
     @Bind(R.id.ecard_info)
     LinearLayout ecardInfo;
     @Bind(R.id.ecard)
     LinearLayout ecard;
 
     @OnClick(R.id.btn_login)
-    void showLoginDialog() {
+    void gotoLogin() {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
         startActivityForResult(loginIntent, Constants.Value.RESULT_LOGIN);
         MainActivity.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case Constants.Value.RESULT_LOGIN:
-                if (resultCode == RESULT_OK) {
-                    stuNum.setText(UserModel.getUserModel().getSid());
-                    username.setText(data.getStringExtra("name"));
-                    btnLogin.setVisibility(View.GONE);
-                    stuNum.setVisibility(View.VISIBLE);
-                    ecard.setClickable(true);
-                }
-                break;
-        }
-    }
-
     @OnClick(R.id.top_index)
     void DrawerMenuItem1() {
-        ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.getBalance();
+
     }
 
     @OnClick(R.id.function)
-    void jumpToLostAndFound(){
-        //调转到失物招
-        //
-        // 领
+    void jumpToLostAndFound() {
+        //调转到失物招领
         Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
         startActivity(intent);
 
 
     }
 
-    @OnClick(R.id.ecard) void onCLickEcard(){
+    @OnClick(R.id.ecard)
+    void onCLickEcard() {
         ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.getBalance();
+        apiPresenter.getBalance(null, null);
     }
-
 
 
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
     private int headerHeight = -1;
     private int homeLayoutHeight = -1;
+    private Context context;
+    private Resources resources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,12 +132,15 @@ public class MainActivity extends BaseActivity implements ApiView {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        context = MainActivity.this;
+        resources = getResources();
         initToolbar();
         initView();
+        autoLogin();
     }
 
     private void initView() {
-        ecardInfo.setVisibility(View.GONE);
+        //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
 
         List<Fragment> mDatas = new ArrayList<Fragment>();
@@ -235,21 +222,62 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
     @Override
-    public void getBalance(int code, EcardModel ecardModel) {
-        if (code==0){
-            ecardBalance.setText(ecardModel.getData().getBalance() + "");
-            ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
-            ecardNone.setVisibility(View.GONE);
-            ecardInfo.setVisibility(View.VISIBLE);
-        }else{
-            errorToast(this,code);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Constants.Value.RESULT_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    isLogined(data.getStringExtra("name"));
+                    ecard.setClickable(true);
+                }
+                break;
+        }
+    }
+
+    private void readyLogin() {
+        btnLogin.setClickable(false);
+        btnLogin.setText(resources.getString(R.string.logining));
+    }
+
+    private void isLogined(String name) {
+        stuNum.setText(UserModel.getSid());
+        username.setText(name);
+        btnLogin.setVisibility(View.GONE);
+        stuNum.setVisibility(View.VISIBLE);
+    }
+
+    public void autoLogin() {
+        ACache aCache = ACache.get(this);
+        if (aCache.getAsString(Constants.Key.SID) != null || aCache.getAsString(Constants.Key.PASSWORD) != null) {
+            readyLogin();
+            ApiPresenter apiPresenter = new ApiPresenter(this);
+            apiPresenter.login(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
         }
     }
 
     @Override
-    public void login(int code,StudentInfoModel studentInfoModel) {/*
-        stuNum.setText(UserModel.getUserModel().getSid());
-        username.setText(studentInfoModel.getData().getName());*/
+    public void getBalance(int code, EcardModel ecardModel) {
+        if (code == 0) {
+            ecardBalance.setText(ecardModel.getData().getBalance() + "");
+            ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
+            //ecardNone.setVisibility(View.GONE);
+            //ecardInfo.setVisibility(View.VISIBLE);
+        } else {
+            errorToast(this, code);
+        }
+    }
 
+    @Override
+    public void login(int code, StudentInfoModel studentInfoModel) {
+        if (code == 0) {
+            isLogined(studentInfoModel.getData().getName());
+        } else {
+            errorToast(this, code);
+        }
+    }
+
+    @Override
+    public Context getViewContext() {
+        return context;
     }
 }

@@ -1,6 +1,7 @@
 package com.sky31.gonggong.presenter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,6 +10,8 @@ import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.LoginView;
 
@@ -24,6 +27,7 @@ import retrofit.Retrofit;
 public class ApiPresenter {
     private ApiView apiView;
     private ApiService apiService;
+    private Context context;
 
     private String sid = null;
     private String password = null;
@@ -36,19 +40,25 @@ public class ApiPresenter {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
+        initSidAndPassword();
 
-        //init sid and password
-        UserModel userModel = UserModel.getUserModel();
-        if (userModel.getSid() != null && userModel.getPassword() != null) {
-            sid = userModel.getSid();
-            password = userModel.getPassword();
-        }
 
     }
 
+    private void initSidAndPassword() {
+        //init sid and password
+        //UserModel userModel = UserModel.getUserModel();
+        if (UserModel.getSid() != null && UserModel.getPassword() != null) {
+            sid = UserModel.getSid();
+            password = UserModel.getPassword();
+        }
+    }
 
-    public void getBalance() {
 
+    public void getBalance(@Nullable String sid, @Nullable String password) {
+        Debug.i("getBalance", this.sid + " " + this.password);
+        sid = sid != null ? sid : this.sid;
+        password = password != null ? password : this.password;
         Call<EcardModel> call = apiService.getBalance(sid, password);
         call.enqueue(new Callback<EcardModel>() {
             @Override
@@ -56,21 +66,24 @@ public class ApiPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     EcardModel ecardModel = response.body();
-                    apiView.getBalance(code,ecardModel);
+                    apiView.getBalance(code, ecardModel);
                 } else {
-                    apiView.login(code,null);
+                    apiView.login(code, null);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
             }
         });
     }
 
     public void login(String sid, String password) {
         getStudentInfo(sid, password);
+        initSidAndPassword();
+        getBalance(sid, password);
     }
 
     public void getStudentInfo(final String sid, final String password) {
@@ -81,26 +94,30 @@ public class ApiPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     StudentInfoModel studentInfoModel = response.body();
-                    Log.i("studentInfo",response.body().getData().toString());
-                    UserModel.getUserModel().setSid(sid);
-                    UserModel.getUserModel().setPassword(password);
-                    apiView.login(code,studentInfoModel);
+                    studentInfoModel.setCache(apiView.getViewContext());
+                    UserModel.setSid(sid);
+                    UserModel.setPassword(password);
+                    UserModel.setCache(apiView.getViewContext());
+                    apiView.login(code, studentInfoModel);
+                } else if (code == 1) {
+                    UserModel.setCacheNone(apiView.getViewContext());
+                    apiView.login(code, null);
                 } else {
-                    //Log.i("studentInfo",response.body().getData().toString());
-                    apiView.login(code,null);
+                    apiView.login(code, null);
                 }
 
             }
 
             @Override
             public void onFailure(Throwable t) {
+                Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
     }
 
     public void errorCode(int code) {
-        switch (code){
+        switch (code) {
             case -1:
 
                 break;

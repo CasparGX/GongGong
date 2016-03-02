@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     tools:context="com.sky31.gonggong.view.activity.LoginActivity">
 
     <fragment
@@ -10,5 +11,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.sky31.gonggong.view.fragment.LoginFragment"
-        />
+        tools:layout="@layout/fragment_login" />
 </FrameLayout>

@@ -14,10 +14,10 @@ public interface ApiService {
             + Constants.Key.HASH + "=" + Constants.Value.HASH;
 
     @GET(Constants.Api.ECARD + "?" + defaultParam)
-    Call<EcardModel> getBalance(@Query("sid") String sid, @Query("password") String password);
+    Call<EcardModel> getBalance(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
-    Call<StudentInfoModel> getStudentInfo(@Query("sid") String sid, @Query("password") String password);
+    Call<StudentInfoModel> getStudentInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 
 

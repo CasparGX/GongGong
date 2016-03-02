@@ -29,12 +29,24 @@ public class Constants {
         public static final String SWZL_ACTION = "lost_found.php";
 
     }
+
     public final class Key {
         public static final String ROLE = "role";
         public static final String HASH = "hash";
         public static final String SID = "sid";
         public static final String PASSWORD = "password";
+
+        public static final String NAME = "name";
+        public static final String SEX = "sex";
+        public static final String DATE_OF_BIRTH = "date_of_birth";
+        public static final String LOCATION = "location";
+        public static final String COLLEGE = "college";
+        public static final String MAJOR = "major";
+        public static final String CLASSX = "classx";
+
+
     }
+
     public final class Value {
         public static final String ROLE = "test";
         public static final String HASH = "test";
@@ -47,7 +59,7 @@ public class Constants {
         public static final String SWZL_ASK_METHOD_JSON = "json";
         public static final String SWZL_SUBMIT_LOST = "submit_lost";
         public static final String SWZL_SUBMIT_FOUND = "submit_found";
-        public static final String SWZL_SEARCH_LOST  = "search_lost";
+        public static final String SWZL_SEARCH_LOST = "search_lost";
         public static final String SWZL_SEARCH_FOUND = "search_found";
 
     }
