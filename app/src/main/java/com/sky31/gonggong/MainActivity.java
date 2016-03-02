@@ -2,6 +2,7 @@ package com.sky31.gonggong;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -85,8 +86,6 @@ public class MainActivity extends BaseActivity implements ApiView {
     TextView ecardUnclaimed;
     @Bind(R.id.btn_login)
     TextView btnLogin;
-    @Bind(R.id.ecard_none)
-    TextView ecardNone;
     @Bind(R.id.ecard_info)
     LinearLayout ecardInfo;
     @Bind(R.id.ecard)
@@ -105,7 +104,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
     @OnClick(R.id.function)
-    void jumpToLostAndFound(){
+    void jumpToLostAndFound() {
         //调转到失物招领
         Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
         startActivity(intent);
@@ -113,11 +112,11 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     }
 
-    @OnClick(R.id.ecard) void onCLickEcard(){
+    @OnClick(R.id.ecard)
+    void onCLickEcard() {
         ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.getBalance(null,null);
+        apiPresenter.getBalance(null, null);
     }
-
 
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -125,6 +124,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     private int headerHeight = -1;
     private int homeLayoutHeight = -1;
     private Context context;
+    private Resources resources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,13 +133,14 @@ public class MainActivity extends BaseActivity implements ApiView {
 
         ButterKnife.bind(this);
         context = MainActivity.this;
+        resources = getResources();
         initToolbar();
         initView();
         autoLogin();
     }
 
     private void initView() {
-        ecardInfo.setVisibility(View.GONE);
+        //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
 
         List<Fragment> mDatas = new ArrayList<Fragment>();
@@ -233,39 +234,45 @@ public class MainActivity extends BaseActivity implements ApiView {
         }
     }
 
+    private void readyLogin() {
+        btnLogin.setClickable(false);
+        btnLogin.setText(resources.getString(R.string.logining));
+    }
+
     private void isLogined(String name) {
-        stuNum.setText(UserModel.getUserModel().getSid());
+        stuNum.setText(UserModel.getSid());
         username.setText(name);
         btnLogin.setVisibility(View.GONE);
         stuNum.setVisibility(View.VISIBLE);
     }
 
-    public void autoLogin(){
+    public void autoLogin() {
         ACache aCache = ACache.get(this);
-        if (aCache.getAsString(Constants.Key.SID)!=null || aCache.getAsString(Constants.Key.PASSWORD)!=null) {
+        if (aCache.getAsString(Constants.Key.SID) != null || aCache.getAsString(Constants.Key.PASSWORD) != null) {
+            readyLogin();
             ApiPresenter apiPresenter = new ApiPresenter(this);
-            apiPresenter.login(aCache.getAsString(Constants.Key.SID),aCache.getAsString(Constants.Key.PASSWORD));
+            apiPresenter.login(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
         }
     }
 
     @Override
     public void getBalance(int code, EcardModel ecardModel) {
-        if (code==0){
+        if (code == 0) {
             ecardBalance.setText(ecardModel.getData().getBalance() + "");
             ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
-            ecardNone.setVisibility(View.GONE);
-            ecardInfo.setVisibility(View.VISIBLE);
-        }else{
-            errorToast(this,code);
+            //ecardNone.setVisibility(View.GONE);
+            //ecardInfo.setVisibility(View.VISIBLE);
+        } else {
+            errorToast(this, code);
         }
     }
 
     @Override
-    public void login(int code,StudentInfoModel studentInfoModel) {
-        if (code==0){
+    public void login(int code, StudentInfoModel studentInfoModel) {
+        if (code == 0) {
             isLogined(studentInfoModel.getData().getName());
-        }else{
-            errorToast(this,code);
+        } else {
+            errorToast(this, code);
         }
     }
 

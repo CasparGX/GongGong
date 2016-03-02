@@ -6,13 +6,14 @@
     <string name="default_username">亲爱的拱拱</string>
     <string name="default_stu_num">12345678</string>
     <string name="login">登录</string>
+    <string name="logining">正在登录</string>
     <string name="pls_wait">请稍候…</string>
 
     <string name="ecard">校园卡</string>
     <string name="click_get">点击获取</string>
     <string name="balance">余额：</string>
     <string name="unclaimed">待领：</string>
-    <string name="default_money">0.00</string>
+    <string name="default_money">--.--</string>
 
 
     <!-- Menu Text-->

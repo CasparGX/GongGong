@@ -113,10 +113,10 @@
                                 style="@style/HeaderInfoTitle"
                                 android:text="@string/ecard" />
 
-                            <TextView
+                            <!--<TextView
                                 android:id="@+id/ecard_none"
                                 style="@style/HeaderInfoTitle"
-                                android:text="@string/click_get" />
+                                android:text="@string/click_get" />-->
 
                             <LinearLayout
                                 android:id="@+id/ecard_info"
