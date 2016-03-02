@@ -23,6 +23,11 @@ public class Constants {
         public static final String LIBRARY_READER_INFO = "library_reader_info.php";
         public static final String LIBRARY_RENT_LIST = "library_rent_list.php";
         public static final String LIBRARY_RENEW = "library_renew.php";
+
+
+        public static final String SWZL_URL = "http://swzl.sky31.com/API";
+        public static final String SWZL_ACTION = "lost_found.php";
+
     }
     public final class Key {
         public static final String ROLE = "role";
@@ -36,5 +41,14 @@ public class Constants {
 
 
         public static final int RESULT_LOGIN = 1;
+
+        //
+        //失物招领
+        public static final String SWZL_ASK_METHOD_JSON = "json";
+        public static final String SWZL_SUBMIT_LOST = "submit_lost";
+        public static final String SWZL_SUBMIT_FOUND = "submit_found";
+        public static final String SWZL_SEARCH_LOST  = "search_lost";
+        public static final String SWZL_SEARCH_FOUND = "search_found";
+
     }
 }

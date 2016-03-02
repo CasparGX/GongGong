@@ -18,4 +18,7 @@ public interface ApiService {
 
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
     Call<StudentInfoModel> getStudentInfo(@Query("sid") String sid, @Query("password") String password);
+
+
+
 }

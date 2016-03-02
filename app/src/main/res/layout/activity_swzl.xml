@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.sky31.gonggong.view.activity.SwzlActivity"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_swzl"
+        android:layout_width="match_parent"
+        android:background="@color/color_005eaa"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swzl_back"
+            android:text="@string/swzl_back"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/swzl_get"
+            android:text="@string/swzl_get"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/swzl_lost"
+            android:text="@string/swzl_lost"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swzl_publish"
+            android:text="@string/swzl_publish"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <fragment
+            android:id="@+id/swzl_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.sky31.gonggong.view.fragment.SwzlFragment"
+            tools:layout="@layout/fragment_swzl">
+
+        </fragment>
+    </LinearLayout>
+</LinearLayout>

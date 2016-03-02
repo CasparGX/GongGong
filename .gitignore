@@ -1,5 +1,10 @@
 *.iml
 .gradle
+/gradle.properties
+/gradlew.bat
+/gradle
+/gradlew
+/settings.gradle
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
@@ -10,4 +15,5 @@ signing.properties
 *.log
 *.apk
 .idea
-*.iml
+
+
