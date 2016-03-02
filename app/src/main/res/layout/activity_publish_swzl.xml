@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
     tools:context="com.sky31.gonggong.view.activity.PublishSwzlActivity">
+
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swzl_publish_fragment"
+        android:name="com.sky31.gonggong.view.fragment.PublishSwzlFragment"
+        tools:layout="@layout/fragment_publish_swzl">
+
+    </fragment>
 
 </RelativeLayout>
