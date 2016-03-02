@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     @OnClick(R.id.ecard) void onCLickEcard(){
         ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.getBalance();
+        apiPresenter.getBalance(null,null);
     }
 
 

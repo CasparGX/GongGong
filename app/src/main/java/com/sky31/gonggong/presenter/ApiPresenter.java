@@ -1,6 +1,7 @@
 package com.sky31.gonggong.presenter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.LoginView;
 
@@ -53,8 +55,10 @@ public class ApiPresenter {
     }
 
 
-    public void getBalance() {
-
+    public void getBalance(@Nullable String sid, @Nullable String password) {
+        Debug.i("getBalance", this.sid + " " + this.password);
+        sid = sid != null ? sid : this.sid;
+        password = password != null ? password : this.password;
         Call<EcardModel> call = apiService.getBalance(sid, password);
         call.enqueue(new Callback<EcardModel>() {
             @Override
@@ -71,13 +75,15 @@ public class ApiPresenter {
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
             }
         });
     }
 
     public void login(String sid, String password) {
         getStudentInfo(sid, password);
-        getBalance();
+        initSidAndPassword();
+        getBalance(sid, password);
     }
 
     public void getStudentInfo(final String sid, final String password) {
@@ -92,7 +98,6 @@ public class ApiPresenter {
                     UserModel.setSid(sid);
                     UserModel.setPassword(password);
                     UserModel.setCache(apiView.getViewContext());
-                    initSidAndPassword();
                     apiView.login(code, studentInfoModel);
                 } else if (code == 1) {
                     UserModel.setCacheNone(apiView.getViewContext());
@@ -105,6 +110,7 @@ public class ApiPresenter {
 
             @Override
             public void onFailure(Throwable t) {
+                Toast.makeText((Context) apiView, "Error", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
