@@ -1,0 +1,183 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:isScrollContainer="true"
+    tools:context="com.sky31.gonggong.view.fragment.PublishSwzlFragment"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/swzl_title_size"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/interval_mini"
+                android:text="@string/swzl_publish_title"/>
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/interval_default"
+                android:padding="@dimen/interval_default"
+                android:background="@color/white_transparent_3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/swzl_get_thing"
+                        android:paddingRight="@dimen/interval_default"
+                        android:textSize="@dimen/swzl_attention_size"
+                        android:textColor="@color/black"/>
+                    <RadioButton
+                        android:layout_width="@dimen/avatar_bg_size_mini"
+                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:id="@+id/swzl_thing_get"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/swzl_lost_thing"
+                        android:paddingRight="@dimen/interval_default"
+                        android:textSize="@dimen/swzl_attention_size"
+                        android:textColor="@color/black"/>
+                    <RadioButton
+                        android:layout_width="@dimen/avatar_bg_size_mini"
+                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:id="@+id/swzl_thing_lost"/>
+                </LinearLayout>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/swzl_util_marginTop"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/swzl_is_ecard"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginLeft="@dimen/avatar_bg_size"
+                    android:gravity="center"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/interval_default"
+                    android:background="@color/colorPrimary"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/swzl_util_marginTop">
+
+                <!-- 发布人-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_announcer"
+                    android:textSize="@dimen/swzl_attention_size"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_announcer"
+                    android:hint="@string/swzl_announcer_hint"/>
+
+                <!-- 地点-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_location"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_location"
+                    android:hint="@string/swzl_location_hint"/>
+
+                <!--物品描述-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_description"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_description"
+                    android:hint="@string/swzl_description"/>
+
+                <!--手机号码-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_mobile"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_mobile"
+                    android:hint="@string/swzl_mobile_hint"/>
+
+                <!--银行卡号-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_bank_card"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_bank_card"
+                    android:hint="@string/swzl_bank_card_hint"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_submit_confirm"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
