@@ -1,5 +1,10 @@
 package com.sky31.gonggong.model;
 
+import android.content.Context;
+
+import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.util.ACache;
+
 /**
  * Created by root on 16-2-28.
  */
@@ -50,6 +55,16 @@ public class EcardModel {
         private String balance;
         private String unclaimed;
 
+        public String getEcard_id() {
+            return ecard_id;
+        }
+
+        public void setEcard_id(String ecard_id) {
+            this.ecard_id = ecard_id;
+        }
+
+        private String ecard_id;
+
         public void setName(String name) {
             this.name = name;
         }
@@ -73,5 +88,12 @@ public class EcardModel {
         public String getUnclaimed() {
             return unclaimed;
         }
+    }
+
+    public void setCache(Context context) {
+        ACache aCache = ACache.get(context);
+        aCache.put(Constants.Key.BALANCE,getData().getBalance());
+        aCache.put(Constants.Key.UNCLAIMED,getData().getUnclaimed());
+        aCache.put(Constants.Key.ECARD_ID,getData().getEcard_id());
     }
 }

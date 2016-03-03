@@ -31,11 +31,13 @@ public class Constants {
     }
 
     public final class Key {
+        //登录验证
         public static final String ROLE = "role";
         public static final String HASH = "hash";
         public static final String SID = "sid";
         public static final String PASSWORD = "password";
 
+        //个人信息
         public static final String NAME = "name";
         public static final String SEX = "sex";
         public static final String DATE_OF_BIRTH = "date_of_birth";
@@ -44,6 +46,10 @@ public class Constants {
         public static final String MAJOR = "major";
         public static final String CLASSX = "classx";
 
+        //校园卡余额
+        public static final String ECARD_ID = "ecard_id";
+        public static final String BALANCE = "balance";
+        public static final String UNCLAIMED = "unclaimed";
 
     }
 

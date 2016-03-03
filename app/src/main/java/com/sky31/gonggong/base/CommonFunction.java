@@ -41,8 +41,10 @@ public class CommonFunction {
         errMsg.put("6",resources.getString(R.string.err_msg_6));
         errMsg.put("7",resources.getString(R.string.err_msg_7));
         errMsg.put("65535",resources.getString(R.string.err_msg_65535));
-        Toast.makeText(context, errMsg.get(code+""), Toast.LENGTH_SHORT).show();
+        if (code == 1) {
 
+        }
+        Toast.makeText(context, errMsg.get(code+""), Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -35,6 +35,8 @@ import com.sky31.gonggong.view.activity.SwzlActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
 
+import org.apache.http.auth.NTUserPrincipal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,8 +110,6 @@ public class MainActivity extends BaseActivity implements ApiView {
         //调转到失物招领
         Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
         startActivity(intent);
-
-
     }
 
     @OnClick(R.id.ecard)
@@ -119,12 +119,14 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
 
+    /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
     private int headerHeight = -1;
     private int homeLayoutHeight = -1;
     private Context context;
     private Resources resources;
+    private ACache aCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,11 +136,13 @@ public class MainActivity extends BaseActivity implements ApiView {
         ButterKnife.bind(this);
         context = MainActivity.this;
         resources = getResources();
+        aCache = ACache.get(this);
         initToolbar();
         initView();
         autoLogin();
     }
 
+    //初始化控件
     private void initView() {
         //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
@@ -175,6 +179,10 @@ public class MainActivity extends BaseActivity implements ApiView {
         });
     }
 
+    /**
+     * @param param ViewPager切换的进度
+     *              改变头部高度，内容透明度
+     */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
             float a = 1.5f;
@@ -197,6 +205,7 @@ public class MainActivity extends BaseActivity implements ApiView {
         }
     }
 
+    //初始化toolbar
     private void initToolbar() {
         //toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
         toolbar.setTitle(R.string.app_name);//设置主标题
@@ -228,40 +237,62 @@ public class MainActivity extends BaseActivity implements ApiView {
             case Constants.Value.RESULT_LOGIN:
                 if (resultCode == RESULT_OK) {
                     isLogined(data.getStringExtra("name"));
-                    ecard.setClickable(true);
                 }
                 break;
         }
     }
 
+    //准备登录
     private void readyLogin() {
         btnLogin.setClickable(false);
         btnLogin.setText(resources.getString(R.string.logining));
     }
 
+    //已登录
     private void isLogined(String name) {
-        stuNum.setText(UserModel.getSid());
+        //个人信息
+        stuNum.setText(aCache.getAsString(Constants.Key.SID));
         username.setText(name);
         btnLogin.setVisibility(View.GONE);
         stuNum.setVisibility(View.VISIBLE);
+
+        //校园卡
+        ecard.setClickable(true);
+
+        //图书馆
+
+        //校园网
     }
 
+    //自动登录，如果有缓存
     public void autoLogin() {
-        ACache aCache = ACache.get(this);
         if (aCache.getAsString(Constants.Key.SID) != null || aCache.getAsString(Constants.Key.PASSWORD) != null) {
-            readyLogin();
-            ApiPresenter apiPresenter = new ApiPresenter(this);
-            apiPresenter.login(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
+            isLogined(aCache.getAsString(Constants.Key.NAME));
+            getBalance(0,null);
+            autoGetData(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
         }
+    }
+
+    public void autoGetData(String sid, String password) {
+        ApiPresenter apiPresenter = new ApiPresenter(this);
+        apiPresenter.getBalance(sid, password);
+    }
+
+    public static void logout() {
+
     }
 
     @Override
     public void getBalance(int code, EcardModel ecardModel) {
         if (code == 0) {
-            ecardBalance.setText(ecardModel.getData().getBalance() + "");
-            ecardUnclaimed.setText(ecardModel.getData().getUnclaimed() + "");
-            //ecardNone.setVisibility(View.GONE);
-            //ecardInfo.setVisibility(View.VISIBLE);
+            try {
+                ecardBalance.setText(aCache.getAsString(Constants.Key.BALANCE));
+                ecardUnclaimed.setText(aCache.getAsString(Constants.Key.UNCLAIMED));
+                //ecardNone.setVisibility(View.GONE);
+                //ecardInfo.setVisibility(View.VISIBLE);
+            } catch (NullPointerException e) {
+
+            }
         } else {
             errorToast(this, code);
         }
@@ -269,7 +300,7 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
-        if (code == 0) {
+        if (code == 0 ) {
             isLogined(studentInfoModel.getData().getName());
         } else {
             errorToast(this, code);

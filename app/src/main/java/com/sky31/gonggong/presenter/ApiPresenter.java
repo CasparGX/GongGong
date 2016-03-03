@@ -41,8 +41,6 @@ public class ApiPresenter {
                 .build();
         apiService = retrofit.create(ApiService.class);
         initSidAndPassword();
-
-
     }
 
     private void initSidAndPassword() {
@@ -66,6 +64,7 @@ public class ApiPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     EcardModel ecardModel = response.body();
+                    ecardModel.setCache(apiView.getViewContext());
                     apiView.getBalance(code, ecardModel);
                 } else {
                     apiView.login(code, null);
