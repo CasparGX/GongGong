@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class LostAndFoundModel implements Serializable {
 
-    private int things_type;
+    private String things_type;
     private String announcer;
     private String location;
     private String things;  // 当丢失物品为校园卡时，thing可为null。
@@ -16,11 +16,11 @@ public class LostAndFoundModel implements Serializable {
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
     private int expireDays = 5;//默认为5天。
 
-    public int getThings_type() {
+    public String getThings_type() {
         return things_type;
     }
 
-    public void setThings_type(int things_type) {
+    public void setThings_type(String things_type) {
         this.things_type = things_type;
     }
 

@@ -33,44 +33,30 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/interval_default"
                 android:padding="@dimen/interval_default"
+                android:id="@+id/swzl_lost_or_get"
                 android:background="@color/white_transparent_3">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
+
+
+                    <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:id="@+id/swzl_thing_get"
                         android:text="@string/swzl_get_thing"
-                        android:paddingRight="@dimen/interval_default"
+                        android:layout_gravity="left"
                         android:textSize="@dimen/swzl_attention_size"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:checked="true"/>
+
                     <RadioButton
-                        android:layout_width="@dimen/avatar_bg_size_mini"
-                        android:layout_height="@dimen/avatar_bg_size_mini"
-                        android:id="@+id/swzl_thing_get"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/swzl_lost_thing"
-                        android:paddingRight="@dimen/interval_default"
-                        android:textSize="@dimen/swzl_attention_size"
-                        android:textColor="@color/black"/>
-                    <RadioButton
-                        android:layout_width="@dimen/avatar_bg_size_mini"
                         android:layout_height="@dimen/avatar_bg_size_mini"
-                        android:id="@+id/swzl_thing_lost"/>
-                </LinearLayout>
+                        android:id="@+id/swzl_thing_lost"
+                        android:text="@string/swzl_lost_thing"
+                        android:layout_gravity="left"
+                        android:textSize="@dimen/swzl_attention_size"
+                        android:textColor="@color/black"
+                        />
 
             </RadioGroup>
 
@@ -92,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/interval_default"
+                    android:id="@+id/swzl_is_card"
                     android:background="@color/colorPrimary"
                     />
             </LinearLayout>
@@ -114,7 +101,21 @@
                     android:id="@+id/swzl_announcer"
                     android:hint="@string/swzl_announcer_hint"/>
 
-                <!-- 地点-->
+
+                <!-- 发布人-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/swzl_thing_name"
+                    android:id="@+id/swzl_thing_name_att"
+                    android:textSize="@dimen/swzl_attention_size"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swzl_thing_name"
+                    android:hint="@string/swzl_thing_name_hint"/>
+
+                <!--丢失/捡到地点地点-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,7 +128,7 @@
                     android:id="@+id/swzl_location"
                     android:hint="@string/swzl_location_hint"/>
 
-                <!--物品描述-->
+                <!--物品描述物品描述-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -154,20 +155,23 @@
                     android:id="@+id/swzl_mobile"
                     android:hint="@string/swzl_mobile_hint"/>
 
-                <!--银行卡号-->
+                <!--银行卡号银行卡号-->
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_bank_card"
                     android:textSize="@dimen/swzl_attention_size"
+                    android:id="@+id/swzl_bank_card_att"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_bank_card"
+                    android:visibility="gone"
                     android:hint="@string/swzl_bank_card_hint"/>
 
+                <!--确认按钮 -->
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
