@@ -278,8 +278,21 @@ public class MainActivity extends BaseActivity implements ApiView {
         apiPresenter.getBalance(sid, password);
     }
 
-    public static void logout() {
+    public void logout() {
+        //个人信息
+        username.setText(resources.getString(R.string.default_username));
+        btnLogin.setText(resources.getString(R.string.login));
+        btnLogin.setVisibility(View.VISIBLE);
+        stuNum.setVisibility(View.GONE);
 
+        //校园卡
+        ecard.setClickable(false);
+        ecardBalance.setText(resources.getString(R.string.default_money));
+        ecardUnclaimed.setText(resources.getString(R.string.default_money));
+
+        //图书馆
+
+        //校园网
     }
 
     @Override
