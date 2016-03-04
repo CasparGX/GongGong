@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
@@ -144,6 +146,11 @@ public class LoginFragment extends Fragment implements ApiView {
         }else{
             errorToast(this.getActivity(),code);
         }
+    }
+
+    @Override
+    public void getCampusNetwork(int code, @Nullable CampusNetwork campusNetwork) {
+
     }
 
     @Override

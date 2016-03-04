@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -23,9 +23,9 @@ import android.widget.TextView;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
-import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.util.ACache;
@@ -35,8 +35,6 @@ import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.activity.SwzlActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
 import com.sky31.gonggong.view.fragment.SecondFragment;
-
-import org.apache.http.auth.NTUserPrincipal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +91,20 @@ public class MainActivity extends BaseActivity implements ApiView {
     LinearLayout ecardInfo;
     @Bind(R.id.ecard)
     LinearLayout ecard;
+    @Bind(R.id.library_debt)
+    TextView libraryDebt;
+    @Bind(R.id.library_rent)
+    TextView libraryRent;
+    @Bind(R.id.library_info)
+    LinearLayout libraryInfo;
+    @Bind(R.id.xtu_network_status)
+    TextView xtuNetworkStatus;
+    @Bind(R.id.header_info)
+    LinearLayout headerInfo;
+    @Bind(R.id.xtu_network_balance)
+    TextView xtuNetworkBalance;
+    @Bind(R.id.xtu_network_info)
+    LinearLayout xtuNetworkInfo;
 
     @OnClick(R.id.btn_login)
     void gotoLogin() {
@@ -184,11 +196,13 @@ public class MainActivity extends BaseActivity implements ApiView {
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float a = 1.5f;
+            float x = 2.8f;
+            float y = 1.1f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
-            float b = (1.0f - a * param) <= 0 ? 0 : (1.0f - a * param);
-            float height = b * headerAvatarSize;
+            float b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
+            float c = (1.0f - y * param) <= 0 ? 0 : (1.0f - y * param);
+            float height = c * headerAvatarSize;
 
             headerAvatarParam.height = (int) height;
             headerAvatarParam.width = headerAvatarParam.height;
@@ -200,8 +214,9 @@ public class MainActivity extends BaseActivity implements ApiView {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 //userAvatar.setRotation(480 * (1 - b));
-                headerContent.setAlpha(b);
-                Debug.i("alpha",userAvatar.getRotation()+"");
+                headerContent.setAlpha(c);
+                headerInfo.setAlpha(b);
+                Debug.i("alpha", userAvatar.getRotation() + "");
             }
         }
     }
@@ -258,6 +273,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     //已登录
     private void isLogined(String name) {
         //个人信息
+        //stuNum.setText(aCache.getAsString(Constants.Key.SID));
         stuNum.setText(aCache.getAsString(Constants.Key.SID));
         username.setText(name);
         btnLogin.setVisibility(View.GONE);
@@ -275,7 +291,8 @@ public class MainActivity extends BaseActivity implements ApiView {
     public void autoLogin() {
         if (aCache.getAsString(Constants.Key.SID) != null || aCache.getAsString(Constants.Key.PASSWORD) != null) {
             isLogined(aCache.getAsString(Constants.Key.NAME));
-            getBalance(0,null);
+            getBalance(0, null);
+            getCampusNetwork(0, null);
             autoGetData(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
         }
     }
@@ -283,6 +300,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     public void autoGetData(String sid, String password) {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.getBalance(sid, password);
+        apiPresenter.getCampusNetwork(sid);
     }
 
     public void logout() {
@@ -300,6 +318,8 @@ public class MainActivity extends BaseActivity implements ApiView {
         //图书馆
 
         //校园网
+        xtuNetworkStatus.setText(resources.getString(R.string.default_money));
+        xtuNetworkBalance.setText(resources.getString(R.string.default_money));
     }
 
     @Override
@@ -320,8 +340,21 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
-        if (code == 0 ) {
+        if (code == 0) {
             isLogined(studentInfoModel.getData().getName());
+        } else {
+            errorToast(this, code);
+        }
+    }
+
+    @Override
+    public void getCampusNetwork(int code, @Nullable CampusNetwork campusNetwork) {
+        if (code == 0) {
+            try {
+                xtuNetworkStatus.setText(aCache.getAsString(Constants.Key.CAMPUS_NETWORK_STATUS));
+                xtuNetworkBalance.setText(aCache.getAsString(Constants.Key.CAMPUS_NETWORK_BALANCE));
+            } catch (NullPointerException e) {
+            }
         } else {
             errorToast(this, code);
         }

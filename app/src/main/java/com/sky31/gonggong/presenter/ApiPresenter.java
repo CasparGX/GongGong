@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
+import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
@@ -113,6 +114,32 @@ public class ApiPresenter {
                 t.printStackTrace();
             }
         });
+    }
+
+    public void getCampusNetwork(String sid) {
+        final Call<CampusNetwork> call = apiService.getCampusNetwork(sid);
+        call.enqueue(new Callback<CampusNetwork>() {
+            @Override
+            public void onResponse(Response<CampusNetwork> response, Retrofit retrofit) {
+                int code = response.body().getCode();
+                if (code == 0) {
+                    CampusNetwork campusNetwork = response.body();
+                    campusNetwork.setCache(apiView.getViewContext());
+                    apiView.getCampusNetwork(code, campusNetwork);
+                } else if (code == 1) {
+                    UserModel.setCacheNone(apiView.getViewContext());
+                    apiView.login(code, null);
+                } else {
+                    apiView.login(code, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+
     }
 
     public void errorCode(int code) {

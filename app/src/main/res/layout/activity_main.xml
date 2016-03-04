@@ -101,6 +101,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/header_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/interval_default"
@@ -215,7 +216,7 @@
                                 android:text="@string/xtu_network" />
 
                             <LinearLayout
-                                android:id="@+id/xtu_netword_info"
+                                android:id="@+id/xtu_network_info"
                                 style="@style/HeaderInfoLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -246,7 +247,7 @@
                                         android:text="@string/xtu_network_balance" />
 
                                     <TextView
-                                        android:id="@+id/xtu_neywork_balance"
+                                        android:id="@+id/xtu_network_balance"
                                         style="@style/HeaderInfoContent"
                                         android:text="@string/default_money" />
                                 </LinearLayout>

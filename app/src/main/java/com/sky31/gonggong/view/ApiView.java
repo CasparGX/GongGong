@@ -3,6 +3,7 @@ package com.sky31.gonggong.view;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
+import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 
@@ -12,6 +13,7 @@ import com.sky31.gonggong.model.StudentInfoModel;
 public interface ApiView {
     void getBalance(int code, @Nullable EcardModel ecardModel);
     void login(int code, @Nullable StudentInfoModel studentInfoModel);
+    void getCampusNetwork(int code, @Nullable CampusNetwork campusNetwork);
 
     Context getViewContext();
 

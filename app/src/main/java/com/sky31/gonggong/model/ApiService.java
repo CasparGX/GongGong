@@ -19,6 +19,9 @@ public interface ApiService {
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
     Call<StudentInfoModel> getStudentInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+    @GET(Constants.Api.CAMPUS_NET_BALANCE + "?" + defaultParam)
+    Call<CampusNetwork> getCampusNetwork(@Query(Constants.Key.SID) String sid);
+
 
 
 }

@@ -16,6 +16,8 @@ public class Constants {
         public static final String TERM_CODE = "edu_term_code.php";
         public static final String RANK = "edu_rank.php";
 
+        public static final String CAMPUS_NET_BALANCE = "campus_net_balance.php";
+
         public static final String ECARD = "ecard_balance.php";
 
         public static final String SEARCH_MATE = "search_mate.php";
@@ -46,11 +48,19 @@ public class Constants {
         public static final String MAJOR = "major";
         public static final String CLASSX = "classx";
 
-        //校园卡余额
+        //校园卡信息
         public static final String ECARD_ID = "ecard_id";
         public static final String BALANCE = "balance";
         public static final String UNCLAIMED = "unclaimed";
 
+        //图书馆信息
+        public static final String LIBRARY_DEBT = "library_debt";
+        public static final String LIBRARY_RENT_NUM = "library_rent_num";
+        //校园网信息
+        public static final String CAMPUS_NETWORK_STATUS = "campus_network_status";
+        public static final String CAMPUS_NETWORK_BALANCE = "campus_network_balance";
+        public static final String CAMPUS_NETWORK_PACKAGEX = "campus_network_packageX";
+        public static final String CAMPUS_NETWORK_NEXT_STATEMENT_DATE = "campus_network_next_statement_date";
     }
 
     public final class Value {
