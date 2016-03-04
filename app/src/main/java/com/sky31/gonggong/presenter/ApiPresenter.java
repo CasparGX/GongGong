@@ -55,8 +55,8 @@ public class ApiPresenter {
 
     public void getBalance(@Nullable String sid, @Nullable String password) {
         Debug.i("getBalance", this.sid + " " + this.password);
-        sid = sid != null ? sid : this.sid;
-        password = password != null ? password : this.password;
+        sid = (sid != null) ? sid : this.sid;
+        password = (password != null) ? password : this.password;
         Call<EcardModel> call = apiService.getBalance(sid, password);
         call.enqueue(new Callback<EcardModel>() {
             @Override

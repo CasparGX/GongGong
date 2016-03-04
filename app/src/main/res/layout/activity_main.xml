@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </android.support.v7.widget.Toolbar>
 
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/drawer"
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -120,10 +122,11 @@
 
                             <LinearLayout
                                 android:id="@+id/ecard_info"
-                                android:orientation="vertical"
                                 style="@style/HeaderInfoLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -162,11 +165,45 @@
 
                             <TextView
                                 style="@style/HeaderInfoTitle"
-                                android:text="123" />
+                                android:text="@string/library" />
 
-                            <TextView
-                                style="@style/HeaderInfoContent"
-                                android:text="32.21" />
+                            <LinearLayout
+                                android:id="@+id/library_info"
+                                style="@style/HeaderInfoLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/library_debt" />
+
+                                    <TextView
+                                        android:id="@+id/library_debt"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/library_rent" />
+
+                                    <TextView
+                                        android:id="@+id/library_rent"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
@@ -175,22 +212,57 @@
 
                             <TextView
                                 style="@style/HeaderInfoTitle"
-                                android:text="123" />
+                                android:text="@string/xtu_network" />
 
-                            <TextView
-                                style="@style/HeaderInfoContent"
-                                android:text="32.21" />
+                            <LinearLayout
+                                android:id="@+id/xtu_netword_info"
+                                style="@style/HeaderInfoLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/xtu_network_status" />
+
+                                    <TextView
+                                        android:id="@+id/xtu_network_status"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/xtu_network_balance" />
+
+                                    <TextView
+                                        android:id="@+id/xtu_neywork_balance"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
             </RelativeLayout>
 
-            <!--left swipe menu-->
-            <include layout="@layout/include_drawer_menu" />
 
-        </android.support.v4.widget.DrawerLayout>
+        </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</LinearLayout>
+    <!--left swipe menu-->
+    <include layout="@layout/include_drawer_menu" />
+
+</android.support.v4.widget.DrawerLayout>

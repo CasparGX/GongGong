@@ -13,7 +13,15 @@
     <string name="click_get">点击获取</string>
     <string name="balance">余额：</string>
     <string name="unclaimed">待领：</string>
-    <string name="default_money">--.--</string>
+    <string name="default_money">-- --</string>
+
+    <string name="library">图书馆</string>
+    <string name="library_debt">欠款：</string>
+    <string name="library_rent">借书：</string>
+
+    <string name="xtu_network">校园网</string>
+    <string name="xtu_network_status">状态：</string>
+    <string name="xtu_network_balance">余额：</string>
 
 
     <!-- Menu Text-->

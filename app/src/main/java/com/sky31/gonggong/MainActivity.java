@@ -29,6 +29,7 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.view.ApiView;
 import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.activity.SwzlActivity;
@@ -160,10 +161,8 @@ public class MainActivity extends BaseActivity implements ApiView {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (mCurrentPageIndex == 0 && position == 0) { //0->1
                     onChangeHeaderHeight(positionOffset);
-                    Log.i("viewPager", position + " " + positionOffset + " " + positionOffsetPixels);
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
-                    Log.i("viewPager", position + " " + positionOffset + " " + positionOffsetPixels);
                 }
             }
 
@@ -190,6 +189,7 @@ public class MainActivity extends BaseActivity implements ApiView {
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             float b = (1.0f - a * param) <= 0 ? 0 : (1.0f - a * param);
             float height = b * headerAvatarSize;
+
             headerAvatarParam.height = (int) height;
             headerAvatarParam.width = headerAvatarParam.height;
             headerAvatar.setLayoutParams(headerAvatarParam);
@@ -199,8 +199,9 @@ public class MainActivity extends BaseActivity implements ApiView {
             header.setLayoutParams(headerParam);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                userAvatar.setRotation(480 * (1 - b));
+                //userAvatar.setRotation(480 * (1 - b));
                 headerContent.setAlpha(b);
+                Debug.i("alpha",userAvatar.getRotation()+"");
             }
         }
     }
@@ -240,6 +241,12 @@ public class MainActivity extends BaseActivity implements ApiView {
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ButterKnife.unbind(this);
     }
 
     //准备登录
