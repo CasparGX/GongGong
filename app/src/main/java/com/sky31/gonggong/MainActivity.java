@@ -309,25 +309,24 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     public void logout() {
         //个人信息
-        username.setText(resources.getString(R.string.default_username));
-        btnLogin.setText(resources.getString(R.string.login));
+        username.setText(R.string.default_username);
+        btnLogin.setText(R.string.login);
         btnLogin.setVisibility(View.VISIBLE);
         stuNum.setVisibility(View.GONE);
-
         //校园卡
         ecard.setClickable(false);
-        ecardBalance.setText(resources.getString(R.string.default_money));
-        ecardUnclaimed.setText(resources.getString(R.string.default_money));
+        ecardBalance.setText(R.string.default_money);
+        ecardUnclaimed.setText(R.string.default_money);
 
         //图书馆
         libraryInfo.setClickable(false);
-        libraryDebt.setText(resources.getString(R.string.default_money));
-        libraryRent.setText(resources.getString(R.string.default_money));
+        libraryDebt.setText(R.string.default_money);
+        libraryRent.setText(R.string.default_money);
 
         //校园网
         xtuNetworkInfo.setClickable(false);
-        xtuNetworkStatus.setText(resources.getString(R.string.default_money));
-        xtuNetworkBalance.setText(resources.getString(R.string.default_money));
+        xtuNetworkStatus.setText(R.string.default_money);
+        xtuNetworkBalance.setText(R.string.default_money);
     }
 
     @Override
