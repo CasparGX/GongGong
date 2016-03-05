@@ -69,8 +69,8 @@ public class MainActivity extends BaseActivity implements ApiView {
     LinearLayout headerAvatar;
     @Bind(R.id.frameLayout)
     FrameLayout frameLayout;
-    @Bind(R.id.imageView)
-    ImageView imageView;
+    @Bind(R.id.img_btn_exit)
+    ImageView imgBtnExit;
     @Bind(R.id.top_index)
     TableRow drawerMenuItem1;
     @Bind(R.id.function)
@@ -106,6 +106,20 @@ public class MainActivity extends BaseActivity implements ApiView {
     @Bind(R.id.xtu_network_info)
     LinearLayout xtuNetworkInfo;
 
+    /* 变量 */
+    private ActionBarDrawerToggle mDrawerToggle;
+    private int mCurrentPageIndex;
+    private int headerHeight = -1;
+    private int homeLayoutHeight = -1;
+    private Context context;
+    private Resources resources;
+    private ACache aCache;
+
+    @OnClick(R.id.img_btn_exit) void onClickImgBtnExit(){
+        logout();
+    }
+
+    //登录按钮
     @OnClick(R.id.btn_login)
     void gotoLogin() {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
@@ -130,16 +144,6 @@ public class MainActivity extends BaseActivity implements ApiView {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.getBalance(null, null);
     }
-
-
-    /* 变量 */
-    private ActionBarDrawerToggle mDrawerToggle;
-    private int mCurrentPageIndex;
-    private int headerHeight = -1;
-    private int homeLayoutHeight = -1;
-    private Context context;
-    private Resources resources;
-    private ACache aCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -316,8 +320,12 @@ public class MainActivity extends BaseActivity implements ApiView {
         ecardUnclaimed.setText(resources.getString(R.string.default_money));
 
         //图书馆
+        libraryInfo.setClickable(false);
+        libraryDebt.setText(resources.getString(R.string.default_money));
+        libraryRent.setText(resources.getString(R.string.default_money));
 
         //校园网
+        xtuNetworkInfo.setClickable(false);
         xtuNetworkStatus.setText(resources.getString(R.string.default_money));
         xtuNetworkBalance.setText(resources.getString(R.string.default_money));
     }
