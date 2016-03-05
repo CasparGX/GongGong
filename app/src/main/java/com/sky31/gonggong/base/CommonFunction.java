@@ -1,9 +1,11 @@
 package com.sky31.gonggong.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.widget.Toast;
 
+import com.sky31.gonggong.MainActivity;
 import com.sky31.gonggong.R;
 
 import java.util.HashMap;
@@ -42,7 +44,7 @@ public class CommonFunction {
         errMsg.put("7",resources.getString(R.string.err_msg_7));
         errMsg.put("65535",resources.getString(R.string.err_msg_65535));
         if (code == 1) {
-
+            MainActivity.instance.logout();
         }
         Toast.makeText(context, errMsg.get(code+""), Toast.LENGTH_SHORT).show();
 

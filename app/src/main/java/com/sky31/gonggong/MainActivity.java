@@ -114,6 +114,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     private Context context;
     private Resources resources;
     private ACache aCache;
+    public static MainActivity instance;
 
     @OnClick(R.id.img_btn_exit) void onClickImgBtnExit(){
         logout();
@@ -152,6 +153,7 @@ public class MainActivity extends BaseActivity implements ApiView {
 
         ButterKnife.bind(this);
         context = MainActivity.this;
+        instance = this;
         resources = getResources();
         aCache = ACache.get(this);
         initToolbar();
@@ -313,6 +315,8 @@ public class MainActivity extends BaseActivity implements ApiView {
         btnLogin.setText(R.string.login);
         btnLogin.setVisibility(View.VISIBLE);
         stuNum.setVisibility(View.GONE);
+        aCache.remove(Constants.Key.SID);
+        aCache.remove(Constants.Key.PASSWORD);
         //校园卡
         ecard.setClickable(false);
         ecardBalance.setText(R.string.default_money);
@@ -363,7 +367,7 @@ public class MainActivity extends BaseActivity implements ApiView {
             } catch (NullPointerException e) {
             }
         } else {
-            errorToast(this, code);
+            errorToast(instance, code);
         }
     }
 
