@@ -58,6 +58,7 @@ public class Constants {
         public static final String LIBRARY_VALID_DATE_START = "library_valid_date_start";
         public static final String LIBRARY_VALID_DATE_END = "library_valid_date_end";
         public static final String LIBRARY_DEBT = "library_debt";
+        public static final String LIBRARY_RENT_LIST = "library_rent_list";
         public static final String LIBRARY_RENT_NUM = "library_rent_num";
         //校园网信息
         public static final String CAMPUS_NETWORK_STATUS = "campus_network_status";

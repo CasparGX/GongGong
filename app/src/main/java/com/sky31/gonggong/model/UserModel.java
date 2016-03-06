@@ -23,7 +23,7 @@ public class UserModel {
         return library_password;
     }
 
-    public static void setLibrary_password(String library_password) {
+    public static void setLibraryPassword(String library_password) {
         UserModel.library_password = library_password;
     }
 

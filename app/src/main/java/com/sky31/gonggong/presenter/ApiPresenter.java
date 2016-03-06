@@ -2,19 +2,17 @@ package com.sky31.gonggong.presenter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
+import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.LoginView;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -53,7 +51,7 @@ public class ApiPresenter {
         }
     }
 
-
+    //获取校园卡信息
     public void getBalance(@Nullable String sid, @Nullable String password) {
         Debug.i("getBalance", this.sid + " " + this.password);
         sid = (sid != null) ? sid : this.sid;
@@ -97,6 +95,7 @@ public class ApiPresenter {
                     studentInfoModel.setCache(apiView.getViewContext());
                     UserModel.setSid(sid);
                     UserModel.setPassword(password);
+                    UserModel.setLibraryPassword(password);
                     UserModel.setCache(apiView.getViewContext());
                     apiView.login(code, studentInfoModel);
                 } else if (code == 1) {
@@ -140,6 +139,31 @@ public class ApiPresenter {
             }
         });
 
+    }
+
+    public void getLibraryRentList(String sid, String password){
+        Call<LibraryRentListModel> call = apiService.getLibraryRentList(sid, password);
+        call.enqueue(new Callback<LibraryRentListModel>() {
+            @Override
+            public void onResponse(Response<LibraryRentListModel> response, Retrofit retrofit) {
+                int code = response.body().getCode();
+                if (code == 0) {
+                    LibraryRentListModel libraryRentListModel = response.body();
+                    libraryRentListModel.setCache(apiView.getViewContext());
+                    //apiView.getCampusNetwork(code, libraryRentListModel);
+                } else if (code == 1) {
+                    //UserModel.setCacheNone(apiView.getViewContext());
+                    //apiView.login(code, null);
+                } else {
+                    apiView.login(code, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 
     public void errorCode(int code) {

@@ -22,6 +22,12 @@ public interface ApiService {
     @GET(Constants.Api.CAMPUS_NET_BALANCE + "?" + defaultParam)
     Call<CampusNetwork> getCampusNetwork(@Query(Constants.Key.SID) String sid);
 
+    @GET(Constants.Api.LIBRARY_READER_INFO + "?" + defaultParam)
+    Call<LibraryReaderInfoModel> getLibraryReaderInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
+    @GET(Constants.Api.LIBRARY_RENT_LIST + "?" + defaultParam)
+    Call<LibraryRentListModel> getLibraryRentList(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
 
 
 }

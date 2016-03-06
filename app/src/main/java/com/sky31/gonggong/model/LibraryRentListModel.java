@@ -1,10 +1,15 @@
 package com.sky31.gonggong.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
+
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by root on 16-3-6.
@@ -30,31 +35,45 @@ public class LibraryRentListModel {
 
     private ArrayList<DataEntity> data;
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public void setData(ArrayList<DataEntity> data) {
-        this.data = data;
-    }
-
     public int getCode() {
         return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getMsg() {
         return msg;
     }
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public ArrayList<DataEntity> getData() {
         return data;
     }
 
-    public static class DataEntity implements Parcelable {
+    public void setData(ArrayList<DataEntity> data) {
+        this.data = data;
+    }
+
+    public void setCache(Context context) {
+        ACache aCache = ACache.get(context);
+        //只能使用List的子类
+        //ArrayList<StudentInfoModel.DataEntity> arrayList = new ArrayList();
+        //注意：一定要序列化
+        //StudentInfoModel.DataEntity dataEntity = data.get(0);
+        //arrayList.add(dataEntity);
+        aCache.put(Constants.Key.LIBRARY_RENT_LIST, data);
+        aCache.put(Constants.Key.LIBRARY_RENT_NUM,data.size()+"");
+        //使用getAsObject()，直接进行强转
+        ArrayList<DataEntity> rentList = (ArrayList<DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST);
+        Debug.i("rentList",aCache.getAsString(Constants.Key.LIBRARY_RENT_NUM));
+    }
+
+    public static class DataEntity implements Serializable {
 
         /**
          * name : HTML 5+JavaScript动画基础
@@ -72,89 +91,56 @@ public class LibraryRentListModel {
         private String dept_id;
         private String library_id;
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public void setDeadline(String deadline) {
-            this.deadline = deadline;
-        }
-
-        public void setBook_id(String book_id) {
-            this.book_id = book_id;
-        }
-
-        public void setDept_id(String dept_id) {
-            this.dept_id = dept_id;
-        }
-
-        public void setLibrary_id(String library_id) {
-            this.library_id = library_id;
+        public DataEntity() {
         }
 
         public String getName() {
             return name;
         }
 
+        public void setName(String name) {
+            this.name = name;
+        }
+
         public String getStatus() {
             return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getDeadline() {
             return deadline;
         }
 
+        public void setDeadline(String deadline) {
+            this.deadline = deadline;
+        }
+
         public String getBook_id() {
             return book_id;
+        }
+
+        public void setBook_id(String book_id) {
+            this.book_id = book_id;
         }
 
         public String getDept_id() {
             return dept_id;
         }
 
+        public void setDept_id(String dept_id) {
+            this.dept_id = dept_id;
+        }
+
         public String getLibrary_id() {
             return library_id;
         }
 
-        @Override
-        public int describeContents() {
-            return 0;
+        public void setLibrary_id(String library_id) {
+            this.library_id = library_id;
         }
 
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.name);
-            dest.writeString(this.status);
-            dest.writeString(this.deadline);
-            dest.writeString(this.book_id);
-            dest.writeString(this.dept_id);
-            dest.writeString(this.library_id);
-        }
-
-        public DataEntity() {
-        }
-
-        protected DataEntity(Parcel in) {
-            this.name = in.readString();
-            this.status = in.readString();
-            this.deadline = in.readString();
-            this.book_id = in.readString();
-            this.dept_id = in.readString();
-            this.library_id = in.readString();
-        }
-
-        public static final Parcelable.Creator<DataEntity> CREATOR = new Parcelable.Creator<DataEntity>() {
-            public DataEntity createFromParcel(Parcel source) {
-                return new DataEntity(source);
-            }
-
-            public DataEntity[] newArray(int size) {
-                return new DataEntity[size];
-            }
-        };
     }
 }

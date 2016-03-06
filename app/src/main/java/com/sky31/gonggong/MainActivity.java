@@ -267,6 +267,7 @@ public class MainActivity extends BaseActivity implements ApiView {
             case Constants.Value.RESULT_LOGIN:
                 if (resultCode == RESULT_OK) {
                     isLogined(data.getStringExtra("name"));
+                    autoGetData(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
                 }
                 break;
         }
@@ -320,6 +321,7 @@ public class MainActivity extends BaseActivity implements ApiView {
         ApiPresenter apiPresenter = new ApiPresenter(this);
         apiPresenter.getBalance(sid, password);
         apiPresenter.getCampusNetwork(sid);
+        apiPresenter.getLibraryRentList(sid, password);
     }
 
     public void logout() {
