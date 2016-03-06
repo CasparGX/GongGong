@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     @Bind(R.id.pager)
     ViewPager pager;
     @Bind(R.id.drawer_menu)
-    LinearLayout drawerView;
+    LinearLayout drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
     @Bind(R.id.header)
@@ -117,6 +117,7 @@ public class MainActivity extends BaseActivity implements ApiView {
     public static MainActivity instance;
 
     @OnClick(R.id.img_btn_exit) void onClickImgBtnExit(){
+        drawer.closeDrawers();
         logout();
     }
 
@@ -166,11 +167,17 @@ public class MainActivity extends BaseActivity implements ApiView {
         //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
 
+        //DrawerLayout
+        drawer.setStatusBarBackground(R.color.colorPrimary);
+
+        //Fragment
         List<Fragment> mDatas = new ArrayList<Fragment>();
         final FirstFragment mFirstFragment = new FirstFragment();
         SecondFragment mSecondFragment = new SecondFragment();
         mDatas.add(mFirstFragment);
         mDatas.add(mSecondFragment);
+
+        //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
         HomeViewPagerAdapter mAdpater = new HomeViewPagerAdapter(getSupportFragmentManager(), mDatas);
         pager.setAdapter(mAdpater);

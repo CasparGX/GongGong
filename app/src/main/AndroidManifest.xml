@@ -23,14 +23,15 @@
         <activity
             android:name=".base.BaseActivity"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity android:name=".view.activity.LoginActivity" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:theme="@style/ColorTranslucentTheme" />
 
         <activity android:name=".view.activity.SwzlActivity"></activity>
 
         <activity
             android:name=".view.activity.PublishSwzlActivity"
-            android:label="@string/title_activity_publish_swzl" >
-        </activity>
+            android:label="@string/title_activity_publish_swzl"></activity>
     </application>
 
 </manifest>
