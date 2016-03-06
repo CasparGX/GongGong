@@ -274,6 +274,11 @@ public class MainActivity extends BaseActivity implements ApiView {
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         ButterKnife.unbind(this);
     }
 
