@@ -10,13 +10,26 @@ import com.sky31.gonggong.util.ACache;
  */
 public class UserModel {
 
-    private UserModel() {}
-    private static final UserModel userModel = new UserModel() {};
-    public static UserModel getUserModel(){
-        return userModel;
+    private static final UserModel userModel = new UserModel() {
+    };
+    private static String sid = null;
+    private static String password = null;
+    private static String library_password = null;
+
+    private UserModel() {
     }
 
-    private static String sid = null;
+    public static String getLibrary_password() {
+        return library_password;
+    }
+
+    public static void setLibrary_password(String library_password) {
+        UserModel.library_password = library_password;
+    }
+
+    public static UserModel getUserModel() {
+        return userModel;
+    }
 
     public static String getSid() {
         return sid;
@@ -25,8 +38,6 @@ public class UserModel {
     public static void setSid(String sid) {
         UserModel.sid = sid;
     }
-
-    private static String password = null;
 
     public static String getPassword() {
 
@@ -37,15 +48,17 @@ public class UserModel {
         UserModel.password = password;
     }
 
-    public static void setCache(Context context){
+    public static void setCache(Context context) {
         ACache aCache = ACache.get(context);
-        aCache.put(Constants.Key.SID,getSid());
-        aCache.put(Constants.Key.PASSWORD,getPassword());
+        aCache.put(Constants.Key.SID, getSid());
+        aCache.put(Constants.Key.PASSWORD, getPassword());
+        aCache.put(Constants.Key.LIBRARY_PASSWORD, getLibrary_password());
     }
 
-    public static void setCacheNone(Context context){
+    public static void setCacheNone(Context context) {
         ACache aCache = ACache.get(context);
         aCache.remove(Constants.Key.SID);
         aCache.remove(Constants.Key.PASSWORD);
+        aCache.remove(Constants.Key.LIBRARY_PASSWORD);
     }
 }

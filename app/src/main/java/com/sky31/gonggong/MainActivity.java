@@ -26,6 +26,7 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
+import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.util.ACache;
@@ -327,8 +328,7 @@ public class MainActivity extends BaseActivity implements ApiView {
         btnLogin.setText(R.string.login);
         btnLogin.setVisibility(View.VISIBLE);
         stuNum.setVisibility(View.GONE);
-        aCache.remove(Constants.Key.SID);
-        aCache.remove(Constants.Key.PASSWORD);
+        UserModel.setCacheNone(this);
         //校园卡
         ecard.setClickable(false);
         ecardBalance.setText(R.string.default_money);

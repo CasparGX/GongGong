@@ -38,6 +38,7 @@ public class Constants {
         public static final String HASH = "hash";
         public static final String SID = "sid";
         public static final String PASSWORD = "password";
+        public static final String LIBRARY_PASSWORD = "library_password";
 
         //个人信息
         public static final String NAME = "name";
@@ -54,6 +55,8 @@ public class Constants {
         public static final String UNCLAIMED = "unclaimed";
 
         //图书馆信息
+        public static final String LIBRARY_VALID_DATE_START = "library_valid_date_start";
+        public static final String LIBRARY_VALID_DATE_END = "library_valid_date_end";
         public static final String LIBRARY_DEBT = "library_debt";
         public static final String LIBRARY_RENT_NUM = "library_rent_num";
         //校园网信息
