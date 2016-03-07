@@ -11,11 +11,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -54,6 +58,7 @@ import static com.sky31.gonggong.base.CommonFunction.errorToast;
 
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
 
+    public static MainActivity instance;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.pager)
@@ -116,7 +121,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     LinearLayout library;
     @Bind(R.id.xtu_net)
     LinearLayout xtuNet;
-
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
@@ -125,7 +129,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private Context context;
     private Resources resources;
     private ACache aCache;
-    public static MainActivity instance;
 
     @OnClick(R.id.img_btn_exit)
     void onClickImgBtnExit() {
@@ -159,13 +162,44 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
         apiPresenter.getBalance(null, null);
     }
+
     //图书馆信息
-    @OnClick(R.id.library) void onClickLibrary(){
+    @OnClick(R.id.library)
+    void onClickLibrary() {
         //跳转图书馆信息Activity
     }
+
     //校园卡信息
-    @OnClick(R.id.xtu_net) void onClickXtuNet(){
+    @OnClick(R.id.xtu_net)
+    void onClickXtuNet(View view) {
         //弹出校园卡信息
+        showPopupWindowXtuNetInfo(view);
+    }
+
+    private void showPopupWindowXtuNetInfo(View view) {
+        //自定义布局
+        View contentView = LayoutInflater.from(context).inflate(
+                R.layout.popupwindow_xtu_net_info, null);
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        popupWindow.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_default));
+
+        // 设置好参数之后再show
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
     @Override
