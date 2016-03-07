@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,11 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.model.CampusNetwork;
+import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
+import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.view.ApiView;
+import com.sky31.gonggong.view.EcardView;
 import com.sky31.gonggong.view.LoginView;
 
 import butterknife.Bind;
@@ -36,7 +39,7 @@ import static com.sky31.gonggong.base.CommonFunction.errorToast;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements ApiView, LoginView {
+public class LoginFragment extends Fragment implements ApiView, LoginView, EcardView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,24 +52,12 @@ public class LoginFragment extends Fragment implements ApiView, LoginView {
     Button btnLogin;
 
     private AlertDialog dialogWait;
-
-    @OnClick(R.id.btn_login)
-    void btnLogin() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_wait,null);
-        dialogWait = new AlertDialog.Builder(this.getActivity()).create();
-        dialogWait.setView(dialogView);
-        dialogWait.show();
-        ApiPresenter apiPresenter = new ApiPresenter((LoginView) this);
-        apiPresenter.login(sid.getText() + "", password.getText() + "");
-    }
+    private ACache aCache;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private Context context;
-
     private OnFragmentInteractionListener mListener;
 
     public LoginFragment() {
@@ -91,6 +82,17 @@ public class LoginFragment extends Fragment implements ApiView, LoginView {
         return fragment;
     }
 
+    @OnClick(R.id.btn_login)
+    void btnLogin() {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_wait, null);
+        dialogWait = new AlertDialog.Builder(this.getActivity()).create();
+        dialogWait.setView(dialogView);
+        dialogWait.show();
+        ApiPresenter apiPresenter = new ApiPresenter((LoginView) this);
+        apiPresenter.login(sid.getText() + "", password.getText() + "");
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +109,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         context = this.getActivity();
+        aCache = ACache.get(context);
         return view;
     }
 
@@ -133,15 +136,22 @@ public class LoginFragment extends Fragment implements ApiView, LoginView {
     @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
         dialogWait.dismiss();
-        if (code==0){
+        if (code == 0) {
+            ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
+            ecardPresenter.getBalance(aCache.getAsString(Constants.Key.SID),aCache.getAsString(Constants.Key.PASSWORD));
             Intent backIntent = new Intent();
             backIntent.putExtra("name", studentInfoModel.getData().getName());
             this.getActivity().setResult(Activity.RESULT_OK, backIntent);
             this.getActivity().finish();
             onDetach();
-        }else{
-            errorToast(this.getActivity(),code);
+        } else {
+            errorToast(this.getActivity(), code);
         }
+    }
+
+    @Override
+    public void getBalance(int code, @Nullable EcardModel ecardModel) {
+
     }
 
     @Override

@@ -113,8 +113,8 @@ public class ApiPresenter {
 
     public void login(String sid, String password) {
         getStudentInfo(sid, password);
-        initSidAndPassword();
-        getBalance(sid, password);
+        //initSidAndPassword();
+        //getBalance(sid, password);
     }
 
     public void getStudentInfo(final String sid, final String password) {
@@ -125,7 +125,7 @@ public class ApiPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     StudentInfoModel studentInfoModel = response.body();
-                    studentInfoModel.setCache(apiView.getViewContext());
+                    studentInfoModel.setCache(loginView.getViewContext());
                     UserModel.setSid(sid);
                     UserModel.setPassword(password);
                     UserModel.setLibraryPassword(password);

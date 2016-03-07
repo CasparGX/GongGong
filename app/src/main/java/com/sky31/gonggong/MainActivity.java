@@ -216,12 +216,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float x = 2.8f;
-            float y = 1.1f;
+            float b,x = 2.8f;
+            float c,y = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
-            float b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
-            float c = (1.0f - y * param) <= 0 ? 0 : (1.0f - y * param);
+            b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
+            c = (1.0f - y * param) <= 0 ? 0 : (1.0f - y * param);
             float height = c * headerAvatarSize;
 
             headerAvatarParam.height = (int) height;

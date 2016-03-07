@@ -44,6 +44,11 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
+    <style name="HeaderInfoInnerLayout">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">left</item>
+    </style>
 
     <style name="HeaderInfoContent">
         <item name="android:gravity">center</item>
