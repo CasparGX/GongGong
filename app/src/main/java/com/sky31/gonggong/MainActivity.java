@@ -112,6 +112,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     TextView xtuNetworkBalance;
     @Bind(R.id.xtu_network_info)
     LinearLayout xtuNetworkInfo;
+    @Bind(R.id.library)
+    LinearLayout library;
+    @Bind(R.id.xtu_net)
+    LinearLayout xtuNet;
 
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
@@ -123,7 +127,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private ACache aCache;
     public static MainActivity instance;
 
-    @OnClick(R.id.img_btn_exit) void onClickImgBtnExit(){
+    @OnClick(R.id.img_btn_exit)
+    void onClickImgBtnExit() {
         drawer.closeDrawers();
         logout();
     }
@@ -148,10 +153,19 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         startActivity(intent);
     }
 
+    //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard() {
         ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
         apiPresenter.getBalance(null, null);
+    }
+    //图书馆信息
+    @OnClick(R.id.library) void onClickLibrary(){
+        //跳转图书馆信息Activity
+    }
+    //校园卡信息
+    @OnClick(R.id.xtu_net) void onClickXtuNet(){
+        //弹出校园卡信息
     }
 
     @Override
@@ -216,8 +230,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float b,x = 2.8f;
-            float c,y = 1.2f;
+            float b, x = 2.8f;
+            float c, y = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);

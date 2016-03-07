@@ -105,7 +105,7 @@
                         android:id="@+id/header_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/interval_default"
+                        android:layout_marginTop="@dimen/interval_mini"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -160,6 +160,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/library"
                             style="@style/HeaderInfoLayout"
                             android:orientation="vertical">
 
@@ -205,6 +206,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/xtu_net"
                             style="@style/HeaderInfoLayout"
                             android:orientation="vertical">
 
