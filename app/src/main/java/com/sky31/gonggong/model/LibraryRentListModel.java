@@ -70,7 +70,10 @@ public class LibraryRentListModel {
         aCache.put(Constants.Key.LIBRARY_RENT_NUM,data.size()+"");
         //使用getAsObject()，直接进行强转
         ArrayList<DataEntity> rentList = (ArrayList<DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST);
-        Debug.i("rentList",aCache.getAsString(Constants.Key.LIBRARY_RENT_NUM));
+        for(int i = 0; i<data.size(); i++){
+
+            Debug.i("rentList",data.get(i)+"");
+        }
     }
 
     public static class DataEntity implements Serializable {

@@ -20,6 +20,7 @@ import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
 import com.sky31.gonggong.view.ApiView;
+import com.sky31.gonggong.view.LoginView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +36,7 @@ import static com.sky31.gonggong.base.CommonFunction.errorToast;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements ApiView {
+public class LoginFragment extends Fragment implements ApiView, LoginView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -56,7 +57,7 @@ public class LoginFragment extends Fragment implements ApiView {
         dialogWait = new AlertDialog.Builder(this.getActivity()).create();
         dialogWait.setView(dialogView);
         dialogWait.show();
-        ApiPresenter apiPresenter = new ApiPresenter(this);
+        ApiPresenter apiPresenter = new ApiPresenter((LoginView) this);
         apiPresenter.login(sid.getText() + "", password.getText() + "");
     }
 
@@ -130,11 +131,6 @@ public class LoginFragment extends Fragment implements ApiView {
     }
 
     @Override
-    public void getBalance(int code, EcardModel ecardModel) {
-
-    }
-
-    @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
         dialogWait.dismiss();
         if (code==0){
@@ -146,11 +142,6 @@ public class LoginFragment extends Fragment implements ApiView {
         }else{
             errorToast(this.getActivity(),code);
         }
-    }
-
-    @Override
-    public void getCampusNetwork(int code, @Nullable CampusNetwork campusNetwork) {
-
     }
 
     @Override

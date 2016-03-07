@@ -25,6 +25,8 @@ import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
+import com.sky31.gonggong.model.LibraryReaderInfoModel;
+import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.presenter.ApiPresenter;
@@ -32,6 +34,10 @@ import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.view.ApiView;
+import com.sky31.gonggong.view.CampusNetView;
+import com.sky31.gonggong.view.EcardView;
+import com.sky31.gonggong.view.LibraryView;
+import com.sky31.gonggong.view.LoginView;
 import com.sky31.gonggong.view.activity.LoginActivity;
 import com.sky31.gonggong.view.activity.SwzlActivity;
 import com.sky31.gonggong.view.fragment.FirstFragment;
@@ -46,7 +52,7 @@ import butterknife.OnClick;
 
 import static com.sky31.gonggong.base.CommonFunction.errorToast;
 
-public class MainActivity extends BaseActivity implements ApiView {
+public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -94,8 +100,8 @@ public class MainActivity extends BaseActivity implements ApiView {
     LinearLayout ecard;
     @Bind(R.id.library_debt)
     TextView libraryDebt;
-    @Bind(R.id.library_rent)
-    TextView libraryRent;
+    @Bind(R.id.library_rent_num)
+    TextView libraryRentNum;
     @Bind(R.id.library_info)
     LinearLayout libraryInfo;
     @Bind(R.id.xtu_network_status)
@@ -144,7 +150,7 @@ public class MainActivity extends BaseActivity implements ApiView {
 
     @OnClick(R.id.ecard)
     void onCLickEcard() {
-        ApiPresenter apiPresenter = new ApiPresenter(this);
+        ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
         apiPresenter.getBalance(null, null);
     }
 
@@ -318,10 +324,15 @@ public class MainActivity extends BaseActivity implements ApiView {
     }
 
     public void autoGetData(String sid, String password) {
-        ApiPresenter apiPresenter = new ApiPresenter(this);
-        apiPresenter.getBalance(sid, password);
-        apiPresenter.getCampusNetwork(sid);
-        apiPresenter.getLibraryRentList(sid, password);
+        ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
+        ecardPresenter.getBalance(sid, password);
+
+        ApiPresenter campusNetPresenter = new ApiPresenter((CampusNetView) this);
+        campusNetPresenter.getCampusNetwork(sid);
+
+        ApiPresenter libraryPresenter = new ApiPresenter((LibraryView) this);
+        libraryPresenter.getLibraryReaderInfo(sid, password);
+        libraryPresenter.getLibraryRentList(sid, password);
     }
 
     public void logout() {
@@ -339,7 +350,7 @@ public class MainActivity extends BaseActivity implements ApiView {
         //图书馆
         libraryInfo.setClickable(false);
         libraryDebt.setText(R.string.default_money);
-        libraryRent.setText(R.string.default_money);
+        libraryRentNum.setText(R.string.default_money);
 
         //校园网
         xtuNetworkInfo.setClickable(false);
@@ -381,7 +392,31 @@ public class MainActivity extends BaseActivity implements ApiView {
             } catch (NullPointerException e) {
             }
         } else {
-            errorToast(instance, code);
+            errorToast(this, code);
+        }
+    }
+
+    @Override
+    public void getLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
+        if (code == 0) {
+            try {
+                libraryDebt.setText(aCache.getAsString(Constants.Key.LIBRARY_DEBT));
+            } catch (NullPointerException e) {
+            }
+        } else {
+            errorToast(this, code);
+        }
+    }
+
+    @Override
+    public void getLibraryRentLsit(int code, @Nullable LibraryRentListModel libraryRentListModel) {
+        if (code == 0) {
+            try {
+                libraryRentNum.setText(aCache.getAsString(Constants.Key.LIBRARY_RENT_NUM));
+            } catch (NullPointerException e) {
+            }
+        } else {
+            errorToast(this, code);
         }
     }
 

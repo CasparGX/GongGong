@@ -201,7 +201,7 @@
                                         android:text="@string/library_rent" />
 
                                     <TextView
-                                        android:id="@+id/library_rent"
+                                        android:id="@+id/library_rent_num"
                                         style="@style/HeaderInfoContent"
                                         android:text="@string/default_money" />
                                 </LinearLayout>
