@@ -63,6 +63,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     private String mParam2;
     private Context context;
     private OnFragmentInteractionListener mListener;
+    private PopupWindow popupWindowWait;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -87,12 +88,13 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     }
 
     @OnClick(R.id.btn_login)
-    void btnLogin() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+    void btnLogin(View view) {
+        /*LayoutInflater inflater = getActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_wait, null);
         dialogWait = new AlertDialog.Builder(this.getActivity()).create();
         dialogWait.setView(dialogView);
-        dialogWait.show();
+        dialogWait.show();*/
+        showPopupWindowWait(view);
         ApiPresenter apiPresenter = new ApiPresenter((LoginView) this);
         apiPresenter.login(sid.getText() + "", password.getText() + "");
     }
@@ -139,7 +141,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
 
     @Override
     public void login(int code, StudentInfoModel studentInfoModel) {
-        dialogWait.dismiss();
+        popupWindowWait.dismiss();
         if (code == 0) {
             ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
             ecardPresenter.getBalance(aCache.getAsString(Constants.Key.SID),aCache.getAsString(Constants.Key.PASSWORD));
@@ -153,19 +155,19 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
         }
     }
 
-    private void showPopupWindowXtuNetInfo(View view) {
+    private void showPopupWindowWait(View view) {
         //自定义布局
         View contentView = LayoutInflater.from(context).inflate(
-                R.layout.popupwindow_xtu_net_info, null);
-        final PopupWindow popupWindow = new PopupWindow(contentView,
+                R.layout.popupwindow_wait, null);
+        popupWindowWait = new PopupWindow(contentView,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
-        popupWindow.setTouchable(true);
+        popupWindowWait.setTouchable(true);
 
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+        popupWindowWait.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return false;
+                return true;
                 // 这里如果返回true的话，touch事件将被拦截
                 // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
@@ -173,10 +175,10 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
 
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
-        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_default));
+        popupWindowWait.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_default));
 
         // 设置好参数之后再show
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupWindowWait.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
     @Override

@@ -13,6 +13,7 @@
     <dimen name="stroke_blod">4dp</dimen>
 
     <dimen name="radius_default">4dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
     <dimen name="radius_20">20dp</dimen>
 
     <dimen name="interval_default">20dp</dimen>
