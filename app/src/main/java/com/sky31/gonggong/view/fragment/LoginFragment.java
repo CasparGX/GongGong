@@ -175,7 +175,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
 
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
-        popupWindowWait.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_default));
+        popupWindowWait.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_default_black));
 
         // 设置好参数之后再show
         popupWindowWait.showAtLocation(view, Gravity.CENTER, 0, 0);

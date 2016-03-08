@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +55,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sky31.gonggong.base.CommonFunction.backgroundAlpha;
 import static com.sky31.gonggong.base.CommonFunction.errorToast;
 
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
@@ -180,17 +182,33 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         //自定义布局
         View contentView = LayoutInflater.from(context).inflate(
                 R.layout.popupwindow_xtu_net_info, null);
+        TextView xtuNetworkPackagex = (TextView) contentView.findViewById(R.id.xtu_network_packagex);
+        TextView xtuNetworkStatus = (TextView) contentView.findViewById(R.id.xtu_network_status);
+        TextView xtuNetworkNextStatementDate = (TextView) contentView.findViewById(R.id.xtu_network_next_statement_date);
+        TextView xtuNetworkBalance = (TextView) contentView.findViewById(R.id.xtu_network_balance);
+        xtuNetworkPackagex.setText(resources.getString(R.string.xtu_network_packagex)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_PACKAGEX));
+        xtuNetworkStatus.setText(resources.getString(R.string.xtu_network_status)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_STATUS));
+        xtuNetworkNextStatementDate.setText(resources.getString(R.string.xtu_network_next_statement_date)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_NEXT_STATEMENT_DATE));
+        xtuNetworkBalance.setText(resources.getString(R.string.xtu_network_balance)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_BALANCE));
+
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
-
+        backgroundAlpha(0.5f,MainActivity.this);
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
                 // 这里如果返回true的话，touch事件将被拦截
                 // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f,MainActivity.this);
             }
         });
 
@@ -201,6 +219,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         // 设置好参数之后再show
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

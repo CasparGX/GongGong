@@ -25,6 +25,8 @@
     <string name="xtu_network">校园网</string>
     <string name="xtu_network_status">状态：</string>
     <string name="xtu_network_balance">余额：</string>
+    <string name="xtu_network_packagex">套餐：</string>
+    <string name="xtu_network_next_statement_date">下次扣费时间：</string>
 
 
     <!-- Menu Text-->

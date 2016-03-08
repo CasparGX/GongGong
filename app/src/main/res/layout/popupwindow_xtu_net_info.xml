@@ -2,10 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_default"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hello world" />
+        android:background="@drawable/bg_default_title"
+        android:gravity="center"
+        android:padding="@dimen/interval_mini"
+        android:text="@string/xtu_network" />
+
+    <TextView
+        android:id="@+id/xtu_network_packagex"
+        style="@style/TextDefault"
+        android:layout_marginTop="@dimen/interval_mini"
+        android:text="@string/xtu_network_packagex" />
+
+    <TextView
+        android:id="@+id/xtu_network_status"
+        style="@style/TextDefault"
+        android:text="@string/xtu_network_status" />
+
+    <TextView
+        android:id="@+id/xtu_network_balance"
+        style="@style/TextDefault"
+        android:text="@string/xtu_network_balance" />
+
+    <TextView
+        android:id="@+id/xtu_network_next_statement_date"
+        style="@style/TextDefault"
+        android:layout_marginBottom="@dimen/interval_mini"
+        android:text="@string/xtu_network_next_statement_date" />
 </LinearLayout>

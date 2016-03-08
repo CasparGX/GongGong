@@ -3,6 +3,7 @@ package com.sky31.gonggong.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.sky31.gonggong.MainActivity;
@@ -48,5 +49,17 @@ public class CommonFunction {
         }
         Toast.makeText(context, errMsg.get(code+""), Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    /**
+     * 设置添加屏幕的背景透明度
+     * @param bgAlpha
+     */
+    public static void backgroundAlpha(float bgAlpha, Activity activity)
+    {
+        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        activity.getWindow().setAttributes(lp);
     }
 }
