@@ -39,6 +39,7 @@ public class Constants {
         public static final String SID = "sid";
         public static final String PASSWORD = "password";
         public static final String LIBRARY_PASSWORD = "library_password";
+        public static final String ECARD_PASSWORD = "ecard_password";
 
         //个人信息
         public static final String NAME = "name";

@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -161,14 +160,23 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard() {
-        ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
-        apiPresenter.getBalance(null, null);
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
+            ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
+            apiPresenter.getBalance(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.ECARD_PASSWORD));
+        } else {
+            //没有一卡通密码，先输入密码
+        }
     }
 
     //图书馆信息
     @OnClick(R.id.library)
     void onClickLibrary() {
-        //跳转图书馆信息Activity
+        if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD)!=null){
+            //跳转图书馆信息Activity
+
+        } else {
+            //没有图书馆密码，先输入密码
+        }
     }
 
     //校园卡信息
@@ -186,16 +194,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         TextView xtuNetworkStatus = (TextView) contentView.findViewById(R.id.xtu_network_status);
         TextView xtuNetworkNextStatementDate = (TextView) contentView.findViewById(R.id.xtu_network_next_statement_date);
         TextView xtuNetworkBalance = (TextView) contentView.findViewById(R.id.xtu_network_balance);
-        xtuNetworkPackagex.setText(resources.getString(R.string.xtu_network_packagex)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_PACKAGEX));
-        xtuNetworkStatus.setText(resources.getString(R.string.xtu_network_status)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_STATUS));
-        xtuNetworkNextStatementDate.setText(resources.getString(R.string.xtu_network_next_statement_date)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_NEXT_STATEMENT_DATE));
-        xtuNetworkBalance.setText(resources.getString(R.string.xtu_network_balance)+aCache.getAsString(Constants.Key.CAMPUS_NETWORK_BALANCE));
+        xtuNetworkPackagex.setText(resources.getString(R.string.xtu_network_packagex) + aCache.getAsString(Constants.Key.CAMPUS_NETWORK_PACKAGEX));
+        xtuNetworkStatus.setText(resources.getString(R.string.xtu_network_status) + aCache.getAsString(Constants.Key.CAMPUS_NETWORK_STATUS));
+        xtuNetworkNextStatementDate.setText(resources.getString(R.string.xtu_network_next_statement_date) + aCache.getAsString(Constants.Key.CAMPUS_NETWORK_NEXT_STATEMENT_DATE));
+        xtuNetworkBalance.setText(resources.getString(R.string.xtu_network_balance) + aCache.getAsString(Constants.Key.CAMPUS_NETWORK_BALANCE));
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
-        backgroundAlpha(0.5f,MainActivity.this);
+        backgroundAlpha(0.5f, MainActivity.this);
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -208,7 +216,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                backgroundAlpha(1f,MainActivity.this);
+                backgroundAlpha(1f, MainActivity.this);
             }
         });
 
@@ -376,8 +384,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         ecard.setClickable(true);
 
         //图书馆
+        library.setClickable(true);
 
         //校园网
+        xtuNet.setClickable(true);
     }
 
     //自动登录，如果有缓存
@@ -391,15 +401,20 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     public void autoGetData(String sid, String password) {
-        ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
-        ecardPresenter.getBalance(sid, password);
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
+            ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
+            ecardPresenter.getBalance(sid, aCache.getAsString(Constants.Key.ECARD_PASSWORD));
+        }
+
 
         ApiPresenter campusNetPresenter = new ApiPresenter((CampusNetView) this);
         campusNetPresenter.getCampusNetwork(sid);
 
-        ApiPresenter libraryPresenter = new ApiPresenter((LibraryView) this);
-        libraryPresenter.getLibraryReaderInfo(sid, password);
-        libraryPresenter.getLibraryRentList(sid, password);
+        if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
+            ApiPresenter libraryPresenter = new ApiPresenter((LibraryView) this);
+            libraryPresenter.getLibraryReaderInfo(sid, aCache.getAsString(Constants.Key.LIBRARY_PASSWORD));
+            libraryPresenter.getLibraryRentList(sid, aCache.getAsString(Constants.Key.LIBRARY_PASSWORD));
+        }
     }
 
     public void logout() {
@@ -415,12 +430,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         ecardUnclaimed.setText(R.string.default_money);
 
         //图书馆
-        libraryInfo.setClickable(false);
+        library.setClickable(false);
         libraryDebt.setText(R.string.default_money);
         libraryRentNum.setText(R.string.default_money);
 
         //校园网
-        xtuNetworkInfo.setClickable(false);
+        xtuNet.setClickable(false);
         xtuNetworkStatus.setText(R.string.default_money);
         xtuNetworkBalance.setText(R.string.default_money);
     }

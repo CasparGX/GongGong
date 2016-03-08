@@ -128,7 +128,7 @@ public class ApiPresenter {
                     studentInfoModel.setCache(loginView.getViewContext());
                     UserModel.setSid(sid);
                     UserModel.setPassword(password);
-                    UserModel.setLibraryPassword(password);
+                    //UserModel.setLibraryPassword(password);
                     UserModel.setCache(loginView.getViewContext());
                     loginView.login(code, studentInfoModel);
                 } else if (code == 1) {

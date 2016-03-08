@@ -15,8 +15,17 @@ public class UserModel {
     private static String sid = null;
     private static String password = null;
     private static String library_password = null;
+    private static String ecard_password = null;
 
     private UserModel() {
+    }
+
+    public static String getEcard_password() {
+        return ecard_password;
+    }
+
+    public static void setEcard_password(String ecard_password) {
+        UserModel.ecard_password = ecard_password;
     }
 
     public static String getLibrary_password() {
@@ -52,7 +61,12 @@ public class UserModel {
         ACache aCache = ACache.get(context);
         aCache.put(Constants.Key.SID, getSid());
         aCache.put(Constants.Key.PASSWORD, getPassword());
-        aCache.put(Constants.Key.LIBRARY_PASSWORD, getLibrary_password());
+        if (getLibrary_password() != null) {
+            aCache.put(Constants.Key.LIBRARY_PASSWORD, getLibrary_password());
+        }
+        if (getEcard_password() != null) {
+            aCache.put(Constants.Key.ECARD_PASSWORD, getEcard_password());
+        }
     }
 
     public static void setCacheNone(Context context) {
@@ -60,5 +74,6 @@ public class UserModel {
         aCache.remove(Constants.Key.SID);
         aCache.remove(Constants.Key.PASSWORD);
         aCache.remove(Constants.Key.LIBRARY_PASSWORD);
+        aCache.remove(Constants.Key.ECARD_PASSWORD);
     }
 }
