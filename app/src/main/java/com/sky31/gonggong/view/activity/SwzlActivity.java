@@ -122,7 +122,7 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         Intent intent = new Intent(SwzlActivity.this,PublishSwzlActivity.class);
 
         startActivity(intent);
-        Log.d(msg, "open swzl_publish_activity.");
+
     }
 
 

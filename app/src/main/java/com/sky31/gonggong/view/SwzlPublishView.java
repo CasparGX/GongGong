@@ -8,7 +8,7 @@ import com.sky31.gonggong.model.SwzlResModel;
  */
 public interface SwzlPublishView {
 
-    void publish(SwzlResModel model);
+    void publish(String code ,SwzlResModel model);
 
 
 
