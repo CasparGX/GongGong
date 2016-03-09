@@ -1,12 +1,14 @@
 package com.sky31.gonggong.model;
 
+import java.io.Serializable;
+
 /**
  * Created by wukunguang on 16-3-1.
  *
  * 用于接受招领平台的信息返回。
  *
  */
-public class SwzlResModel {
+public class SwzlResModel implements Serializable{
 
     private String code;
 

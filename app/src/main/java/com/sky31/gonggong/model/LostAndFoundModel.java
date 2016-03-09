@@ -5,16 +5,17 @@ import java.io.Serializable;
 /**
  * Created by wukunguang on 16-3-1.
  */
-public class LostAndFoundModel implements Serializable {
+public class LostAndFoundModel{
 
     private String things_type;
     private String announcer;
     private String location;
+
     private String things;  // 当丢失物品为校园卡时，thing可为null。
     private String description; //物品描述
     private String mobile ; //手机号码
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
-    private int expireDays = 5;//默认为5天。
+    //private int expireDays = 5;//默认为5天。
 
     public String getThings_type() {
         return things_type;
@@ -72,11 +73,11 @@ public class LostAndFoundModel implements Serializable {
         this.bank_card = bank_card;
     }
 
-    public int getExpireDays() {
-        return expireDays;
-    }
-
-    public void setExpireDays(int expireDays) {
-        this.expireDays = expireDays;
-    }
+//    public int getExpireDays() {
+//        return expireDays;
+//    }
+//
+//    public void setExpireDays(int expireDays) {
+//        this.expireDays = expireDays;
+//    }
 }

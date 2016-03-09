@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
+import com.sky31.gonggong.presenter.SwzlPresenter;
 import com.sky31.gonggong.view.SwzlPublishView;
 
 import butterknife.Bind;
@@ -61,7 +63,7 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
     EditText thingNameText;
     @Bind(R.id.swzl_is_card)
     CheckBox cardConfirm;
-    @Bind(R.id.swzl_publish)
+    @Bind(R.id.swzl_submit)
     Button publishBtn;
 
     @Bind(R.id.swzl_bank_card_att)
@@ -139,19 +141,19 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.swzl_thing_get:
                         // 当点击发布捡到东西时候
                         action = Constants.Value.SWZL_SUBMIT_FOUND;
-                        Toast.makeText(getActivity(),"get",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "get", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.swzl_thing_lost:
                         //当发布丢东西时候
                         action = Constants.Value.SWZL_SUBMIT_LOST;
-                        Toast.makeText(getActivity(),"lost",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "lost", Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        Toast.makeText(getActivity(),"undefined actions",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "undefined actions", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -183,42 +185,55 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
             @Override
             public void onClick(View v) {
 
-                if (isCard){
+                if (isCard) {
                     if (TextUtils.isEmpty(bankcardText.getText()) || TextUtils.isEmpty(locationText.getText())
                             || TextUtils.isEmpty(descriptionText.getText()) || TextUtils.isEmpty(announcerText.getText())
-                            || TextUtils.isEmpty(mobileText.getText())){
-                        Toast.makeText(getActivity(),"请把信息填写完整",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                            || TextUtils.isEmpty(mobileText.getText())) {
+                        Toast.makeText(getActivity(), "请把信息填写完整", Toast.LENGTH_SHORT).show();
+                    } else {
                         pubModel.setThings_type("1");
                         pubModel.setBank_card(bankcardText.getText().toString());
                         pubModel.setAnnouncer(announcerText.getText().toString());
                         pubModel.setMobile(mobileText.getText().toString());
                         pubModel.setLocation(locationText.getText().toString());
                         pubModel.setDescription(descriptionText.getText().toString());
+                        publishMethod(action);
+
                     }
 
-                }
-                else {
+                } else {
                     if (TextUtils.isEmpty(thingNameText.getText()) || TextUtils.isEmpty(locationText.getText())
                             || TextUtils.isEmpty(descriptionText.getText()) || TextUtils.isEmpty(announcerText.getText())
-                            || TextUtils.isEmpty(mobileText.getText())){
-                        Toast.makeText(getActivity(),"请把信息填写完整",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                            || TextUtils.isEmpty(mobileText.getText())) {
+                        Toast.makeText(getActivity(), "请把信息填写完整", Toast.LENGTH_SHORT).show();
+                    } else {
                         pubModel.setThings_type("0");
                         pubModel.setThings(thingNameText.getText().toString());
                         pubModel.setAnnouncer(announcerText.getText().toString());
                         pubModel.setMobile(mobileText.getText().toString());
                         pubModel.setLocation(locationText.getText().toString());
                         pubModel.setDescription(descriptionText.getText().toString());
+                        publishMethod(action);
                     }
                 }
-//==============3.3
+
             }
         });
 
     }
+
+    private void publishMethod(String action) {
+        SwzlPresenter presenter = new SwzlPresenter(this);
+        int x= 5;
+        if (action.equals(Constants.Value.SWZL_SUBMIT_FOUND)){
+            x = 1;
+        }else {
+            x = 0;
+        }
+        presenter.publishSwzl(pubModel);
+        presenter.getResModel(x);
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -249,8 +264,31 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
         mListener = null;
     }
 
+
+
+
     @Override
-    public void publish(SwzlResModel model) {
+    public void publish(String code ,SwzlResModel model) {
+
+        //回调方法。
+        Toast.makeText(getActivity()," 发布成功！",Toast.LENGTH_SHORT).show();
+
+        String showResult = "未知错误，请稍后再试！";
+        switch (code)
+        {
+            case "0":
+                showResult = "发布成功！";
+                getActivity().finish();
+                break;
+            case "65535": showResult = "参数缺失，请检查提交数据是否完整！";
+                break;
+            case "1002":showResult = "服务器无响应，请稍后再试！";
+                break;
+            default:showResult = "未知错误！请稍后再试";
+        }
+
+        Log.d("11111111",code);
+
 
     }
 

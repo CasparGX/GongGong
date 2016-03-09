@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/swzl_publish_fragment"
         android:name="com.sky31.gonggong.view.fragment.PublishSwzlFragment"
-        tools:layout="@layout/fragment_publish_swzl">
+        tools:layout="@layout/fragment_publish_swzl"/>
 
-    </fragment>
 
 </RelativeLayout>

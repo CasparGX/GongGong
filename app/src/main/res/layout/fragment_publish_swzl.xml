@@ -5,8 +5,7 @@
     android:isScrollContainer="true"
     tools:context="com.sky31.gonggong.view.fragment.PublishSwzlFragment"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
-    >
+    android:background="@color/colorPrimary">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -163,6 +162,7 @@
                     android:text="@string/swzl_bank_card"
                     android:textSize="@dimen/swzl_attention_size"
                     android:id="@+id/swzl_bank_card_att"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
                     android:layout_width="match_parent"
@@ -176,6 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_submit_confirm"
+                    android:id="@+id/swzl_submit"
                     android:layout_gravity="center"
                     />
 
