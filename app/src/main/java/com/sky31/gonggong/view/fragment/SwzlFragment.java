@@ -5,12 +5,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.SwzlResModel;
+import com.sky31.gonggong.view.SwzlPublishView;
 
 import butterknife.Bind;
 
@@ -22,7 +25,7 @@ import butterknife.Bind;
  * Use the {@link SwzlFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment extends android.support.v4.app.Fragment {
+public class SwzlFragment extends android.support.v4.app.Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -110,6 +113,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
