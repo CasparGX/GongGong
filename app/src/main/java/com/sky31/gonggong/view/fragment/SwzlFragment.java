@@ -9,13 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.SwzlResModel;
+import com.sky31.gonggong.presenter.SwzlListviewAdapter;
 import com.sky31.gonggong.view.SwzlPublishView;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +43,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
 
     private OnFragmentInteractionListener mListener;
 
-
+    @Bind(R.id.swzl_list_view)
+    ListView listView;
 
 
     /**
@@ -82,10 +87,10 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
         // Inflate the layout for this fragment
 
         mFragmentView = inflater.inflate(R.layout.fragment_swzl, container, false);
+        ButterKnife.bind(this, mFragmentView);
+        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity());
 
-        TextView view = (TextView) mFragmentView.findViewById(R.id.swzl_fragment_test);
-        view.setText(mParam1);
-
+        listView.setAdapter(adapter);
 
         return mFragmentView;
     }
@@ -115,6 +120,11 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 
     /**
      * This interface must be implemented by activities that contain this
