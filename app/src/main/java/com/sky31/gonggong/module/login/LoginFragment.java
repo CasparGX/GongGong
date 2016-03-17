@@ -21,6 +21,7 @@ import android.widget.PopupWindow;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
+import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.ecard.EcardView;
 import com.sky31.gonggong.module.main.ApiView;
 import com.sky31.gonggong.util.ACache;
@@ -139,6 +140,8 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     public void login(int code, StudentInfoModel studentInfoModel) {
         popupWindowWait.dismiss();
         if (code == 0) {
+            UserModel.setEcard_password(UserModel.getPassword());
+            UserModel.setLibraryPassword(UserModel.getPassword());
             Intent backIntent = new Intent();
             backIntent.putExtra("name", studentInfoModel.getData().getName());
             this.getActivity().setResult(Activity.RESULT_OK, backIntent);
@@ -176,7 +179,12 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     }
 
     @Override
-    public void getBalance(int code, @Nullable EcardModel ecardModel) {
+    public void doneGetBalance(int code, @Nullable EcardModel ecardModel) {
+
+    }
+
+    @Override
+    public void onGetBalance() {
 
     }
 

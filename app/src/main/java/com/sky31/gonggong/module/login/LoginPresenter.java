@@ -33,8 +33,7 @@ public class LoginPresenter {
 
     public void login(String sid, String password) {
         getStudentInfo(sid, password);
-        //initSidAndPassword();
-        //getBalance(sid, password);
+        //ToDu 获取其他信息
     }
 
     public void getStudentInfo(final String sid, final String password) {

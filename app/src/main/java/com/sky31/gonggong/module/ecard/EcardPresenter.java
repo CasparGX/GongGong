@@ -6,7 +6,6 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.util.Debug;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -36,7 +35,8 @@ public class EcardPresenter {
 
     //获取校园卡信息
     public void getBalance() {
-        Debug.i("getBalance", this.sid + " " + this.password);
+        //通知ui设为等待状态
+        ecardView.onGetBalance();
         Call<EcardModel> call = apiService.getBalance(sid, password);
         call.enqueue(new Callback<EcardModel>() {
             @Override
@@ -45,9 +45,14 @@ public class EcardPresenter {
                 if (code == 0) {
                     EcardModel ecardModel = response.body();
                     ecardModel.setCache();
-                    ecardView.getBalance(code, ecardModel);
+                    ecardView.doneGetBalance(code, ecardModel);
+                } else if (code == 1) {
+                    //一卡通密码错误
+                    UserModel.getaCache().remove(Constants.Key.ECARD_PASSWORD);
+                    ecardView.doneGetBalance(code, null);
+                    Toast.makeText(ecardView.getViewContext(), "ecard password is wrong", Toast.LENGTH_SHORT).show();
                 } else {
-                    ecardView.getBalance(code, null);
+                    ecardView.doneGetBalance(code, null);
                 }
             }
 

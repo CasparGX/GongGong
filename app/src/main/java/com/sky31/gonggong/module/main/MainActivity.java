@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ import static com.sky31.gonggong.config.CommonFunction.errorToast;
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
 
     public static MainActivity instance;
+    private static ACache aCache;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.pager)
@@ -122,6 +124,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     LinearLayout library;
     @Bind(R.id.xtu_net)
     LinearLayout xtuNet;
+    @Bind(R.id.pb_ecard_balance)
+    ProgressBar pbEcardBalance;
+    @Bind(R.id.pb_ecard_unclaimed)
+    ProgressBar pbEcardUnclaimed;
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
@@ -129,8 +135,14 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int homeLayoutHeight = -1;
     private Context context;
     private Resources resources;
-    private static ACache aCache;
 
+    //头像被点击
+    @OnClick(R.id.header_avatar)
+    void onClickHeaderAvatar() {
+        autoGetData();
+    }
+
+    //侧滑菜单上的退出按钮
     @OnClick(R.id.img_btn_exit)
     void onClickImgBtnExit() {
         drawer.closeDrawers();
@@ -171,7 +183,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //图书馆信息
     @OnClick(R.id.library)
     void onClickLibrary() {
-        if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD)!=null){
+        if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             //跳转图书馆信息Activity
 
         } else {
@@ -394,7 +406,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void autoLogin() {
         if (aCache.getAsString(Constants.Key.SID) != null || aCache.getAsString(Constants.Key.PASSWORD) != null) {
             isLogined(aCache.getAsString(Constants.Key.NAME));
-            getBalance(0, null);
+            doneGetBalance(0, null);
             getCampusNetwork(0, null);
             autoGetData();
         }
@@ -440,19 +452,33 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     @Override
-    public void getBalance(int code, EcardModel ecardModel) {
+    public void doneGetBalance(int code, EcardModel ecardModel) {
         if (code == 0) {
             try {
                 ecardBalance.setText(aCache.getAsString(Constants.Key.BALANCE));
                 ecardUnclaimed.setText(aCache.getAsString(Constants.Key.UNCLAIMED));
-                //ecardNone.setVisibility(View.GONE);
-                //ecardInfo.setVisibility(View.VISIBLE);
             } catch (NullPointerException e) {
-
+                ecardBalance.setText(R.string.default_money);
+                ecardUnclaimed.setText(R.string.default_money);
             }
+        } else if (code == 1) {
+            ecardBalance.setText(R.string.default_money);
+            ecardUnclaimed.setText(R.string.default_money);
         } else {
             errorToast(this, code);
         }
+        ecardBalance.setVisibility(View.VISIBLE);
+        ecardUnclaimed.setVisibility(View.VISIBLE);
+        pbEcardBalance.setVisibility(View.GONE);
+        pbEcardUnclaimed.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onGetBalance() {
+        ecardBalance.setVisibility(View.GONE);
+        ecardUnclaimed.setVisibility(View.GONE);
+        pbEcardBalance.setVisibility(View.VISIBLE);
+        pbEcardUnclaimed.setVisibility(View.VISIBLE);
     }
 
     @Override

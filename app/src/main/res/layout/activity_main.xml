@@ -139,6 +139,12 @@
                                         android:id="@+id/ecard_balance"
                                         style="@style/HeaderInfoContent"
                                         android:text="@string/default_money" />
+
+                                    <ProgressBar
+                                        android:id="@+id/pb_ecard_balance"
+                                        android:visibility="gone"
+                                        android:layout_width="18sp"
+                                        android:layout_height="18sp" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -154,6 +160,12 @@
                                         android:id="@+id/ecard_unclaimed"
                                         style="@style/HeaderInfoContent"
                                         android:text="@string/default_money" />
+
+                                    <ProgressBar
+                                        android:id="@+id/pb_ecard_unclaimed"
+                                        android:visibility="gone"
+                                        android:layout_width="18sp"
+                                        android:layout_height="18sp" />
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
