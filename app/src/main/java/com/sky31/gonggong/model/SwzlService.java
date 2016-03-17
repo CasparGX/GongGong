@@ -15,7 +15,7 @@ import retrofit.http.GET;
  */
 public interface SwzlService {
 
-    String defaultParm = "&role="+Constants.Value.ROLE+"&hash="+Constants.Value.HASH+"&cache=no";
+    String defaultParm = "&role="+Constants.Value.ROLE+"&hash="+Constants.Value.HASH+"&cache=ON";
     String submitLostParm = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&"+"action="+Constants.Value.SWZL_SUBMIT_LOST+defaultParm;
     String submitGetParm = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&"+"action="+Constants.Value.SWZL_SUBMIT_FOUND+defaultParm;
 

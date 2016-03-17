@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.SwzlSearchResult;
+import com.sky31.gonggong.model.SwzlService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,7 +24,7 @@ import butterknife.ButterKnife;
  * Use the {@link SwzlFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment extends android.support.v4.app.Fragment{
+public class SwzlFragment extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -118,6 +120,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
