@@ -1,7 +1,5 @@
 package com.sky31.gonggong.model;
 
-import android.content.Context;
-
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
 
@@ -90,8 +88,8 @@ public class LibraryReaderInfoModel {
         }
     }
 
-    public void setCache(Context context){
-        ACache aCache = ACache.get(context);
+    public void setCache() {
+        ACache aCache = UserModel.getaCache();
         aCache.put(Constants.Key.LIBRARY_VALID_DATE_START,data.getValid_date_start());
         aCache.put(Constants.Key.LIBRARY_VALID_DATE_END,data.getValid_date_end());
         aCache.put(Constants.Key.LIBRARY_DEBT,data.getDebt());

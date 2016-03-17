@@ -59,14 +59,6 @@ public class UserModel {
         aCache.put(Constants.Key.PASSWORD, password);
     }
 
-    public static void setCache(Context context) {
-        ACache aCache = ACache.get(context);
-        if (getLibrary_password() != null) {
-        }
-        if (getEcard_password() != null) {
-        }
-    }
-
     public static void setCacheNone(Context context) {
         ACache aCache = ACache.get(context);
         aCache.remove(Constants.Key.SID);

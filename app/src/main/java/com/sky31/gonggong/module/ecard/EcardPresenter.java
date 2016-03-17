@@ -44,7 +44,7 @@ public class EcardPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     EcardModel ecardModel = response.body();
-                    ecardModel.setCache(ecardView.getViewContext());
+                    ecardModel.setCache();
                     ecardView.getBalance(code, ecardModel);
                 } else {
                     ecardView.getBalance(code, null);

@@ -34,7 +34,10 @@ import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.module.campusnet.CampusNetPresenter;
+import com.sky31.gonggong.module.ecard.EcardPresenter;
 import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.library.LibraryPresenter;
 import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginActivity;
 import com.sky31.gonggong.module.login.LoginView;
@@ -126,7 +129,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int homeLayoutHeight = -1;
     private Context context;
     private Resources resources;
-    private ACache aCache;
+    private static ACache aCache;
 
     @OnClick(R.id.img_btn_exit)
     void onClickImgBtnExit() {
@@ -158,8 +161,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @OnClick(R.id.ecard)
     void onCLickEcard() {
         if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
-            ApiPresenter apiPresenter = new ApiPresenter((EcardView) this);
-            apiPresenter.getBalance(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.ECARD_PASSWORD));
+            EcardPresenter ecardPresenter = new EcardPresenter(this);
+            ecardPresenter.getBalance();
         } else {
             //没有一卡通密码，先输入密码
         }
@@ -345,7 +348,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             case Constants.Value.RESULT_LOGIN:
                 if (resultCode == RESULT_OK) {
                     isLogined(data.getStringExtra("name"));
-                    autoGetData(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
+                    autoGetData();
                 }
                 break;
         }
@@ -393,24 +396,23 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             isLogined(aCache.getAsString(Constants.Key.NAME));
             getBalance(0, null);
             getCampusNetwork(0, null);
-            autoGetData(aCache.getAsString(Constants.Key.SID), aCache.getAsString(Constants.Key.PASSWORD));
+            autoGetData();
         }
     }
 
-    public void autoGetData(String sid, String password) {
+    public void autoGetData() {
         if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
-            ApiPresenter ecardPresenter = new ApiPresenter((EcardView) this);
-            ecardPresenter.getBalance(sid, aCache.getAsString(Constants.Key.ECARD_PASSWORD));
+            EcardPresenter ecardPresenter = new EcardPresenter(this);
+            ecardPresenter.getBalance();
         }
 
-
-        ApiPresenter campusNetPresenter = new ApiPresenter((CampusNetView) this);
-        campusNetPresenter.getCampusNetwork(sid);
+        CampusNetPresenter campusNetPresenter = new CampusNetPresenter(this);
+        campusNetPresenter.getCampusNetwork();
 
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
-            ApiPresenter libraryPresenter = new ApiPresenter((LibraryView) this);
-            libraryPresenter.getLibraryReaderInfo(sid, aCache.getAsString(Constants.Key.LIBRARY_PASSWORD));
-            libraryPresenter.getLibraryRentList(sid, aCache.getAsString(Constants.Key.LIBRARY_PASSWORD));
+            LibraryPresenter libraryPresenter = new LibraryPresenter(this);
+            libraryPresenter.getLibraryReaderInfo();
+            libraryPresenter.getLibraryRentList();
         }
     }
 
