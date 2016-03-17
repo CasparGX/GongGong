@@ -1,13 +1,10 @@
 package com.sky31.gonggong.module.main;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.CampusNetwork;
-import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
@@ -15,7 +12,6 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.ecard.EcardView;
 import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginView;
-import com.sky31.gonggong.util.Debug;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -82,32 +78,7 @@ public class ApiPresenter {
         }
     }
 
-    //获取校园卡信息
-    public void getBalance(@Nullable String sid, @Nullable String password) {
-        Debug.i("getBalance", this.sid + " " + this.password);
-        sid = (sid != null) ? sid : this.sid;
-        password = (password != null) ? password : this.password;
-        Call<EcardModel> call = apiService.getBalance(sid, password);
-        call.enqueue(new Callback<EcardModel>() {
-            @Override
-            public void onResponse(Response<EcardModel> response, Retrofit retrofit) {
-                int code = response.body().getCode();
-                if (code == 0) {
-                    EcardModel ecardModel = response.body();
-                    ecardModel.setCache(ecardView.getViewContext());
-                    ecardView.getBalance(code, ecardModel);
-                } else {
-                    ecardView.getBalance(code, null);
-                }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(ecardView.getViewContext(), "Error", Toast.LENGTH_SHORT).show();
-                t.printStackTrace();
-            }
-        });
-    }
 
     public void login(String sid, String password) {
         getStudentInfo(sid, password);
