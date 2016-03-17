@@ -55,7 +55,7 @@ public class CampusNetPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     CampusNetwork campusNetwork = response.body();
-                    campusNetwork.setCache(campusNetView.getViewContext());
+                    campusNetwork.setCache();
                     campusNetView.getCampusNetwork(code, campusNetwork);
                 } else if (code == 1) {
                     UserModel.setCacheNone(campusNetView.getViewContext());

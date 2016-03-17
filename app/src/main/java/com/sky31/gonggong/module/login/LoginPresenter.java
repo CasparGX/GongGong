@@ -45,7 +45,7 @@ public class LoginPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     StudentInfoModel studentInfoModel = response.body();
-                    studentInfoModel.setCache(loginView.getViewContext());
+                    studentInfoModel.setCache();
                     UserModel.setSid(sid);
                     UserModel.setPassword(password);
                     loginView.login(code, studentInfoModel);

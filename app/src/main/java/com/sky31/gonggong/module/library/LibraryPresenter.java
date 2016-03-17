@@ -40,7 +40,7 @@ public class LibraryPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     LibraryReaderInfoModel libraryReaderInfoModel = response.body();
-                    libraryReaderInfoModel.setCache(libraryView.getViewContext());
+                    libraryReaderInfoModel.setCache();
                     libraryView.getLibraryReaderInfo(code, libraryReaderInfoModel);
                 } else if (code == 1) {
                     //UserModel.setCacheNone(apiView.getViewContext());
@@ -65,7 +65,7 @@ public class LibraryPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     LibraryRentListModel libraryRentListModel = response.body();
-                    libraryRentListModel.setCache(libraryView.getViewContext());
+                    libraryRentListModel.setCache();
                     libraryView.getLibraryRentLsit(code, libraryRentListModel);
                 } else if (code == 1) {
                     //UserModel.setCacheNone(apiView.getViewContext());
