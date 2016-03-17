@@ -1,4 +1,4 @@
-package com.sky31.gonggong.presenter;
+package com.sky31.gonggong.module.main;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -12,12 +12,10 @@ import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.library.LibraryView;
+import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.util.Debug;
-import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.CampusNetView;
-import com.sky31.gonggong.view.EcardView;
-import com.sky31.gonggong.view.LibraryView;
-import com.sky31.gonggong.view.LoginView;
 
 import retrofit.Call;
 import retrofit.Callback;

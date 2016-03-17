@@ -1,8 +1,7 @@
-package com.sky31.gonggong.presenter;
+package com.sky31.gonggong.module.swzl;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.SwzlSearchResult;
-import com.sky31.gonggong.view.SwzlSearchView;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;

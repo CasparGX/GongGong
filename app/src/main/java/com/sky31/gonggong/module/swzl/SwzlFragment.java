@@ -1,22 +1,15 @@
-package com.sky31.gonggong.view.fragment;
+package com.sky31.gonggong.module.swzl;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.model.SwzlResModel;
-import com.sky31.gonggong.presenter.SwzlListviewAdapter;
-import com.sky31.gonggong.view.SwzlPublishView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

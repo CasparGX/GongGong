@@ -1,4 +1,4 @@
-package com.sky31.gonggong.view.activity;
+package com.sky31.gonggong.module.swzl;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.view.fragment.PublishSwzlFragment;
 
 public class PublishSwzlActivity extends FragmentActivity implements PublishSwzlFragment.OnFragmentInteractionListener{
 

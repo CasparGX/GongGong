@@ -1,4 +1,4 @@
-package com.sky31.gonggong.view.fragment;
+package com.sky31.gonggong.module.main.fragment;
 
 
 import android.os.Bundle;

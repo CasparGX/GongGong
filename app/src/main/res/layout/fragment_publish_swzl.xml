@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:isScrollContainer="true"
-    tools:context="com.sky31.gonggong.view.fragment.PublishSwzlFragment"
+    tools:context=".module.swzl.PublishSwzlFragment"
     android:orientation="vertical"
     android:background="@color/colorPrimary">
 

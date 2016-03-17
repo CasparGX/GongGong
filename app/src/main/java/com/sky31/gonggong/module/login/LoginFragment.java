@@ -1,10 +1,9 @@
-package com.sky31.gonggong.view.fragment;
+package com.sky31.gonggong.module.login;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,17 +22,16 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
-import com.sky31.gonggong.presenter.ApiPresenter;
+import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.main.ApiPresenter;
+import com.sky31.gonggong.module.main.ApiView;
 import com.sky31.gonggong.util.ACache;
-import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.EcardView;
-import com.sky31.gonggong.view.LoginView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.sky31.gonggong.base.CommonFunction.errorToast;
+import static com.sky31.gonggong.config.CommonFunction.errorToast;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,6 +1,5 @@
-package com.sky31.gonggong.view;
+package com.sky31.gonggong.module.swzl;
 
-import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
 
 /**

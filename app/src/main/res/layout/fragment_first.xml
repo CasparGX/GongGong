@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".view.fragment.FirstFragment">
+    tools:context=".module.main.fragment.FirstFragment">
 
     <LinearLayout
         android:id="@+id/blank_layout"

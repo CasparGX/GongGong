@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
-    tools:context="com.sky31.gonggong.view.activity.LoginActivity">
+    tools:context=".module.login.LoginActivity">
 
     <fragment
         android:id="@+id/login_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sky31.gonggong.view.fragment.LoginFragment"
+        android:name="com.sky31.gonggong.module.login.LoginFragment"
         tools:layout="@layout/fragment_login" />
 </FrameLayout>

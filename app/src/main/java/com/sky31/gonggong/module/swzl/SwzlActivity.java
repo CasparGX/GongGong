@@ -1,4 +1,4 @@
-package com.sky31.gonggong.view.activity;
+package com.sky31.gonggong.module.swzl;
 
 
 import android.content.Intent;
@@ -8,12 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
-
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.view.fragment.SwzlFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

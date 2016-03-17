@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".module.main.MainActivity"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,13 @@
             android:name=".base.BaseActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".module.login.LoginActivity"
             android:theme="@style/ColorTranslucentTheme" />
 
-        <activity android:name=".view.activity.SwzlActivity"></activity>
+        <activity android:name=".module.swzl.SwzlActivity"></activity>
 
         <activity
-            android:name=".view.activity.PublishSwzlActivity"
+            android:name=".module.swzl.PublishSwzlActivity"
             android:label="@string/title_activity_publish_swzl"></activity>
     </application>
 

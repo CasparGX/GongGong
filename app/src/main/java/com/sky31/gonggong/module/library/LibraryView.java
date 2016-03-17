@@ -1,4 +1,4 @@
-package com.sky31.gonggong.view;
+package com.sky31.gonggong.module.library;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

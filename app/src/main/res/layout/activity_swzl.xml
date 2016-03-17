@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.sky31.gonggong.view.activity.SwzlActivity"
+    tools:context=".module.swzl.SwzlActivity"
     android:orientation="vertical">
 
 
@@ -46,7 +46,7 @@
             android:id="@+id/swzl_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.sky31.gonggong.view.fragment.SwzlFragment"
+            android:name="com.sky31.gonggong.module.swzl.SwzlFragment"
             tools:layout="@layout/fragment_swzl">
 
         </fragment>

@@ -1,14 +1,11 @@
-package com.sky31.gonggong.presenter;
+package com.sky31.gonggong.module.swzl;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
 import com.sky31.gonggong.model.SwzlService;
-import com.sky31.gonggong.view.SwzlPublishView;
 
 import java.util.HashMap;
 import java.util.Map;

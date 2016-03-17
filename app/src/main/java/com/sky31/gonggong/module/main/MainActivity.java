@@ -1,4 +1,4 @@
-package com.sky31.gonggong;
+package com.sky31.gonggong.module.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.sky31.gonggong.R;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
@@ -33,19 +34,15 @@ import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.presenter.ApiPresenter;
-import com.sky31.gonggong.presenter.HomeViewPagerAdapter;
+import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.library.LibraryView;
+import com.sky31.gonggong.module.login.LoginActivity;
+import com.sky31.gonggong.module.login.LoginView;
+import com.sky31.gonggong.module.main.fragment.FirstFragment;
+import com.sky31.gonggong.module.main.fragment.SecondFragment;
+import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
-import com.sky31.gonggong.view.ApiView;
-import com.sky31.gonggong.view.CampusNetView;
-import com.sky31.gonggong.view.EcardView;
-import com.sky31.gonggong.view.LibraryView;
-import com.sky31.gonggong.view.LoginView;
-import com.sky31.gonggong.view.activity.LoginActivity;
-import com.sky31.gonggong.view.activity.SwzlActivity;
-import com.sky31.gonggong.view.fragment.FirstFragment;
-import com.sky31.gonggong.view.fragment.SecondFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +51,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.sky31.gonggong.base.CommonFunction.backgroundAlpha;
-import static com.sky31.gonggong.base.CommonFunction.errorToast;
+import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
+import static com.sky31.gonggong.config.CommonFunction.errorToast;
 
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
 

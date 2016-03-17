@@ -1,4 +1,4 @@
-package com.sky31.gonggong.base;
+package com.sky31.gonggong.config;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.content.res.Resources;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.sky31.gonggong.MainActivity;
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.module.main.MainActivity;
 
 import java.util.HashMap;
 

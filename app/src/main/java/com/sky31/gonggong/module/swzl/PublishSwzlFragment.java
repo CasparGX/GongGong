@@ -1,9 +1,8 @@
-package com.sky31.gonggong.view.fragment;
+package com.sky31.gonggong.module.swzl;
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,8 +21,6 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
-import com.sky31.gonggong.presenter.SwzlPresenter;
-import com.sky31.gonggong.view.SwzlPublishView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

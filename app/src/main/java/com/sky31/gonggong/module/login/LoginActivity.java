@@ -1,4 +1,4 @@
-package com.sky31.gonggong.view.activity;
+package com.sky31.gonggong.module.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.view.fragment.LoginFragment;
 
 public class LoginActivity extends FragmentActivity {
 
