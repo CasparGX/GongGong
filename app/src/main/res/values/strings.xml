@@ -28,6 +28,8 @@
     <string name="xtu_network_packagex">套餐：</string>
     <string name="xtu_network_next_statement_date">下次扣费时间：</string>
 
+    <!--second fragment-->
+    <string name="cha">查水表</string>
 
     <!-- Menu Text-->
 
