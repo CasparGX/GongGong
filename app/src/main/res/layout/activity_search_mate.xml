@@ -6,10 +6,37 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_sid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/sid" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_sid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/sid" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/card" />
+    </android.support.design.widget.TextInputLayout>
 </LinearLayout>

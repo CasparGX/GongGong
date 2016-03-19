@@ -37,24 +37,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_marginTop="@dimen/interval_mini"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sid"/>
-                <EditText
-                    android:id="@+id/sid"
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/password"/>
-                <EditText
-                    android:id="@+id/password"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/sid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sid" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <Button
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/password" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.ActionMenuPresenter.OverflowMenuButton
                     android:id="@+id/btn_login"
                     android:layout_margin="@dimen/interval_mini"
                     android:background="@drawable/btn_default"
