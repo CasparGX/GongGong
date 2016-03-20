@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.swzl;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.sky31.gonggong.config.Constants;
@@ -23,10 +24,23 @@ public class SwzlSearchPresenter {
     private SwzlService service;
     private Context context;
 
+    private static final String cache = "off";
+
     public SwzlSearchPresenter(SwzlSearchView searchView,Context context) {
 
         this.searchView = searchView;
         this.context = context;
+
+
+
+    }
+
+    /***
+     *
+     * @param actionCode 0 is lost,1 is get/found
+     *
+     */
+    public void getSearchResult(int actionCode){
 
         Retrofit retrofit  = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
@@ -34,40 +48,35 @@ public class SwzlSearchPresenter {
                 .build();
         service = retrofit.create(SwzlService.class);
 
-    }
-
-    /***
-     *
-     * @param actionCode 0 is lost,1 is get/found
-     * @return
-     */
-    public SwzlSearchResult getSearchResult(int actionCode){
-
-
-        if (actionCode==0){
-            Call<SwzlSearchResult> resultCall = service.getSerResultByLost();
-            resultCall.enqueue(new Callback<SwzlSearchResult>() {
-                @Override
-                public void onResponse(Response<SwzlSearchResult> response, Retrofit retrofit) {
-                    SwzlSearchResult result = null;
-                    result = response.body();
-
-                    // 回调函数传入参数
-                    searchView.getSearchData(result);
-
-
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-
-                    Toast.makeText(context,"网络链接异常",Toast.LENGTH_SHORT).show();
-                }
-            });
+        Call<SwzlSearchResult> resultCall;
+        if (actionCode==0) {
+            Log.d("action:",actionCode+"");
+            resultCall = service.getSerResultByLost();
+        }
+        else {
+            resultCall = service.getSerResultByGet();
         }
 
+        resultCall.enqueue(new Callback<SwzlSearchResult>() {
+            @Override
+            public void onResponse(Response<SwzlSearchResult> response, Retrofit retrofit) {
+                boolean xx = response.isSuccess();
+                SwzlSearchResult result = null;
+                result = response.body();
+                // 回调函数传入参数
+                searchView.getSearchData(result);
+            }
 
-        return null;
+            @Override
+            public void onFailure(Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
+
+
+
+
 
     }
 }

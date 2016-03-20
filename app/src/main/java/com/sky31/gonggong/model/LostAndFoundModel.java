@@ -1,5 +1,7 @@
 package com.sky31.gonggong.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,15 +9,69 @@ import java.io.Serializable;
  */
 public class LostAndFoundModel implements Serializable{
 
-    private String things_type;
+
+    @SerializedName("id")
+    private String id;
+
     private String announcer;
+
+    private String created_at;
+
     private String location;
 
+    private String things_type;
+
+    private String expireDate;
+
+    private String display;
+
+    private String del;
     private String things;  // 当丢失物品为校园卡时，thing可为null。
     private String description; //物品描述
     private String mobile ; //手机号码
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
     //private int expireDays = 5;//默认为5天。
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public String getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public String getDel() {
+        return del;
+    }
+
+    public void setDel(String del) {
+        this.del = del;
+    }
 
     public String getThings_type() {
         return things_type;

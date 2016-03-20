@@ -12,6 +12,7 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.Bind;
@@ -20,21 +21,22 @@ import butterknife.ButterKnife;
 /**
  * Listview适配器。
  */
-public class SwzlListviewAdapter extends BaseAdapter implements SwzlSearchView {
+public class SwzlListviewAdapter extends BaseAdapter{
 
 
     private Context context;
     private SwzlSearchResult result;
-
-    public SwzlListviewAdapter(Context context) {
-
+    List<LostAndFoundModel> modelList;
+    public SwzlListviewAdapter(Context context,SwzlSearchResult result) {
+        this.result = result;
         this.context = context;
+        this.modelList = result.getData();
 
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return modelList.size();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class SwzlListviewAdapter extends BaseAdapter implements SwzlSearchView {
 
         SwzlViewHolder viewHolder = null;
         if (convertView == null){
-            convertView = inflater.inflate(R.layout.swzl_item_layout, parent);
+            convertView = inflater.inflate(R.layout.swzl_item_layout, null);
             viewHolder = new SwzlViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
@@ -64,21 +66,18 @@ public class SwzlListviewAdapter extends BaseAdapter implements SwzlSearchView {
         }
 
 
-        List<LostAndFoundModel> modelList = result.getDatas();
 
-        viewHolder.swzlItemAnnouncer.
+
+        LostAndFoundModel model = modelList.get(position);
+        viewHolder.swzlItemAnnouncer.append(model.getAnnouncer());
+        viewHolder.swzlItemDescription.append(model.getDescription());
+        viewHolder.swzlItemLocation.append(model.getLocation());
+        viewHolder.swzlItemThings.append(model.getThings());
 
         return convertView;
     }
 
-    @Override
-    public void getSearchData(SwzlSearchResult data) {
 
-        //int code = data.getCode();
-
-
-
-    }
 
     public static class SwzlViewHolder {
 

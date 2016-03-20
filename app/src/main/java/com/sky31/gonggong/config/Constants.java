@@ -27,7 +27,7 @@ public class Constants {
         public static final String LIBRARY_RENEW = "library_renew.php";
 
 
-        public static final String SWZL_URL = "http://swzl.sky31.com/API/";
+
         public static final String SWZL_ACTION = "lost_found.php";
 
     }
@@ -82,6 +82,7 @@ public class Constants {
         public static final String SWZL_SUBMIT_FOUND = "submit_found";
         public static final String SWZL_SEARCH_LOST = "search_lost";
         public static final String SWZL_SEARCH_FOUND = "search_found";
+
 
     }
 }
