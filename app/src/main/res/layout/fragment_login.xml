@@ -1,15 +1,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".module.login.LoginFragment">
 
     <ScrollView
-        android:clickable="true"
-        android:foreground="?selectableItemBackground"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground">
 
 
         <LinearLayout
@@ -31,18 +32,20 @@
 
 
             <LinearLayout
-                android:layout_margin="@dimen/interval_mini"
-                android:padding="@dimen/interval_mini"
-                android:background="@color/white_transparent_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="@dimen/interval_mini"
+                android:background="@color/white_transparent_3"
+                android:orientation="vertical"
+                android:padding="@dimen/interval_mini">
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/TextInputLayoutDefault">
 
-                    <EditText
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/sid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -53,21 +56,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/password" />
+                        android:hint="@string/password" />
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.v7.widget.ActionMenuPresenter.OverflowMenuButton
+
+                <Button
                     android:id="@+id/btn_login"
-                    android:layout_margin="@dimen/interval_mini"
-                    android:background="@drawable/btn_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="@string/login"/>
+                    android:layout_margin="@dimen/interval_mini"
+                    android:background="@drawable/btn_default"
+                    android:text="@string/login" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
