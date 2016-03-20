@@ -1,9 +1,5 @@
 package com.sky31.gonggong.model;
 
-import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
@@ -59,8 +55,8 @@ public class LibraryRentListModel {
         this.data = data;
     }
 
-    public void setCache(Context context) {
-        ACache aCache = ACache.get(context);
+    public void setCache() {
+        ACache aCache = UserModel.getaCache();
         //只能使用List的子类
         //ArrayList<StudentInfoModel.DataEntity> arrayList = new ArrayList();
         //注意：一定要序列化

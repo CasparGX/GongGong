@@ -1,7 +1,5 @@
 package com.sky31.gonggong.model;
 
-import android.content.Context;
-
 import com.google.gson.annotations.SerializedName;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
@@ -102,8 +100,8 @@ public class CampusNetwork {
         }
     }
 
-    public void setCache(Context context){
-        ACache aCache = ACache.get(context);
+    public void setCache() {
+        ACache aCache = UserModel.getaCache();
         aCache.put(Constants.Key.CAMPUS_NETWORK_BALANCE,data.getBalance());
         aCache.put(Constants.Key.CAMPUS_NETWORK_STATUS,data.getStatus());
         aCache.put(Constants.Key.CAMPUS_NETWORK_NEXT_STATEMENT_DATE,data.getNext_statement_date());

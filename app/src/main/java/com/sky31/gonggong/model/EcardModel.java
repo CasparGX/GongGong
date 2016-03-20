@@ -1,7 +1,5 @@
 package com.sky31.gonggong.model;
 
-import android.content.Context;
-
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
 
@@ -90,8 +88,8 @@ public class EcardModel {
         }
     }
 
-    public void setCache(Context context) {
-        ACache aCache = ACache.get(context);
+    public void setCache() {
+        ACache aCache = UserModel.getaCache();
         aCache.put(Constants.Key.BALANCE,getData().getBalance());
         aCache.put(Constants.Key.UNCLAIMED,getData().getUnclaimed());
         aCache.put(Constants.Key.ECARD_ID,getData().getEcard_id());

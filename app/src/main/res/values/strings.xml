@@ -9,8 +9,8 @@
     <string name="logining">正在登录</string>
     <string name="pls_wait">请稍候…</string>
 
-    <string name="sid">学号：</string>
-    <string name="password">密码：</string>
+    <string name="sid">学号</string>
+    <string name="password">密码</string>
 
     <string name="ecard">校园卡</string>
     <string name="click_get">点击获取</string>
@@ -28,6 +28,10 @@
     <string name="xtu_network_packagex">套餐：</string>
     <string name="xtu_network_next_statement_date">下次扣费时间：</string>
 
+    <!--second fragment-->
+    <string name="cha">查水表</string>
+    <string name="name">姓名</string>
+    <string name="card">银行卡</string>
 
     <!-- Menu Text-->
 

@@ -26,6 +26,9 @@
         <activity
             android:name=".module.login.LoginActivity"
             android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.search_mate.SearchMateActivity"
+            android:theme="@style/ColorTranslucentTheme" />
 
         <activity android:name=".module.swzl.SwzlActivity"></activity>
 

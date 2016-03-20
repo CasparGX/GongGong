@@ -1,11 +1,8 @@
 package com.sky31.gonggong.model;
 
-import android.content.Context;
-
 import com.google.gson.annotations.SerializedName;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
-import com.sky31.gonggong.util.Debug;
 
 /**
  * Created by root on 16-2-29.
@@ -129,8 +126,8 @@ public class StudentInfoModel {
         }
     }
 
-    public void setCache(Context context) {
-        ACache aCache = ACache.get(context);
+    public void setCache() {
+        ACache aCache = UserModel.getaCache();
         aCache.put(Constants.Key.NAME,data.getName());
         aCache.put(Constants.Key.SEX,data.getSex());
         aCache.put(Constants.Key.DATE_OF_BIRTH,data.getDate_of_birth());

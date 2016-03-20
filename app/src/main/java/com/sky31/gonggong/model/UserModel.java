@@ -2,6 +2,7 @@ package com.sky31.gonggong.model;
 
 import android.content.Context;
 
+import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
 
@@ -16,57 +17,46 @@ public class UserModel {
     private static String password = null;
     private static String library_password = null;
     private static String ecard_password = null;
+    private static ACache aCache;
 
     private UserModel() {
+        aCache = ACache.get(App.getApp().getApplicationContext());
+    }
+
+    public static ACache getaCache() {
+        return aCache;
     }
 
     public static String getEcard_password() {
-        return ecard_password;
+        return aCache.getAsString(Constants.Key.ECARD_PASSWORD);
     }
 
     public static void setEcard_password(String ecard_password) {
-        UserModel.ecard_password = ecard_password;
+        aCache.put(Constants.Key.ECARD_PASSWORD, ecard_password);
     }
 
     public static String getLibrary_password() {
-        return library_password;
+        return aCache.getAsString(Constants.Key.LIBRARY_PASSWORD);
     }
 
     public static void setLibraryPassword(String library_password) {
-        UserModel.library_password = library_password;
-    }
-
-    public static UserModel getUserModel() {
-        return userModel;
+        aCache.put(Constants.Key.LIBRARY_PASSWORD, library_password);
     }
 
     public static String getSid() {
-        return sid;
+        return aCache.getAsString(Constants.Key.SID);
     }
 
     public static void setSid(String sid) {
-        UserModel.sid = sid;
+        aCache.put(Constants.Key.SID, sid);
     }
 
     public static String getPassword() {
-
-        return password;
+        return aCache.getAsString(Constants.Key.PASSWORD);
     }
 
     public static void setPassword(String password) {
-        UserModel.password = password;
-    }
-
-    public static void setCache(Context context) {
-        ACache aCache = ACache.get(context);
-        aCache.put(Constants.Key.SID, getSid());
-        aCache.put(Constants.Key.PASSWORD, getPassword());
-        if (getLibrary_password() != null) {
-            aCache.put(Constants.Key.LIBRARY_PASSWORD, getLibrary_password());
-        }
-        if (getEcard_password() != null) {
-            aCache.put(Constants.Key.ECARD_PASSWORD, getEcard_password());
-        }
+        aCache.put(Constants.Key.PASSWORD, password);
     }
 
     public static void setCacheNone(Context context) {
