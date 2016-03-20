@@ -63,7 +63,21 @@
                         android:hint="@string/password" />
                 </android.support.design.widget.TextInputLayout>
 
+                <com.andexert.library.RippleView
+                    android:id="@+id/more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/more2"
+                    android:layout_margin="5dp"
+                    rv_centered="true">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:elevation="20dp"
+                        android:text="@string/login" />
+                </com.andexert.library.RippleView>
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="wrap_content"

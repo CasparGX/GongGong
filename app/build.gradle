@@ -29,4 +29,5 @@ dependencies {
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
 //    compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.android.support:design:22.2.1'
+    compile 'com.github.traex.rippleeffect:library:1.3'
 }
