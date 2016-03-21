@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".module.login.LoginFragment">
 
     <ScrollView
@@ -41,9 +41,9 @@
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_sid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintTextAppearance="@style/TextInputLayoutDefault">
+                    android:layout_height="wrap_content">
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/sid"
@@ -53,6 +53,8 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_password"
+                    app:hintTextAppearance="@style/TextInputLayoutDefault"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -63,27 +65,14 @@
                         android:hint="@string/password" />
                 </android.support.design.widget.TextInputLayout>
 
-                <com.balysv.materialripple.MaterialRippleLayout
-                    android:id="@+id/ripple"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:mrl_rippleDuration="2000"
-                    app:mrl_rippleRoundedCorners="20dp">
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:elevation="20dp"
-                        android:text="@string/login" />
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <Button
+                <com.gc.materialdesign.views.ButtonRectangle
                     android:id="@+id/btn_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_margin="@dimen/interval_mini"
-                    android:background="@drawable/btn_default"
+                    android:background="@color/colorPrimary"
                     android:text="@string/login" />
             </LinearLayout>
         </LinearLayout>

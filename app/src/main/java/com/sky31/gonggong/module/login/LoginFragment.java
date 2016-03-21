@@ -7,17 +7,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
@@ -50,7 +51,11 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     @Bind(R.id.password)
     EditText password;
     @Bind(R.id.btn_login)
-    Button btnLogin;
+    ButtonRectangle btnLogin;
+    @Bind(R.id.til_sid)
+    TextInputLayout tilSid;
+    @Bind(R.id.til_password)
+    TextInputLayout tilPassword;
 
     private AlertDialog dialogWait;
     private ACache aCache;
@@ -113,7 +118,14 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
         ButterKnife.bind(this, view);
         context = this.getActivity();
         aCache = ACache.get(context);
+        init();
         return view;
+    }
+
+    private void init() {
+        //btnLogin.setRippleSpeed(1000);
+        tilSid.setHint(getResources().getString(R.string.sid));
+        tilPassword.setHint(getResources().getString(R.string.password));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
