@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -259,15 +260,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                //Snackbar.make(homeContent, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(homeContent, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
+                String top = resources.getString(R.string.top_index);
                 switch (menuItem.getItemId()) {
-                    case 0:
+                    case R.id.menu_top_index:
 
                         break;
-                    case 1:
+                    case R.id.menu_function:
                         jumpToLostAndFound();
                         break;
-                    case 2:
+                    case R.id.menu_navigation_item_2:
 
                         break;
                 }

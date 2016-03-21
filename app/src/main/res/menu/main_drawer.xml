@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/top_index"
+            android:id="@+id/menu_top_index"
             android:checked="true"
             android:icon="@mipmap/ic_launcher"
             android:title="@string/top_index" />
         <item
-            android:id="@+id/function"
+            android:id="@+id/menu_function"
             android:icon="@mipmap/ic_launcher"
             android:title="@string/function" />
         <item
-            android:id="@+id/navigation_item_2"
+            android:id="@+id/menu_navigation_item_2"
             android:icon="@mipmap/ic_launcher"
             android:title="@string/found" />
     </group>
