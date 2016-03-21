@@ -46,6 +46,7 @@ import com.sky31.gonggong.module.login.LoginActivity;
 import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.module.main.fragment.FirstFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
+import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
 
@@ -154,13 +155,13 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     void DrawerMenuItem1() {
 
     }
-
-    @OnClick(R.id.function)
+*/
+    //@OnClick(R.id.function)
     void jumpToLostAndFound() {
         //调转到失物招领
         Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
         startActivity(intent);
-    }*/
+    }
 
     //校园卡信息
     @OnClick(R.id.ecard)
@@ -259,7 +260,17 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 //Snackbar.make(homeContent, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
+                switch (menuItem.getItemId()) {
+                    case 0:
 
+                        break;
+                    case 1:
+                        jumpToLostAndFound();
+                        break;
+                    case 2:
+
+                        break;
+                }
                 menuItem.setChecked(true);
                 drawer.closeDrawers();
                 return true;

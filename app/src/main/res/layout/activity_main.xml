@@ -274,6 +274,7 @@
     <!--left swipe menu-->
     <android.support.design.widget.NavigationView
         android:id="@+id/drawer_menu"
+        app:itemIconTint="@color/textColorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
