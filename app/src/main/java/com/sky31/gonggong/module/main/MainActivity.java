@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
@@ -101,7 +102,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Bind(R.id.ecard_unclaimed)
     TextView ecardUnclaimed;
     @Bind(R.id.btn_login)
-    TextView btnLogin;
+    ButtonRectangle btnLogin;
     @Bind(R.id.ecard_info)
     LinearLayout ecardInfo;
     @Bind(R.id.ecard)
@@ -245,15 +246,17 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (savedInstanceState == null) {
+            ButterKnife.bind(this);
+            context = MainActivity.this;
+            instance = this;
+            resources = getResources();
+            aCache = ACache.get(this);
+            initToolbar();
+            initView();
+            autoLogin();
+        }
 
-        ButterKnife.bind(this);
-        context = MainActivity.this;
-        instance = this;
-        resources = getResources();
-        aCache = ACache.get(this);
-        initToolbar();
-        initView();
-        autoLogin();
     }
 
     //初始化控件
@@ -344,13 +347,15 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        homeLayoutHeight = homeLayout.getHeight();
-        ViewGroup.LayoutParams headerParam = header.getLayoutParams();
-        headerParam.height = homeLayoutHeight / 3;
-        header.setLayoutParams(headerParam);
-        headerHeight = homeLayoutHeight / 3;
-        App.getApp().setHomeLayoutHeight(homeLayoutHeight);
-        FirstFragment.getInstance().initLayoutHeight();
+        if (pager != null && pager.getCurrentItem() == 0) {
+            homeLayoutHeight = homeLayout.getHeight();
+            ViewGroup.LayoutParams headerParam = header.getLayoutParams();
+            headerParam.height = homeLayoutHeight / 3;
+            header.setLayoutParams(headerParam);
+            headerHeight = homeLayoutHeight / 3;
+            App.getApp().setHomeLayoutHeight(homeLayoutHeight);
+            FirstFragment.getInstance().initLayoutHeight();
+        }
     }
 
     @Override
@@ -431,7 +436,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void logout() {
         //个人信息
         username.setText(R.string.default_username);
-        btnLogin.setText(R.string.login);
+        btnLogin.setText(resources.getString(R.string.login));
         btnLogin.setVisibility(View.VISIBLE);
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);
