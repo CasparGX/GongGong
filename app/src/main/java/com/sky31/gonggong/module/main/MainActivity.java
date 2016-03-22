@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +25,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
@@ -66,42 +69,28 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     Toolbar toolbar;
     @Bind(R.id.pager)
     ViewPager pager;
-    @Bind(R.id.drawer_menu)
-    LinearLayout drawerMenu;
-    @Bind(R.id.drawer)
-    DrawerLayout drawer;
-    @Bind(R.id.header)
-    LinearLayout header;
     @Bind(R.id.user_avatar)
     ImageView userAvatar;
-    @Bind(R.id.username)
-    TextView username;
-    @Bind(R.id.header_content)
-    LinearLayout headerContent;
     @Bind(R.id.user_avatar_bg)
     FrameLayout userAvatarBg;
     @Bind(R.id.header_avatar)
     LinearLayout headerAvatar;
-    @Bind(R.id.frameLayout)
-    FrameLayout frameLayout;
-    @Bind(R.id.img_btn_exit)
-    ImageView imgBtnExit;
-    @Bind(R.id.top_index)
-    TableRow drawerMenuItem1;
-    @Bind(R.id.function)
-    TableRow drawerMenuItem2;
-    @Bind(R.id.drawer_menu_item3)
-    TableRow drawerMenuItem3;
-    @Bind(R.id.home_layout)
-    RelativeLayout homeLayout;
+    @Bind(R.id.username)
+    TextView username;
     @Bind(R.id.stu_num)
     TextView stuNum;
+    @Bind(R.id.btn_login)
+    ButtonRectangle btnLogin;
+    @Bind(R.id.header_content)
+    LinearLayout headerContent;
     @Bind(R.id.ecard_balance)
     TextView ecardBalance;
+    @Bind(R.id.pb_ecard_balance)
+    ProgressBar pbEcardBalance;
     @Bind(R.id.ecard_unclaimed)
     TextView ecardUnclaimed;
-    @Bind(R.id.btn_login)
-    TextView btnLogin;
+    @Bind(R.id.pb_ecard_unclaimed)
+    ProgressBar pbEcardUnclaimed;
     @Bind(R.id.ecard_info)
     LinearLayout ecardInfo;
     @Bind(R.id.ecard)
@@ -112,22 +101,28 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     TextView libraryRentNum;
     @Bind(R.id.library_info)
     LinearLayout libraryInfo;
+    @Bind(R.id.library)
+    LinearLayout library;
     @Bind(R.id.xtu_network_status)
     TextView xtuNetworkStatus;
-    @Bind(R.id.header_info)
-    LinearLayout headerInfo;
     @Bind(R.id.xtu_network_balance)
     TextView xtuNetworkBalance;
     @Bind(R.id.xtu_network_info)
     LinearLayout xtuNetworkInfo;
-    @Bind(R.id.library)
-    LinearLayout library;
     @Bind(R.id.xtu_net)
     LinearLayout xtuNet;
-    @Bind(R.id.pb_ecard_balance)
-    ProgressBar pbEcardBalance;
-    @Bind(R.id.pb_ecard_unclaimed)
-    ProgressBar pbEcardUnclaimed;
+    @Bind(R.id.header_info)
+    LinearLayout headerInfo;
+    @Bind(R.id.header)
+    LinearLayout header;
+    @Bind(R.id.home_layout)
+    RelativeLayout homeLayout;
+    @Bind(R.id.drawer_menu)
+    NavigationView drawerMenu;
+    @Bind(R.id.drawer)
+    DrawerLayout drawer;
+    @Bind(R.id.home_content)
+    LinearLayout homeContent;
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
@@ -157,12 +152,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         MainActivity.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @OnClick(R.id.top_index)
+    /*@OnClick(R.id.top_index)
     void DrawerMenuItem1() {
 
     }
-
-    @OnClick(R.id.function)
+*/
+    //@OnClick(R.id.function)
     void jumpToLostAndFound() {
         //调转到失物招领
         Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
@@ -245,19 +240,45 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
-        context = MainActivity.this;
-        instance = this;
-        resources = getResources();
-        aCache = ACache.get(this);
-        initToolbar();
-        initView();
-        autoLogin();
+        if (savedInstanceState == null) {
+            ButterKnife.bind(this);
+            context = MainActivity.this;
+            instance = this;
+            resources = getResources();
+            aCache = ACache.get(this);
+            initToolbar();
+            initView();
+            autoLogin();
+        }
+
     }
 
     //初始化控件
     private void initView() {
+        //抽屉菜单
+        drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                Snackbar.make(homeContent, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
+                String top = resources.getString(R.string.top_index);
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_top_index:
+
+                        break;
+                    case R.id.menu_function:
+                        jumpToLostAndFound();
+                        break;
+                    case R.id.menu_navigation_item_2:
+
+                        break;
+                }
+                menuItem.setChecked(true);
+                drawer.closeDrawers();
+                return true;
+            }
+        });
+
         //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
 
@@ -344,13 +365,15 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        homeLayoutHeight = homeLayout.getHeight();
-        ViewGroup.LayoutParams headerParam = header.getLayoutParams();
-        headerParam.height = homeLayoutHeight / 3;
-        header.setLayoutParams(headerParam);
-        headerHeight = homeLayoutHeight / 3;
-        App.getApp().setHomeLayoutHeight(homeLayoutHeight);
-        FirstFragment.getInstance().initLayoutHeight();
+        if (pager != null && pager.getCurrentItem() == 0) {
+            homeLayoutHeight = homeLayout.getHeight();
+            ViewGroup.LayoutParams headerParam = header.getLayoutParams();
+            headerParam.height = homeLayoutHeight / 3;
+            header.setLayoutParams(headerParam);
+            headerHeight = homeLayoutHeight / 3;
+            App.getApp().setHomeLayoutHeight(homeLayoutHeight);
+            FirstFragment.getInstance().initLayoutHeight();
+        }
     }
 
     @Override
@@ -431,7 +454,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void logout() {
         //个人信息
         username.setText(R.string.default_username);
-        btnLogin.setText(R.string.login);
+        btnLogin.setText(resources.getString(R.string.login));
         btnLogin.setVisibility(View.VISIBLE);
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);

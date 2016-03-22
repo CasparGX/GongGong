@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/home_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
         android:fitsSystemWindows="true"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -86,16 +88,14 @@
                                 android:visibility="gone" />
 
 
-                            <TextView
+                            <com.gc.materialdesign.views.ButtonRectangle
                                 android:id="@+id/btn_login"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/interval_mini"
-                                android:background="@drawable/btn_default"
-                                android:gravity="center"
-                                android:padding="@dimen/interval_mini_2"
-                                android:text="@string/login"
-                                android:textColor="@color/white" />
+                                android:layout_gravity="right"
+                                android:layout_margin="@dimen/interval_mini"
+                                android:background="@color/colorPrimary"
+                                android:text="@string/login" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -142,9 +142,9 @@
 
                                     <ProgressBar
                                         android:id="@+id/pb_ecard_balance"
-                                        android:visibility="gone"
                                         android:layout_width="18sp"
-                                        android:layout_height="18sp" />
+                                        android:layout_height="18sp"
+                                        android:visibility="gone" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -163,9 +163,9 @@
 
                                     <ProgressBar
                                         android:id="@+id/pb_ecard_unclaimed"
-                                        android:visibility="gone"
                                         android:layout_width="18sp"
-                                        android:layout_height="18sp" />
+                                        android:layout_height="18sp"
+                                        android:visibility="gone" />
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -272,6 +272,15 @@
     </LinearLayout>
 
     <!--left swipe menu-->
-    <include layout="@layout/include_drawer_menu" />
+    <android.support.design.widget.NavigationView
+        android:id="@+id/drawer_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:headerLayout="@layout/main_drawer_header"
+        app:menu="@menu/main_drawer" />
+
+    <!--<include layout="@layout/include_drawer_menu" />-->
 
 </android.support.v4.widget.DrawerLayout>
