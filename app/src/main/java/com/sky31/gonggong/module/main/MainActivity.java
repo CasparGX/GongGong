@@ -257,6 +257,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //初始化控件
     private void initView() {
         //抽屉菜单
+        drawerMenu.setItemIconTintList(null);
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -365,6 +366,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+        //首页头部高度
         if (pager != null && pager.getCurrentItem() == 0) {
             homeLayoutHeight = homeLayout.getHeight();
             ViewGroup.LayoutParams headerParam = header.getLayoutParams();
@@ -373,6 +375,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             headerHeight = homeLayoutHeight / 3;
             App.getApp().setHomeLayoutHeight(homeLayoutHeight);
             FirstFragment.getInstance().initLayoutHeight();
+        }
+        //抽屉菜单宽度
+        if (drawerMenu != null) {
+            ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
+            param.width = homeLayout.getWidth() * 3 / 4;
+            drawerMenu.setLayoutParams(param);
         }
     }
 
