@@ -250,6 +250,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             initToolbar();
             initView();
             autoLogin();
+            Debug.i("savedInstanceState", "null");
+        } else {
+            Debug.i("savedInstanceState", "not null");
+
         }
 
     }
@@ -348,6 +352,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 Debug.i("alpha", userAvatar.getRotation() + "");
             }
         }
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        initToolbar();
     }
 
     //初始化toolbar

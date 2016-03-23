@@ -3,6 +3,7 @@ package com.sky31.gonggong.module.search_mate;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 
 import com.sky31.gonggong.R;
@@ -26,6 +27,8 @@ public class SearchMateActivity extends Activity {
     EditText etCard;
     @Bind(R.id.til_card)
     TextInputLayout tilCard;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +42,14 @@ public class SearchMateActivity extends Activity {
         tilCard.setHint(getResources().getString(R.string.card));
         tilSid.setHint(getResources().getString(R.string.sid));
         tilName.setHint(getResources().getString(R.string.name));
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+
+        //toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
+        toolbar.setTitle(R.string.app_name);//设置主标题
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     }
 }
