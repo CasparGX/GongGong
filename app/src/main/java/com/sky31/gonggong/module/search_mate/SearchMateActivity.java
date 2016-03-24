@@ -7,10 +7,13 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 
+import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.views.CheckBox;
 import com.sky31.gonggong.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by root on 16-3-18.
@@ -30,6 +33,17 @@ public class SearchMateActivity extends Activity {
     TextInputLayout tilCard;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.check_benbu)
+    CheckBox checkBenbu;
+    @Bind(R.id.check_xingxiang)
+    CheckBox checkXingxiang;
+    @Bind(R.id.btn_search)
+    ButtonRectangle btnSearch;
+
+    @OnClick(R.id.btn_search)
+    void onClickBtnSearch() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +58,25 @@ public class SearchMateActivity extends Activity {
         tilCard.setHint(getResources().getString(R.string.card));
         tilSid.setHint(getResources().getString(R.string.sid));
         tilName.setHint(getResources().getString(R.string.name));
+        initCheckBox();
+    }
+
+    private void initCheckBox() {
+        checkBenbu.setChecked(true);
+        checkBenbu.setOncheckListener(new CheckBox.OnCheckListener() {
+            @Override
+            public void onCheck(CheckBox checkBox, boolean b) {
+                checkBox.setChecked(true);
+                checkXingxiang.setChecked(false);
+            }
+        });
+        checkXingxiang.setOncheckListener(new CheckBox.OnCheckListener() {
+            @Override
+            public void onCheck(CheckBox checkBox, boolean b) {
+                checkXingxiang.setChecked(true);
+                checkBenbu.setChecked(false);
+            }
+        });
     }
 
     @Override
