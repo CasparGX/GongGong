@@ -24,17 +24,16 @@ public class SwzlSearchPresenter {
     private SwzlService service;
     private Context context;
 
-    private static final String cache = "off";
-
     public SwzlSearchPresenter(SwzlSearchView searchView,Context context) {
-
         this.searchView = searchView;
         this.context = context;
-
-
+        Retrofit retrofit  = new Retrofit.Builder()
+                .baseUrl(Constants.Api.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        service = retrofit.create(SwzlService.class);
 
     }
-
     /***
      *
      * @param actionCode 0 is lost,1 is get/found
@@ -42,16 +41,12 @@ public class SwzlSearchPresenter {
      */
     public void getSearchResult(int actionCode){
 
-        Retrofit retrofit  = new Retrofit.Builder()
-                .baseUrl(Constants.Api.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(SwzlService.class);
+
 
         Call<SwzlSearchResult> resultCall;
         if (actionCode==0) {
             Log.d("action:",actionCode+"");
-            resultCall = service.getSerResultByLost();
+            resultCall = service.getSerResultByGet();
         }
         else {
             resultCall = service.getSerResultByGet();
@@ -60,8 +55,8 @@ public class SwzlSearchPresenter {
         resultCall.enqueue(new Callback<SwzlSearchResult>() {
             @Override
             public void onResponse(Response<SwzlSearchResult> response, Retrofit retrofit) {
-                boolean xx = response.isSuccess();
-                SwzlSearchResult result = null;
+
+                SwzlSearchResult result;
                 result = response.body();
                 // 回调函数传入参数
                 searchView.getSearchData(result);

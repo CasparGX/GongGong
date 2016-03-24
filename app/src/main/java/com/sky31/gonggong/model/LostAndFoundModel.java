@@ -7,30 +7,22 @@ import java.io.Serializable;
 /**
  * Created by wukunguang on 16-3-1.
  */
-public class LostAndFoundModel implements Serializable{
+public class LostAndFoundModel{
 
-
-    @SerializedName("id")
     private String id;
-
     private String announcer;
-
     private String created_at;
-
     private String location;
-
     private String things_type;
-
     private String expireDate;
-
     private String display;
-
     private String del;
     private String things;  // 当丢失物品为校园卡时，thing可为null。
     private String description; //物品描述
     private String mobile ; //手机号码
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
     //private int expireDays = 5;//默认为5天。
+
 
 
     public String getId() {

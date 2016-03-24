@@ -3,18 +3,21 @@ package com.sky31.gonggong.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by wukunguang on 16-3-17.
  */
-public class SwzlSearchResult implements Serializable{
+public class SwzlSearchResult {
 
     private String code;
     private String msg;
 
-    private List<LostAndFoundModel> data;
+
+    private ArrayList<LostAndFoundModel> data;
     private String total;
+
 
 
 
@@ -42,16 +45,20 @@ public class SwzlSearchResult implements Serializable{
         this.msg = msg;
     }
 
-    public List<LostAndFoundModel> getData() {
+    public ArrayList<LostAndFoundModel> getData() {
         return data;
     }
 
-    public void setDatas(List<LostAndFoundModel> data) {
-        this.data = data;
+    public void setDatas(ArrayList<LostAndFoundModel> data) {
+        this.data= data;
     }
 
 
-    public static class DataEntity implements Serializable{
+    public void setData(ArrayList<LostAndFoundModel> data) {
+        this.data = data;
+    }
+
+    public class DataEntity{
 
         private String id;
 

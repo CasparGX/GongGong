@@ -13,6 +13,7 @@ import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,7 +27,7 @@ public class SwzlListviewAdapter extends BaseAdapter{
 
     private Context context;
     private SwzlSearchResult result;
-    List<LostAndFoundModel> modelList;
+    ArrayList<LostAndFoundModel> modelList;
     public SwzlListviewAdapter(Context context,SwzlSearchResult result) {
         this.result = result;
         this.context = context;

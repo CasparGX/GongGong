@@ -50,7 +50,7 @@
     <!-- swzl form textview -->
     <string name="swzl_lost_thing">我丢了东西了</string>
     <string name="swzl_get_thing">我捡到东西了</string>
-    <string name="swzl_is_ecard">是否为校园卡？</string>
+    <string name="swzl_is_ecard">是否为校园卡</string>
     <string name="swzl_publish_title">信息发布</string>
     <string name="swzl_location">捡到/丢失地点:</string>
     <string name="swzl_location_hint">填写你丢失/捡到地点</string>

@@ -43,9 +43,14 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
     private String mParam1;
     private String mParam2;
 
+    @Bind(R.id.swzl_thing_lost)
+    com.gc.materialdesign.views.CheckBox thingLostCheckBox;
+    @Bind(R.id.swzl_thing_get)
+    com.gc.materialdesign.views.CheckBox thingGetCheckBox;
 
-    @Bind(R.id.swzl_lost_or_get)
-    RadioGroup mRadioGroup;
+
+
+
     @Bind(R.id.swzl_location)
     EditText locationText;
     @Bind(R.id.swzl_announcer)
@@ -69,7 +74,7 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
     TextView thingNameAtt;
 
     private LostAndFoundModel pubModel;
-    private String action = "";
+    private String action = Constants.Value.SWZL_SUBMIT_FOUND;
     private boolean isCard = false; // 默认值和初始值对应
 
 
@@ -134,28 +139,33 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView{
     private void setListener(){
 
         //set RadioGroup Listener.
-        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                switch (checkedId) {
-                    case R.id.swzl_thing_get:
-                        // 当点击发布捡到东西时候
-                        action = Constants.Value.SWZL_SUBMIT_FOUND;
-                        Toast.makeText(getActivity(), "get", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.swzl_thing_lost:
-                        //当发布丢东西时候
-                        action = Constants.Value.SWZL_SUBMIT_LOST;
-                        Toast.makeText(getActivity(), "lost", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        Toast.makeText(getActivity(), "undefined actions", Toast.LENGTH_SHORT).show();
+
+
+
+
+        //set CheckBox Listener
+
+        thingGetCheckBox.setOncheckListener(new com.gc.materialdesign.views.CheckBox.OnCheckListener() {
+            @Override
+            public void onCheck(com.gc.materialdesign.views.CheckBox checkBox, boolean b) {
+                if (b){
+                    thingLostCheckBox.setChecked(false);
+                    action = Constants.Value.SWZL_SUBMIT_FOUND;
+                }
+
+            }
+        });
+        thingLostCheckBox.setOncheckListener(new com.gc.materialdesign.views.CheckBox.OnCheckListener() {
+            @Override
+            public void onCheck(com.gc.materialdesign.views.CheckBox checkBox, boolean b) {
+                if (b){
+                    thingGetCheckBox.setChecked(true);
+                    action = Constants.Value.SWZL_SUBMIT_LOST;
                 }
             }
         });
 
-        //set CheckBox Listener
         cardConfirm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
