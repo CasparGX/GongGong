@@ -2,6 +2,7 @@ package com.sky31.gonggong.module.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -261,6 +262,19 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //初始化控件
     private void initView() {
         //抽屉菜单
+        int[][] states = new int[][]{
+                new int[]{android.R.attr.state_enabled},
+                new int[]{android.R.attr.state_pressed}, //1
+                new int[]{android.R.attr.state_focused},
+        };
+
+        int[] colors = new int[]{
+                R.color.white,
+                R.color.colorAccent2,
+                R.color.colorAccent2,
+        };
+        ColorStateList myList = new ColorStateList(states, colors);
+        drawerMenu.setItemIconTintList(myList);
         drawerMenu.setItemIconTintList(null);
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

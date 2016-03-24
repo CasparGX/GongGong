@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.search_mate;
 
 import android.app.Activity;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +40,7 @@ public class SearchMateActivity extends Activity {
     }
 
     private void init() {
+        etName.getBackground().mutate().setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
         tilCard.setHint(getResources().getString(R.string.card));
         tilSid.setHint(getResources().getString(R.string.sid));
         tilName.setHint(getResources().getString(R.string.name));
