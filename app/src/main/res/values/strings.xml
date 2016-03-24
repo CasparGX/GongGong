@@ -32,6 +32,9 @@
     <string name="cha">查水表</string>
     <string name="name">姓名</string>
     <string name="card">银行卡</string>
+    <string name="benbu">本部</string>
+    <string name="xingxiang">兴湘</string>
+    <string name="search">查找</string>
 
     <!-- Menu Text-->
 
