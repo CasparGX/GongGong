@@ -13,21 +13,28 @@ public interface ApiService {
     String defaultParam = Constants.Key.ROLE + "=" + Constants.Value.ROLE + "&"
             + Constants.Key.HASH + "=" + Constants.Value.HASH;
 
+    //获取校园卡余额
     @GET(Constants.Api.ECARD + "?" + defaultParam)
     Call<EcardModel> getBalance(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+    //获取个人信息
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
     Call<StudentInfoModel> getStudentInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+    //获取校园网余额
     @GET(Constants.Api.CAMPUS_NET_BALANCE + "?" + defaultParam)
     Call<CampusNetwork> getCampusNetwork(@Query(Constants.Key.SID) String sid);
 
+    //获取图书馆读者信息
     @GET(Constants.Api.LIBRARY_READER_INFO + "?" + defaultParam)
     Call<LibraryReaderInfoModel> getLibraryReaderInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+    //获取图书馆借书列表
     @GET(Constants.Api.LIBRARY_RENT_LIST + "?" + defaultParam)
     Call<LibraryRentListModel> getLibraryRentList(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
-
+    //获取校友信息
+    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam)
+    Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 }

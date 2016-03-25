@@ -2,9 +2,10 @@ package com.sky31.gonggong.module.search_mate;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
-import com.sky31.gonggong.model.StudentInfoModel;
+import com.sky31.gonggong.model.MateInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.login.LoginView;
+import com.sky31.gonggong.util.Debug;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -34,13 +35,16 @@ public class SearchMatePresenter {
 
 
     public void getMateInfo(final String sid, final String password) {
-        Call<StudentInfoModel> call = apiService.getStudentInfo(sid, password);
-        call.enqueue(new Callback<StudentInfoModel>() {
+        Call<MateInfoModel> call = apiService.getMateInfo(sid, password);
+        call.enqueue(new Callback<MateInfoModel>() {
             @Override
-            public void onResponse(Response<StudentInfoModel> response, Retrofit retrofit) {
+            public void onResponse(Response<MateInfoModel> response, Retrofit retrofit) {
                 int code = response.body().getCode();
                 if (code == 0) {
-
+                    MateInfoModel mateInfoModel = response.body();
+                    for (MateInfoModel.DataEntity item : mateInfoModel.getData()) {
+                        Debug.i("MateInfo", item.getName());
+                    }
                 } else if (code == 1) {
 
 
