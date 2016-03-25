@@ -199,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_mobile"
                     android:textSize="@dimen/swzl_attention_size"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
                     android:layout_width="match_parent"
@@ -216,6 +217,7 @@
                     android:text="@string/swzl_bank_card"
                     android:textSize="@dimen/swzl_attention_size"
                     android:id="@+id/swzl_bank_card_att"
+                    android:textColor="@color/black"
                     android:visibility="gone"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText

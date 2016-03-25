@@ -29,6 +29,7 @@ public class SwzlListviewAdapter extends BaseAdapter{
     private SwzlSearchResult result;
     ArrayList<LostAndFoundModel> modelList;
     public SwzlListviewAdapter(Context context,SwzlSearchResult result) {
+
         this.result = result;
         this.context = context;
         this.modelList = result.getData();
