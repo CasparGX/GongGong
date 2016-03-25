@@ -1,7 +1,5 @@
 package com.sky31.gonggong.module.search_mate;
 
-import android.support.annotation.Nullable;
-
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.MateInfoModel;
@@ -35,7 +33,7 @@ public class SearchMatePresenter {
     }
 
 
-    public void getMateInfo(@Nullable String sid, @Nullable String name, @Nullable String card, String type) {
+    public void getMateInfo(String sid, String name, String card, String type) {
         Call<MateInfoModel> call = apiService.getMateInfo(sid, name, card, type);
         call.enqueue(new Callback<MateInfoModel>() {
             @Override
@@ -52,12 +50,14 @@ public class SearchMatePresenter {
                 } else {
 
                 }
-
+                searchMateView.finishGetSearchMate();
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
+                Debug.i("onFailue", t.getCause() + "\n" + t.getMessage());
+                searchMateView.finishGetSearchMate();
             }
         });
     }

@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.EditText;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -50,6 +51,7 @@ public class SearchMateActivity extends Activity implements SearchMateView {
             type = "xtu";
         else
             type = "xx";
+        onGetSearchMate();
         SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
         searchMatePresenter.getMateInfo(sid, name, card, type);
     }
@@ -95,5 +97,15 @@ public class SearchMateActivity extends Activity implements SearchMateView {
         //toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
         toolbar.setTitle(R.string.app_name);//设置主标题
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+    }
+
+    @Override
+    public void onGetSearchMate() {
+        btnSearch.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void finishGetSearchMate() {
+        btnSearch.setVisibility(View.VISIBLE);
     }
 }
