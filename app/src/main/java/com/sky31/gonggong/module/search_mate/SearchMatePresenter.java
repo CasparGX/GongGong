@@ -1,10 +1,11 @@
 package com.sky31.gonggong.module.search_mate;
 
+import android.support.annotation.Nullable;
+
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.MateInfoModel;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.util.Debug;
 
 import retrofit.Call;
@@ -21,7 +22,7 @@ public class SearchMatePresenter {
     private String sid, password;
     private SearchMateView searchMateView;
 
-    public SearchMatePresenter(LoginView loginView) {
+    public SearchMatePresenter(SearchMateView searchMateView) {
         //init Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
@@ -34,8 +35,8 @@ public class SearchMatePresenter {
     }
 
 
-    public void getMateInfo(final String sid, final String password) {
-        Call<MateInfoModel> call = apiService.getMateInfo(sid, password);
+    public void getMateInfo(@Nullable String sid, @Nullable String name, @Nullable String card, String type) {
+        Call<MateInfoModel> call = apiService.getMateInfo(sid, name, card, type);
         call.enqueue(new Callback<MateInfoModel>() {
             @Override
             public void onResponse(Response<MateInfoModel> response, Retrofit retrofit) {

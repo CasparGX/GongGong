@@ -50,6 +50,10 @@ public class Constants {
         public static final String MAJOR = "major";
         public static final String CLASSX = "classx";
 
+        //校友信息
+        public static final String CARD = "card";
+        public static final String TYPE = "type";
+
         //校园卡信息
         public static final String ECARD_ID = "ecard_id";
         public static final String BALANCE = "balance";
@@ -61,6 +65,7 @@ public class Constants {
         public static final String LIBRARY_DEBT = "library_debt";
         public static final String LIBRARY_RENT_LIST = "library_rent_list";
         public static final String LIBRARY_RENT_NUM = "library_rent_num";
+
         //校园网信息
         public static final String CAMPUS_NETWORK_STATUS = "campus_network_status";
         public static final String CAMPUS_NETWORK_BALANCE = "campus_network_balance";

@@ -1,5 +1,7 @@
 package com.sky31.gonggong.model;
 
+import android.support.annotation.Nullable;
+
 import com.sky31.gonggong.config.Constants;
 
 import retrofit.Call;
@@ -35,6 +37,6 @@ public interface ApiService {
 
     //获取校友信息
     @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam)
-    Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Call<MateInfoModel> getMateInfo(@Nullable @Query(Constants.Key.SID) String sid, @Nullable @Query(Constants.Key.NAME) String name, @Nullable @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
 
 }

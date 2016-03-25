@@ -18,7 +18,7 @@ import butterknife.OnClick;
 /**
  * Created by root on 16-3-18.
  */
-public class SearchMateActivity extends Activity {
+public class SearchMateActivity extends Activity implements SearchMateView {
     @Bind(R.id.et_sid)
     EditText etSid;
     @Bind(R.id.til_sid)
@@ -42,7 +42,16 @@ public class SearchMateActivity extends Activity {
 
     @OnClick(R.id.btn_search)
     void onClickBtnSearch() {
-
+        String sid = etSid.getText().toString();
+        String name = etName.getText().toString();
+        String card = etCard.getText().toString();
+        String type = null;
+        if (checkBenbu.isCheck())
+            type = "xtu";
+        else
+            type = "xx";
+        SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
+        searchMatePresenter.getMateInfo(sid, name, card, type);
     }
 
     @Override
