@@ -37,8 +37,10 @@ public class SearchMatePresenter {
         Call<MateInfoModel> call = apiService.getMateInfo(sid, name, card, type);
         call.enqueue(new Callback<MateInfoModel>() {
             @Override
-            public void onResponse(Response<MateInfoModel> response, Retrofit retrofit) {
+            public void onResponse(
+                    Response<MateInfoModel> response, Retrofit retrofit) {
                 int code = response.body().getCode();
+                Debug.i("code", code + "");
                 if (code == 0) {
                     MateInfoModel mateInfoModel = response.body();
                     for (MateInfoModel.DataEntity item : mateInfoModel.getData()) {
