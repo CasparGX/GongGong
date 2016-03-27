@@ -11,6 +11,8 @@
 
     <string name="sid">学号</string>
     <string name="password">密码</string>
+    <string name="input_password">输入密码</string>
+    <string name="confirm">确认</string>
 
     <string name="ecard">校园卡</string>
     <string name="click_get">点击获取</string>
