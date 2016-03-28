@@ -184,6 +184,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                     AppCompatEditText etInputPassword = inputPassPopupwindow.getEtInputPassword();
                     if (etInputPassword.getText().toString().equals("")) {
                         inputPassPopupwindow.getTilPassword().setError("请输入密码");
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(true);
+                    } else {
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(false);
                     }
 
                 }
