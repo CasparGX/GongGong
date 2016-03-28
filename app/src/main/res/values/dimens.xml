@@ -32,11 +32,13 @@
     <dimen name="swzl_title_size">35sp</dimen>
     <dimen name="swzl_attention_size">20sp</dimen>
     <dimen name="swzl_util_marginTop">20dp</dimen>
-    
-    
+    <dimen name="swzl_publish_mar">10dp</dimen>
+    <dimen name="swzl_publish_text_indent">30dp</dimen>
     <!-- SWZL item  -->
     
     <dimen name="swzl_item_thing_title">15sp</dimen>
     <dimen name="swzl_item_thing_padding">10dp</dimen>
     <dimen name="swzl_item_normal_textsize">12sp</dimen>
+    <dimen name="swzl_search_textsize_default">20sp</dimen>
+
 </resources>

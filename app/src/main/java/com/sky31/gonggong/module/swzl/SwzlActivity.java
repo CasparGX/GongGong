@@ -46,7 +46,7 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
 
         //init default fragment.
         //default fragement is get
-        swzlFragmentOfGet = SwzlFragment.newInstance(xxx+"",xxx+"");
+        swzlFragmentOfGet = SwzlFragment.newInstance(1);
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -78,7 +78,7 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         FragmentTransaction transaction = manager.beginTransaction();
         if (swzlFragmentOfGet==null){
             xxx++;
-            swzlFragmentOfGet = SwzlFragment.newInstance(xxx+"",xxx+"");
+            swzlFragmentOfGet = SwzlFragment.newInstance(1);
             transaction.add(R.id.swzl_fragment, swzlFragmentOfGet);
         }
         else {
@@ -99,7 +99,7 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         FragmentTransaction transaction = manager.beginTransaction();
         if (swzlFragmentOfLost==null){
             xxx++;
-            swzlFragmentOfLost = SwzlFragment.newInstance(xxx+"",xxx+"");
+            swzlFragmentOfLost = SwzlFragment.newInstance(0);
             transaction.add(R.id.swzl_fragment, swzlFragmentOfLost);
         }
         else {
