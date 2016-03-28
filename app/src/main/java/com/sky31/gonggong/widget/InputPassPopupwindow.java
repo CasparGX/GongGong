@@ -2,11 +2,10 @@ package com.sky31.gonggong.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -18,15 +17,28 @@ import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
  * Created by root on 16-3-27.
  */
 public class InputPassPopupwindow extends PopupWindow {
-    AppCompatEditText etInputPassword;
-    ButtonRectangle btnConfirm;
-    Context context;
-    Activity activity;
+    private AppCompatEditText etInputPassword;
+    private TextInputLayout tilPassword;
+    private ButtonRectangle btnConfirm;
+    private String title;
+    private Context context;
+    private Activity activity;
+    private InputPassPopupwindow inputPassPopupwindow;
 
-    public InputPassPopupwindow(Context context, final Activity activity) {
+    public InputPassPopupwindow(View contentView, int width, int height, boolean focusable) {
+        super(contentView, width, height, focusable);
+        etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
+        btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
+        tilPassword = (TextInputLayout) contentView.findViewById(R.id.til_password);
+    }
+
+    public InputPassPopupwindow(Context context, final Activity activity, String title) {
         super(context);
-        this.context = context;
-        this.activity = activity;
+
+    }
+
+    public TextInputLayout getTilPassword() {
+        return tilPassword;
     }
 
     public AppCompatEditText getEtInputPassword() {
@@ -39,17 +51,13 @@ public class InputPassPopupwindow extends PopupWindow {
         backgroundAlpha(0.5f, activity);
     }
 
-    public PopupWindow getPopupWindow(String title) {
-        View contentView = LayoutInflater.from(context).inflate(
-                R.layout.popupwindow_input_password, null);
-        etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
-        etInputPassword.setHint(title + context.getResources().getString(R.string.password));
-        btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-
-        popupWindow.setTouchable(true);
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+    public void initPopupWindow(String title, final Activity activity, Context context) {
+        this.activity = activity;
+        this.title = title;
+        this.context = context;
+        tilPassword.setHint(title + context.getResources().getString(R.string.password));
+        this.setTouchable(true);
+        this.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
@@ -58,7 +66,7 @@ public class InputPassPopupwindow extends PopupWindow {
             }
         });
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        this.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 backgroundAlpha(1f, activity);
@@ -67,8 +75,7 @@ public class InputPassPopupwindow extends PopupWindow {
 
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
-        popupWindow.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_default));
-        return popupWindow;
+        this.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_default));
     }
 
 

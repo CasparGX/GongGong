@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -51,6 +52,7 @@ import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
+import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     public static MainActivity instance;
     private static ACache aCache;
+    private static View inputPasswordPopupwindowContentView;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.pager)
@@ -167,12 +170,25 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     //校园卡信息
     @OnClick(R.id.ecard)
-    void onCLickEcard() {
-        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
+    void onCLickEcard(View view) {
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) == null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
             //没有一卡通密码，先输入密码
+            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            inputPassPopupwindow.initPopupWindow(resources.getString(R.string.ecard), MainActivity.this, context);
+            inputPassPopupwindow.onConfirm(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AppCompatEditText etInputPassword = inputPassPopupwindow.getEtInputPassword();
+                    if (etInputPassword.getText().toString().equals("")) {
+                        inputPassPopupwindow.getTilPassword().setError("请输入密码");
+                    }
+
+                }
+            });
+            inputPassPopupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
     }
 
@@ -248,6 +264,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             instance = this;
             resources = getResources();
             aCache = ACache.get(this);
+            inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
             initToolbar();
             initView();
             autoLogin();
