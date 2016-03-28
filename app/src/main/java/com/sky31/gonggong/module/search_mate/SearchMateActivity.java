@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
-import android.widget.EditText;
+import android.view.View;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.CheckBox;
@@ -19,20 +20,22 @@ import butterknife.OnClick;
  * Created by root on 16-3-18.
  */
 public class SearchMateActivity extends Activity implements SearchMateView {
+
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     @Bind(R.id.et_sid)
-    EditText etSid;
+    AppCompatEditText etSid;
     @Bind(R.id.til_sid)
     TextInputLayout tilSid;
     @Bind(R.id.et_name)
-    EditText etName;
+    AppCompatEditText etName;
     @Bind(R.id.til_name)
     TextInputLayout tilName;
     @Bind(R.id.et_card)
-    EditText etCard;
+    AppCompatEditText etCard;
     @Bind(R.id.til_card)
     TextInputLayout tilCard;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.check_benbu)
     CheckBox checkBenbu;
     @Bind(R.id.check_xingxiang)
@@ -50,6 +53,7 @@ public class SearchMateActivity extends Activity implements SearchMateView {
             type = "xtu";
         else
             type = "xx";
+        onGetSearchMate();
         SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
         searchMatePresenter.getMateInfo(sid, name, card, type);
     }
@@ -95,5 +99,15 @@ public class SearchMateActivity extends Activity implements SearchMateView {
         //toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
         toolbar.setTitle(R.string.app_name);//设置主标题
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+    }
+
+    @Override
+    public void onGetSearchMate() {
+        btnSearch.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void finishGetSearchMate() {
+        btnSearch.setVisibility(View.VISIBLE);
     }
 }
