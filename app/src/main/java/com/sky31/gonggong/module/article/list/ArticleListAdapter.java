@@ -1,36 +1,91 @@
 package com.sky31.gonggong.module.article.list;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.ArticleListModel;
+
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by wukunguang on 16-3-26.
  */
-public class ArticleListAdapter  extends BaseAdapter{
+public class ArticleListAdapter extends BaseAdapter {
 
-    public ArticleListAdapter() {
+    private Context context;
+    private ArticleListModel model;
+    private List<ArticleListModel.Data> datas;
 
+    public ArticleListAdapter(Context context, ArticleListModel model) {
+
+        this.context = context;
+        this.model = model;
+        if (null != model.getData()) {
+            this.datas = model.getData();
+        }
 
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return datas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return position;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        ViewHolder holder = null;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.article_list_item, null);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        }
+        else {
+
+            holder = (ViewHolder) convertView.getTag();
+
+        }
+
+        ArticleListModel.Data dataItem = datas.get(position);
+        holder.articleItemDescription.append(dataItem.getDescription());
+        holder.articleItemTitle.setText(dataItem.getTitle());
+        holder.articleItemUsername.append(dataItem.getUsername());
+        holder.articleItemUpdatetime.append(dataItem.getUpdatetime());
+        return convertView;
+    }
+
+
+    class ViewHolder {
+        @Bind(R.id.article_item_title)
+        TextView articleItemTitle;
+        @Bind(R.id.article_item_username)
+        TextView articleItemUsername;
+        @Bind(R.id.article_item_updatetime)
+        TextView articleItemUpdatetime;
+        @Bind(R.id.article_item_description)
+        TextView articleItemDescription;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

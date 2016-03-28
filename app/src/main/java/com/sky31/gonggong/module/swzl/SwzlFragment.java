@@ -93,9 +93,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
         initData();
 
-        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
-
-        listView.setAdapter(adapter);
+//        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
+//
+//        listView.setAdapter(adapter);
 
 
         return mFragmentView;
@@ -104,6 +104,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
+
             mListener.onFragmentInteraction(uri);
         }
     }

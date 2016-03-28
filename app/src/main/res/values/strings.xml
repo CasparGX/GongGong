@@ -68,7 +68,8 @@
     <string name="swzl_bank_card_hint">该卡的银行卡号</string>
     <string name="swzl_submit_confirm">确定提交</string>
     <string name="swzl_search">搜索</string>
-    《<string name="swzl_search_hint">输入您想找的东西</string>
+
+    <string name="swzl_search_hint">输入您想找的东西</string>
 
     <string name="swzl_item_title_str">TEST STRING</string>
 
@@ -86,4 +87,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_publish_swzl">PublishSwzlActivity</string>
+    <string name="title_activity_article_list">ArticleListActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- article list -->
+
+    <string name="article_item__testStr">HHHHHHHHHH</string>
+    <string name="article_item_user">发布人：</string>
+    <string name="article_item_updatetime">发布时间：</string>
+    <string name="article_item_description">摘要：</string>
 </resources>

@@ -29,12 +29,13 @@
         <activity
             android:name=".module.search_mate.SearchMateActivity"
             android:theme="@style/ColorTranslucentTheme" />
-
-        <activity android:name=".module.swzl.SwzlActivity"></activity>
-
+        <activity android:name=".module.swzl.SwzlActivity" />
         <activity
             android:name=".module.swzl.PublishSwzlActivity"
-            android:label="@string/title_activity_publish_swzl"></activity>
+            android:label="@string/title_activity_publish_swzl" />
+        <activity
+            android:name=".module.article.list.ArticleListActivity"
+            android:label="@string/title_activity_article_list"></activity>
     </application>
 
 </manifest>

@@ -76,6 +76,16 @@ public class ArticleListModel implements Serializable{
 
         private String updatetime;
 
+        private String act_time;
+
+        public String getAct_time() {
+            return act_time;
+        }
+
+        public void setAct_time(String act_time) {
+            this.act_time = act_time;
+        }
+
         public void setId(String id){
             this.id = id;
         }
