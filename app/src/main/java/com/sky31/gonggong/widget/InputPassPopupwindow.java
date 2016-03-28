@@ -17,22 +17,26 @@ import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
 /**
  * Created by root on 16-3-27.
  */
-public class InputPassPopupwindow extends PopupWindow implements View.OnClickListener {
+public class InputPassPopupwindow extends PopupWindow {
     AppCompatEditText etInputPassword;
     ButtonRectangle btnConfirm;
     Context context;
     Activity activity;
 
-    @Override
-    public void showAtLocation(View parent, int gravity, int x, int y) {
-        super.showAtLocation(parent, gravity, x, y);
-        backgroundAlpha(0.5f, activity);
-    }
-
     public InputPassPopupwindow(Context context, final Activity activity) {
         super(context);
         this.context = context;
         this.activity = activity;
+    }
+
+    public AppCompatEditText getEtInputPassword() {
+        return etInputPassword;
+    }
+
+    @Override
+    public void showAtLocation(View parent, int gravity, int x, int y) {
+        super.showAtLocation(parent, gravity, x, y);
+        backgroundAlpha(0.5f, activity);
     }
 
     public PopupWindow getPopupWindow(String title) {
@@ -41,7 +45,6 @@ public class InputPassPopupwindow extends PopupWindow implements View.OnClickLis
         etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
         etInputPassword.setHint(title + context.getResources().getString(R.string.password));
         btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
-        btnConfirm.setOnClickListener(this);
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
@@ -68,12 +71,8 @@ public class InputPassPopupwindow extends PopupWindow implements View.OnClickLis
         return popupWindow;
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_confirm:
 
-                break;
-        }
+    public void onConfirm(View.OnClickListener listener) {
+        btnConfirm.setOnClickListener(listener);
     }
 }
