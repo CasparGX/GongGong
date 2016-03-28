@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             ecardPresenter.getBalance();
         } else {
             //没有一卡通密码，先输入密码
-            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
             inputPassPopupwindow.initPopupWindow(resources.getString(R.string.ecard), MainActivity.this, context);
             inputPassPopupwindow.onConfirm(new View.OnClickListener() {
                 @Override
