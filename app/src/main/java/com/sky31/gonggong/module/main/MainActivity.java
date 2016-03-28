@@ -54,6 +54,7 @@ import com.sky31.gonggong.util.Debug;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -4,15 +4,24 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.model.SwzlSearchResult;
+import com.sky31.gonggong.model.SwzlService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,17 +31,18 @@ import butterknife.ButterKnife;
  * Use the {@link SwzlFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment extends android.support.v4.app.Fragment{
+public class SwzlFragment extends android.support.v4.app.Fragment implements SwzlSearchView{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private int actionCode;
     private String mParam2;
 
     private View mFragmentView = null;
+    private SwzlSearchResult result;
 
     private OnFragmentInteractionListener mListener;
 
@@ -44,16 +54,17 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param actionCode Parameter 1.
+     *
      * @return A new instance of fragment SwzlFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SwzlFragment newInstance(String param1, String param2) {
+    public static SwzlFragment newInstance(int actionCode) {
+
         SwzlFragment fragment = new SwzlFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, actionCode);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,10 +77,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            actionCode = getArguments().getInt(ARG_PARAM1);
         }
-
 
 
     }
@@ -81,9 +90,13 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
 
         mFragmentView = inflater.inflate(R.layout.fragment_swzl, container, false);
         ButterKnife.bind(this, mFragmentView);
-        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity());
+
+        initData();
+
+        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 
         listView.setAdapter(adapter);
+
 
         return mFragmentView;
     }
@@ -117,6 +130,20 @@ public class SwzlFragment extends android.support.v4.app.Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+
+    private void initData(){
+        // 向服务器请求数据。
+        SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
+        presenter.getSearchResult(actionCode);
+
+    }
+
+    @Override
+    public void getSearchData(SwzlSearchResult data) {
+        // 回调借口。传入data
+        this.result = data;
     }
 
     /**

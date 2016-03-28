@@ -1,15 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:isScrollContainer="true"
     tools:context=".module.swzl.PublishSwzlFragment"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary">
+    android:background="@color/grey_c">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
+    <com.gc.materialdesign.views.ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -26,44 +25,78 @@
                 android:text="@string/swzl_publish_title"/>
 
 
-            <RadioGroup
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/interval_default"
-                android:padding="@dimen/interval_default"
+                android:layout_margin="@dimen/interval_mini"
                 android:id="@+id/swzl_lost_or_get"
-                android:background="@color/white_transparent_3">
+                android:background="@color/white"
+                >
 
 
-
-                    <RadioButton
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:text="@string/swzl_get_thing"
+                        android:textSize="@dimen/swzl_attention_size"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/swzl_publish_text_indent"
+                        />
+                    <com.gc.materialdesign.views.CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/avatar_bg_size_mini"
                         android:id="@+id/swzl_thing_get"
-                        android:text="@string/swzl_get_thing"
-                        android:layout_gravity="left"
+                        android:checked="true"
+                        android:layout_marginLeft="@dimen/swzl_publish_text_indent"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:text="@string/swzl_lost_thing"
                         android:textSize="@dimen/swzl_attention_size"
                         android:textColor="@color/black"
-                        android:checked="true"/>
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/swzl_publish_text_indent"
+                        />
 
-                    <RadioButton
+                    <com.gc.materialdesign.views.CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/avatar_bg_size_mini"
                         android:id="@+id/swzl_thing_lost"
-                        android:text="@string/swzl_lost_thing"
-                        android:layout_gravity="left"
-                        android:textSize="@dimen/swzl_attention_size"
                         android:textColor="@color/black"
-                        />
+                        android:layout_marginLeft="@dimen/swzl_publish_text_indent"/>
 
-            </RadioGroup>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/swzl_util_marginTop"
+                android:layout_marginRight="@dimen/swzl_publish_mar"
+                android:layout_marginLeft="@dimen/swzl_publish_mar"
+                android:background="@color/white"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,34 +104,40 @@
                     android:text="@string/swzl_is_ecard"
                     android:textColor="@color/black"
                     android:textSize="@dimen/swzl_attention_size"
-                    android:layout_marginLeft="@dimen/avatar_bg_size"
+                    android:layout_marginLeft="@dimen/swzl_publish_text_indent"
                     android:gravity="center"/>
-                <CheckBox
+                <com.gc.materialdesign.views.CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/interval_default"
-                    android:id="@+id/swzl_is_card"
-                    android:background="@color/colorPrimary"
-                    />
+                    android:layout_marginLeft="@dimen/swzl_publish_text_indent"
+                    android:id="@+id/swzl_is_card"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/swzl_util_marginTop">
+                android:layout_marginTop="@dimen/swzl_util_marginTop"
+                android:layout_margin="@dimen/interval_mini"
+                android:background="@color/white"
+                >
 
                 <!-- 发布人-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_announcer"
-                    android:textSize="@dimen/swzl_attention_size"/>
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColor="@color/black"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_announcer"
-                    android:hint="@string/swzl_announcer_hint"/>
+                    android:textColorHint="@color/grey_c"
+                    android:hint="@string/swzl_announcer_hint"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    />
 
 
                 <!-- 发布人-->
@@ -107,12 +146,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_thing_name"
                     android:id="@+id/swzl_thing_name_att"
-                    android:textSize="@dimen/swzl_attention_size"/>
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textSize="@dimen/swzl_attention_size"
+                    android:textColor="@color/black"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_thing_name"
-                    android:hint="@string/swzl_thing_name_hint"/>
+                    android:hint="@string/swzl_thing_name_hint"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_c"/>
 
                 <!--丢失/捡到地点地点-->
                 <TextView
@@ -120,12 +164,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_location"
                     android:textSize="@dimen/swzl_attention_size"
-                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColor="@color/black"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_location"
-                    android:hint="@string/swzl_location_hint"/>
+                    android:hint="@string/swzl_location_hint"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColorHint="@color/grey_c"
+                    android:textColor="@color/black"/>
 
                 <!--物品描述物品描述-->
                 <TextView
@@ -133,11 +181,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_description"
                     android:textSize="@dimen/swzl_attention_size"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_description"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_description"/>
 
                 <!--手机号码-->
@@ -147,11 +199,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_mobile"
                     android:textSize="@dimen/swzl_attention_size"
+                    android:textColor="@color/black"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_mobile"
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_mobile_hint"/>
 
                 <!--银行卡号银行卡号-->
@@ -162,6 +217,7 @@
                     android:text="@string/swzl_bank_card"
                     android:textSize="@dimen/swzl_attention_size"
                     android:id="@+id/swzl_bank_card_att"
+                    android:textColor="@color/black"
                     android:visibility="gone"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"/>
                 <EditText
@@ -182,7 +238,7 @@
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.gc.materialdesign.views.ScrollView>
 
 
-</LinearLayout>
+</RelativeLayout>
