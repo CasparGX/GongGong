@@ -171,7 +171,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard(View view) {
-        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) == null) {
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
@@ -187,6 +187,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                         inputPassPopupwindow.getTilPassword().setErrorEnabled(true);
                     } else {
                         inputPassPopupwindow.getTilPassword().setErrorEnabled(false);
+                        aCache.put(Constants.Key.ECARD_PASSWORD, etInputPassword.getText().toString());
+                        EcardPresenter ecardPresenter = new EcardPresenter(MainActivity.this);
+                        ecardPresenter.getBalance();
+                        inputPassPopupwindow.dismiss();
                     }
 
                 }
@@ -261,12 +265,11 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        context = MainActivity.this;
+        instance = this;
+        resources = getResources();
+        aCache = ACache.get(this);
         if (savedInstanceState == null) {
-            ButterKnife.bind(this);
-            context = MainActivity.this;
-            instance = this;
-            resources = getResources();
-            aCache = ACache.get(this);
             inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
             initToolbar();
             initView();
@@ -506,8 +509,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void logout() {
         //个人信息
         username.setText(R.string.default_username);
-        btnLogin.setText(resources.getString(R.string.login));
         btnLogin.setVisibility(View.VISIBLE);
+        //btnLogin.setText(resources.getString(R.string.login));
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);
         //校园卡
