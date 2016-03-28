@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -57,6 +58,12 @@ public class InputPassPopupwindow extends PopupWindow {
         this.context = context;
         tilPassword.setHint(title + context.getResources().getString(R.string.password));
         this.setTouchable(true);
+        //设置输入法不遮挡
+        this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        this.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+
+        //this.setWidth(this.getWidth()-100);
+
         this.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
