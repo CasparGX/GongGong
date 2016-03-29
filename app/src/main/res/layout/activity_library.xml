@@ -7,11 +7,6 @@
     android:background="@color/grey_c"
     tools:context="com.sky31.gonggong.module.library.LibraryActivity">
 
-    <com.gc.materialdesign.views.Card
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/interval_mini">
-
-    </com.gc.materialdesign.views.Card>
+    <include layout="@layout/library_cardview" />
 
 </LinearLayout>
