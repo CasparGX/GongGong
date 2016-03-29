@@ -201,12 +201,32 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     //图书馆信息
     @OnClick(R.id.library)
-    void onClickLibrary() {
+    void onClickLibrary(View view) {
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             //跳转图书馆信息Activity
 
         } else {
             //没有图书馆密码，先输入密码
+            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            inputPassPopupwindow.initPopupWindow(resources.getString(R.string.library), MainActivity.this, context);
+            inputPassPopupwindow.onConfirm(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AppCompatEditText etInputPassword = inputPassPopupwindow.getEtInputPassword();
+                    if (etInputPassword.getText().toString().equals("")) {
+                        inputPassPopupwindow.getTilPassword().setError("请输入密码");
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(true);
+                    } else {
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(false);
+                        aCache.put(Constants.Key.LIBRARY_PASSWORD, etInputPassword.getText().toString());
+                        LibraryPresenter libraryPresenter = new LibraryPresenter(MainActivity.this);
+                        libraryPresenter.getLibraryReaderInfo();
+                        inputPassPopupwindow.dismiss();
+                    }
+
+                }
+            });
+            inputPassPopupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
     }
 
