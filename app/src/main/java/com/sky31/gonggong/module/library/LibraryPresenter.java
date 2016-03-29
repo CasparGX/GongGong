@@ -28,7 +28,7 @@ public class LibraryPresenter {
                 .build();
         apiService = retrofit.create(ApiService.class);
         sid = UserModel.getaCache().getAsString(Constants.Key.SID);
-        password = UserModel.getaCache().getAsString(Constants.Key.PASSWORD);
+        password = UserModel.getaCache().getAsString(Constants.Key.LIBRARY_PASSWORD);
         this.libraryView = libraryView;
     }
 

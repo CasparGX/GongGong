@@ -28,6 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.sky31.gonggong.R;
@@ -43,6 +44,7 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.campusnet.CampusNetPresenter;
 import com.sky31.gonggong.module.ecard.EcardPresenter;
 import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.library.LibraryActivity;
 import com.sky31.gonggong.module.library.LibraryPresenter;
 import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginActivity;
@@ -204,7 +206,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     void onClickLibrary(View view) {
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             //跳转图书馆信息Activity
-
+            Intent intent = new Intent();
+            intent.setClass(context, LibraryActivity.class);
+            startActivity(intent);
         } else {
             //没有图书馆密码，先输入密码
             final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -608,6 +612,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 libraryDebt.setText(aCache.getAsString(Constants.Key.LIBRARY_DEBT));
             } catch (NullPointerException e) {
             }
+        } else if (code == 1) {
+            Toast.makeText(context, resources.getString(R.string.library) + resources.getString(R.string.password_is_wrong), Toast.LENGTH_SHORT);
         } else {
             errorToast(this, code);
         }
