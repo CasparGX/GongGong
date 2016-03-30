@@ -9,4 +9,8 @@
 
     <include layout="@layout/library_cardview" />
 
+    <include layout="@layout/library_cardview" />
+
+    <include layout="@layout/library_cardview" />
+
 </LinearLayout>
