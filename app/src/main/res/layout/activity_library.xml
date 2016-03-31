@@ -7,10 +7,13 @@
     android:background="@color/grey_c"
     tools:context="com.sky31.gonggong.module.library.LibraryActivity">
 
-    <include layout="@layout/library_cardview" />
+    <!--<include layout="@layout/library_cardview" />-->
 
-    <include layout="@layout/library_cardview" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_library_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <include layout="@layout/library_cardview" />
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

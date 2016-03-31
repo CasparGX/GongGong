@@ -42,6 +42,7 @@ import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.campusnet.CampusNetPresenter;
+import com.sky31.gonggong.module.campusnet.CampusNetView;
 import com.sky31.gonggong.module.ecard.EcardPresenter;
 import com.sky31.gonggong.module.ecard.EcardView;
 import com.sky31.gonggong.module.library.LibraryActivity;

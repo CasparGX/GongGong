@@ -6,7 +6,6 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.UserModel;
-import com.sky31.gonggong.module.main.CampusNetView;
 
 import retrofit.Call;
 import retrofit.Callback;

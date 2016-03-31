@@ -1,4 +1,4 @@
-package com.sky31.gonggong.module.main;
+package com.sky31.gonggong.module.campusnet;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
