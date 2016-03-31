@@ -2,31 +2,21 @@ package com.sky31.gonggong.module.swzl;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
-import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.SwzlSearchResult;
-import com.sky31.gonggong.model.SwzlService;
+import com.sky31.gonggong.widget.RefreshListView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.internal.ButterKnifeProcessor;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +26,7 @@ import retrofit.Retrofit;
  * Use the {@link SwzlFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment extends android.support.v4.app.Fragment implements SwzlSearchView{
+public class SwzlFragment extends android.support.v4.app.Fragment implements SwzlSearchView ,Runnable{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -54,7 +44,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     private OnFragmentInteractionListener mListener;
 
     @Bind(R.id.swzl_list_view)
-    ListView listView;
+    RefreshListView listView;
 
     @Bind(R.id.buttonFloat)
     ButtonFloat refeshBtn;
@@ -108,19 +98,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         ButterKnife.bind(this, mFragmentView);
 
 
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-
-
-            }
-        });
+        listView.initRunable(this);
         mListener.onFragmentInteraction(this);
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +177,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
             SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
             listView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+            listView.dismissHeaderView();
         }
 
     }
@@ -212,8 +191,10 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
     }
 
-
-
+    @Override
+    public void run() {
+        initData();
+    }
 
 
     /**

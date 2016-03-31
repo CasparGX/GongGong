@@ -86,6 +86,13 @@
     <string name="err_msg_65535">失败：缺少参数</string>
 
 
+    <!-- fresh listView attention-->
+
+    <string name="fresh_listView_pullTip">下拉可以刷新</string>
+    <string name="fresh_listView_releaseTip">松开即可刷新</string>
+    <string name="fresh_listView_freshNow">正在刷新</string>
+    <string name="fresh_listView_freshErro">刷新失败，请重试！</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_publish_swzl">PublishSwzlActivity</string>
@@ -99,4 +106,8 @@
     <string name="article_item_updatetime">发布时间：</string>
     <string name="article_item_description">摘要：</string>
     <string name="article_item_acttime">举行时间</string>
+
+
+
+
 </resources>

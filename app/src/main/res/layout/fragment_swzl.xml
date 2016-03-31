@@ -32,14 +32,14 @@
     </LinearLayout>
 
 
-    <ListView
+    <com.sky31.gonggong.widget.RefreshListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swzl_list_view"
         android:layout_margin="@dimen/interval_mini"
         >
 
-    </ListView>
+    </com.sky31.gonggong.widget.RefreshListView>
     <com.gc.materialdesign.views.ButtonFloat
         android:id="@+id/buttonFloat"
         android:layout_width="wrap_content"
