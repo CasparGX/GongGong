@@ -68,7 +68,7 @@ public class LibraryRentListModel {
         ArrayList<DataEntity> rentList = (ArrayList<DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST);
         for(int i = 0; i<data.size(); i++){
 
-            Debug.i("rentList",data.get(i)+"");
+            Debug.i("rentList", rentList.get(i).getName() + "");
         }
     }
 

@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.sky31.gonggong.R;
@@ -42,6 +44,7 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.campusnet.CampusNetPresenter;
 import com.sky31.gonggong.module.ecard.EcardPresenter;
 import com.sky31.gonggong.module.ecard.EcardView;
+import com.sky31.gonggong.module.library.LibraryActivity;
 import com.sky31.gonggong.module.library.LibraryPresenter;
 import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginActivity;
@@ -51,10 +54,10 @@ import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
+import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -67,6 +70,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     public static MainActivity instance;
     private static ACache aCache;
+    private static View inputPasswordPopupwindowContentView;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.pager)
@@ -168,23 +172,65 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     //校园卡信息
     @OnClick(R.id.ecard)
-    void onCLickEcard() {
+    void onCLickEcard(View view) {
         if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
             //没有一卡通密码，先输入密码
+            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            inputPassPopupwindow.initPopupWindow(resources.getString(R.string.ecard), MainActivity.this, context);
+            inputPassPopupwindow.onConfirm(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AppCompatEditText etInputPassword = inputPassPopupwindow.getEtInputPassword();
+                    if (etInputPassword.getText().toString().equals("")) {
+                        inputPassPopupwindow.getTilPassword().setError("请输入密码");
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(true);
+                    } else {
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(false);
+                        aCache.put(Constants.Key.ECARD_PASSWORD, etInputPassword.getText().toString());
+                        EcardPresenter ecardPresenter = new EcardPresenter(MainActivity.this);
+                        ecardPresenter.getBalance();
+                        inputPassPopupwindow.dismiss();
+                    }
+
+                }
+            });
+            inputPassPopupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
     }
 
     //图书馆信息
     @OnClick(R.id.library)
-    void onClickLibrary() {
+    void onClickLibrary(View view) {
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             //跳转图书馆信息Activity
-
+            Intent intent = new Intent();
+            intent.setClass(context, LibraryActivity.class);
+            startActivity(intent);
         } else {
             //没有图书馆密码，先输入密码
+            final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+            inputPassPopupwindow.initPopupWindow(resources.getString(R.string.library), MainActivity.this, context);
+            inputPassPopupwindow.onConfirm(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AppCompatEditText etInputPassword = inputPassPopupwindow.getEtInputPassword();
+                    if (etInputPassword.getText().toString().equals("")) {
+                        inputPassPopupwindow.getTilPassword().setError("请输入密码");
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(true);
+                    } else {
+                        inputPassPopupwindow.getTilPassword().setErrorEnabled(false);
+                        aCache.put(Constants.Key.LIBRARY_PASSWORD, etInputPassword.getText().toString());
+                        LibraryPresenter libraryPresenter = new LibraryPresenter(MainActivity.this);
+                        libraryPresenter.getLibraryReaderInfo();
+                        inputPassPopupwindow.dismiss();
+                    }
+
+                }
+            });
+            inputPassPopupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         }
     }
 
@@ -243,12 +289,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        context = MainActivity.this;
+        instance = this;
+        resources = getResources();
+        aCache = ACache.get(this);
         if (savedInstanceState == null) {
-            ButterKnife.bind(this);
-            context = MainActivity.this;
-            instance = this;
-            resources = getResources();
-            aCache = ACache.get(this);
+            inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
             initToolbar();
             initView();
             autoLogin();
@@ -487,8 +533,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void logout() {
         //个人信息
         username.setText(R.string.default_username);
-        btnLogin.setText(resources.getString(R.string.login));
         btnLogin.setVisibility(View.VISIBLE);
+        //btnLogin.setText(resources.getString(R.string.login));
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);
         //校园卡
@@ -566,6 +612,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 libraryDebt.setText(aCache.getAsString(Constants.Key.LIBRARY_DEBT));
             } catch (NullPointerException e) {
             }
+        } else if (code == 1) {
+            Toast.makeText(context, resources.getString(R.string.library) + resources.getString(R.string.password_is_wrong), Toast.LENGTH_SHORT);
         } else {
             errorToast(this, code);
         }

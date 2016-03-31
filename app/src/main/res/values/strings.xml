@@ -12,6 +12,7 @@
     <string name="sid">学号</string>
     <string name="password">密码</string>
     <string name="input_password">输入密码</string>
+    <string name="password_is_wrong">密码错误</string>
     <string name="confirm">确认</string>
 
     <string name="ecard">校园卡</string>
@@ -70,7 +71,6 @@
     <string name="swzl_bank_card_hint">该卡的银行卡号</string>
     <string name="swzl_submit_confirm">确定提交</string>
     <string name="swzl_search">搜索</string>
-
     <string name="swzl_search_hint">输入您想找的东西</string>
 
     <string name="swzl_item_title_str">TEST STRING</string>

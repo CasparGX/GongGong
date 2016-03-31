@@ -34,8 +34,15 @@
             android:name=".module.swzl.PublishSwzlActivity"
             android:label="@string/title_activity_publish_swzl" />
         <activity
+
             android:name=".module.article.list.ArticleListActivity"
             android:label="@string/title_activity_article_list"></activity>
+
+        <activity
+            android:label="@string/library"
+            android:name=".module.library.LibraryActivity"
+            android:theme="@style/ColorTranslucentTheme" />
+
     </application>
 
 </manifest>

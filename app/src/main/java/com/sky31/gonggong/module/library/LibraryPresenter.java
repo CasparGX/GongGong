@@ -28,7 +28,7 @@ public class LibraryPresenter {
                 .build();
         apiService = retrofit.create(ApiService.class);
         sid = UserModel.getaCache().getAsString(Constants.Key.SID);
-        password = UserModel.getaCache().getAsString(Constants.Key.PASSWORD);
+        password = UserModel.getaCache().getAsString(Constants.Key.LIBRARY_PASSWORD);
         this.libraryView = libraryView;
     }
 
@@ -43,8 +43,8 @@ public class LibraryPresenter {
                     libraryReaderInfoModel.setCache();
                     libraryView.getLibraryReaderInfo(code, libraryReaderInfoModel);
                 } else if (code == 1) {
-                    //UserModel.setCacheNone(apiView.getViewContext());
-                    //apiView.login(code, null);
+                    UserModel.getaCache().remove(Constants.Key.LIBRARY_PASSWORD);
+                    libraryView.getLibraryReaderInfo(code, null);
                 } else {
                     libraryView.getLibraryReaderInfo(code, null);
                 }

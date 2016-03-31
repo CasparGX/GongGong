@@ -2,11 +2,11 @@ package com.sky31.gonggong.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -17,11 +17,34 @@ import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
 /**
  * Created by root on 16-3-27.
  */
-public class InputPassPopupwindow extends PopupWindow implements View.OnClickListener {
-    AppCompatEditText etInputPassword;
-    ButtonRectangle btnConfirm;
-    Context context;
-    Activity activity;
+public class InputPassPopupwindow extends PopupWindow {
+    private AppCompatEditText etInputPassword;
+    private TextInputLayout tilPassword;
+    private ButtonRectangle btnConfirm;
+    private String title;
+    private Context context;
+    private Activity activity;
+    private InputPassPopupwindow inputPassPopupwindow;
+
+    public InputPassPopupwindow(View contentView, int width, int height, boolean focusable) {
+        super(contentView, width, height, focusable);
+        etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
+        btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
+        tilPassword = (TextInputLayout) contentView.findViewById(R.id.til_password);
+    }
+
+    public InputPassPopupwindow(Context context, final Activity activity, String title) {
+        super(context);
+
+    }
+
+    public TextInputLayout getTilPassword() {
+        return tilPassword;
+    }
+
+    public AppCompatEditText getEtInputPassword() {
+        return etInputPassword;
+    }
 
     @Override
     public void showAtLocation(View parent, int gravity, int x, int y) {
@@ -29,24 +52,19 @@ public class InputPassPopupwindow extends PopupWindow implements View.OnClickLis
         backgroundAlpha(0.5f, activity);
     }
 
-    public InputPassPopupwindow(Context context, final Activity activity) {
-        super(context);
-        this.context = context;
+    public void initPopupWindow(String title, final Activity activity, Context context) {
         this.activity = activity;
-    }
+        this.title = title;
+        this.context = context;
+        tilPassword.setHint(title + context.getResources().getString(R.string.password));
+        this.setTouchable(true);
+        //设置输入法不遮挡
+        this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        this.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
 
-    public PopupWindow getPopupWindow(String title) {
-        View contentView = LayoutInflater.from(context).inflate(
-                R.layout.popupwindow_input_password, null);
-        etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
-        etInputPassword.setHint(title + context.getResources().getString(R.string.password));
-        btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
-        btnConfirm.setOnClickListener(this);
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        //this.setWidth(this.getWidth()-100);
 
-        popupWindow.setTouchable(true);
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+        this.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
@@ -55,7 +73,7 @@ public class InputPassPopupwindow extends PopupWindow implements View.OnClickLis
             }
         });
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        this.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 backgroundAlpha(1f, activity);
@@ -64,16 +82,11 @@ public class InputPassPopupwindow extends PopupWindow implements View.OnClickLis
 
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
-        popupWindow.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_default));
-        return popupWindow;
+        this.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_default));
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_confirm:
 
-                break;
-        }
+    public void onConfirm(View.OnClickListener listener) {
+        btnConfirm.setOnClickListener(listener);
     }
 }
