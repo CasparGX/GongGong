@@ -98,4 +98,5 @@
     <string name="article_item_user">发布人：</string>
     <string name="article_item_updatetime">发布时间：</string>
     <string name="article_item_description">摘要：</string>
+    <string name="article_item_acttime">举行时间</string>
 </resources>

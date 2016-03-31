@@ -8,15 +8,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.model.SwzlService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.internal.ButterKnifeProcessor;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -38,18 +43,24 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private int actionCode;
+    private static int code;
     private String mParam2;
 
     private View mFragmentView = null;
     private SwzlSearchResult result;
+
+    private static RefreshView refreshView;
 
     private OnFragmentInteractionListener mListener;
 
     @Bind(R.id.swzl_list_view)
     ListView listView;
 
+    @Bind(R.id.buttonFloat)
+    ButtonFloat refeshBtn;
 
+    @Bind(R.id.swzl_search)
+    Button searchBtn;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -65,6 +76,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, actionCode);
 
+        code = actionCode;
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -77,11 +90,14 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            actionCode = getArguments().getInt(ARG_PARAM1);
+            code = getArguments().getInt(ARG_PARAM1);
         }
 
+        initData();
 
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,8 +107,29 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         mFragmentView = inflater.inflate(R.layout.fragment_swzl, container, false);
         ButterKnife.bind(this, mFragmentView);
 
-        initData();
 
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+
+
+            }
+        });
+        mListener.onFragmentInteraction(this);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("floatBtn", code + "");
+                initData();
+
+            }
+        });
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //
 //        listView.setAdapter(adapter);
@@ -102,10 +139,10 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed() {
         if (mListener != null) {
 
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(this);
         }
     }
 
@@ -113,6 +150,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
+
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
@@ -134,18 +172,49 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     }
 
 
-    private void initData(){
+    public void initData(){
         // 向服务器请求数据。
         SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
-        presenter.getSearchResult(actionCode);
+        presenter.getSearchResult(code);
 
     }
 
     @Override
-    public void getSearchData(SwzlSearchResult data) {
+    public void getSearchData(int code ,SwzlSearchResult data) {
         // 回调借口。传入data
-        this.result = data;
+        switch (code){
+            case 0:this.result = data;
+                   setData();
+                break;
+            default:
+                CommonFunction.errorToast(getActivity(),code);
+
+        }
+
     }
+
+
+    private void setData(){
+        if (result.getData() != null){
+            SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("Fragment", "onResume->>" + code);
+
+
+    }
+
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -159,7 +228,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(SwzlFragment fragment);
     }
 
 }

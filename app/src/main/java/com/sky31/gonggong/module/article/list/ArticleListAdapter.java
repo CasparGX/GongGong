@@ -1,6 +1,8 @@
 package com.sky31.gonggong.module.article.list;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,11 +67,13 @@ public class ArticleListAdapter extends BaseAdapter {
 
         }
 
+
         ArticleListModel.Data dataItem = datas.get(position);
-        holder.articleItemDescription.append(dataItem.getDescription());
+        Log.d("ArticleList",dataItem.getAct_time());
+        holder.articleItemDescription.setText(context.getResources().getString(R.string.article_item_description) + dataItem.getDescription());
         holder.articleItemTitle.setText(dataItem.getTitle());
-        holder.articleItemUsername.append(dataItem.getUsername());
-        holder.articleItemUpdatetime.append(dataItem.getUpdatetime());
+        holder.articleItemUsername.setText(context.getResources().getString(R.string.article_item_updatetime)+ dataItem.getUpdatetime());
+        holder.articleItemUpdatetime.setText(R.string.article_item_description + dataItem.getAct_time());
         return convertView;
     }
 

@@ -7,6 +7,6 @@ import com.sky31.gonggong.model.SwzlSearchResult;
  */
 public interface SwzlSearchView {
 
-    void getSearchData(SwzlSearchResult data);
+    void getSearchData(int code,SwzlSearchResult data);
 
 }

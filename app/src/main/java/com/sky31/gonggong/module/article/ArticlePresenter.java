@@ -1,5 +1,6 @@
 package com.sky31.gonggong.module.article;
 
+import com.google.gson.Gson;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ArticleListModel;
 import com.sky31.gonggong.model.ArticleService;
@@ -24,22 +25,27 @@ public class ArticlePresenter {
     private HashMap<String,String> map;
 
 
-    public ArticlePresenter(ArticleListView listView,HashMap<String,String> map) {
+    public ArticlePresenter(ArticleListView listView) {
 
+
+
+        this.listView = listView;
+
+
+    }
+
+    public void initReqService(HashMap<String,String> map){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(ArticleService.class);
-
-        this.listView = listView;
         this.map = map;
     }
 
     public void getDatas(){
 
-        final Call<ArticleListModel> modelCall ;
-        modelCall = service.getArticleList(map);
+        Call<ArticleListModel> modelCall = service.getArticleList(map);
         modelCall.enqueue(new Callback<ArticleListModel>() {
             @Override
             public void onResponse(Response<ArticleListModel> response, Retrofit retrofit) {

@@ -43,7 +43,7 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
 
         initData();
 
-        listAdapter = new ArticleListAdapter(getActivity(),model);
+        //listAdapter = new ArticleListAdapter(getActivity(),model);
 
         articleListview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -56,7 +56,7 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
 
             }
         });
-        articleListview.setAdapter(listAdapter);
+
 
         return view;
     }
@@ -68,8 +68,11 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
         query.setLimit(50);
         query.setCheckID(0);
         query.setCo("act_time");
-        ArticlePresenter presenter = new ArticlePresenter(this,query.getHashMap());
+        query.setOrder("id DESC");
+        ArticlePresenter presenter = new ArticlePresenter(this);
+        presenter.initReqService(query.getHashMap());
         presenter.getDatas();
+
     }
 
     @Override
@@ -78,10 +81,20 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
         switch (code){
             case 0:
                 this.model = model;
+                setData();
                 break;
             default:
                 CommonFunction.errorToast(getActivity(),code);
         }
+
+    }
+
+    //加载 ListView
+    public void setData(){
+
+        ArticleListAdapter datapter = new ArticleListAdapter(getActivity(),model);
+        articleListview.setAdapter(datapter);
+        datapter.notifyDataSetChanged();
 
     }
 
