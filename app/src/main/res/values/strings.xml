@@ -24,6 +24,10 @@
     <string name="library">图书馆</string>
     <string name="library_debt">欠款：</string>
     <string name="library_rent">借书：</string>
+    <string name="library_status_0">本馆借出</string>
+    <string name="library_status_1">本馆续借</string>
+    <string name="library_renew">续借</string>
+    <string name="library_renewed">已续借</string>
 
     <string name="xtu_network">校园网</string>
     <string name="xtu_network_status">状态：</string>

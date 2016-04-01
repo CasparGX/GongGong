@@ -294,16 +294,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         instance = this;
         resources = getResources();
         aCache = ACache.get(this);
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
             inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
             initToolbar();
             initView();
             autoLogin();
             Debug.i("savedInstanceState", "null");
-        } else {
-            Debug.i("savedInstanceState", "not null");
+        //} else {
+        //    Debug.i("savedInstanceState", "not null");
 
-        }
+        //}
 
     }
 

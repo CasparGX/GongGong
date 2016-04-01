@@ -23,17 +23,20 @@
             android:padding="@dimen/interval_mini_2">
 
             <TextView
+                android:id="@+id/tv_book_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="书名" />
 
 
             <TextView
+                android:id="@+id/tv_book_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="倒计时：13天" />
 
             <TextView
+                android:id="@+id/tv_book_deadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="应还日期：2016/04/11" />
@@ -45,6 +48,7 @@
             android:layout_height="match_parent">
 
             <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btn_renew"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
