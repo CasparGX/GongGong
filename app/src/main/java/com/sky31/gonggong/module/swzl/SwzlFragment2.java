@@ -21,12 +21,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SwzlFragment.OnFragmentInteractionListener} interface
+ * {@link SwzlFragment2.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SwzlFragment#newInstance} factory method to
+ * Use the {@link SwzlFragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment extends android.support.v4.app.Fragment implements SwzlSearchView ,Runnable{
+public class SwzlFragment2 extends android.support.v4.app.Fragment implements SwzlSearchView,Runnable{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,9 +60,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
      * @return A new instance of fragment SwzlFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SwzlFragment newInstance(int actionCode) {
+    public static SwzlFragment2 newInstance(int actionCode) {
 
-        SwzlFragment fragment = new SwzlFragment();
+        SwzlFragment2 fragment = new SwzlFragment2();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, actionCode);
 
@@ -72,7 +72,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         return fragment;
     }
 
-    public SwzlFragment() {
+    public SwzlFragment2() {
         // Required empty public constructor
     }
 
@@ -97,17 +97,17 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         mFragmentView = inflater.inflate(R.layout.fragment_swzl, container, false);
         ButterKnife.bind(this, mFragmentView);
 
-
         listView.initRunable(this);
         mListener.onFragmentInteraction(this);
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("floatBtn", code + "");
-                initData();
+
 
             }
         });
+
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //
 //        listView.setAdapter(adapter);
@@ -209,7 +209,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(SwzlFragment fragment);
+        public void onFragmentInteraction(SwzlFragment2 fragment);
     }
 
 }

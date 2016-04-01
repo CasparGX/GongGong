@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_c"
+    tools:context=".module.article.list.ArticleListActivityFragment">
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/article_listview"
+        android:layout_margin="@dimen/swzl_item_thing_padding"
+        android:dividerHeight="@dimen/swzl_item_thing_padding"
+        >
+
+
+    </ListView>
+
+</RelativeLayout>

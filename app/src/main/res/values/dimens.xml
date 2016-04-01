@@ -32,6 +32,8 @@
     <dimen name="swzl_util_marginTop">20dp</dimen>
     <dimen name="swzl_publish_mar">10dp</dimen>
     <dimen name="swzl_publish_text_indent">30dp</dimen>
+
+    <dimen name="swzl_viewpager_title">40dp</dimen>
     <!-- SWZL item  -->
 
     <dimen name="swzl_item_thing_title">15sp</dimen>

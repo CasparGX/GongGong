@@ -4,19 +4,29 @@ package com.sky31.gonggong.module.swzl;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerTitleStrip;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
 import android.widget.Button;
 
 import com.sky31.gonggong.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Handler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFragmentInteractionListener {
+public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFragmentInteractionListener ,SwzlFragment2.OnFragmentInteractionListener{
 
 
     @Bind(R.id.swzl_back)
@@ -31,10 +41,21 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
     private String msg = "SWZL_MSG:";
     private int xxx = 0;
 
-    FragmentManager manager = getSupportFragmentManager();
+    private View view;
 
+    @Bind(R.id.swzl_viewpager)
+    ViewPager viewPager;
+
+    @Bind(R.id.swzl_pager_title)
+    PagerTitleStrip pagerTitleStrip;
+
+
+    private SwzlViewPagerAdapter pagerAdapter;
+    private PagerTitleStrip titleStrip;
     SwzlFragment swzlFragmentOfGet = null;
-    SwzlFragment swzlFragmentOfLost = null;
+    SwzlFragment2 swzlFragmentOfLost = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,23 +67,51 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
 
         //init default fragment.
         //default fragement is get
-        swzlFragmentOfGet = SwzlFragment.newInstance(1);
+        List<Fragment> fragmentList = new ArrayList<>();
+        swzlFragmentOfGet = SwzlFragment.newInstance(0);
+        fragmentList.add(swzlFragmentOfGet);
+        swzlFragmentOfLost = SwzlFragment2.newInstance(1);
 
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
+        pagerTitleStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP,25);
 
-        transaction.add(R.id.swzl_fragment, swzlFragmentOfGet);
-        transaction.commit();
+        fragmentList.add(swzlFragmentOfLost);
+        List<String> titles = new ArrayList<>();
+        titles.add("找失主");
+        titles.add("丢东西");
+        viewPager.setOffscreenPageLimit(1);
+        pagerAdapter = new SwzlViewPagerAdapter(getSupportFragmentManager(),fragmentList,titles);
+        viewPager.setAdapter(pagerAdapter);
+
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         getButton.setClickable(false);
 
     }
 
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(SwzlFragment fragment) {
 
+        //fragment.initData();
 
-
+        Log.d(msg, fragment.getTag() + "->>>>>>");
     }
 
     @OnClick(R.id.swzl_back)
@@ -71,47 +120,68 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         finish();
     }
 
-    //jump 2 get fragment
-    @OnClick(R.id.swzl_get)
-    void repGetFragment(){
-
-        FragmentTransaction transaction = manager.beginTransaction();
-        if (swzlFragmentOfGet==null){
-            xxx++;
-            swzlFragmentOfGet = SwzlFragment.newInstance(1);
-            transaction.add(R.id.swzl_fragment, swzlFragmentOfGet);
-        }
-        else {
-            transaction.replace(R.id.swzl_fragment, swzlFragmentOfGet);
-        }
-
-        transaction.commit();
-        //replaceFragment(swzlFragmentOfGet);
-        getButton.setClickable(false);
-        lostButton.setClickable(true);
-        Log.d(msg, "open swzl_get_fragment!");
-    }
-
-    // jump 2 lost fragment
-    @OnClick(R.id.swzl_lost)
-    void repLostFragment(){
-
-        FragmentTransaction transaction = manager.beginTransaction();
-        if (swzlFragmentOfLost==null){
-            xxx++;
-            swzlFragmentOfLost = SwzlFragment.newInstance(0);
-            transaction.add(R.id.swzl_fragment, swzlFragmentOfLost);
-        }
-        else {
-            transaction.replace(R.id.swzl_fragment, swzlFragmentOfLost);
-        }
-
-        transaction.commit();
-        //replaceFragment(swzlFragmentOfLost);
-        lostButton.setClickable(false);
-        getButton.setClickable(true);
-        Log.d(msg, "open swzl_lost_fragment");
-    }
+//    //jump 2 get fragment
+//    @OnClick(R.id.swzl_get)
+//    void repGetFragment(){
+//
+//        transaction = manager.beginTransaction();
+//        if (swzlFragmentOfGet==null){
+//            Log.d("swzl_d","get is null ");
+//            swzlFragmentOfGet = SwzlFragment.newInstance(0);
+//            transaction.replace(R.id.swzl_fragment, swzlFragmentOfGet, "getFragment");
+//        } else {
+//            Log.d("swzl_d", "get is not null ");
+//
+//            transaction.replace(R.id.swzl_fragment, swzlFragmentOfGet,"getFragment");
+//        }
+//
+//
+//        swzlFragmentOfGet.initData();
+//        transaction.commit();
+//
+//
+//
+//
+//        //replaceFragment(swzlFragmentOfGet);
+//        getButton.setClickable(false);
+//        lostButton.setClickable(true);
+//        Log.d(msg, "open swzl_get_fragment!");
+//    }
+//
+//    // jump 2 lost fragment
+//    @OnClick(R.id.swzl_lost)
+//    void repLostFragment(){
+//
+//        transaction = manager.beginTransaction();
+//
+//        if (swzlFragmentOfLost==null){
+//            xxx++;
+//            Log.d("swzl_d","lost is null ");
+//            swzlFragmentOfLost = SwzlFragment.newInstance(1);
+//
+//            transaction.replace(R.id.swzl_fragment, swzlFragmentOfLost, "lostFragment");
+//
+//        }
+//        else {
+//            Log.d("swzl_d","lost is not null ");
+//
+//
+//            transaction.replace(R.id.swzl_fragment, swzlFragmentOfLost, "lostFragment");
+//            Log.d("swzl_d","replace complate");
+//        }
+//
+//        swzlFragmentOfLost.initData();
+//        transaction.commit();
+//
+//
+//
+//
+//
+//        //replaceFragment(swzlFragmentOfLost);
+//        lostButton.setClickable(false);
+//        getButton.setClickable(true);
+//        Log.d(msg, "open swzl_lost_fragment");
+//    }
 
 
     @OnClick(R.id.swzl_publish)
@@ -122,6 +192,16 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
 
     }
 
+    @Override
+    public void onFragmentInteraction(SwzlFragment2 fragment) {
+
+    }
+
+
+    public interface FinishInit{
+        void onFinish();
+
+    }
 
 
     // replace current fragment

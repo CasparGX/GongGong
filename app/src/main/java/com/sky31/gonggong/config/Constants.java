@@ -26,7 +26,7 @@ public class Constants {
         public static final String LIBRARY_RENT_LIST = "library_rent_list.php";
         public static final String LIBRARY_RENEW = "library_renew.php";
 
-
+        public static final String CMS_LIST = "cms_list.php";   //文章列表
 
         public static final String SWZL_ACTION = "lost_found.php";
 

@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.sky31.gonggong.module.article.ArticleListActivityFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.sky31.gonggong.module.article.list.ArticleListActivityFragment"
+        tools:layout="@layout/fragment_article_list"
+        android:id="@+id/article_list">
+
+    </fragment>
+
+</LinearLayout>

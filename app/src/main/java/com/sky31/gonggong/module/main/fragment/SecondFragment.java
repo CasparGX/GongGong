@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.module.article.list.ArticleListActivity;
 import com.sky31.gonggong.module.search_mate.SearchMateActivity;
 
 import butterknife.Bind;
@@ -24,6 +25,9 @@ public class SecondFragment extends Fragment {
 
     @Bind(R.id.btn_cha)
     Button btnCha;
+
+    @Bind(R.id.openNews)
+    Button btnNews;
 
     public SecondFragment() {
         // Required empty public constructor
@@ -46,6 +50,14 @@ public class SecondFragment extends Fragment {
         intent.setClass(getActivity(), SearchMateActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.openNews)
+    void onClickOpenNewsList(){
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), ArticleListActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onDestroyView() {

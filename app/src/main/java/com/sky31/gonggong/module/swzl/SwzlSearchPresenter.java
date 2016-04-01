@@ -46,9 +46,10 @@ public class SwzlSearchPresenter {
         Call<SwzlSearchResult> resultCall;
         if (actionCode==0) {
             Log.d("action:",actionCode+"");
-            resultCall = service.getSerResultByGet();
+            resultCall = service.getSerResultByLost();
         }
         else {
+            Log.d("action:",actionCode+"");
             resultCall = service.getSerResultByGet();
         }
 
@@ -58,14 +59,17 @@ public class SwzlSearchPresenter {
 
                 SwzlSearchResult result;
                 result = response.body();
+                int code = Integer.parseInt(response.body().getCode());
                 // 回调函数传入参数
-                searchView.getSearchData(result);
+                searchView.getSearchData(code,result);
             }
 
             @Override
             public void onFailure(Throwable t) {
 
+
                 t.printStackTrace();
+                searchView.getSearchData(-1, null);
             }
         });
 
