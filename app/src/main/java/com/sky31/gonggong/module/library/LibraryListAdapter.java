@@ -39,10 +39,11 @@ public class LibraryListAdapter extends RecyclerView.Adapter<LibraryListAdapter.
     public void onBindViewHolder(BookListViewHolder holder, int position) {
         LibraryRentListModel.DataEntity book = rentList.get(position);
         if (book.getStatus().equals(resources.getString(R.string.library_status_0))) {
-            holder.btnRenew.setText(resources.getString(R.string.library_renew));
+            holder.btnRenew.getTextView().setText(resources.getString(R.string.library_renew));
             holder.btnRenew.setClickable(true);
         } else {
-            holder.btnRenew.setText(resources.getString(R.string.library_renewed));
+            //holder.btnRenew.getTextView().setText(resources.getString(R.string.library_renewed));
+            //holder.btnRenew.getTextView();
             holder.btnRenew.setClickable(false);
         }
         holder.tvBookName.setText(book.getName());

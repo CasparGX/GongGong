@@ -299,7 +299,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             initToolbar();
             initView();
             autoLogin();
-            Debug.i("savedInstanceState", "null");
+
         //} else {
         //    Debug.i("savedInstanceState", "not null");
 
