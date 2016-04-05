@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LibraryRentListModel;
+import com.sky31.gonggong.model.UserModel;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,7 @@ public class LibraryActivity extends Activity {
         list.add(item);
         list.add(item);
         list.add(item);
-        recLibraryList.setAdapter(new LibraryListAdapter(this, list));
-        //recLibraryList.setAdapter(new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST)));
+        //recLibraryList.setAdapter(new LibraryListAdapter(this, list));
+        recLibraryList.setAdapter(new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST)));
     }
 }
