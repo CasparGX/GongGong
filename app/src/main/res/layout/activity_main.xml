@@ -86,7 +86,7 @@
                             <com.gc.materialdesign.views.ButtonRectangle
                                 android:id="@+id/btn_login"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/abc_action_button_min_height_material"
                                 android:layout_gravity="right"
                                 android:layout_margin="@dimen/interval_mini"
                                 android:background="@color/colorPrimary"
