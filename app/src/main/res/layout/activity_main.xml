@@ -91,6 +91,12 @@
                                 android:layout_margin="@dimen/interval_mini"
                                 android:background="@color/colorPrimary"
                                 android:text="@string/login" />
+                            <com.rey.material.widget.Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/abc_action_button_min_height_material"
+                                android:background="@color/colorPrimary"
+                                android:text="@string/login"
+                                app:rd_enable="true"/>
 
                         </LinearLayout>
                     </LinearLayout>

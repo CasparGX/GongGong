@@ -24,6 +24,7 @@
             android:name=".base.BaseActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
+            android:label="@string/login"
             android:name=".module.login.LoginActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity

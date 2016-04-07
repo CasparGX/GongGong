@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
@@ -19,6 +20,8 @@ public class LibraryActivity extends Activity {
 
     @Bind(R.id.rec_library_list)
     RecyclerView recLibraryList;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +42,12 @@ public class LibraryActivity extends Activity {
         list.add(item);
         //recLibraryList.setAdapter(new LibraryListAdapter(this, list));
         recLibraryList.setAdapter(new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST)));
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        toolbar.setTitle(title);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     }
 }
