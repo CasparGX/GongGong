@@ -94,7 +94,7 @@
                             <com.rey.material.widget.Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/abc_action_button_min_height_material"
-                                android:background="@color/colorPrimary"
+                                android:background="@drawable/btn_default"
                                 android:text="@string/login"
                                 app:rd_enable="true"/>
 
