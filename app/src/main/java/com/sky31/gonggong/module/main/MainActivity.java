@@ -125,12 +125,13 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     LinearLayout header;
     @Bind(R.id.home_layout)
     RelativeLayout homeLayout;
+    @Bind(R.id.home_content)
+    LinearLayout homeContent;
     @Bind(R.id.drawer_menu)
     NavigationView drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
-    @Bind(R.id.home_content)
-    LinearLayout homeContent;
+
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
@@ -146,7 +147,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     //侧滑菜单上的退出按钮
-    @OnClick(R.id.img_btn_exit)
+    @Nullable @OnClick(R.id.img_btn_exit)
     void onClickImgBtnExit() {
         drawer.closeDrawers();
         logout();
