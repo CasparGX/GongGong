@@ -65,6 +65,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
+import static com.sky31.gonggong.config.CommonFunction.convertDpToPixel;
 import static com.sky31.gonggong.config.CommonFunction.errorToast;
 
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
@@ -295,10 +296,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         resources = getResources();
         aCache = ACache.get(this);
         //if (savedInstanceState == null) {
-            inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
-            initToolbar();
-            initView();
-            autoLogin();
+        inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
+        initToolbar();
+        initView();
+        autoLogin();
 
         //} else {
         //    Debug.i("savedInstanceState", "not null");
@@ -449,9 +450,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             FirstFragment.getInstance().initLayoutHeight();
         }
         //抽屉菜单宽度
-        if (drawerMenu != null) {
+        int w = (int) (homeLayout.getWidth() - convertDpToPixel(resources.getDimension(R.dimen.drawer_margin_right), context));
+        if (drawerMenu != null && drawerMenu.getWidth() != w) {
             ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
-            param.width = homeLayout.getWidth() * 3 / 4;
+            param.width = w;
             drawerMenu.setLayoutParams(param);
         }
     }
