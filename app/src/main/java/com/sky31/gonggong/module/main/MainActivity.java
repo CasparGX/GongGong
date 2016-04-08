@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gc.materialdesign.views.ButtonRectangle;
+import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Bind(R.id.stu_num)
     TextView stuNum;
     @Bind(R.id.btn_login)
-    ButtonRectangle btnLogin;
+    Button btnLogin;
     @Bind(R.id.header_content)
     LinearLayout headerContent;
     @Bind(R.id.ecard_balance)
