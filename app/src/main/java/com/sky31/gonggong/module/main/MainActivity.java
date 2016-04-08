@@ -147,7 +147,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     //侧滑菜单上的退出按钮
-    @Nullable @OnClick(R.id.img_btn_exit)
+    @Nullable
+    @OnClick(R.id.img_btn_exit)
     void onClickImgBtnExit() {
         drawer.closeDrawers();
         logout();
@@ -312,6 +313,14 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //初始化控件
     private void initView() {
         //抽屉菜单
+        View drawerMenuHeader = drawerMenu.inflateHeaderView(R.layout.main_drawer_header);
+        ImageView imgBtnExit = (ImageView) drawerMenuHeader.findViewById(R.id.img_btn_exit);
+        imgBtnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
         int[][] states = new int[][]{
                 new int[]{android.R.attr.state_enabled},
                 new int[]{android.R.attr.state_pressed}, //1
