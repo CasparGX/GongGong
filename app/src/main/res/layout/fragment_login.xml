@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".module.login.LoginFragment">
 
     <ScrollView
@@ -63,6 +64,16 @@
                         android:hint="@string/password" />
                 </android.support.design.widget.TextInputLayout>
 
+                <com.rey.material.widget.EditText
+                    android:id="@+id/til_password2"
+                    android:hint="@string/password"
+                    app:et_inputId="@+id/et_password"
+                    app:et_labelTextColor="@color/black"
+                    app:et_labelEnable="true"
+                    app:et_labelEllipsize="123"
+                    app:et_dividerColor="@color/colorPrimary"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
 
                 <com.gc.materialdesign.views.ButtonRectangle
                     android:id="@+id/btn_login"
