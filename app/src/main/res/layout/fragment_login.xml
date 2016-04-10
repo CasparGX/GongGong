@@ -66,14 +66,13 @@
 
                 <com.rey.material.widget.EditText
                     android:id="@+id/til_password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="@string/password"
                     app:et_inputId="@+id/et_password"
-                    app:et_labelTextColor="@color/black"
-                    app:et_labelEnable="true"
-                    app:et_labelEllipsize="123"
-                    app:et_dividerColor="@color/colorPrimary"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent" />
+                    app:et_supportMode="none"
+                    app:v_styleId="@array/edittext"/>
 
                 <com.gc.materialdesign.views.ButtonRectangle
                     android:id="@+id/btn_login"
