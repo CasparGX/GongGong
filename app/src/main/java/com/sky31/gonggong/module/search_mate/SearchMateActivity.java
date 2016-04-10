@@ -7,9 +7,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.CompoundButton;
 
-import com.gc.materialdesign.views.ButtonRectangle;
-import com.gc.materialdesign.views.CheckBox;
+import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
 
 import butterknife.Bind;
@@ -37,11 +37,11 @@ public class SearchMateActivity extends Activity implements SearchMateView {
     @Bind(R.id.til_card)
     TextInputLayout tilCard;
     @Bind(R.id.check_benbu)
-    CheckBox checkBenbu;
+    com.rey.material.widget.CheckBox checkBenbu;
     @Bind(R.id.check_xingxiang)
-    CheckBox checkXingxiang;
+    com.rey.material.widget.CheckBox checkXingxiang;
     @Bind(R.id.btn_search)
-    ButtonRectangle btnSearch;
+    Button btnSearch;
 
     @OnClick(R.id.btn_search)
     void onClickBtnSearch() {
@@ -49,7 +49,7 @@ public class SearchMateActivity extends Activity implements SearchMateView {
         String name = etName.getText().toString();
         String card = etCard.getText().toString();
         String type = null;
-        if (checkBenbu.isCheck())
+        if (checkBenbu.isChecked())
             type = "xtu";
         else
             type = "xx";
@@ -75,21 +75,18 @@ public class SearchMateActivity extends Activity implements SearchMateView {
     }
 
     private void initCheckBox() {
-        checkBenbu.setChecked(true);
-        checkBenbu.setOncheckListener(new CheckBox.OnCheckListener() {
+        CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheck(CheckBox checkBox, boolean b) {
-                checkBox.setChecked(true);
-                checkXingxiang.setChecked(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    checkBenbu.setChecked(checkBenbu == buttonView);
+                    checkXingxiang.setChecked(checkXingxiang == buttonView);
+                }
             }
-        });
-        checkXingxiang.setOncheckListener(new CheckBox.OnCheckListener() {
-            @Override
-            public void onCheck(CheckBox checkBox, boolean b) {
-                checkXingxiang.setChecked(true);
-                checkBenbu.setChecked(false);
-            }
-        });
+        };
+
+        checkBenbu.setOnCheckedChangeListener(listener);
+        checkXingxiang.setOnCheckedChangeListener(listener);
     }
 
     @Override
