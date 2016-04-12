@@ -577,11 +577,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 ecardUnclaimed.setText(R.string.default_money);
             }
         } else if (code == 1) {
-            ecardBalance.setText(R.string.default_money);
-            ecardUnclaimed.setText(R.string.default_money);
+
         } else {
             errorToast(this, code);
         }
+        ecardBalance.setText(R.string.default_money);
+        ecardUnclaimed.setText(R.string.default_money);
         ecardBalance.setVisibility(View.VISIBLE);
         ecardUnclaimed.setVisibility(View.VISIBLE);
         pbEcardBalance.setVisibility(View.GONE);

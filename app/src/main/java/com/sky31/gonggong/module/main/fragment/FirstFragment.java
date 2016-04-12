@@ -115,11 +115,11 @@ public class FirstFragment extends Fragment implements HolidayView {
     public void finishGetHolidayNext(HolidayNextModel holidayNextModel) {
         if (holidayNextModel!=null) {
             HolidayNextModel.DataEntity data = holidayNextModel.getData();
-            tvHolidayDays.setText(data.getTotal_days());
-            tvHolidayEnd.setText(data.getEnd_date());
-            tvHolidayInterval.setText(data.getInterval());
+            tvHolidayDays.setText(data.getTotal_days()+"");
+            tvHolidayEnd.setText(data.getEnd_date()+"");
+            tvHolidayInterval.setText(data.getInterval()+"");
             tvHolidayName.setText(data.getName());
-            tvHolidayStart.setText(data.getStart_date());
+            tvHolidayStart.setText(data.getStart_date()+"");
         }
 
 
