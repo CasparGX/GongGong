@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.config.Constants;
@@ -18,6 +20,7 @@ import com.sky31.gonggong.module.holiday.HolidayView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +44,10 @@ public class FirstFragment extends Fragment implements HolidayView {
     TextView tvHolidayDays;
     @Bind(R.id.tv_holiday_interval)
     TextView tvHolidayInterval;
+    @Bind(R.id.img_btn_refresh)
+    ImageView imgBtnRefresh;
+    @Bind(R.id.pv_holiday)
+    ProgressView pvHoliday;
 
     private int homeLayoutHeight;
 
@@ -78,13 +85,18 @@ public class FirstFragment extends Fragment implements HolidayView {
         countdownLayout.setLayoutParams(countdownLayoutParam);
     }
 
-    public void getHoliday(String action){
+    public void getHoliday(String action) {
         HolidayPresenter holidayPresenter = new HolidayPresenter(this);
-        if (action.equals(Constants.Key.HOLIDAY_ACTION_NEXT)){
+        if (action.equals(Constants.Key.HOLIDAY_ACTION_NEXT)) {
             holidayPresenter.getHolidayNext();
-        } else if(action.equals(Constants.Key.HOLIDAY_ACTION_ALL)){
+        } else if (action.equals(Constants.Key.HOLIDAY_ACTION_ALL)) {
             holidayPresenter.getHolidayNext();
         }
+    }
+
+    /* onClick */
+    @OnClick(R.id.img_btn_refresh) void onClickImgBtnRefresh(View view){
+        getHoliday(Constants.Key.HOLIDAY_ACTION_NEXT);
     }
 
     @Override
@@ -95,17 +107,24 @@ public class FirstFragment extends Fragment implements HolidayView {
 
     @Override
     public void onGetHolidayNext() {
-
+        imgBtnRefresh.setVisibility(View.GONE);
+        pvHoliday.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void finishGetHolidayNext(HolidayNextModel holidayNextModel) {
-        HolidayNextModel.DataEntity data = holidayNextModel.getData();
-        tvHolidayDays.setText(data.getTotal_days());
-        tvHolidayEnd.setText(data.getEnd_date());
-        tvHolidayInterval.setText(data.getInterval());
-        tvHolidayName.setText(data.getName());
-        tvHolidayStart.setText(data.getStart_date());
+        if (holidayNextModel!=null) {
+            HolidayNextModel.DataEntity data = holidayNextModel.getData();
+            tvHolidayDays.setText(data.getTotal_days());
+            tvHolidayEnd.setText(data.getEnd_date());
+            tvHolidayInterval.setText(data.getInterval());
+            tvHolidayName.setText(data.getName());
+            tvHolidayStart.setText(data.getStart_date());
+        }
+
+
+        imgBtnRefresh.setVisibility(View.VISIBLE);
+        pvHoliday.setVisibility(View.GONE);
     }
 
     @Override

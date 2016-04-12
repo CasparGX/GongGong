@@ -48,7 +48,7 @@ public class HolidayPresenter {
 
             @Override
             public void onFailure(Throwable t) {
-
+                holidayView.finishGetHolidayNext(null);
             }
         });
     }

@@ -50,13 +50,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/count_down"/>
-                    <com.rey.material.widget.ProgressView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        app:pv_autostart="true"
-                        app:pv_circular="true"
-                        app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
-                        app:pv_progressMode="indeterminate"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_btn_refresh"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="right"
+                            android:src="@drawable/refresh"/>
+                        <com.rey.material.widget.ProgressView
+                            android:id="@+id/pv_holiday"
+                            android:visibility="gone"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="right"
+                            app:pv_autostart="true"
+                            app:pv_circular="true"
+                            app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+                            app:pv_progressMode="indeterminate"/>
+                    </FrameLayout>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/tv_holiday_name"
