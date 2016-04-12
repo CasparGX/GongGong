@@ -26,6 +26,9 @@ public class Constants {
         public static final String LIBRARY_RENT_LIST = "library_rent_list.php";
         public static final String LIBRARY_RENEW = "library_renew.php";
 
+        public static final String HOLIDAY = "holiday.php";
+
+
         public static final String CMS_LIST = "cms_list.php";   //文章列表
 
         public static final String SWZL_ACTION = "lost_found.php";
@@ -71,6 +74,12 @@ public class Constants {
         public static final String CAMPUS_NETWORK_BALANCE = "campus_network_balance";
         public static final String CAMPUS_NETWORK_PACKAGEX = "campus_network_packageX";
         public static final String CAMPUS_NETWORK_NEXT_STATEMENT_DATE = "campus_network_next_statement_date";
+
+        //节假日
+        public static final String HOLIDAY_ACTION= "action";
+        public static final String HOLIDAY_ACTION_NEXT = "next";
+        public static final String HOLIDAY_ACTION_ALL = "all";
+
     }
 
     public final class Value {

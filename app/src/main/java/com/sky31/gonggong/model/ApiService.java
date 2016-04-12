@@ -37,4 +37,12 @@ public interface ApiService {
     @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam)
     Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.NAME) String name, @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
 
+    //获取节假日信息
+
+    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_NEXT)
+    Call<HolidayNextModel> getHolidayNext();
+
+    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
+    Call<HolidayAllModel> getHolidayAll();
+
 }
