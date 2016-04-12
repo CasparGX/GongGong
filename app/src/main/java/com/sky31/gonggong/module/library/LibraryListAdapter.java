@@ -41,14 +41,17 @@ public class LibraryListAdapter extends RecyclerView.Adapter<LibraryListAdapter.
         if (book.getStatus().equals(resources.getString(R.string.library_status_0))) {
             holder.btnRenew.setText(resources.getString(R.string.library_renew));
             holder.btnRenew.setClickable(true);
-        } else {
+        } else if(book.getStatus().equals(resources.getString(R.string.library_status_1))){
             holder.btnRenew.setText(resources.getString(R.string.library_renewed));
-            //holder.btnRenew.getTextView();
+            holder.btnRenew.setClickable(false);
+        }else if(book.getStatus().equals(resources.getString(R.string.library_status_2))){
+            holder.btnRenew.setText(resources.getString(R.string.library_status_2));
             holder.btnRenew.setClickable(false);
         }
         holder.tvBookName.setText(book.getName());
         holder.tvBookDeadline.setText(book.getDeadline());
-        //holder.tvBookName.setText(book.getName());
+        holder.tvBookName.setText(book.getName());
+        holder.tvBookCountdown.setText(book.getInterval()+"");
     }
 
     @Override

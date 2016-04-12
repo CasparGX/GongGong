@@ -89,8 +89,17 @@ public class LibraryRentListModel {
         private String book_id;
         private String dept_id;
         private String library_id;
+        private int interval;
 
         public DataEntity() {
+        }
+
+        public int getInterval() {
+            return interval;
+        }
+
+        public void setInterval(int interval) {
+            this.interval = interval;
         }
 
         public String getName() {

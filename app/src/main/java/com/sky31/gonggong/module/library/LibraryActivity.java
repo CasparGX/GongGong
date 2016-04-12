@@ -36,12 +36,6 @@ public class LibraryActivity extends Activity {
         recLibraryList.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<LibraryRentListModel.DataEntity> list = new ArrayList<>();
         LibraryRentListModel.DataEntity item = new LibraryRentListModel.DataEntity();
-        item.setName("asd");
-        item.setStatus("0");
-        list.add(item);
-        list.add(item);
-        list.add(item);
-        //recLibraryList.setAdapter(new LibraryListAdapter(this, list));
         recLibraryList.setAdapter(new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST)));
     }
 

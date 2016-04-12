@@ -28,6 +28,7 @@
     <string name="library_rent">借书：</string>
     <string name="library_status_0">本馆借出</string>
     <string name="library_status_1">本馆续借</string>
+    <string name="library_status_2">过期暂停</string>
     <string name="library_renew">续借</string>
     <string name="library_renewed">已续借</string>
 

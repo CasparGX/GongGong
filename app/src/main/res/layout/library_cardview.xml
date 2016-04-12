@@ -48,13 +48,12 @@
 
 
         <com.rey.material.widget.Button
+            style="@style/LightRaiseButtonRippleStyle"
             android:id="@+id/btn_renew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
-            android:text="@string/library_renew"
-            app:rd_cornerRadius="@dimen/radius_default" />
+            android:text="@string/library_renew" />
 
 
     </LinearLayout>

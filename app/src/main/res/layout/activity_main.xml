@@ -275,7 +275,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white"
-        app:headerLayout="@layout/main_drawer_header"
         app:itemBackground="@color/colorAccent2"
         app:menu="@menu/main_drawer" />
 
