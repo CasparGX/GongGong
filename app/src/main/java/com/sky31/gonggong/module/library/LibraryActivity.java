@@ -18,10 +18,11 @@ import butterknife.ButterKnife;
 
 public class LibraryActivity extends Activity {
 
-    @Bind(R.id.rec_library_list)
-    RecyclerView recLibraryList;
+
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.rec_library_list)
+    RecyclerView recLibraryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
