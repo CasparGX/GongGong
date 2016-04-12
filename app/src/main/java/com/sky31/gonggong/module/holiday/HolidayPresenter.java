@@ -34,6 +34,7 @@ public class HolidayPresenter {
     }
 
     public void getHolidayNext(){
+        holidayView.onGetHolidayNext();
         Call<HolidayNextModel> call = apiService.getHolidayNext();
         call.enqueue(new Callback<HolidayNextModel>() {
             @Override
@@ -41,6 +42,7 @@ public class HolidayPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     HolidayNextModel holidayNextModel = response.body();
+                    holidayView.finishGetHolidayNext(holidayNextModel);
                 }
             }
 
