@@ -9,6 +9,8 @@
     <string name="logining">正在登录</string>
     <string name="pls_wait">请稍候…</string>
 
+    <string name="count_down">倒计时</string>
+
     <string name="sid">学号</string>
     <string name="password">密码</string>
     <string name="input_password">输入密码</string>

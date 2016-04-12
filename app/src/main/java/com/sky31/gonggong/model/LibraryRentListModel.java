@@ -2,7 +2,6 @@ package com.sky31.gonggong.model;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.util.ACache;
-import com.sky31.gonggong.util.Debug;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,14 +61,15 @@ public class LibraryRentListModel {
         //注意：一定要序列化
         //StudentInfoModel.DataEntity dataEntity = data.get(0);
         //arrayList.add(dataEntity);
+        int size = data != null ? data.size() : 0;
         aCache.put(Constants.Key.LIBRARY_RENT_LIST, data);
-        aCache.put(Constants.Key.LIBRARY_RENT_NUM,data.size()+"");
+        aCache.put(Constants.Key.LIBRARY_RENT_NUM, size + "");
         //使用getAsObject()，直接进行强转
-        ArrayList<DataEntity> rentList = (ArrayList<DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST);
-        for(int i = 0; i<data.size(); i++){
+        /*ArrayList<DataEntity> rentList = (ArrayList<DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST);
+        for (int i = 0; i < data.size(); i++) {
 
             Debug.i("rentList", rentList.get(i).getName() + "");
-        }
+        }*/
     }
 
     public static class DataEntity implements Serializable {
