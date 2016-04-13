@@ -424,6 +424,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 headerInfo.setAlpha(b);
                 Debug.i("alpha", userAvatar.getRotation() + "");
             }
+            //销毁内存
+            headerParam = null;
+            headerAvatarParam = null;
         }
     }
 
