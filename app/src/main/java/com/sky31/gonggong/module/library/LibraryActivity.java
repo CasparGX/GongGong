@@ -1,12 +1,12 @@
 package com.sky31.gonggong.module.library;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.UserModel;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LibraryActivity extends Activity {
+public class LibraryActivity extends BaseActivity {
 
 
     @Bind(R.id.toolbar)

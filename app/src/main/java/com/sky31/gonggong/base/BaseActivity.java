@@ -7,14 +7,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.sky31.gonggong.R;
+
 public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
         super.onCreate(savedInstanceState);
         // No Titlebar
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slided_left_in, R.anim.slide_right_out);
     }
 
     // 写一个广播的内部类，当收到动作时，结束activity

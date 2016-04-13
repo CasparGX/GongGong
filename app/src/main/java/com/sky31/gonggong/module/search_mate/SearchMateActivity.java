@@ -1,6 +1,5 @@
 package com.sky31.gonggong.module.search_mate;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,6 +9,8 @@ import com.rey.material.widget.Button;
 import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.EditText;
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.util.Debug;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ import butterknife.OnClick;
 /**
  * Created by root on 16-3-18.
  */
-public class SearchMateActivity extends Activity implements SearchMateView {
+public class SearchMateActivity extends BaseActivity implements SearchMateView {
 
 
     @Bind(R.id.toolbar)
@@ -46,9 +47,10 @@ public class SearchMateActivity extends Activity implements SearchMateView {
             type = "xtu";
         else
             type = "xx";
-        onGetSearchMate();
-        SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
-        searchMatePresenter.getMateInfo(sid, name, card, type);
+        Debug.i("searchMate",sid+" "+name+" "+card);
+        //onGetSearchMate();
+        //SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
+        //searchMatePresenter.getMateInfo(sid, name, card, type);
     }
 
     @Override
