@@ -1,15 +1,14 @@
 package com.sky31.gonggong.module.search_mate;
 
 import android.app.Activity;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import com.rey.material.widget.Button;
+import com.rey.material.widget.CheckBox;
+import com.rey.material.widget.EditText;
 import com.sky31.gonggong.R;
 
 import butterknife.Bind;
@@ -24,30 +23,24 @@ public class SearchMateActivity extends Activity implements SearchMateView {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.et_sid)
-    AppCompatEditText etSid;
     @Bind(R.id.til_sid)
-    TextInputLayout tilSid;
-    @Bind(R.id.et_name)
-    AppCompatEditText etName;
+    EditText tilSid;
     @Bind(R.id.til_name)
-    TextInputLayout tilName;
-    @Bind(R.id.et_card)
-    AppCompatEditText etCard;
+    EditText tilName;
     @Bind(R.id.til_card)
-    TextInputLayout tilCard;
+    EditText tilCard;
     @Bind(R.id.check_benbu)
-    com.rey.material.widget.CheckBox checkBenbu;
+    CheckBox checkBenbu;
     @Bind(R.id.check_xingxiang)
-    com.rey.material.widget.CheckBox checkXingxiang;
+    CheckBox checkXingxiang;
     @Bind(R.id.btn_search)
     Button btnSearch;
 
     @OnClick(R.id.btn_search)
     void onClickBtnSearch() {
-        String sid = etSid.getText().toString();
-        String name = etName.getText().toString();
-        String card = etCard.getText().toString();
+        String sid = tilSid.getText().toString();
+        String name = tilName.getText().toString();
+        String card = tilCard.getText().toString();
         String type = null;
         if (checkBenbu.isChecked())
             type = "xtu";
@@ -67,7 +60,7 @@ public class SearchMateActivity extends Activity implements SearchMateView {
     }
 
     private void init() {
-        etName.getBackground().mutate().setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
+        //etName.getBackground().mutate().setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
         tilCard.setHint(getResources().getString(R.string.card));
         tilSid.setHint(getResources().getString(R.string.sid));
         tilName.setHint(getResources().getString(R.string.name));
@@ -78,7 +71,7 @@ public class SearchMateActivity extends Activity implements SearchMateView {
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     checkBenbu.setChecked(checkBenbu == buttonView);
                     checkXingxiang.setChecked(checkXingxiang == buttonView);
                 }
