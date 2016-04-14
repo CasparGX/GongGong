@@ -64,9 +64,10 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/library_cardview_line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-
+            android:src="@drawable/cardview_bottom_line_info"
             />
     </LinearLayout>
 
