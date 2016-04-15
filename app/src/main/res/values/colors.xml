@@ -20,6 +20,8 @@
 
     <color name="white">#FFFFFF</color>
     <color name="white_transparent_3">#33ffffff</color>
+    <color name="white_transparent_9">#99ffffff</color>
+    <color name="white_transparent_c">#ccffffff</color>
     <color name="yellow_warning">#ffef3a</color>
     <color name="red_error">#ff3f39</color>
     <color name="black">#000000</color>

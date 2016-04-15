@@ -123,7 +123,7 @@
         <item name="cpd_outAnimDuration">400</item>
     </style>
     <style name="LightCircularToolbarProgressDrawable" parent="LightInCircularProgressDrawable">
-        <item name="cpd_strokeColor">@color/white</item>
+        <item name="cpd_strokeColor">@color/white_transparent_c</item>
         <item name="cpd_padding">@dimen/interval_15</item>
     </style>
 
