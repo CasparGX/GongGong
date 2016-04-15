@@ -29,13 +29,13 @@
     <style name="DrawerMenuTableRowIcon">
         <item name="android:layout_height">@dimen/img_icon_size_mini</item>
         <item name="android:layout_width">@dimen/img_icon_size_mini</item>
-        <item name="android:layout_marginRight">@dimen/interval_mini</item>
-        <item name="android:layout_marginLeft">@dimen/interval_mini</item>
+        <item name="android:layout_marginRight">@dimen/interval_10</item>
+        <item name="android:layout_marginLeft">@dimen/interval_10</item>
     </style>
 
     <style name="DrawerMenuTableRow">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/interval_mini</item>
+        <item name="android:padding">@dimen/interval_10</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/item_default_white</item>
@@ -43,7 +43,7 @@
 
     <style name="DrawerMenuTableRowText">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/interval_mini</item>
+        <item name="android:layout_marginLeft">@dimen/interval_10</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:gravity">center_vertical</item>
@@ -51,8 +51,8 @@
 
     <!--header info text-->
     <style name="HeaderInfoLayout">
-        <item name="android:paddingTop">@dimen/interval_mini</item>
-        <item name="android:paddingBottom">@dimen/interval_mini</item>
+        <item name="android:paddingTop">@dimen/interval_10</item>
+        <item name="android:paddingBottom">@dimen/interval_10</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -79,8 +79,8 @@
     </style>
 
     <style name="TextDefault">
-        <item name="android:paddingLeft">@dimen/interval_mini</item>
-        <item name="android:paddingRight">@dimen/interval_mini</item>
+        <item name="android:paddingLeft">@dimen/interval_10</item>
+        <item name="android:paddingRight">@dimen/interval_10</item>
         <!--<item name="android:background">@null</item>-->
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

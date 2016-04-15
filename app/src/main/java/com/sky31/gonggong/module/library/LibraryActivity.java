@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 
+import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
@@ -23,6 +26,8 @@ public class LibraryActivity extends BaseActivity {
     Toolbar toolbar;
     @Bind(R.id.rec_library_list)
     RecyclerView recLibraryList;
+    @Bind(R.id.pv_refresh)
+    ProgressView pvRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,25 @@ public class LibraryActivity extends BaseActivity {
     @Override
     protected void onTitleChanged(CharSequence title, int color) {
         super.onTitleChanged(title, color);
+        //设置toolbar标题
         toolbar.setTitle(title);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        //设置toolbar菜单
+        toolbar.inflateMenu(R.menu.base_toolbar_menu);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int menuItemId = item.getItemId();
+                switch (menuItemId) {
+                    case R.id.action_refresh:
+                        item.setActionView(pvRefresh);
+                        //setProgressBarIndeterminate(true);
+                        pvRefresh.setVisibility(View.VISIBLE);
+                        pvRefresh.start();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 }

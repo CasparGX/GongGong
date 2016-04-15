@@ -34,10 +34,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/interval_mini"
+                android:layout_margin="@dimen/interval_10"
                 android:background="@color/white_transparent_3"
                 android:orientation="vertical"
-                android:padding="@dimen/interval_mini">
+                android:padding="@dimen/interval_10">
 
 
                 <android.support.design.widget.TextInputLayout
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_margin="@dimen/interval_mini"
+                    android:layout_margin="@dimen/interval_10"
                     android:background="@color/colorPrimary"
                     android:text="@string/login" />
             </LinearLayout>

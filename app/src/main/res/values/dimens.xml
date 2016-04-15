@@ -20,8 +20,9 @@
     <dimen name="radius_20">20dp</dimen>
 
     <dimen name="interval_default">20dp</dimen>
-    <dimen name="interval_mini">10dp</dimen>
-    <dimen name="interval_mini_2">5dp</dimen>
+    <dimen name="interval_10">10dp</dimen>
+    <dimen name="interval_15">15dp</dimen>
+    <dimen name="interval_5">5dp</dimen>
 
     <dimen name="img_btn_size_mini">20dp</dimen>
 

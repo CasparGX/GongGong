@@ -21,7 +21,7 @@
                 android:textSize="@dimen/swzl_title_size"
                 android:textColor="@color/black"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="@dimen/interval_mini"
+                android:layout_marginTop="@dimen/interval_10"
                 android:text="@string/swzl_publish_title"/>
 
 
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="@dimen/interval_mini"
+                android:layout_margin="@dimen/interval_10"
                 android:id="@+id/swzl_lost_or_get"
                 android:background="@color/white"
                 >
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/swzl_util_marginTop"
-                android:layout_margin="@dimen/interval_mini"
+                android:layout_margin="@dimen/interval_10"
                 android:background="@color/white"
                 >
 
