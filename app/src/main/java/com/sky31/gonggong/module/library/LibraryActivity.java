@@ -1,6 +1,8 @@
 package com.sky31.gonggong.module.library;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,7 @@ import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.UserModel;
 
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LibraryActivity extends BaseActivity {
+public class LibraryActivity extends BaseActivity implements LibraryView{
 
 
     @Bind(R.id.toolbar)
@@ -28,6 +31,9 @@ public class LibraryActivity extends BaseActivity {
     RecyclerView recLibraryList;
     @Bind(R.id.pv_refresh)
     ProgressView pvRefresh;
+
+    private LibraryListAdapter recLibraryListAdapter;
+    private MenuItem refreshMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,8 @@ public class LibraryActivity extends BaseActivity {
         recLibraryList.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<LibraryRentListModel.DataEntity> list = new ArrayList<>();
         LibraryRentListModel.DataEntity item = new LibraryRentListModel.DataEntity();
-        recLibraryList.setAdapter(new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST)));
+        recLibraryListAdapter = new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
+        recLibraryList.setAdapter(recLibraryListAdapter);
     }
 
     @Override
@@ -66,14 +73,36 @@ public class LibraryActivity extends BaseActivity {
                 int menuItemId = item.getItemId();
                 switch (menuItemId) {
                     case R.id.action_refresh:
+                        refreshMenuItem = item;
                         item.setActionView(pvRefresh);
-                        //setProgressBarIndeterminate(true);
                         pvRefresh.setVisibility(View.VISIBLE);
                         pvRefresh.start();
+                        LibraryPresenter libraryPresenter = new LibraryPresenter(LibraryActivity.this);
+                        libraryPresenter.getLibraryReaderInfo();
+                        libraryPresenter.getLibraryRentList();
                         break;
                 }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
+        recLibraryListAdapter.updateData((ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
+        refreshMenuItem.setActionView(null);
+        pvRefresh.setVisibility(View.GONE);
+        pvRefresh.stop();
+    }
+
+
+    @Override
+    public void getLibraryRentLsit(int code, @Nullable LibraryRentListModel libraryRentListModel) {
+
+    }
+
+    @Override
+    public Context getViewContext() {
+        return this;
     }
 }

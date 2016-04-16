@@ -18,14 +18,26 @@ import java.util.ArrayList;
  * Created by root on 16-4-1.
  */
 public class LibraryListAdapter extends RecyclerView.Adapter<LibraryListAdapter.BookListViewHolder> {
+
     private ArrayList<LibraryRentListModel.DataEntity> rentList;
     private Context context;
     private Resources resources;
 
     public LibraryListAdapter(Context context, ArrayList<LibraryRentListModel.DataEntity> rentList) {
-        this.rentList = rentList;
+        this.rentList = new ArrayList<LibraryRentListModel.DataEntity>();
+        this.rentList.addAll(rentList);
         this.context = context;
         this.resources = context.getResources();
+    }
+
+    public void setRentList(ArrayList<LibraryRentListModel.DataEntity> rentList) {
+        this.rentList = rentList;
+    }
+
+    public void updateData(ArrayList<LibraryRentListModel.DataEntity> rentList) {
+        this.rentList.clear();
+        this.rentList.addAll(rentList);
+        notifyDataSetChanged();
     }
 
     @Override

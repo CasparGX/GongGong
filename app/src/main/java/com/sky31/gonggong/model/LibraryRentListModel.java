@@ -62,6 +62,7 @@ public class LibraryRentListModel {
         //StudentInfoModel.DataEntity dataEntity = data.get(0);
         //arrayList.add(dataEntity);
         int size = data != null ? data.size() : 0;
+        data = (data != null) ? data : new ArrayList<LibraryRentListModel.DataEntity>();
         aCache.put(Constants.Key.LIBRARY_RENT_LIST, data);
         aCache.put(Constants.Key.LIBRARY_RENT_NUM, size + "");
         //使用getAsObject()，直接进行强转

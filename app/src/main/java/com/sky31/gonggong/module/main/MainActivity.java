@@ -624,7 +624,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     @Override
-    public void getLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
+    public void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
         if (code == 0) {
             try {
                 libraryDebt.setText(aCache.getAsString(Constants.Key.LIBRARY_DEBT));

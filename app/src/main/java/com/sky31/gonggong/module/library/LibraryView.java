@@ -10,7 +10,7 @@ import com.sky31.gonggong.model.LibraryRentListModel;
  * Created by root on 16-3-7.
  */
 public interface LibraryView {
-    void getLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel);
+    void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel);
     void getLibraryRentLsit(int code, @Nullable LibraryRentListModel libraryRentListModel);
 
     Context getViewContext();
