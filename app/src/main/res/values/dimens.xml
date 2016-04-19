@@ -5,10 +5,10 @@
 
     <dimen name="drawer_margin_right">56dp</dimen>
 
-    <dimen name="avatar_size">50dp</dimen>
-    <dimen name="avatar_size_mini">40dp</dimen>
-    <dimen name="avatar_bg_size">70dp</dimen>
-    <dimen name="avatar_bg_size_mini">60dp</dimen>
+    <dimen name="avatar_size">56dp</dimen>
+    <dimen name="avatar_size_mini">46dp</dimen>
+    <dimen name="avatar_bg_size">76dp</dimen>
+    <dimen name="avatar_bg_size_mini">66dp</dimen>
 
     <dimen name="stroke_default">2dp</dimen>
     <dimen name="stroke_mini">1dp</dimen>

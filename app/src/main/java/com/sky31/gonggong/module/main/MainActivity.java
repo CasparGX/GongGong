@@ -361,7 +361,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         ecard.setClickable(false);
 
         //DrawerLayout
-        drawer.setStatusBarBackground(R.color.colorPrimary);
+        drawer.setStatusBarBackground(R.color.colorPrimaryDark);
 
         //Fragment
         List<Fragment> mDatas = new ArrayList<Fragment>();

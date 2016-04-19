@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        android:fitsSystemWindows="true"
         android:clipToPadding="false"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <include
@@ -39,13 +39,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/header_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -90,19 +91,24 @@
                                 android:layout_height="@dimen/abc_action_button_min_height_material"
                                 android:layout_gravity="right"
                                 android:layout_margin="@dimen/interval_10"
-                                android:textColor="@color/white"
                                 android:background="@drawable/btn_default"
                                 android:text="@string/login"
-                                app:rd_enable="true"/>
+                                android:textColor="@color/white"
+                                app:rd_enable="true" />
 
                         </LinearLayout>
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark" />
 
                     <LinearLayout
                         android:id="@+id/header_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/interval_10"
+                        android:layout_gravity="center"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -168,6 +174,13 @@
                             </LinearLayout>
                         </LinearLayout>
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/interval_5"
+                            android:layout_marginTop="@dimen/interval_5"
+                            android:background="@color/colorPrimaryDark" />
+
                         <LinearLayout
                             android:id="@+id/library"
                             style="@style/HeaderInfoLayout"
@@ -213,6 +226,13 @@
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/interval_5"
+                            android:layout_marginTop="@dimen/interval_5"
+                            android:background="@color/colorPrimaryDark" />
 
                         <LinearLayout
                             android:id="@+id/xtu_net"
@@ -266,10 +286,10 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="@drawable/shadow"
-                    android:layout_below="@+id/header"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/header"
+                    android:background="@drawable/shadow" />
             </RelativeLayout>
 
 
@@ -284,7 +304,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white"
-        app:itemBackground="@color/colorAccent2"
         app:menu="@menu/main_drawer" />
 
     <!--<include layout="@layout/include_drawer_menu" />-->
