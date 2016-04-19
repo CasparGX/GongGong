@@ -5,8 +5,12 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/interval_5"
+    android:layout_marginRight="@dimen/interval_5"
+    android:layout_marginTop="@dimen/interval_5"
     card_view:cardBackgroundColor="#FFFFFF"
     card_view:cardCornerRadius="@dimen/radius_2"
+    card_view:cardElevation="@dimen/radius_default"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true">
 
@@ -66,7 +70,7 @@
         <View
             android:id="@+id/library_cardview_line"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="@dimen/radius_2"
             android:src="@drawable/cardview_bottom_line_info"
             />
     </LinearLayout>
