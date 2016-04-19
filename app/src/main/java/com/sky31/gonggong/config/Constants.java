@@ -88,6 +88,7 @@ public class Constants {
 
 
         public static final int RESULT_LOGIN = 1;
+        public static final int RESULT_LIBRARY = 2;
 
         //
         //失物招领

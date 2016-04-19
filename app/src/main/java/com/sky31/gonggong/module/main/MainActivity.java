@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard(View view) {
-        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) == null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             //跳转图书馆信息Activity
             Intent intent = new Intent();
             intent.setClass(context, LibraryActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,Constants.Value.RESULT_LIBRARY);
         } else {
             //没有图书馆密码，先输入密码
             final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -477,6 +477,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 if (resultCode == RESULT_OK) {
                     isLogined(data.getStringExtra("name"));
                     autoGetData();
+                }
+                break;
+            case Constants.Value.RESULT_LIBRARY:
+                if (resultCode == RESULT_OK) {
+                    getLibraryRentLsit(0,null);
+                    onGetLibraryReaderInfo(0,null);
                 }
                 break;
         }

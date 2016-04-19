@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.library;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,14 @@ public class LibraryActivity extends BaseActivity implements LibraryView{
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
+    @Override
+    public void finish() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
+        super.finish();
+    }
+
     @Bind(R.id.rec_library_list)
     RecyclerView recLibraryList;
     @Bind(R.id.pv_refresh)
