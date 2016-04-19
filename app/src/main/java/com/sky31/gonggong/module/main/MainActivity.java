@@ -54,7 +54,6 @@ import com.sky31.gonggong.module.main.fragment.FirstFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
-import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
@@ -402,8 +401,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float b, x = 2.8f;
-            float c, y = 1.2f;
+            float b, y = 2.8f;
+            float c, x = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
@@ -422,7 +421,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 //userAvatar.setRotation(480 * (1 - b));
                 headerContent.setAlpha(c);
                 headerInfo.setAlpha(b);
-                Debug.i("alpha", userAvatar.getRotation() + "");
             }
             //销毁内存
             headerParam = null;
