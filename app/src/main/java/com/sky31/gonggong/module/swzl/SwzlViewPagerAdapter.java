@@ -28,6 +28,8 @@ public class SwzlViewPagerAdapter extends FragmentPagerAdapter{
 
     }
 
+
+
     @Override
     public int getCount() {
         return fragmentList.size();
@@ -48,8 +50,13 @@ public class SwzlViewPagerAdapter extends FragmentPagerAdapter{
     }
 
 
+
+
     @Override
     public CharSequence getPageTitle(int position) {
         return titles.get(position);
     }
+
+
+
 }

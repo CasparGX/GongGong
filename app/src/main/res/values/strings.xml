@@ -9,6 +9,10 @@
     <string name="logining">正在登录</string>
     <string name="pls_wait">请稍候…</string>
 
+    <string name="refresh">刷新</string>
+    <string name="about">关于</string>
+    <string name="set_up">设置</string>
+
     <string name="count_down">倒计时</string>
 
     <string name="sid">学号</string>
@@ -28,6 +32,7 @@
     <string name="library_rent">借书：</string>
     <string name="library_status_0">本馆借出</string>
     <string name="library_status_1">本馆续借</string>
+    <string name="library_status_2">过期暂停</string>
     <string name="library_renew">续借</string>
     <string name="library_renewed">已续借</string>
 
@@ -58,7 +63,7 @@
     <string name="swzl_get">找失主</string>
     <string name="swzl_back">返回</string>
     <string name="swzl_publish">我要发布</string>
-
+    <string name="swzl_title">失物招领</string>
     <!-- swzl form textview -->
     <string name="swzl_lost_thing">我丢了东西了</string>
     <string name="swzl_get_thing">我捡到东西了</string>

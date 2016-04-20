@@ -60,6 +60,7 @@ public class EcardPresenter {
             public void onFailure(Throwable t) {
                 Toast.makeText(ecardView.getViewContext(), "Error", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
+                ecardView.doneGetBalance(2, null);
             }
         });
     }

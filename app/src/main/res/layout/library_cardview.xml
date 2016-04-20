@@ -5,57 +5,74 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/interval_5"
+    android:layout_marginRight="@dimen/interval_5"
+    android:layout_marginTop="@dimen/interval_5"
     card_view:cardBackgroundColor="#FFFFFF"
     card_view:cardCornerRadius="@dimen/radius_2"
+    card_view:cardElevation="@dimen/radius_default"
     card_view:cardPreventCornerOverlap="false"
-    card_view:contentPadding="@dimen/interval_mini_2"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/interval_mini_2">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_book_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="书名" />
-
-
-            <TextView
-                android:id="@+id/tv_book_countdown"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="倒计时：13天" />
+                android:layout_margin="@dimen/interval_5"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="@dimen/interval_5">
 
-            <TextView
-                android:id="@+id/tv_book_deadline"
+                <TextView
+                    android:id="@+id/tv_book_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:text="书名书名书名书名书名书名书名书名书名书名书名书名书名书名书名书名书名" />
+
+
+                <TextView
+                    android:id="@+id/tv_book_countdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="倒计时：13天" />
+
+                <TextView
+                    android:id="@+id/tv_book_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="应还日期：2016/04/11" />
+
+            </LinearLayout>
+
+
+            <com.rey.material.widget.Button
+                android:id="@+id/btn_renew"
+                style="@style/LightRaiseButtonRippleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="应还日期：2016/04/11" />
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/interval_5"
+                android:text="@string/library_renew" />
+
 
         </LinearLayout>
 
-        <FrameLayout
+        <View
+            android:id="@+id/library_cardview_line"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_renew"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:text="@string/library_renew"
-                android:background="@color/colorPrimary" />
-        </FrameLayout>
-
+            android:layout_height="@dimen/radius_2"
+            android:src="@drawable/cardview_bottom_line_info"
+            />
     </LinearLayout>
 
 

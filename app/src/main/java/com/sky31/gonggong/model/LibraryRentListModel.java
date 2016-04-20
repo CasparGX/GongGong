@@ -62,6 +62,7 @@ public class LibraryRentListModel {
         //StudentInfoModel.DataEntity dataEntity = data.get(0);
         //arrayList.add(dataEntity);
         int size = data != null ? data.size() : 0;
+        data = (data != null) ? data : new ArrayList<LibraryRentListModel.DataEntity>();
         aCache.put(Constants.Key.LIBRARY_RENT_LIST, data);
         aCache.put(Constants.Key.LIBRARY_RENT_NUM, size + "");
         //使用getAsObject()，直接进行强转
@@ -89,8 +90,17 @@ public class LibraryRentListModel {
         private String book_id;
         private String dept_id;
         private String library_id;
+        private int interval;
 
         public DataEntity() {
+        }
+
+        public int getInterval() {
+            return interval;
+        }
+
+        public void setInterval(int interval) {
+            this.interval = interval;
         }
 
         public String getName() {

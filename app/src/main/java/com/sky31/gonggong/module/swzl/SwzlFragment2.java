@@ -51,8 +51,6 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     @Bind(R.id.buttonFloat)
     FloatingActionButton publishBtn;
 
-    @Bind(R.id.swzl_search)
-    Button searchBtn;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -101,14 +99,9 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
         listView.initRunable(this);
         mListener.onFragmentInteraction(this);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("floatBtn", code + "");
 
 
-            }
-        });
+
 
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+>
     <android.support.v7.widget.Toolbar
         app:layout_collapseMode="pin"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:title="@string/app_name"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary" >
+
+            <com.rey.material.widget.ProgressView
+                android:id="@+id/pv_refresh"
+                android:layout_marginRight="@dimen/interval_10"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="right"
+                app:pv_progressStyle="@style/LightCircularToolbarProgressDrawable"/>
+    </android.support.v7.widget.Toolbar>
 </merge>

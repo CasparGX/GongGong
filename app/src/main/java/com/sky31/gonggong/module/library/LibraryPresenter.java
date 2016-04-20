@@ -41,12 +41,12 @@ public class LibraryPresenter {
                 if (code == 0) {
                     LibraryReaderInfoModel libraryReaderInfoModel = response.body();
                     libraryReaderInfoModel.setCache();
-                    libraryView.getLibraryReaderInfo(code, libraryReaderInfoModel);
+                    libraryView.onGetLibraryReaderInfo(code, libraryReaderInfoModel);
                 } else if (code == 1) {
                     UserModel.getaCache().remove(Constants.Key.LIBRARY_PASSWORD);
-                    libraryView.getLibraryReaderInfo(code, null);
+                    libraryView.onGetLibraryReaderInfo(code, null);
                 } else {
-                    libraryView.getLibraryReaderInfo(code, null);
+                    libraryView.onGetLibraryReaderInfo(code, null);
                 }
             }
 
@@ -69,7 +69,7 @@ public class LibraryPresenter {
                     libraryView.getLibraryRentLsit(code, libraryRentListModel);
                 } else if (code == 1) {
                     UserModel.getaCache().remove(Constants.Key.LIBRARY_PASSWORD);
-                    libraryView.getLibraryReaderInfo(code, null);
+                    libraryView.onGetLibraryReaderInfo(code, null);
                 } else {
                     libraryView.getLibraryRentLsit(code, null);
                 }

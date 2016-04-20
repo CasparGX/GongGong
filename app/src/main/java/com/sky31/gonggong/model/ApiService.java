@@ -39,10 +39,10 @@ public interface ApiService {
 
     //获取节假日信息
 
-    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_NEXT)
+    @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_NEXT)
     Call<HolidayNextModel> getHolidayNext();
 
-    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
+    @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
     Call<HolidayAllModel> getHolidayAll();
 
 }

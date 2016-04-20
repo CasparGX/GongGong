@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:padding="@dimen/interval_mini"
+    android:padding="@dimen/interval_10"
     android:background="@drawable/avatar_bg"
     xmlns:android="http://schemas.android.com/apk/res/android">
 

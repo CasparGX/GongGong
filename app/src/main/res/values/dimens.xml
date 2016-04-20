@@ -5,10 +5,10 @@
 
     <dimen name="drawer_margin_right">56dp</dimen>
 
-    <dimen name="avatar_size">50dp</dimen>
-    <dimen name="avatar_size_mini">40dp</dimen>
-    <dimen name="avatar_bg_size">70dp</dimen>
-    <dimen name="avatar_bg_size_mini">60dp</dimen>
+    <dimen name="avatar_size">56dp</dimen>
+    <dimen name="avatar_size_mini">46dp</dimen>
+    <dimen name="avatar_bg_size">76dp</dimen>
+    <dimen name="avatar_bg_size_mini">66dp</dimen>
 
     <dimen name="stroke_default">2dp</dimen>
     <dimen name="stroke_mini">1dp</dimen>
@@ -20,8 +20,9 @@
     <dimen name="radius_20">20dp</dimen>
 
     <dimen name="interval_default">20dp</dimen>
-    <dimen name="interval_mini">10dp</dimen>
-    <dimen name="interval_mini_2">5dp</dimen>
+    <dimen name="interval_10">10dp</dimen>
+    <dimen name="interval_15">15dp</dimen>
+    <dimen name="interval_5">5dp</dimen>
 
     <dimen name="img_btn_size_mini">20dp</dimen>
 
@@ -46,4 +47,9 @@
     <dimen name="swzl_item_normal_textsize">12sp</dimen>
     <dimen name="swzl_search_textsize_default">20sp</dimen>
 
+
+    <!-- SWZL floating Btn -->
+    <dimen name="swzl_floationg_btn_marginTop">-90dp</dimen>
+    <dimen name="swzl_floationg_btn_size">70dp</dimen>
+    <dimen name="swzl_floationg_btn_marginRight">50dp</dimen>
 </resources>

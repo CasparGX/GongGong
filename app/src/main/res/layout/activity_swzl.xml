@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".module.swzl.SwzlActivity"
     android:orientation="vertical">
@@ -10,33 +12,11 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_swzl"
         android:layout_width="match_parent"
-        android:background="@color/color_005eaa"
+        android:background="@color/color_0176da"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        toolbar:title="@string/swzl_title"
+        toolbar:titleTextColor="@color/white"
         >
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swzl_back"
-            android:text="@string/swzl_back"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/swzl_get"
-            android:text="@string/swzl_get"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/swzl_lost"
-            android:text="@string/swzl_lost"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swzl_publish"
-            android:text="@string/swzl_publish"
-            />
-
 
     </android.support.v7.widget.Toolbar>
 
@@ -45,14 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swzl_viewpager">
-        <android.support.v4.view.PagerTitleStrip
+        <android.support.v4.view.PagerTabStrip
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/swzl_viewpager_title"
-            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@color/color_0176da"
             android:id="@+id/swzl_pager_title"
             >
-
-        </android.support.v4.view.PagerTitleStrip>
+        </android.support.v4.view.PagerTabStrip>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"

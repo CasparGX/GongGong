@@ -361,7 +361,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         ecard.setClickable(false);
 
         //DrawerLayout
-        drawer.setStatusBarBackground(R.color.colorPrimary);
+        drawer.setStatusBarBackground(R.color.colorPrimaryDark);
 
         //Fragment
         List<Fragment> mDatas = new ArrayList<Fragment>();
@@ -424,6 +424,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 headerInfo.setAlpha(b);
                 Debug.i("alpha", userAvatar.getRotation() + "");
             }
+            //销毁内存
+            headerParam = null;
+            headerAvatarParam = null;
         }
     }
 
@@ -580,6 +583,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             ecardBalance.setText(R.string.default_money);
             ecardUnclaimed.setText(R.string.default_money);
         } else {
+            ecardBalance.setText(R.string.default_money);
+            ecardUnclaimed.setText(R.string.default_money);
             errorToast(this, code);
         }
         ecardBalance.setVisibility(View.VISIBLE);
@@ -619,7 +624,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     @Override
-    public void getLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
+    public void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
         if (code == 0) {
             try {
                 libraryDebt.setText(aCache.getAsString(Constants.Key.LIBRARY_DEBT));

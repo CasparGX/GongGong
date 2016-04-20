@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textSize="@dimen/swzl_search_textsize_default"
             />
     </LinearLayout>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,25 +43,25 @@
             android:dividerHeight="@dimen/swzl_publish_mar"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false"
-            android:layout_margin="@dimen/interval_mini">
+            android:layout_margin="@dimen/swzl_publish_mar">
 
         </com.sky31.gonggong.widget.RefreshListView>
 
 
-
         <com.rey.material.widget.FloatingActionButton
+            android:id="@+id/buttonFloat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginTop="-100dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="50dp"
-            android:id="@+id/buttonFloat"
-            materialdesign:fab_iconSrc="@drawable/ic_th_send_normal"
-            materialdesign:fab_iconSize="68dp"
+            android:layout_marginTop="@dimen/swzl_floationg_btn_marginTop"
+            materialdesign:animate="true"
+            materialdesign:fab_iconSrc="@drawable/float_button"
+            materialdesign:fab_iconSize="@dimen/swzl_floationg_btn_size"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/swzl_floationg_btn_marginRight"
             />
     </LinearLayout>
+
+
 
 
 </LinearLayout>
