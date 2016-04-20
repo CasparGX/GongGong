@@ -32,6 +32,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:layout_margin="@dimen/interval_10"
             card_view:cardBackgroundColor="#FFFFFF"
             card_view:cardCornerRadius="@dimen/radius_2"
