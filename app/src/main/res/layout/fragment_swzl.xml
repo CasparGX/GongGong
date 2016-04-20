@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey_d"
     tools:context=".module.swzl.SwzlFragment"
     android:orientation="vertical">
@@ -31,24 +32,36 @@
             />
     </LinearLayout>
 
-
-    <com.sky31.gonggong.widget.RefreshListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/swzl_list_view"
-        android:layout_margin="@dimen/interval_mini"
-        >
+        android:orientation="vertical">
+        <com.sky31.gonggong.widget.RefreshListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swzl_list_view"
+            android:dividerHeight="@dimen/swzl_publish_mar"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:layout_margin="@dimen/interval_mini">
 
-    </com.sky31.gonggong.widget.RefreshListView>
-    <com.gc.materialdesign.views.ButtonFloat
-        android:id="@+id/buttonFloat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="24dp"
-        android:background="#1E88E5"
-        materialdesign:animate="true"
-        materialdesign:iconDrawable="@drawable/float_button"
-        />
+        </com.sky31.gonggong.widget.RefreshListView>
+
+
+
+        <com.rey.material.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginTop="-100dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/buttonFloat"
+            materialdesign:fab_iconSrc="@drawable/ic_th_send_normal"
+            materialdesign:fab_iconSize="68dp"
+            />
+    </LinearLayout>
+
+
 </LinearLayout>

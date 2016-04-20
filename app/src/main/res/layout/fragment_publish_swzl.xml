@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:isScrollContainer="true"
     tools:context=".module.swzl.PublishSwzlFragment"
     android:background="@color/grey_c">
@@ -49,11 +50,14 @@
                         android:gravity="center"
                         android:layout_marginLeft="@dimen/swzl_publish_text_indent"
                         />
-                    <com.gc.materialdesign.views.CheckBox
+                    <com.rey.material.widget.CheckBox
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:layout_height="wrap_content"
                         android:id="@+id/swzl_thing_get"
+                        android:layout_gravity="center"
                         android:checked="true"
+                        style="@style/Material.Drawable.CheckBox"
+                        app:cbd_strokeColor="@color/colorPrimary"
                         android:layout_marginLeft="@dimen/swzl_publish_text_indent"/>
 
                 </LinearLayout>
@@ -76,11 +80,13 @@
                         android:layout_marginLeft="@dimen/swzl_publish_text_indent"
                         />
 
-                    <com.gc.materialdesign.views.CheckBox
+                    <com.rey.material.widget.CheckBox
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/avatar_bg_size_mini"
+                        android:layout_height="wrap_content"
                         android:id="@+id/swzl_thing_lost"
+                        android:layout_gravity="center"
                         android:textColor="@color/black"
+                        app:cbd_strokeColor="@color/colorPrimary"
                         android:layout_marginLeft="@dimen/swzl_publish_text_indent"/>
 
 
@@ -106,10 +112,12 @@
                     android:textSize="@dimen/swzl_attention_size"
                     android:layout_marginLeft="@dimen/swzl_publish_text_indent"
                     android:gravity="center"/>
-                <com.gc.materialdesign.views.CheckBox
+                <com.rey.material.widget.CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/swzl_publish_text_indent"
+                    app:cbd_strokeColor="@color/colorPrimary"
                     android:id="@+id/swzl_is_card"/>
             </LinearLayout>
 

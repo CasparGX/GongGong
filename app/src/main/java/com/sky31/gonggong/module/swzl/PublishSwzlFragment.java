@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gc.materialdesign.views.CheckBox;
+import com.rey.material.widget.CheckBox;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
@@ -165,32 +165,31 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
 
         //set CheckBox Listener
 
-        thingGetCheckBox.setOncheckListener(new CheckBox.OnCheckListener() {
+        thingGetCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheck(CheckBox checkBox, boolean b) {
-                if (b) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     thingLostCheckBox.setChecked(false);
                     action = Constants.Value.SWZL_SUBMIT_FOUND;
                 }
-
             }
         });
-        thingLostCheckBox.setOncheckListener(new CheckBox.OnCheckListener() {
+
+        thingLostCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheck(CheckBox checkBox, boolean b) {
-                if (b) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     thingGetCheckBox.setChecked(false);
                     action = Constants.Value.SWZL_SUBMIT_LOST;
                 }
             }
         });
 
-
-        cardConfirm.setOncheckListener(new CheckBox.OnCheckListener() {
+        cardConfirm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheck(CheckBox checkBox, boolean b) {
-                isCard = b;
-                if (b) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isCard = isChecked;
+                if (isChecked) {
                     //当物品为银行卡时候，那么提供银行卡号输入选项。然后隐藏物品名字控件。
                     bankCardAtt.setVisibility(View.VISIBLE);
                     bankcardText.setVisibility(View.VISIBLE);
@@ -205,7 +204,11 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
                     thingNameText.setVisibility(View.VISIBLE);
                 }
             }
-        });
+            }
+        );
+
+
+
 
 
         //TODO：：： set publish btn  listener

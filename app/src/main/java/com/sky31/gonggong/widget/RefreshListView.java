@@ -183,9 +183,9 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
          }
 
 
-        int tempY = (int) ev.getY();
-        int moveSpace = tempY - startY;
-        int topPadding = moveSpace - headerHeight;
+        int tempY = (int) ev.getY();    //获取当前滑动时候的Y的坐标。
+        int moveSpace = tempY - startY; //获取坐标差。
+        int topPadding = moveSpace - headerHeight;  //获取需要显示出来的高度
         Log.d("freshListView","state:"+currentState+"----");
         //Log.d("frechListView","headerHeight"+headerHeight+"---");
         switch (currentState){
@@ -254,11 +254,11 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
                 break;
             case PULL:
                 progressBar.setVisibility(GONE);
-                textView.setText("下拉即可刷新");
+                textView.setText(resources.getString(R.string.fresh_listView_pullTip));
                 break;
             case RELESE:
                 progressBar.setVisibility(GONE);
-                textView.setText("松开即可刷新");
+                textView.setText(resources.getString(R.string.fresh_listView_releaseTip));
                 break;
             case REFRESHING:
 

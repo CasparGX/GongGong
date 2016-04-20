@@ -2,7 +2,10 @@ package com.sky31.gonggong.module.swzl;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.rey.material.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,8 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.widget.RefreshListView;
+
+import javax.crypto.spec.DESKeySpec;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,7 +52,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     RefreshListView listView;
 
     @Bind(R.id.buttonFloat)
-    ButtonFloat refeshBtn;
+    FloatingActionButton publishBtn;
 
     @Bind(R.id.swzl_search)
     Button searchBtn;
@@ -112,6 +117,14 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 //
 //        listView.setAdapter(adapter);
 
+        publishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),PublishSwzlActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return mFragmentView;
     }
