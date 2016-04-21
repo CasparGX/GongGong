@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.base.BaseActivity;
 
-public class SwzlDetailActivity extends Activity {
+public class SwzlDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

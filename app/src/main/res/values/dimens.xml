@@ -23,7 +23,7 @@
     <dimen name="interval_10">10dp</dimen>
     <dimen name="interval_15">15dp</dimen>
     <dimen name="interval_5">5dp</dimen>
-
+    <dimen name="interval_3">3dp</dimen>
     <dimen name="img_btn_size_mini">20dp</dimen>
 
     <dimen name="img_icon_size_mini">20dp</dimen>

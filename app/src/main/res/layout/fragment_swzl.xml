@@ -48,17 +48,7 @@
         </com.sky31.gonggong.widget.RefreshListView>
 
 
-        <com.rey.material.widget.FloatingActionButton
-            android:id="@+id/buttonFloat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/swzl_floationg_btn_marginTop"
-            materialdesign:animate="true"
-            materialdesign:fab_iconSrc="@drawable/float_button"
-            materialdesign:fab_iconSize="@dimen/swzl_floationg_btn_size"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/swzl_floationg_btn_marginRight"
-            />
+
     </LinearLayout>
 
 

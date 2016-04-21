@@ -3,45 +3,34 @@ package com.sky31.gonggong.module.swzl;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rey.material.widget.FloatingActionButton;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmentInteractionListener ,SwzlFragment2.OnFragmentInteractionListener{
 
 
 
     private String msg = "SWZL_MSG:";
-    private int xxx = 0;
 
-    private View view;
 
     @Bind(R.id.toolbar_swzl)
     Toolbar swzlToolbar;
@@ -49,9 +38,18 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
     @Bind(R.id.swzl_viewpager)
     ViewPager viewPager;
 
-    @Bind(R.id.swzl_pager_title)
-    PagerTabStrip titleStrip;
 
+    @Bind(R.id.buttonFloat)
+    FloatingActionButton publishBtn;
+
+
+    @Bind(R.id.page_strip_underline)
+    ImageView underLine;    //下划线
+
+    @Bind(R.id.swzl_get)
+    TextView getTextView;
+    @Bind(R.id.swzl_lost)
+    TextView lostTextVIew;
 
     private SwzlViewPagerAdapter pagerAdapter;
 
@@ -67,11 +65,42 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
         ButterKnife.bind(this);
 
 
-
+        initTitleStrip();
         initViewPager();
         initToolbar();
 
+        publishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(SwzlActivity.this, PublishSwzlActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+    private void initTitleStrip() {
+
+
+        getTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewPager.setCurrentItem(1,true);
+                getTextView.setClickable(false);
+                lostTextVIew.setClickable(true);
+            }
+        });
+
+        lostTextVIew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewPager.setCurrentItem(0,true);
+                getTextView.setClickable(true);
+                lostTextVIew.setClickable(false);
+            }
+        });
     }
 
     private void initViewPager() {
@@ -83,33 +112,45 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
         fragmentList.add(swzlFragmentOfGet);
         swzlFragmentOfLost = SwzlFragment2.newInstance(1);
 
-        titleStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        titleStrip.setTextColor(getResources().getColor(R.color.white));
-        titleStrip.setGravity(Gravity.LEFT);
-        titleStrip.setTabIndicatorColorResource(R.color.white);
-        titleStrip.setTextSpacing(15);
-        titleStrip.setDrawFullUnderline(false);
+
 
 
         fragmentList.add(swzlFragmentOfLost);
-        List<String> titles = new ArrayList<>();
-        titles.add("失物");
-        titles.add("招领");
+
+
         viewPager.setOffscreenPageLimit(1);
-        pagerAdapter = new SwzlViewPagerAdapter(getSupportFragmentManager(),fragmentList,titles);
+        pagerAdapter = new SwzlViewPagerAdapter(getSupportFragmentManager(),fragmentList,null);
         viewPager.setAdapter(pagerAdapter);
 
 
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 
+
+                if (positionOffset > 0 && positionOffset < 1) {
+                    underLine.setTranslationX(positionOffsetPixels / 2);
+                    //Log.d("offset Pix", positionOffset + "");
+                }
             }
 
             @Override
             public void onPageSelected(int position) {
+
+
+                //设置顶部标题，根据当前滑动来设置可用性。
+                if (position == 0){
+                    getTextView.setClickable(true);
+                    lostTextVIew.setClickable(false);
+                }
+                else if (position == 1){
+                    getTextView.setClickable(false);
+                    lostTextVIew.setClickable(true);
+                }
+
+                Log.d("page selected",position+"");
 
             }
 
@@ -133,7 +174,7 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
                 finish();
             }
         });
-        swzlToolbar.inflateMenu(R.menu.swzl_toolbar_manu);
+        swzlToolbar.inflateMenu(R.menu.swzl_toolbar_menu);
         swzlToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

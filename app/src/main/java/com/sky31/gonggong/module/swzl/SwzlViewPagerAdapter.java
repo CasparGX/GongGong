@@ -19,12 +19,12 @@ public class SwzlViewPagerAdapter extends FragmentPagerAdapter{
 
     private List<Fragment> fragmentList;
     private FragmentManager manager;
-    private List<String> titles;
+
     public SwzlViewPagerAdapter(FragmentManager manager,List<Fragment> fragmentList,List<String> titles) {
         super(manager);
 
         this.fragmentList = fragmentList;
-        this.titles = titles;
+
 
     }
 
@@ -52,10 +52,6 @@ public class SwzlViewPagerAdapter extends FragmentPagerAdapter{
 
 
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles.get(position);
-    }
 
 
 

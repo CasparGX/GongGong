@@ -16,25 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/swzl_title_size"
-                android:textColor="@color/black"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="@dimen/interval_10"
-                android:text="@string/swzl_publish_title"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="@dimen/interval_10"
+                android:layout_marginTop="@dimen/interval_10"
+                android:layout_marginBottom="@dimen/interval_10"
                 android:id="@+id/swzl_lost_or_get"
                 android:background="@color/white"
                 >
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,8 +92,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginRight="@dimen/swzl_publish_mar"
-                android:layout_marginLeft="@dimen/swzl_publish_mar"
                 android:background="@color/white"
                 >
                 <TextView
@@ -125,8 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/swzl_util_marginTop"
-                android:layout_margin="@dimen/interval_10"
+                android:layout_marginTop="@dimen/swzl_publish_mar"
                 android:background="@color/white"
                 >
 
@@ -137,6 +126,8 @@
                     android:text="@string/swzl_announcer"
                     android:textSize="@dimen/swzl_attention_size"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColor="@color/black"/>
                 <EditText
                     android:layout_width="match_parent"
@@ -145,6 +136,8 @@
                     android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_announcer_hint"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     />
 
 
@@ -155,6 +148,8 @@
                     android:text="@string/swzl_thing_name"
                     android:id="@+id/swzl_thing_name_att"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textSize="@dimen/swzl_attention_size"
                     android:textColor="@color/black"/>
                 <EditText
@@ -163,6 +158,8 @@
                     android:id="@+id/swzl_thing_name"
                     android:hint="@string/swzl_thing_name_hint"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey_c"/>
 
@@ -173,6 +170,8 @@
                     android:text="@string/swzl_location"
                     android:textSize="@dimen/swzl_attention_size"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColor="@color/black"/>
                 <EditText
                     android:layout_width="match_parent"
@@ -180,6 +179,8 @@
                     android:id="@+id/swzl_location"
                     android:hint="@string/swzl_location_hint"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColorHint="@color/grey_c"
                     android:textColor="@color/black"/>
 
@@ -190,12 +191,17 @@
                     android:text="@string/swzl_description"
                     android:textSize="@dimen/swzl_attention_size"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
+                    />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_description"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_description"/>
@@ -208,12 +214,17 @@
                     android:text="@string/swzl_mobile"
                     android:textSize="@dimen/swzl_attention_size"
                     android:textColor="@color/black"
-                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
+                    />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_mobile"
                     android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
                     android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_mobile_hint"/>
 
@@ -227,12 +238,16 @@
                     android:id="@+id/swzl_bank_card_att"
                     android:textColor="@color/black"
                     android:visibility="gone"
-                    android:layout_marginTop="@dimen/swzl_util_marginTop"/>
+                    android:layout_marginTop="@dimen/swzl_util_marginTop"
+                    android:layout_marginLeft="@dimen/swzl_publish_mar"
+                    android:layout_marginRight="@dimen/swzl_publish_mar"
+                    />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/swzl_bank_card"
                     android:visibility="gone"
+                    android:textColorHint="@color/grey_c"
                     android:hint="@string/swzl_bank_card_hint"/>
 
                 <!--确认按钮 -->
@@ -241,8 +256,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/swzl_submit_confirm"
                     android:id="@+id/swzl_submit"
-                    android:layout_gravity="center"
-                    />
+                    android:background="@color/color_0176da"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
         </LinearLayout>

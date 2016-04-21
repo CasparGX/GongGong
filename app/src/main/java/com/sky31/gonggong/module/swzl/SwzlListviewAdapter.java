@@ -77,12 +77,6 @@ public class SwzlListviewAdapter extends BaseAdapter{
         viewHolder.swzlItemLocation.setText(resources.getString(R.string.swzl_location)+model.getLocation());
         viewHolder.swzlItemThings.setText(resources.getString(R.string.swzl_thing_name)+model.getThings());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         return convertView;
     }

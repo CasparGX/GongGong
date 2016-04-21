@@ -172,6 +172,10 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
                     thingLostCheckBox.setChecked(false);
                     action = Constants.Value.SWZL_SUBMIT_FOUND;
                 }
+                else {
+                    thingLostCheckBox.setChecked(true);
+                    action = Constants.Value.SWZL_SUBMIT_LOST;
+                }
             }
         });
 
@@ -181,6 +185,10 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
                 if (isChecked) {
                     thingGetCheckBox.setChecked(false);
                     action = Constants.Value.SWZL_SUBMIT_LOST;
+                }
+                else {
+                    thingGetCheckBox.setChecked(true);
+                    action = Constants.Value.SWZL_SUBMIT_FOUND;
                 }
             }
         });

@@ -10,13 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
+import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.widget.RefreshListView;
+
+import java.util.List;
 
 import javax.crypto.spec.DESKeySpec;
 
@@ -48,11 +52,11 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
     private OnFragmentInteractionListener mListener;
 
+
     @Bind(R.id.swzl_list_view)
     RefreshListView listView;
 
-    @Bind(R.id.buttonFloat)
-    FloatingActionButton publishBtn;
+
 
 
     /**
@@ -109,16 +113,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //
-//        listView.setAdapter(adapter);
+//        listView.setAdapter(ada   pter);
 
-        publishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(),PublishSwzlActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         return mFragmentView;
     }
@@ -183,6 +180,19 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         if (result.getData() != null){
             SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    List<LostAndFoundModel> list = result.getData();
+                    LostAndFoundModel model = list.get(position);
+
+                    Intent intent = new Intent(getContext(),SwzlDetailActivity.class);
+                    intent.putExtra("model",model);
+                    startActivity(intent);
+
+                }
+            });
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
         }

@@ -42,6 +42,7 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
     private final int RELESE = 2;//提示可释放状态
     private final int REFRESHING = 3;//正在刷新状态
 
+    private View footerView;
     private Resources resources;
 
     private int scrollState;//当前滚动状态
@@ -288,7 +289,5 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
         //TextView tx = (TextView) headerView.findViewById(R.id.refresh_tip);
 
     }
-
-
 
 }

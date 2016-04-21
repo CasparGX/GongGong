@@ -59,8 +59,8 @@
 
     <!-- swzl_toolbar_button -->
 
-    <string name="swzl_lost">丢东西</string>
-    <string name="swzl_get">找失主</string>
+    <string name="swzl_lost">失物</string>
+    <string name="swzl_get">招领</string>
     <string name="swzl_back">返回</string>
     <string name="swzl_publish">我要发布</string>
     <string name="swzl_title">失物招领</string>
@@ -83,7 +83,8 @@
     <string name="swzl_submit_confirm">确定提交</string>
     <string name="swzl_search">搜索</string>
     <string name="swzl_search_hint">输入您想找的东西</string>
-
+    <string name="swzl_nomore_data">再怎么刷也没数据啦╮(╯_╰)╭～～~~</string>
+    <string name="swzl_show_detail">查看详情</string>
     <string name="swzl_item_title_str">TEST STRING</string>
 
     <string name="err_msg__1">Hash码错误，请联系官方QQ</string>

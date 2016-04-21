@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 
@@ -41,15 +42,14 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     private View mFragmentView = null;
     private SwzlSearchResult result;
 
-    private static RefreshView refreshView;
+
 
     private OnFragmentInteractionListener mListener;
 
     @Bind(R.id.swzl_list_view)
     RefreshListView listView;
 
-    @Bind(R.id.buttonFloat)
-    FloatingActionButton publishBtn;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -106,14 +106,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //
 //        listView.setAdapter(adapter);
-        publishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(),PublishSwzlActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         return mFragmentView;
     }
@@ -178,9 +171,16 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
         if (result.getData() != null){
             SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                }
+            });
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
         }
+
 
     }
 

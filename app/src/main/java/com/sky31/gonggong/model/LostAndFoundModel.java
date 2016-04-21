@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by wukunguang on 16-3-1.
  */
-public class LostAndFoundModel{
+public class LostAndFoundModel implements Serializable{
 
     private String id;
     private String announcer;
