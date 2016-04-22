@@ -32,8 +32,8 @@ import android.widget.Toast;
 
 import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
@@ -457,7 +457,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             headerParam.height = homeLayoutHeight / 3;
             header.setLayoutParams(headerParam);
             headerHeight = homeLayoutHeight / 3;
-            App.getApp().setHomeLayoutHeight(homeLayoutHeight);
+            CommonFunction.setHomeLayoutHeight(homeLayoutHeight);
             FirstFragment.getInstance().initLayoutHeight();
         }
         //抽屉菜单宽度

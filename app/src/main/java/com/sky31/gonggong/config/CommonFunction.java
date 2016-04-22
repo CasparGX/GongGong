@@ -80,4 +80,23 @@ public class CommonFunction {
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return dp;
     }
+
+    public static int homeLayoutHeight;
+    public static int homeLayoutWidth;
+
+    public static int getHomeLayoutWidth() {
+        return homeLayoutWidth;
+    }
+
+    public static void setHomeLayoutWidth(int i) {
+        homeLayoutWidth = i;
+    }
+
+    public static int getHomeLayoutHeight() {
+        return homeLayoutHeight;
+    }
+
+    public static void setHomeLayoutHeight(int i) {
+        homeLayoutHeight = i;
+    }
 }

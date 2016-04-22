@@ -20,22 +20,5 @@ public class App extends Application {
         return app;
     }
 
-    private int homeLayoutHeight;
-    private int homeLayoutWidth;
 
-    public int getHomeLayoutWidth() {
-        return homeLayoutWidth;
-    }
-
-    public void setHomeLayoutWidth(int homeLayoutWidth) {
-        this.homeLayoutWidth = homeLayoutWidth;
-    }
-
-    public int getHomeLayoutHeight() {
-        return homeLayoutHeight;
-    }
-
-    public void setHomeLayoutHeight(int homeLayoutHeight) {
-        this.homeLayoutHeight = homeLayoutHeight;
-    }
 }

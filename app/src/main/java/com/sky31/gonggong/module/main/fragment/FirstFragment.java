@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.app.App;
+import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.HolidayNextModel;
 import com.sky31.gonggong.module.holiday.HolidayPresenter;
@@ -92,7 +92,7 @@ public class FirstFragment extends Fragment implements HolidayView {
     }
 
     public void initLayoutHeight() {
-        homeLayoutHeight = App.getApp().getHomeLayoutHeight();
+        homeLayoutHeight = CommonFunction.getHomeLayoutHeight();
         ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
         ViewGroup.LayoutParams projectLayoutParam = projectLayout.getLayoutParams();
         ViewGroup.LayoutParams countdownLayoutParam = countdownLayout.getLayoutParams();
