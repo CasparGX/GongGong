@@ -42,6 +42,7 @@ public class HolidayPresenter {
                 int code = response.body().getCode();
                 if (code == 0) {
                     HolidayNextModel holidayNextModel = response.body();
+                    holidayNextModel.setCache();
                     holidayView.finishGetHolidayNext(holidayNextModel);
                 }
             }

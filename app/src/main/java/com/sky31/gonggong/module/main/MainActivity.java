@@ -535,19 +535,25 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     public void autoGetData() {
+        //一卡通余额
         if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         }
 
+        //校园网
         CampusNetPresenter campusNetPresenter = new CampusNetPresenter(this);
         campusNetPresenter.getCampusNetwork();
 
+        //图书馆
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             LibraryPresenter libraryPresenter = new LibraryPresenter(this);
             libraryPresenter.getLibraryReaderInfo();
             libraryPresenter.getLibraryRentList();
         }
+
+        //节假日
+        //节假日数据在FirstFragment中加载
     }
 
     public void logout() {
