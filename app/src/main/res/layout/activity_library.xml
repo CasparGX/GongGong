@@ -1,46 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.sky31.gonggong.module.library.LibraryActivity">
+
+    <!--<include layout="@layout/library_cardview" />-->
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        app:layout_scrollFlags="scroll|enterAlways">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <include layout="@layout/include_toolbar" />
 
-            <include
-                app:layout_collapseMode="pin"
-                layout="@layout/include_toolbar" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1234"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"/>
-        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_library_list"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:background="@color/grey_d"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

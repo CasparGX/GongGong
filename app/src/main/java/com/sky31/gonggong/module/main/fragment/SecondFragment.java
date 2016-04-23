@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.module.TestActivity;
 import com.sky31.gonggong.module.article.list.ArticleListActivity;
-import com.sky31.gonggong.module.search_mate.SearchMateActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,7 +47,7 @@ public class SecondFragment extends Fragment {
     @OnClick(R.id.btn_cha)
     void onClickChaShuiBiao(View view) {
         Intent intent = new Intent();
-        intent.setClass(getActivity(), SearchMateActivity.class);
+        intent.setClass(getActivity(), TestActivity.class);
         startActivity(intent);
     }
 
