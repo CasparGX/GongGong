@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,8 +17,11 @@ import android.widget.Button;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
+import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.widget.RefreshListView;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,7 +48,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     private SwzlSearchResult result;
 
 
-
+    private ProgressDialog waitDialog;
     private OnFragmentInteractionListener mListener;
 
     @Bind(R.id.swzl_list_view)
@@ -83,6 +88,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
             code = getArguments().getInt(ARG_PARAM1);
         }
 
+
         initData();
 
     }
@@ -99,7 +105,6 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
         listView.initRunable(this);
         mListener.onFragmentInteraction(this);
-
 
 
 
@@ -146,6 +151,9 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
 
     public void initData(){
+        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
+        waitDialog.show();
+
         // 向服务器请求数据。
         SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
         presenter.getSearchResult(code);
@@ -154,6 +162,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
     @Override
     public void getSearchData(int code ,SwzlSearchResult data) {
+        waitDialog.dismiss();
         // 回调借口。传入data
         switch (code){
             case 0:this.result = data;
@@ -161,12 +170,14 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
                 break;
             default:
                 CommonFunction.errorToast(getActivity(),code);
-
         }
 
     }
 
 
+    /**
+     * 加载 ListView
+     */
     private void setData(){
         if (result.getData() != null){
             SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
@@ -174,6 +185,15 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    //position起始下标为1.
+                    //谨防越界
+                    List<LostAndFoundModel> list = result.getData();
+                    LostAndFoundModel model = list.get(position-1);
+
+                    Intent intent = new Intent(getContext(),SwzlDetailActivity.class);
+                    intent.putExtra("model",model);
+                    startActivity(intent);
 
                 }
             });

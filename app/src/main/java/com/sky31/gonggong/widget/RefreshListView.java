@@ -54,7 +54,9 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
 
         LayoutInflater inflater = LayoutInflater.from(ctx);
         headerView = inflater.inflate(R.layout.fresh_listview_header, null);
+        footerView = inflater.inflate(R.layout.swzl_nomore_data,null);
 
+        addFooterView(footerView);
         //获得资源。
         resources = ctx.getResources();
 

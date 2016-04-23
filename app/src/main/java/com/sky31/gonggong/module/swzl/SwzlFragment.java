@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,7 +52,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     private static RefreshView refreshView;
 
     private OnFragmentInteractionListener mListener;
-
+    private ProgressDialog waitDialog;
 
     @Bind(R.id.swzl_list_view)
     RefreshListView listView;
@@ -155,6 +156,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
 
     public void initData(){
+
+        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
+        waitDialog.show();
         // 向服务器请求数据。
         SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
         presenter.getSearchResult(code);
@@ -163,6 +167,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
     @Override
     public void getSearchData(int code ,SwzlSearchResult data) {
+        waitDialog.dismiss();
         // 回调借口。传入data
         switch (code){
             case 0:this.result = data;
@@ -184,8 +189,10 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                    //position起始下标为1.
+                    //谨防越界
                     List<LostAndFoundModel> list = result.getData();
-                    LostAndFoundModel model = list.get(position);
+                    LostAndFoundModel model = list.get(position-1);
 
                     Intent intent = new Intent(getContext(),SwzlDetailActivity.class);
                     intent.putExtra("model",model);
@@ -193,6 +200,8 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
                 }
             });
+
+
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
         }

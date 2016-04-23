@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.CheckBox;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
@@ -38,6 +39,7 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    ProgressDialog waitDialog;
     @Bind(R.id.swzl_thing_get)
     CheckBox thingGetCheckBox;
     @Bind(R.id.swzl_thing_lost)
@@ -262,6 +264,8 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
     }
 
     private void publishMethod(String action) {
+         waitDialog = new ProgressDialog(getContext(),"正在发布，请稍等");
+        waitDialog.show();
         SwzlPresenter presenter = new SwzlPresenter(this);
         int x = 5;
         if (action.equals(Constants.Value.SWZL_SUBMIT_FOUND)) {
@@ -307,13 +311,16 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
     @Override
     public void publish(String code, SwzlResModel model) {
 
+        waitDialog.dismiss();
         //回调方法。
         Toast.makeText(getActivity(), " 发布成功！", Toast.LENGTH_SHORT).show();
 
         String showResult = "未知错误，请稍后再试！";
+
         switch (code) {
             case "0":
                 showResult = "发布成功！";
+
                 getActivity().finish();
                 break;
             case "65535":
@@ -326,7 +333,7 @@ public class PublishSwzlFragment extends Fragment implements SwzlPublishView {
                 showResult = "未知错误！请稍后再试";
         }
 
-        Log.d("11111111", code);
+        //Log.d("11111111", code);
 
 
     }

@@ -29,6 +29,7 @@ public class SwzlListviewAdapter extends BaseAdapter{
     private Context context;
     private SwzlSearchResult result;
     ArrayList<LostAndFoundModel> modelList;
+
     public SwzlListviewAdapter(Context context,ArrayList<LostAndFoundModel> result) {
 
 
@@ -76,6 +77,7 @@ public class SwzlListviewAdapter extends BaseAdapter{
         viewHolder.swzlItemDescription.setText(resources.getString(R.string.swzl_announcer)+model.getDescription());
         viewHolder.swzlItemLocation.setText(resources.getString(R.string.swzl_location)+model.getLocation());
         viewHolder.swzlItemThings.setText(resources.getString(R.string.swzl_thing_name)+model.getThings());
+
 
 
         return convertView;

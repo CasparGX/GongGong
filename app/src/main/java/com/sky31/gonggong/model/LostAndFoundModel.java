@@ -21,6 +21,8 @@ public class LostAndFoundModel implements Serializable{
     private String description; //物品描述
     private String mobile ; //手机号码
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
+
+
     //private int expireDays = 5;//默认为5天。
 
 
