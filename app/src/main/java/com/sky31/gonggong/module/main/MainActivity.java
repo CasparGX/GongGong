@@ -2,7 +2,6 @@ package com.sky31.gonggong.module.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,8 +31,8 @@ import android.widget.Toast;
 
 import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.app.App;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.EcardModel;
@@ -54,7 +53,6 @@ import com.sky31.gonggong.module.main.fragment.FirstFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
-import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
@@ -177,7 +175,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard(View view) {
-        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) == null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
@@ -212,7 +210,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             //跳转图书馆信息Activity
             Intent intent = new Intent();
             intent.setClass(context, LibraryActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,Constants.Value.RESULT_LIBRARY);
         } else {
             //没有图书馆密码，先输入密码
             final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -321,20 +319,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 logout();
             }
         });
-        int[][] states = new int[][]{
-                new int[]{android.R.attr.state_enabled},
-                new int[]{android.R.attr.state_pressed}, //1
-                new int[]{android.R.attr.state_focused},
-        };
 
-        int[] colors = new int[]{
-                R.color.white,
-                R.color.colorAccent2,
-                R.color.colorAccent2,
-        };
-        ColorStateList myList = new ColorStateList(states, colors);
-        drawerMenu.setItemIconTintList(myList);
-        drawerMenu.setItemIconTintList(null);
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -402,8 +387,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float b, x = 2.8f;
-            float c, y = 1.2f;
+            float b, y = 2.8f;
+            float c, x = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
@@ -422,7 +407,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 //userAvatar.setRotation(480 * (1 - b));
                 headerContent.setAlpha(c);
                 headerInfo.setAlpha(b);
-                Debug.i("alpha", userAvatar.getRotation() + "");
             }
             //销毁内存
             headerParam = null;
@@ -459,7 +443,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             headerParam.height = homeLayoutHeight / 3;
             header.setLayoutParams(headerParam);
             headerHeight = homeLayoutHeight / 3;
-            App.getApp().setHomeLayoutHeight(homeLayoutHeight);
+            CommonFunction.setHomeLayoutHeight(homeLayoutHeight);
             FirstFragment.getInstance().initLayoutHeight();
         }
         //抽屉菜单宽度
@@ -479,6 +463,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 if (resultCode == RESULT_OK) {
                     isLogined(data.getStringExtra("name"));
                     autoGetData();
+                }
+                break;
+            case Constants.Value.RESULT_LIBRARY:
+                if (resultCode == RESULT_OK) {
+                    getLibraryRentLsit(0,null);
+                    onGetLibraryReaderInfo(0,null);
                 }
                 break;
         }
@@ -531,19 +521,25 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     public void autoGetData() {
+        //一卡通余额
         if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         }
 
+        //校园网
         CampusNetPresenter campusNetPresenter = new CampusNetPresenter(this);
         campusNetPresenter.getCampusNetwork();
 
+        //图书馆
         if (aCache.getAsString(Constants.Key.LIBRARY_PASSWORD) != null) {
             LibraryPresenter libraryPresenter = new LibraryPresenter(this);
             libraryPresenter.getLibraryReaderInfo();
             libraryPresenter.getLibraryRentList();
         }
+
+        //节假日
+        //节假日数据在FirstFragment中加载
     }
 
     public void logout() {

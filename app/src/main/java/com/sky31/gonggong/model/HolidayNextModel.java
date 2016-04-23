@@ -1,5 +1,9 @@
 package com.sky31.gonggong.model;
 
+import com.google.gson.Gson;
+import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.util.ACache;
+
 /**
  * Created by root on 16-4-11.
  */
@@ -93,5 +97,11 @@ public class HolidayNextModel {
         public int getInterval() {
             return interval;
         }
+    }
+
+    public void setCache(){
+        ACache aCache = UserModel.getaCache();
+        Gson gson = new Gson();
+        aCache.put(Constants.Key.HOLIDAY_CACHE_NEXT,gson.toJson(data),ACache.TIME_DAY);
     }
 }

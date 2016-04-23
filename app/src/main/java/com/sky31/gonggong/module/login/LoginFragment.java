@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.gc.materialdesign.views.ButtonRectangle;
+import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.StudentInfoModel;
@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     @Bind(R.id.password)
     EditText password;
     @Bind(R.id.btn_login)
-    ButtonRectangle btnLogin;
+    Button btnLogin;
     @Bind(R.id.til_sid)
     TextInputLayout tilSid;
     @Bind(R.id.til_password)

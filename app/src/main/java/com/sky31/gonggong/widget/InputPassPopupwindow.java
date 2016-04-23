@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-import com.gc.materialdesign.views.ButtonRectangle;
+import com.rey.material.widget.Button;
 import com.sky31.gonggong.R;
 
 import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
@@ -20,7 +20,7 @@ import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
 public class InputPassPopupwindow extends PopupWindow {
     private AppCompatEditText etInputPassword;
     private TextInputLayout tilPassword;
-    private ButtonRectangle btnConfirm;
+    private Button btnConfirm;
     private String title;
     private Context context;
     private Activity activity;
@@ -29,7 +29,7 @@ public class InputPassPopupwindow extends PopupWindow {
     public InputPassPopupwindow(View contentView, int width, int height, boolean focusable) {
         super(contentView, width, height, focusable);
         etInputPassword = (AppCompatEditText) contentView.findViewById(R.id.et_input_password);
-        btnConfirm = (ButtonRectangle) contentView.findViewById(R.id.btn_confirm);
+        btnConfirm = (Button) contentView.findViewById(R.id.btn_confirm);
         tilPassword = (TextInputLayout) contentView.findViewById(R.id.til_password);
     }
 

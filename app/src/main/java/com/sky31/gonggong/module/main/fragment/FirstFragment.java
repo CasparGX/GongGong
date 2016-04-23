@@ -10,13 +10,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.app.App;
+import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.HolidayNextModel;
 import com.sky31.gonggong.module.holiday.HolidayPresenter;
 import com.sky31.gonggong.module.holiday.HolidayView;
+import com.sky31.gonggong.util.ACache;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -50,6 +52,7 @@ public class FirstFragment extends Fragment implements HolidayView {
     ProgressView pvHoliday;
 
     private int homeLayoutHeight;
+    private ACache aCache;
 
     private static FirstFragment instance;
 
@@ -69,11 +72,27 @@ public class FirstFragment extends Fragment implements HolidayView {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         ButterKnife.bind(this, view);
         instance = this;
+        aCache = ACache.get(getActivity());
+        initViewData();
         return view;
     }
 
+    private void initViewData() {
+
+        if (aCache.getAsJSONObject(Constants.Key.HOLIDAY_CACHE_NEXT)!=null){
+            //cache不为空，加载cache数据，cache缓存时间在HolidayModel中的setCache（）中定义
+            Gson gson = new Gson();
+            HolidayNextModel holidayNextModel = new HolidayNextModel();
+            HolidayNextModel.DataEntity data = gson.fromJson(aCache.getAsString(Constants.Key.HOLIDAY_CACHE_NEXT), HolidayNextModel.DataEntity.class);
+            holidayNextModel.setData(data);
+            finishGetHolidayNext(holidayNextModel);
+        } else{
+
+        }
+    }
+
     public void initLayoutHeight() {
-        homeLayoutHeight = App.getApp().getHomeLayoutHeight();
+        homeLayoutHeight = CommonFunction.getHomeLayoutHeight();
         ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
         ViewGroup.LayoutParams projectLayoutParam = projectLayout.getLayoutParams();
         ViewGroup.LayoutParams countdownLayoutParam = countdownLayout.getLayoutParams();

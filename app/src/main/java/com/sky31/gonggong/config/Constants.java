@@ -79,6 +79,8 @@ public class Constants {
         public static final String HOLIDAY_ACTION= "action";
         public static final String HOLIDAY_ACTION_NEXT = "next";
         public static final String HOLIDAY_ACTION_ALL = "all";
+        public static final String HOLIDAY_CACHE_NEXT = "holidayCacheNext";
+        public static final String HOLIDAY_CACHE_ALL = "holidayCacheAll";
 
     }
 
@@ -88,6 +90,7 @@ public class Constants {
 
 
         public static final int RESULT_LOGIN = 1;
+        public static final int RESULT_LIBRARY = 2;
 
         //
         //失物招领
