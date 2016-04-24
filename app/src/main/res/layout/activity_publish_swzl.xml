@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     tools:context=".module.swzl.PublishSwzlActivity">
 
 
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swzl_publish_toolbar"
+        toolbar:title="@string/swzl_publish_title"
+        toolbar:titleTextColor="@color/white"
+        toolbar:navigationIcon="@drawable/ic_arrow_back"
+        android:background="@color/color_0176da">
+    </android.support.v7.widget.Toolbar>
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,4 +26,4 @@
         tools:layout="@layout/fragment_publish_swzl"/>
 
 
-</RelativeLayout>
+</LinearLayout>

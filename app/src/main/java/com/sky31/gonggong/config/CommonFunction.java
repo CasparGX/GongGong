@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.module.main.MainActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -81,6 +84,26 @@ public class CommonFunction {
         return dp;
     }
 
+
+
+    /*time Util*/
+
+    /**
+     *
+     * @param mss   //ms 毫秒
+     * @return  时间戳 ，字符串
+     */
+    public static String ms2Timestamp(String mss){
+
+        long ms = Long.parseLong(mss)*1000;
+
+        Date date = new Date(ms);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
+
+    }
+
+
     public static int homeLayoutHeight;
     public static int homeLayoutWidth;
 
@@ -99,4 +122,5 @@ public class CommonFunction {
     public static void setHomeLayoutHeight(int i) {
         homeLayoutHeight = i;
     }
+
 }

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".module.swzl.SwzlActivity"
     android:orientation="vertical">
@@ -10,49 +14,83 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_swzl"
         android:layout_width="match_parent"
-        android:background="@color/color_005eaa"
+        android:background="@color/color_0176da"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        toolbar:title="@string/swzl_title"
+        toolbar:titleTextColor="@color/white"
         >
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swzl_back"
-            android:text="@string/swzl_back"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/swzl_get"
-            android:text="@string/swzl_get"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/swzl_lost"
-            android:text="@string/swzl_lost"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swzl_publish"
-            android:text="@string/swzl_publish"
-            />
-
 
     </android.support.v7.widget.Toolbar>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:background="@color/color_0176da"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/swzl_lost"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/swzl_lost"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/swzl_get"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/swzl_get"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_0176da"
+        >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/interval_3"
+            android:layout_weight="0.5"
+            android:id="@+id/page_strip_underline"
+            android:background="@color/white"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/interval_3"
+            android:layout_weight="0.5"
+            />
+    </LinearLayout>
+    <!--阴影 = =-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/grey_c" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swzl_viewpager">
-        <android.support.v4.view.PagerTitleStrip
+       <!-- <android.support.v4.view.PagerTabStrip
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/swzl_viewpager_title"
-            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@color/color_0176da"
             android:id="@+id/swzl_pager_title"
             >
-
-        </android.support.v4.view.PagerTitleStrip>
+        </android.support.v4.view.PagerTabStrip>-->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
@@ -67,5 +105,15 @@
             </fragment>
         </LinearLayout>
     </android.support.v4.view.ViewPager>
-
+    <com.rey.material.widget.FloatingActionButton
+        android:id="@+id/buttonFloat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/swzl_floationg_btn_marginTop"
+        materialdesign:animate="true"
+        materialdesign:fab_iconSrc="@drawable/float_button"
+        materialdesign:fab_iconSize="@dimen/swzl_floationg_btn_size"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/swzl_floationg_btn_marginRight"
+        />
 </LinearLayout>

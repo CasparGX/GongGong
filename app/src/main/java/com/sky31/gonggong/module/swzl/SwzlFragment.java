@@ -2,18 +2,28 @@ package com.sky31.gonggong.module.swzl;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.gc.materialdesign.widgets.ProgressDialog;
+import com.rey.material.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
+import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.widget.RefreshListView;
+
+import java.util.List;
+
+import javax.crypto.spec.DESKeySpec;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,15 +52,14 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     private static RefreshView refreshView;
 
     private OnFragmentInteractionListener mListener;
+    private ProgressDialog waitDialog;
 
     @Bind(R.id.swzl_list_view)
     RefreshListView listView;
 
-    @Bind(R.id.buttonFloat)
-    ButtonFloat refeshBtn;
 
-    @Bind(R.id.swzl_search)
-    Button searchBtn;
+
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -100,17 +109,13 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
         listView.initRunable(this);
         mListener.onFragmentInteraction(this);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("floatBtn", code + "");
-                initData();
 
-            }
-        });
+
+
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
 //
-//        listView.setAdapter(adapter);
+//        listView.setAdapter(ada   pter);
+
 
 
         return mFragmentView;
@@ -151,6 +156,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
 
     public void initData(){
+
+        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
+        waitDialog.show();
         // 向服务器请求数据。
         SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
         presenter.getSearchResult(code);
@@ -159,6 +167,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
 
     @Override
     public void getSearchData(int code ,SwzlSearchResult data) {
+        waitDialog.dismiss();
         // 回调借口。传入data
         switch (code){
             case 0:this.result = data;
@@ -176,6 +185,23 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
         if (result.getData() != null){
             SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    //position起始下标为1.
+                    //谨防越界
+                    List<LostAndFoundModel> list = result.getData();
+                    LostAndFoundModel model = list.get(position-1);
+
+                    Intent intent = new Intent(getContext(),SwzlDetailActivity.class);
+                    intent.putExtra("model",model);
+                    startActivity(intent);
+
+                }
+            });
+
+
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
         }

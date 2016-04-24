@@ -2,56 +2,57 @@ package com.sky31.gonggong.module.swzl;
 
 
 import android.content.Intent;
-import android.net.Uri;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.rey.material.widget.FloatingActionButton;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFragmentInteractionListener ,SwzlFragment2.OnFragmentInteractionListener{
+public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmentInteractionListener ,SwzlFragment2.OnFragmentInteractionListener{
 
 
-    @Bind(R.id.swzl_back)
-    Button backButton ;
-    @Bind(R.id.swzl_get)
-    Button getButton ;
-    @Bind(R.id.swzl_lost)
-    Button lostButton ;
-    @Bind(R.id.swzl_publish)
-    Button publishButton;
 
     private String msg = "SWZL_MSG:";
-    private int xxx = 0;
 
-    private View view;
+
+    @Bind(R.id.toolbar_swzl)
+    Toolbar swzlToolbar;
 
     @Bind(R.id.swzl_viewpager)
     ViewPager viewPager;
 
-    @Bind(R.id.swzl_pager_title)
-    PagerTitleStrip pagerTitleStrip;
 
+    @Bind(R.id.buttonFloat)
+    FloatingActionButton publishBtn;
+
+
+    @Bind(R.id.page_strip_underline)
+    ImageView underLine;    //下划线
+
+    @Bind(R.id.swzl_get)
+    TextView getTextView;
+    @Bind(R.id.swzl_lost)
+    TextView lostTextVIew;
 
     private SwzlViewPagerAdapter pagerAdapter;
-    private PagerTitleStrip titleStrip;
+
     SwzlFragment swzlFragmentOfGet = null;
     SwzlFragment2 swzlFragmentOfLost = null;
 
@@ -64,6 +65,45 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         ButterKnife.bind(this);
 
 
+        initTitleStrip();
+        initViewPager();
+        initToolbar();
+
+        publishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(SwzlActivity.this, PublishSwzlActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initTitleStrip() {
+
+
+        getTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewPager.setCurrentItem(1,true);
+                getTextView.setClickable(false);
+                lostTextVIew.setClickable(true);
+            }
+        });
+
+        lostTextVIew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewPager.setCurrentItem(0,true);
+                getTextView.setClickable(true);
+                lostTextVIew.setClickable(false);
+            }
+        });
+    }
+
+    private void initViewPager() {
 
         //init default fragment.
         //default fragement is get
@@ -72,26 +112,45 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         fragmentList.add(swzlFragmentOfGet);
         swzlFragmentOfLost = SwzlFragment2.newInstance(1);
 
-        pagerTitleStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP,25);
+
+
 
         fragmentList.add(swzlFragmentOfLost);
-        List<String> titles = new ArrayList<>();
-        titles.add("找失主");
-        titles.add("丢东西");
+
+
         viewPager.setOffscreenPageLimit(1);
-        pagerAdapter = new SwzlViewPagerAdapter(getSupportFragmentManager(),fragmentList,titles);
+        pagerAdapter = new SwzlViewPagerAdapter(getSupportFragmentManager(),fragmentList,null);
         viewPager.setAdapter(pagerAdapter);
 
 
-
+        viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+
+
+                if (positionOffset > 0 && positionOffset < 1) {
+                    underLine.setTranslationX(positionOffsetPixels / 2);
+                    //Log.d("offset Pix", positionOffset + "");
+                }
             }
 
             @Override
             public void onPageSelected(int position) {
+
+
+                //设置顶部标题，根据当前滑动来设置可用性。
+                if (position == 0){
+                    getTextView.setClickable(true);
+                    lostTextVIew.setClickable(false);
+                }
+                else if (position == 1){
+                    getTextView.setClickable(false);
+                    lostTextVIew.setClickable(true);
+                }
+
+                Log.d("page selected",position+"");
 
             }
 
@@ -100,9 +159,35 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
 
             }
         });
+    }
 
-        getButton.setClickable(false);
+    private void initToolbar() {
+        //setSupportActionBar(swzlToolbar);
 
+        Resources resources = getResources();
+        swzlToolbar.setNavigationIcon(resources.getDrawable(R.drawable.ic_arrow_back));
+
+        //设置侧边栏返回。
+        swzlToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        swzlToolbar.inflateMenu(R.menu.swzl_toolbar_menu);
+        swzlToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.swzl_search:
+                        Toast.makeText(SwzlActivity.this,"搜索",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.swzl_refresh:
+                        Toast.makeText(SwzlActivity.this,"刷新",Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -114,11 +199,11 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
         Log.d(msg, fragment.getTag() + "->>>>>>");
     }
 
-    @OnClick(R.id.swzl_back)
-    void backToLast(){
-        Log.d(msg, "back");
-        finish();
-    }
+//    @OnClick(R.id.swzl_back)
+//    void backToLast(){
+//        Log.d(msg, "back");
+//        finish();
+//    }
 
 //    //jump 2 get fragment
 //    @OnClick(R.id.swzl_get)
@@ -184,13 +269,7 @@ public class SwzlActivity extends FragmentActivity implements SwzlFragment.OnFra
 //    }
 
 
-    @OnClick(R.id.swzl_publish)
-    void jump2PublishAct(){
-        Intent intent = new Intent(SwzlActivity.this,PublishSwzlActivity.class);
 
-        startActivity(intent);
-
-    }
 
     @Override
     public void onFragmentInteraction(SwzlFragment2 fragment) {

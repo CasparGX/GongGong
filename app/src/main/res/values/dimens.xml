@@ -30,7 +30,7 @@
     <dimen name="interval_10">10dp</dimen>
     <dimen name="interval_15">15dp</dimen>
     <dimen name="interval_5">5dp</dimen>
-
+    <dimen name="interval_3">3dp</dimen>
     <dimen name="img_btn_size_mini">20dp</dimen>
 
     <dimen name="img_icon_size_mini">20dp</dimen>
@@ -44,6 +44,9 @@
     <dimen name="swzl_publish_text_indent">30dp</dimen>
 
     <dimen name="swzl_viewpager_title">40dp</dimen>
+
+    <dimen name="fab_size_normal">100dp</dimen>
+    <dimen name="fab_size_mini">150dp</dimen>
     <!-- SWZL item  -->
 
     <dimen name="swzl_item_thing_title">15sp</dimen>
@@ -51,4 +54,15 @@
     <dimen name="swzl_item_normal_textsize">12sp</dimen>
     <dimen name="swzl_search_textsize_default">20sp</dimen>
 
+
+    <!-- SWZL floating Btn -->
+    <dimen name="swzl_floationg_btn_marginTop">-90dp</dimen>
+    <dimen name="swzl_floationg_btn_size">70dp</dimen>
+    <dimen name="swzl_floationg_btn_marginRight">50dp</dimen>
+
+
+    <!--swzl font size -->
+
+    <dimen name="swzl_detail_font_title">20sp</dimen>
+    <dimen name="swzl_detail_font_etc">12sp</dimen>
 </resources>

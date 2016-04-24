@@ -41,10 +41,11 @@
             android:name=".module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity
-            android:name=".module.TestActivity"
-            android:label="@string/article_item__testStr"
-            android:theme="@style/ColorTranslucentTheme" />
+        <activity android:name=".module.swzl.SwzlDetailActivity">
+        </activity>
+
+
+
     </application>
 
 </manifest>

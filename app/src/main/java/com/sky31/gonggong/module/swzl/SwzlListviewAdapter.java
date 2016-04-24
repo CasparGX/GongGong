@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.swzl;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class SwzlListviewAdapter extends BaseAdapter{
     private Context context;
     private SwzlSearchResult result;
     ArrayList<LostAndFoundModel> modelList;
+
     public SwzlListviewAdapter(Context context,ArrayList<LostAndFoundModel> result) {
 
 
@@ -68,13 +70,15 @@ public class SwzlListviewAdapter extends BaseAdapter{
         }
 
 
-
+        Resources resources = context.getResources();
 
         LostAndFoundModel model = modelList.get(position);
-        viewHolder.swzlItemAnnouncer.append(model.getAnnouncer());
-        viewHolder.swzlItemDescription.append(model.getDescription());
-        viewHolder.swzlItemLocation.append(model.getLocation());
-        viewHolder.swzlItemThings.append(model.getThings());
+        viewHolder.swzlItemAnnouncer.setText(resources.getString(R.string.swzl_announcer)+model.getAnnouncer());
+        viewHolder.swzlItemDescription.setText(resources.getString(R.string.swzl_announcer)+model.getDescription());
+        viewHolder.swzlItemLocation.setText(resources.getString(R.string.swzl_location)+model.getLocation());
+        viewHolder.swzlItemThings.setText(resources.getString(R.string.swzl_thing_name)+model.getThings());
+
+
 
         return convertView;
     }
