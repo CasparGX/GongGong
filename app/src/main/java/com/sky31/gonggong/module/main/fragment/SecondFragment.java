@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.sky31.gonggong.R;
 
 import com.sky31.gonggong.module.article.list.ArticleListActivity;
+import com.sky31.gonggong.module.course_list.CourseListActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,6 +41,7 @@ public class SecondFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second, container, false);
         ButterKnife.bind(this, view);
+        btnNews.setText("查课表");
         return view;
     }
 
@@ -54,7 +56,8 @@ public class SecondFragment extends Fragment {
     @OnClick(R.id.openNews)
     void onClickOpenNewsList(){
         Intent intent = new Intent();
-        intent.setClass(getActivity(), ArticleListActivity.class);
+
+        intent.setClass(getActivity(), CourseListActivity.class);
         startActivity(intent);
     }
 

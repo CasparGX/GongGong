@@ -8,10 +8,12 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.module.main.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -121,6 +123,36 @@ public class CommonFunction {
 
     public static void setHomeLayoutHeight(int i) {
         homeLayoutHeight = i;
+    }
+
+    // 获取今天是周几。
+
+    /***
+     *
+     * @param pushDay 往后推的天数
+     * @param currentWeek   当前周数
+     * @return  当前周数
+     */
+    public static int countCurrentWeek(int pushDay, int currentWeek){
+
+        int resultWeek = pushDay/7+currentWeek;
+
+        return resultWeek;
+    }
+
+    /**
+     *
+     * @param pushDay 往后推的天数
+     * @return 当前周几。7周日，1为周一，2周二
+     */
+    public static int countCurrentDay(int pushDay){
+
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK)+6)%7;
+        if (dayOfWeek == 0){
+            dayOfWeek = 7;
+        }
+        return (dayOfWeek + pushDay)%7;
     }
 
 }

@@ -41,11 +41,8 @@
             android:name=".module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity android:name=".module.swzl.SwzlDetailActivity">
-        </activity>
-
-
-
+        <activity android:name=".module.swzl.SwzlDetailActivity"></activity>
+        <activity android:name=".module.course_list.CourseListActivity"></activity>
     </application>
 
 </manifest>

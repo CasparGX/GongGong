@@ -17,8 +17,7 @@
         android:background="@color/color_0176da"
         android:layout_height="wrap_content"
         toolbar:title="@string/swzl_title"
-        toolbar:titleTextColor="@color/white"
-        >
+        toolbar:titleTextColor="@color/white">
 
     </android.support.v7.widget.Toolbar>
 

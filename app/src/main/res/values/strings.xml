@@ -122,4 +122,7 @@
     <string name="article_item_acttime">举行时间</string>
 
 
+    <!--course list  -->
+    <string name="course_list_today">今日课程表</string>
+
 </resources>

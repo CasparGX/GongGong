@@ -42,7 +42,6 @@ public class SwzlSearchPresenter {
     public void getSearchResult(int actionCode){
 
 
-
         Call<SwzlSearchResult> resultCall;
         if (actionCode==0) {
             Log.d("action:",actionCode+"");
