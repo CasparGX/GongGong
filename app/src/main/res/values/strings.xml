@@ -50,6 +50,9 @@
     <string name="xingxiang">兴湘</string>
     <string name="search">查找</string>
 
+    <!--查成绩-->
+    <string name="grade">查成绩</string>
+
     <!-- Menu Text-->
 
     <string name="top_index">首页</string>

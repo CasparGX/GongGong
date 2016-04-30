@@ -11,8 +11,10 @@ import android.widget.Button;
 
 import com.sky31.gonggong.R;
 
-import com.sky31.gonggong.module.article.list.ArticleListActivity;
 import com.sky31.gonggong.module.course_list.CourseListActivity;
+
+import com.sky31.gonggong.module.grade.GradeActivity;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +31,8 @@ public class SecondFragment extends Fragment {
 
     @Bind(R.id.openNews)
     Button btnNews;
+    @Bind(R.id.btn_grade)
+    Button btnGrade;
 
     public SecondFragment() {
         // Required empty public constructor
@@ -54,10 +58,17 @@ public class SecondFragment extends Fragment {
     }
 
     @OnClick(R.id.openNews)
-    void onClickOpenNewsList(){
+    void onClickOpenNewsList() {
         Intent intent = new Intent();
 
         intent.setClass(getActivity(), CourseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_grade)
+    void onClickBtnGrade() {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), GradeActivity.class);
         startActivity(intent);
     }
 

@@ -41,12 +41,12 @@ public interface ApiService {
     Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.NAME) String name, @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
 
     //获取节假日信息
-
     @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_NEXT)
     Call<HolidayNextModel> getHolidayNext();
 
     @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
     Call<HolidayAllModel> getHolidayAll();
+
 
 
     //课表请求。
@@ -56,4 +56,10 @@ public interface ApiService {
     //查询当前第几周。
     @GET(Constants.Api.CURRENT_WEEK+"?"+defaultParam)
     Call<CurrentWeekModel> getCurrentWeek();
+
+    //成绩报表
+    @GET(Constants.Api.GRADE_REPORT + "?" + defaultParam)
+    Call<GradeReportModel> getGradeReport(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
+
 }

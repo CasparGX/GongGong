@@ -41,8 +41,14 @@
             android:name=".module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
+
         <activity android:name=".module.swzl.SwzlDetailActivity" />
         <activity android:name=".module.course_list.CourseListActivity" />
+
+        <activity
+            android:name=".module.grade.GradeActivity"
+            android:label="@string/grade"></activity>
+
     </application>
 
 </manifest>
