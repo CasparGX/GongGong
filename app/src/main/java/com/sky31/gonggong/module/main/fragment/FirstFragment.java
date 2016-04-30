@@ -22,10 +22,12 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CourseListModel;
 import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.model.HolidayNextModel;
+import com.sky31.gonggong.module.course_list.CourseListRequestProxy;
 import com.sky31.gonggong.module.course_list.CourseListView;
 import com.sky31.gonggong.module.course_list.CoursePresent;
 import com.sky31.gonggong.module.course_list.CurrentCourseItemFragment;
 import com.sky31.gonggong.module.current_week.CurrentWeekPresent;
+import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
 import com.sky31.gonggong.module.holiday.HolidayPresenter;
 import com.sky31.gonggong.module.holiday.HolidayView;
@@ -122,7 +124,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     private void initCurrentCourse(){
 
         courseListModel = new CourseListModel();
-        if (aCache.getAsString(Constants.Key.COURSE_LIST)!=null){
+        if (aCache.getAsJSONObject(Constants.Key.COURSE_LIST)!=null){
             Gson gson = new Gson();
 
             List<List<CourseListModel.DataBean>> dataList = gson.fromJson(
@@ -136,21 +138,14 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
 
         }
         else {
-            if (aCache.getAsString(Constants.Key.SID)!=null
-                    && aCache.getAsString(Constants.Key.PASSWORD)!=null) {
-                Map<String,String> map = new HashMap<>();
-                map.put("style","3");
-                map.put(Constants.Key.SID,aCache.getAsString(Constants.Key.SID));
-                map.put(Constants.Key.PASSWORD,aCache.getAsString(Constants.Key.PASSWORD));
-                CoursePresent present = new CoursePresent(this, getContext());
-                present.getCourseList(map);
-                CurrentWeekPresent weekPresent = new CurrentWeekPresent(this,getContext());
-                weekPresent.requestServer();
 
-            }
-            else {
-                Toast.makeText(getContext(),"请先登陆",Toast.LENGTH_SHORT).show();
-            }
+            //设置代理请求模式。
+            CourseListRequestProxy proxy = new CourseListRequestProxy(getContext(),this);
+            proxy.setReauestProxy();
+
+
+
+
 
         }
 
@@ -201,6 +196,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
                 new CurrentCoursePageAdapter(getActivity().getSupportFragmentManager(),fragmentList);
 
         currentCoursePager.setAdapter(adapter);
+
 
     }
 
@@ -282,6 +278,8 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
         if (code==0){
             courseListModel = courseList;
             courseListModel.setCache();
+            CurrentWeekProxy weekProxy = new CurrentWeekProxy(getContext(),this);
+            weekProxy.setRequestProxy();
         }
         else {
             CommonFunction.errorToast(getContext(),code);
@@ -300,7 +298,10 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
 
         if (code==0){
             currentWeek = model.getData().getWeek();
-            getCurrentCourse(courseListModel.getData());
+            if (courseListModel.getData()!=null){
+                getCurrentCourse(courseListModel.getData());
+            }
+
         }
         else {
             CommonFunction.errorToast(getContext(),code);

@@ -76,10 +76,10 @@ public class CurrentCourseItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_curren_course_item, container, false);
+
         ButterKnife.bind(this, view);
 
         initItemViews();
-
         return view;
     }
 
@@ -108,6 +108,8 @@ public class CurrentCourseItemFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

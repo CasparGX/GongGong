@@ -124,5 +124,8 @@
 
     <!--course list  -->
     <string name="course_list_today">今日课程表</string>
+    <string name="title_activity_course_week_selector">CourseWeekSelectorActivity</string>
 
+    <!--week selector -->
+    <string name="week_select_title">选择周数</string>
 </resources>

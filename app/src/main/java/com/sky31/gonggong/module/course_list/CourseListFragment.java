@@ -1,34 +1,68 @@
 package com.sky31.gonggong.module.course_list;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.config.CommonFunction;
+import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.model.CourseListModel;
+import com.sky31.gonggong.model.CurrentWeekModel;
+import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.module.current_week.CurrentWeekView;
+import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
+import com.sky31.gonggong.widget.ListViewWithoutScroll;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CourseListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link CourseListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CourseListFragment extends Fragment {
+public class CourseListFragment extends Fragment implements CourseListView, CurrentWeekView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    //private static final String ARG_PARAM2 = "param2";
+
+    @Bind(R.id.course_list_timeline)
+    ListViewWithoutScroll courseListTimeline;
+    @Bind(R.id.course_list_content)
+    LinearLayout courseListContent;
+
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private CourseListModel courseList;
+    private int currentWeek = 0;
+
+    List<TextView> textViewList;
+
+    private List<ListViewWithoutScroll> listViewWithoutScrolls;
+    //private WindowManager manager = null;
 
     public CourseListFragment() {
         // Required empty public constructor
@@ -38,16 +72,14 @@ public class CourseListFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment CourseListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CourseListFragment newInstance(String param1, String param2) {
+    public static CourseListFragment newInstance(int currentWeek) {
+
         CourseListFragment fragment = new CourseListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, currentWeek);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,8 +88,8 @@ public class CourseListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            currentWeek = getArguments().getInt(ARG_PARAM1);
+            Debug.i("currentWeek", currentWeek + "");
         }
     }
 
@@ -65,45 +97,199 @@ public class CourseListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course_list, container, false);
+        //manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+
+        View fragmentView = inflater.inflate(R.layout.fragment_course_list, container, false);
+        //fragmentView.invalidate();
+        ButterKnife.bind(this, fragmentView);
+
+        initData();
+        //initView();
+        //manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Log.e("Fragment", "log!!!");
+        //getFragmentManager().beginTransaction().add(this,"ssh").commit();
+        return fragmentView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    public void onResume() {
+
+        super.onResume();
+        //initData();
+    }
+
+    /***
+     * 加载列表
+     */
+    private void initView() {
+
+        List<CourseListModel.DataBean> dataBeen = new ArrayList<>();
+
+        for (List<CourseListModel.DataBean> dataBeanList : courseList.getData()) {
+            for (CourseListModel.DataBean bean : dataBeanList) {
+
+                if (bean.getWeek().contains(currentWeek + "")) {
+                    dataBeen.add(bean);
+                }
+
+            }
+        }
+
+        List<TextView> textViewList = drawTextViewsByCourse(dataBeen);
+        Log.e("count", courseListContent.getChildCount() + "");
+        for (int i = 0; i < textViewList.size(); i++) {
+            courseListContent.addView(textViewList.get(i));
+
+            //courseListContent.updateViewLayout(textViewList.get(i),textViewList.get(i).getLayoutParams());
+            Log.e("text-content", i + "");
+        }
+        Log.e("count", courseListContent.getChildCount() + "");
+        courseListContent.refreshDrawableState();
+        courseListContent.requestLayout();
+        courseListContent.invalidate();
+
+        //courseListContent.updateViewLayout(courseListContent,courseListContent.getLayoutParams());
+    }
+
+
+    //private  List<Integer>
+
+    private List<TextView> drawTextViewsByCourse(List<CourseListModel.DataBean> dataBeen) {
+        textViewList = new ArrayList<>();
+        //设置每个格子宽度。
+        List<Integer> integers = new ArrayList<>();
+
+        int width = courseListContent.getWidth() / 7;
+        int height = (int) CommonFunction.convertDpToPixel(68, getContext());
+        int len = dataBeen.size();
+        for (int i = 0; i < len; i++) {
+
+            CourseListModel.DataBean bean = dataBeen.get(i);
+
+            int x = Integer.parseInt(bean.getSection_start());
+            int y = Integer.parseInt(bean.getSection_end());
+            int day = Integer.parseInt(bean.getDay());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height * (y - x + 1));
+
+            //params.setMargins((day - 1) * width, (int) ((x - 1) * CommonFunction.convertDpToPixel(68, getContext())), 0, 0);
+
+            TextView textView = new TextView(getContext());
+            textView.setLayoutParams(params);
+            textView.setPadding(1, 1, 1, 1);
+
+            //textView.setBackground(getResources().getDrawable(R.drawable.ic_course_bg_bohelv));
+            textView.setBackgroundColor(Color.BLACK);
+            textView.setAlpha(0.5f);
+            textView.setTextSize(getResources().getDimension(R.dimen.course_list_item_fontsize));
+            textView.setTextColor(Color.WHITE);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setVisibility(View.VISIBLE);
+
+            textView.setText(bean.getCourse() + "#" + bean.getLocation());
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "呵呵呵", Toast.LENGTH_SHORT).show();
+                }
+            });
+            //textView.setY((int) );
+            textView.invalidate();
+
+            textViewList.add(textView);
+        }
+
+        return textViewList;
+
+    }
+
+    /****
+     * 首先获取课表数据，再根据周数加载视图。
+     */
+    private void initData() {
+        courseList = new CourseListModel();
+        ACache aCache = UserModel.getaCache();
+
+        //CurrentWeekProxy
+        if (aCache.getAsString(Constants.Key.COURSE_LIST) != null) {
+            Gson gson = new Gson();
+            Log.w("Course_list", aCache.getAsString(Constants.Key.COURSE_LIST));
+            List<List<CourseListModel.DataBean>> dataList = gson.fromJson(
+                    aCache.getAsString(Constants.Key.COURSE_LIST),
+                    new TypeToken<List<List<CourseListModel.DataBean>>>() {
+                    }.getType());
+
+            courseList.setData(dataList);
+            //View view = LayoutInflater.from(getContext()).inflate(R.layout.course_list_timeline_header, null);
+            //courseListTimeline.addHeaderView(view);
+            CourseTimeHeaderAdapter adapter = new CourseTimeHeaderAdapter(getContext());
+            courseListTimeline.setAdapter(adapter);
+            initView();
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            CourseListRequestProxy requestProxy = new CourseListRequestProxy(getContext(), this);
+            requestProxy.setReauestProxy();
         }
     }
+
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public CourseListModel courseList(CourseListModel courseList, int code) {
+        if (code == 0) {
+            this.courseList = courseList;
+            courseList.setCache();
+            initView();
+        } else {
+            CommonFunction.errorToast(getContext(), code);
+        }
+
+        return courseList;
     }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void currentWeek(CurrentWeekModel model, int code) {
+
+    }
+
+
+//    public void resetWeek(int week){
+//
+//        currentWeek = week;
+//
+//
+//
+//        Log.d("linearlayout:",courseListContent.getChildCount()+"");
+//        //清除当前layout节点下所有子元素。
+//        for (TextView textView : textViewList){
+//
+//            courseListContent.removeView(textView);
+//
+//        }
+//
+//        textViewList = null;
+//        courseListContent.removeAllViewsInLayout();
+//        courseListContent.invalidate();
+//        courseListContent.requestLayout();
+//        //ViewParent parent = courseListContent.getParent();
+//        //parent.requestLayout();
+//        Log.d("linearlayout:",courseListContent.getChildCount()+"");
+//        //courseListContent.removeAllViews();
+//        //courseListContent.getParent().in
+//        initData();
+//        initView();
+//
+//    }
+
 }

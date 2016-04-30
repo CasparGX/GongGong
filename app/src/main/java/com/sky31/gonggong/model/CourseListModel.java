@@ -19,6 +19,7 @@ public class CourseListModel implements Serializable {
 
     private int code;
     private String msg;
+
     /**
      * course : 数据库原理
      * location : 逸夫楼-310
@@ -58,6 +59,8 @@ public class CourseListModel implements Serializable {
         this.msg = msg;
     }
 
+
+
     public List<List<DataBean>> getData() {
         return data;
     }
@@ -75,6 +78,15 @@ public class CourseListModel implements Serializable {
         private String day;
         private String section_start;
         private String section_end;
+        private int flag;
+
+        public int getFlag() {
+            return flag;
+        }
+
+        public void setFlag(int flag) {
+            this.flag = flag;
+        }
 
         public String getCourse() {
             return course;
