@@ -58,7 +58,7 @@ public class GradeActivity extends BaseActivity {
         //TabLayout
         tabLayoutGrade.setTabTextColors(getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.white));
         tabLayoutGrade.setupWithViewPager(vpGrade);
-        tabLayoutGrade.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayoutGrade.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
