@@ -9,8 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -107,7 +106,7 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
         //initView();
         //manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Log.e("Fragment", "log!!!");
-        //getFragmentManager().beginTransaction().add(this,"ssh").commit();
+
         return fragmentView;
     }
 
@@ -142,11 +141,10 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
             courseListContent.addView(textViewList.get(i));
 
             //courseListContent.updateViewLayout(textViewList.get(i),textViewList.get(i).getLayoutParams());
-            Log.e("text-content", i + "");
+            Log.d("text-content", i + "");
         }
         Log.e("count", courseListContent.getChildCount() + "");
-        courseListContent.refreshDrawableState();
-        courseListContent.requestLayout();
+
         courseListContent.invalidate();
 
         //courseListContent.updateViewLayout(courseListContent,courseListContent.getLayoutParams());
@@ -158,7 +156,7 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
     private List<TextView> drawTextViewsByCourse(List<CourseListModel.DataBean> dataBeen) {
         textViewList = new ArrayList<>();
         //设置每个格子宽度。
-        List<Integer> integers = new ArrayList<>();
+       // List<Integer> integers = new ArrayList<>();
 
         int width = courseListContent.getWidth() / 7;
         int height = (int) CommonFunction.convertDpToPixel(68, getContext());

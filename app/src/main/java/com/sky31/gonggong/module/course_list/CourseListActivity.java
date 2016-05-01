@@ -136,6 +136,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
 
     }
 
+
+    //请求当前为第X周
     private void initData(){
         CurrentWeekProxy proxy = new CurrentWeekProxy(this,this);
         proxy.setRequestProxy();
@@ -183,22 +185,24 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
     @Override
     public CourseListModel courseList(CourseListModel courseList, int code) {
 
-        if (code == 0) {
-            for (List<CourseListModel.DataBean> listModels : courseList.getData()) {
-
-                for (CourseListModel.DataBean data : listModels) {
-
-                    Log.d("list", data.getWeek());
-                    Log.d("list", data.getCourse());
-
-                }
-            }
-        } else {
-            CommonFunction.errorToast(CourseListActivity.this, code);
-        }
+//        if (code == 0) {
+//            for (List<CourseListModel.DataBean> listModels : courseList.getData()) {
+//
+//                for (CourseListModel.DataBean data : listModels) {
+//
+//                    Log.d("list", data.getWeek());
+//                    Log.d("list", data.getCourse());
+//
+//                }
+//            }
+//        } else {
+//            CommonFunction.errorToast(CourseListActivity.this, code);
+//        }
         return courseList;
     }
 
+
+    //回调借口。即请求完成后执行fragment加载。当前课表。
     @Override
     public void currentWeek(CurrentWeekModel model, int code) {
 
