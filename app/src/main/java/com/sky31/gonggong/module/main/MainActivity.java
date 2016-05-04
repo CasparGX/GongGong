@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rey.material.widget.Button;
+import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.CommonFunction;
@@ -71,6 +72,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public static MainActivity instance;
     private static ACache aCache;
     private static View inputPasswordPopupwindowContentView;
+    @Bind(R.id.pv_refresh)
+    ProgressView pvRefresh;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.pager)
@@ -129,6 +132,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     NavigationView drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
+
 
     /* 变量 */
     private ActionBarDrawerToggle mDrawerToggle;
@@ -210,7 +214,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             //跳转图书馆信息Activity
             Intent intent = new Intent();
             intent.setClass(context, LibraryActivity.class);
-            startActivityForResult(intent,Constants.Value.RESULT_LIBRARY);
+            startActivityForResult(intent, Constants.Value.RESULT_LIBRARY);
         } else {
             //没有图书馆密码，先输入密码
             final InputPassPopupwindow inputPassPopupwindow = new InputPassPopupwindow(inputPasswordPopupwindowContentView, header.getWidth() - 200, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -467,8 +471,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 break;
             case Constants.Value.RESULT_LIBRARY:
                 if (resultCode == RESULT_OK) {
-                    getLibraryRentLsit(0,null);
-                    onGetLibraryReaderInfo(0,null);
+                    getLibraryRentLsit(0, null);
+                    onGetLibraryReaderInfo(0, null);
                 }
                 break;
         }

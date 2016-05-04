@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:configChanges="orientation|keyboardHidden"
             android:name=".module.main.MainActivity"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>

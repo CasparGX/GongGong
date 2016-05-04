@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -33,6 +34,9 @@ public class BaseActivity extends AppCompatActivity {
         // No Titlebar
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //禁止横屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
