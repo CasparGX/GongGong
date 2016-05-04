@@ -19,294 +19,338 @@
             layout="@layout/include_toolbar" />
 
 
-            <RelativeLayout
-                android:id="@+id/home_layout"
+        <RelativeLayout
+            android:id="@+id/home_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+            </android.support.v4.view.ViewPager>
 
-                </android.support.v4.view.ViewPager>
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/header"
+                    android:id="@+id/header_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/header_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:id="@+id/header_avatar"
+                        android:layout_width="@dimen/avatar_bg_size"
+                        android:layout_height="@dimen/avatar_bg_size"
+                        android:layout_gravity="center">
 
-                        <LinearLayout
-                            android:id="@+id/header_avatar"
-                            android:layout_width="@dimen/avatar_bg_size"
-                            android:layout_height="@dimen/avatar_bg_size"
-                            android:layout_gravity="center">
-
-                            <include layout="@layout/include_user_avatar" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/interval_10"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/username"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/interval_10"
-                                android:text="@string/default_username"
-                                android:textColor="@color/white" />
-
-                            <TextView
-                                android:id="@+id/stu_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/interval_10"
-                                android:text="@string/default_username"
-                                android:textColor="@color/white"
-                                android:visibility="gone" />
-
-
-                            <com.rey.material.widget.Button
-                                android:id="@+id/btn_login"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/dp_36"
-                                android:layout_gravity="right"
-                                android:layout_margin="@dimen/interval_10"
-                                android:background="@drawable/btn_default"
-                                android:text="@string/login"
-                                android:textColor="@color/white"
-                                app:rd_enable="true" />
-
-                        </LinearLayout>
+                        <include layout="@layout/include_user_avatar" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/header_info"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/interval_10"
                         android:orientation="vertical">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/colorPrimaryDark" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="@dimen/interval_10"
+                            android:text="@string/default_username"
+                            android:textColor="@color/white" />
 
-                            <LinearLayout
-                                android:id="@+id/ecard"
-                                style="@style/HeaderInfoLayout"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/stu_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/interval_10"
+                            android:text="@string/default_username"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
-                                <TextView
-                                    style="@style/HeaderInfoTitle"
-                                    android:text="@string/ecard" />
 
-                                <!--<TextView
-                                    android:id="@+id/ecard_none"
-                                    style="@style/HeaderInfoTitle"
-                                    android:text="@string/click_get" />-->
-
-                                <LinearLayout
-                                    android:id="@+id/ecard_info"
-                                    style="@style/HeaderInfoInnerLayout"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/balance" />
-
-                                        <TextView
-                                            android:id="@+id/ecard_balance"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-
-                                        <ProgressBar
-                                            android:id="@+id/pb_ecard_balance"
-                                            android:layout_width="18sp"
-                                            android:layout_height="18sp"
-                                            android:visibility="gone" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/unclaimed" />
-
-                                        <TextView
-                                            android:id="@+id/ecard_unclaimed"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-
-                                        <ProgressBar
-                                            android:id="@+id/pb_ecard_unclaimed"
-                                            android:layout_width="18sp"
-                                            android:layout_height="18sp"
-                                            android:visibility="gone" />
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="1px"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="@dimen/interval_5"
-                                android:layout_marginTop="@dimen/interval_5"
-                                android:background="@color/colorPrimaryDark" />
-
-                            <LinearLayout
-                                android:id="@+id/library"
-                                style="@style/HeaderInfoLayout"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/HeaderInfoTitle"
-                                    android:text="@string/library" />
-
-                                <LinearLayout
-                                    android:id="@+id/library_info"
-                                    style="@style/HeaderInfoInnerLayout"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/library_debt" />
-
-                                        <TextView
-                                            android:id="@+id/library_debt"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/library_rent" />
-
-                                        <TextView
-                                            android:id="@+id/library_rent_num"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="1px"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="@dimen/interval_5"
-                                android:layout_marginTop="@dimen/interval_5"
-                                android:background="@color/colorPrimaryDark" />
-
-                            <LinearLayout
-                                android:id="@+id/xtu_net"
-                                style="@style/HeaderInfoLayout"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/HeaderInfoTitle"
-                                    android:text="@string/xtu_network" />
-
-                                <LinearLayout
-                                    android:id="@+id/xtu_network_info"
-                                    style="@style/HeaderInfoInnerLayout"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/xtu_network_status" />
-
-                                        <TextView
-                                            android:id="@+id/xtu_network_status"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/xtu_network_balance" />
-
-                                        <TextView
-                                            android:id="@+id/xtu_network_balance"
-                                            style="@style/HeaderInfoContent"
-                                            android:text="@string/default_money" />
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
+                        <com.rey.material.widget.Button
+                            android:id="@+id/btn_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp_36"
+                            android:layout_gravity="right"
+                            android:layout_margin="@dimen/interval_10"
+                            android:background="@drawable/btn_default"
+                            android:text="@string/login"
+                            android:textColor="@color/white"
+                            app:rd_enable="true" />
 
                     </LinearLayout>
                 </LinearLayout>
 
-                <!--shadow-->
-                <View
+                <LinearLayout
+                    android:id="@+id/header_info"
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/header"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/shadow" />
-            </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/colorPrimaryDark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ecard"
+                            style="@style/HeaderInfoLayout"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/HeaderInfoTitle"
+                                android:text="@string/ecard" />
+
+                            <!--<TextView
+                                android:id="@+id/ecard_none"
+                                style="@style/HeaderInfoTitle"
+                                android:text="@string/click_get" />-->
+
+                            <LinearLayout
+                                android:id="@+id/ecard_info"
+                                style="@style/HeaderInfoInnerLayout"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/balance" />
+
+                                    <TextView
+                                        android:id="@+id/ecard_balance"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+
+                                    <ProgressBar
+                                        android:id="@+id/pb_ecard_balance"
+                                        android:layout_width="18sp"
+                                        android:layout_height="18sp"
+                                        android:visibility="gone" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/unclaimed" />
+
+                                    <TextView
+                                        android:id="@+id/ecard_unclaimed"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+
+                                    <ProgressBar
+                                        android:id="@+id/pb_ecard_unclaimed"
+                                        android:layout_width="18sp"
+                                        android:layout_height="18sp"
+                                        android:visibility="gone" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/interval_5"
+                            android:layout_marginTop="@dimen/interval_5"
+                            android:background="@color/colorPrimaryDark" />
+
+                        <LinearLayout
+                            android:id="@+id/library"
+                            style="@style/HeaderInfoLayout"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/HeaderInfoTitle"
+                                android:text="@string/library" />
+
+                            <LinearLayout
+                                android:id="@+id/library_info"
+                                style="@style/HeaderInfoInnerLayout"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/library_debt" />
+
+                                    <TextView
+                                        android:id="@+id/library_debt"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/library_rent" />
+
+                                    <TextView
+                                        android:id="@+id/library_rent_num"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/interval_5"
+                            android:layout_marginTop="@dimen/interval_5"
+                            android:background="@color/colorPrimaryDark" />
+
+                        <LinearLayout
+                            android:id="@+id/xtu_net"
+                            style="@style/HeaderInfoLayout"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/HeaderInfoTitle"
+                                android:text="@string/xtu_network" />
+
+                            <LinearLayout
+                                android:id="@+id/xtu_network_info"
+                                style="@style/HeaderInfoInnerLayout"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/xtu_network_status" />
+
+                                    <TextView
+                                        android:id="@+id/xtu_network_status"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/xtu_network_balance" />
+
+                                    <TextView
+                                        android:id="@+id/xtu_network_balance"
+                                        style="@style/HeaderInfoContent"
+                                        android:text="@string/default_money" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--shadow-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/header"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shadow" />
+        </RelativeLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white">
+            android:background="@color/colorPrimary">
+            <!--
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_tab_triangle" />-->
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout style="@style/MainNavItemLayout">
+
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        style="@style/MainNavItemImg" />
+
+                    <TextView
+                        android:text="个人中心"
+                        style="@style/MainNavItemText" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/MainNavItemLayout">
+
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        style="@style/MainNavItemImg" />
+
+                    <TextView
+                        android:text="个人中心"
+                        style="@style/MainNavItemText" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/MainNavItemLayout">
+
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        style="@style/MainNavItemImg" />
+
+                    <TextView
+                        android:text="个人中心"
+                        style="@style/MainNavItemText" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
