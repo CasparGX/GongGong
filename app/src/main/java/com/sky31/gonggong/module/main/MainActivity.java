@@ -56,6 +56,7 @@ import com.sky31.gonggong.module.main.fragment.InformationFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
@@ -156,6 +157,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private Context context;
     private Resources resources;
     private float defualtTextSize;
+    private ScaleAnimation showAnimation;
+    private ScaleAnimation hiddenAnimation;
 
     //头像被点击
     @OnClick(R.id.header_avatar)
@@ -380,6 +383,18 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         float scale = resources.getDisplayMetrics().density;
         defualtTextSize = username.getTextSize() / scale;
 
+        showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f);
+        showAnimation.setDuration(500);
+        hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f);
+        showAnimation.setDuration(500);
+        //bottom nav text
+        tvPerson.setTextSize(defualtTextSize);
+        tvFunction.setTextSize(defualtTextSize);
+        tvInformation.setTextSize(defualtTextSize);
+        tvPerson.setVisibility(View.GONE);
+        tvFunction.setVisibility(View.GONE);
+        tvInformation.setVisibility(View.GONE);
+
         //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
         HomeViewPagerAdapter mAdpater = new HomeViewPagerAdapter(getSupportFragmentManager(), mDatas);
@@ -387,23 +402,24 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
                 if (mCurrentPageIndex == 0 && position == 0) { //0->1
                     onChangeHeaderHeight(positionOffset);
-                    onChangeNavText(1, positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
-                    onChangeNavText(2, positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
 
-                    onChangeNavText(3, positionOffset);
                 } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
 
-                    onChangeNavText(4, positionOffset);
                 }
             }
 
             @Override
             public void onPageSelected(int position) {
+                if (mCurrentPageIndex != position) {
+                    onChangeNavText(mCurrentPageIndex, position);
+                }
                 mCurrentPageIndex = position;
             }
 
@@ -415,40 +431,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     /* 改变底部导航 */
-    public void onChangeNavText(int a, float positionOffset) {
-        ScaleAnimation showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f);
-        showAnimation.setDuration(500);
-        ScaleAnimation hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, -.5f, 0.5f);
-        showAnimation.setDuration(500);
-        tvPerson.setTextSize(defualtTextSize);
-        tvFunction.setTextSize(defualtTextSize);
-        switch (a) {
-            case 1:
-                tvPerson.setAnimation(hiddenAnimation);
-                tvFunction.setAnimation(showAnimation);
+    public void onChangeNavText(int mCurrentPageIndex, int position) {
+        List<TextView> mTextViewList = new ArrayList<>();
+        mTextViewList.add(tvPerson);
+        mTextViewList.add(tvFunction);
+        mTextViewList.add(tvInformation);
+        mTextViewList.get(mCurrentPageIndex).startAnimation(hiddenAnimation);
+        mTextViewList.get(mCurrentPageIndex).setVisibility(View.GONE);
+        mTextViewList.get(position).startAnimation(showAnimation);
+        mTextViewList.get(position).setVisibility(View.VISIBLE);
 
-                //tvPerson.setTextSize(defualtTextSize * (1 - positionOffset));
-                //tvFunction.setTextSize(defualtTextSize * positionOffset);
-                break;
-
-            case 2:
-                tvFunction.setAnimation(hiddenAnimation);
-                tvPerson.setAnimation(showAnimation);
-                //tvFunction.setTextSize(defualtTextSize * positionOffset);
-                //tvPerson.setTextSize(defualtTextSize * (1 - positionOffset));
-                break;
-
-            case 3:
-                tvFunction.setTextSize(defualtTextSize * (1 - positionOffset));
-                tvInformation.setTextSize(defualtTextSize * positionOffset);
-                break;
-
-            case 4:
-                tvInformation.setTextSize(defualtTextSize * positionOffset);
-                tvFunction.setTextSize(defualtTextSize * (1 - positionOffset));
-                break;
-
-        }
     }
 
     /**
