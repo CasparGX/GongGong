@@ -3,6 +3,7 @@ package com.sky31.gonggong.module.main;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.SpannableString;
 
 import java.util.List;
 
@@ -12,10 +13,15 @@ import java.util.List;
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mDatas;
+    private String titles[] = null;
 
     public HomeViewPagerAdapter(FragmentManager fragmentManager, List<Fragment> mDatas) {
         super(fragmentManager);
         this.mDatas = mDatas;
+    }
+
+    public void setTitles(String[] titles) {
+        this.titles = titles.clone();
     }
 
     @Override
@@ -26,5 +32,15 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mDatas.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        if (titles != null) {
+            SpannableString sb = new SpannableString(titles[position]);
+            return sb;
+        } else {
+            return super.getPageTitle(position);
+        }
     }
 }

@@ -62,4 +62,9 @@ public interface ApiService {
     Call<GradeReportModel> getGradeReport(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 
+    //成绩祥单
+    @GET(Constants.Api.GRADE_DETAILS + "?" + defaultParam)
+    Call<GradeDetailsModel> getGradeDetails(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
+
 }

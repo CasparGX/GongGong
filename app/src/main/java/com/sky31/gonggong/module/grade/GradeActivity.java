@@ -52,10 +52,13 @@ public class GradeActivity extends BaseActivity {
         //ViewPager
         vpGrade.setOffscreenPageLimit(mFragmentList.size());
         HomeViewPagerAdapter mAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
+        String titles[] = new String[]{"成绩报表", "成绩祥单", "绩点排名"};
+        mAdapter.setTitles(titles);
         vpGrade.setAdapter(mAdapter);
         //TabLayout
+        tabLayoutGrade.setTabTextColors(getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.white));
         tabLayoutGrade.setupWithViewPager(vpGrade);
-        tabLayoutGrade.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayoutGrade.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
