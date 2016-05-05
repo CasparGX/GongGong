@@ -27,35 +27,33 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
     @Bind(R.id.article_listview)
     ListView articleListview;
 
+
     ArticleListAdapter listAdapter;
 
     private ArticleListModel model;
-    public ArticleListActivityFragment() {
+
+    private String initTitle;
+    private  ArticleListQuery query;
+
+    public ArticleListActivityFragment(String title) {
+
+        initTitle = title;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        //int w = 'x'-'y';
         View view = inflater.inflate(R.layout.fragment_article_list, container, false);
         ButterKnife.bind(this, view);
 
+        query = new ArticleListQuery();
         initData();
 
         //listAdapter = new ArticleListAdapter(getActivity(),model);
 
-        articleListview.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });
 
 
         return view;
@@ -63,8 +61,7 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
 
     private void initData() {
 
-        ArticleListQuery query = new ArticleListQuery();
-        query.setCatname("活动日历");
+        query.setCatname(initTitle);
         query.setLimit(50);
         query.setCheckID(0);
         query.setCo("act_time");

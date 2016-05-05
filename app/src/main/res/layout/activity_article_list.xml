@@ -13,7 +13,9 @@
         android:background="@color/color_0176da"
         toolbar:navigationIcon="@drawable/ic_arrow_back"
         toolbar:title="@string/article_info_title"
-        toolbar:titleTextColor="@color/white">
+        toolbar:titleTextColor="@color/white"
+        android:id="@+id/article_list_toolbar"
+        >
 
 
     </android.support.v7.widget.Toolbar>
@@ -31,17 +33,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textColor="@color/white"
-            android:id="@+id/activity_calender"
-            android:text=""
-            android:textSize="18sp" />
+            android:id="@+id/article_list_calender"
+
+            android:text="@string/article_info_calender"
+            android:gravity="center"
+            android:textSize="@dimen/viewpager_title_default" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textColor="@color/white"
-            android:id="@+id/activity_info"
-            android:textSize="18sp" />
+            android:text="@string/article_info_school"
+            android:id="@+id/article_list_info"
+            android:gravity="center"
+            android:textSize="@dimen/viewpager_title_default" />
 
 
     </LinearLayout>
@@ -76,16 +82,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:id="@+id/article_viewpager"
         >
 
     </android.support.v4.view.ViewPager>
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.sky31.gonggong.module.article.list.ArticleListActivityFragment"
-        tools:layout="@layout/fragment_article_list"
-        android:id="@+id/article_list">
 
-    </fragment>
 
 </LinearLayout>

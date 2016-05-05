@@ -47,6 +47,11 @@
 
     <dimen name="fab_size_normal">100dp</dimen>
     <dimen name="fab_size_mini">150dp</dimen>
+
+
+
+    <dimen name="viewpager_title_default">14sp</dimen>
+
     <!-- SWZL item  -->
 
     <dimen name="swzl_item_thing_title">15sp</dimen>
