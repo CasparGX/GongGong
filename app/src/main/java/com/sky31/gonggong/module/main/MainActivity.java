@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +52,7 @@ import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginActivity;
 import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.module.main.fragment.FirstFragment;
+import com.sky31.gonggong.module.main.fragment.InformationFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
@@ -132,6 +134,18 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     NavigationView drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
+    @Bind(R.id.tv_person)
+    TextView tvPerson;
+    @Bind(R.id.layout_person)
+    LinearLayout layoutPerson;
+    @Bind(R.id.tv_function)
+    TextView tvFunction;
+    @Bind(R.id.layout_function)
+    LinearLayout layoutFunction;
+    @Bind(R.id.tv_information)
+    TextView tvInformation;
+    @Bind(R.id.layout_information)
+    LinearLayout layoutInformation;
 
 
     /* 变量 */
@@ -141,6 +155,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int homeLayoutHeight = -1;
     private Context context;
     private Resources resources;
+    private float defualtTextSize;
 
     //头像被点击
     @OnClick(R.id.header_avatar)
@@ -356,8 +371,14 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         List<Fragment> mDatas = new ArrayList<Fragment>();
         final FirstFragment mFirstFragment = new FirstFragment();
         SecondFragment mSecondFragment = new SecondFragment();
+        InformationFragment mInformationFagment = new InformationFragment();
         mDatas.add(mFirstFragment);
         mDatas.add(mSecondFragment);
+        mDatas.add(mInformationFagment);
+
+        //从username view获取默认text大小
+        float scale = resources.getDisplayMetrics().density;
+        defualtTextSize = username.getTextSize() / scale;
 
         //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
@@ -368,8 +389,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (mCurrentPageIndex == 0 && position == 0) { //0->1
                     onChangeHeaderHeight(positionOffset);
+                    onChangeNavText(1, positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
+                    onChangeNavText(2, positionOffset);
+                } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
+
+                    onChangeNavText(3, positionOffset);
+                } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
+
+                    onChangeNavText(4, positionOffset);
                 }
             }
 
@@ -383,6 +412,43 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
             }
         });
+    }
+
+    /* 改变底部导航 */
+    public void onChangeNavText(int a, float positionOffset) {
+        ScaleAnimation showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f);
+        showAnimation.setDuration(500);
+        ScaleAnimation hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, -.5f, 0.5f);
+        showAnimation.setDuration(500);
+        tvPerson.setTextSize(defualtTextSize);
+        tvFunction.setTextSize(defualtTextSize);
+        switch (a) {
+            case 1:
+                tvPerson.setAnimation(hiddenAnimation);
+                tvFunction.setAnimation(showAnimation);
+
+                //tvPerson.setTextSize(defualtTextSize * (1 - positionOffset));
+                //tvFunction.setTextSize(defualtTextSize * positionOffset);
+                break;
+
+            case 2:
+                tvFunction.setAnimation(hiddenAnimation);
+                tvPerson.setAnimation(showAnimation);
+                //tvFunction.setTextSize(defualtTextSize * positionOffset);
+                //tvPerson.setTextSize(defualtTextSize * (1 - positionOffset));
+                break;
+
+            case 3:
+                tvFunction.setTextSize(defualtTextSize * (1 - positionOffset));
+                tvInformation.setTextSize(defualtTextSize * positionOffset);
+                break;
+
+            case 4:
+                tvInformation.setTextSize(defualtTextSize * positionOffset);
+                tvFunction.setTextSize(defualtTextSize * (1 - positionOffset));
+                break;
+
+        }
     }
 
     /**

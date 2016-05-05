@@ -318,35 +318,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout style="@style/MainNavItemLayout">
+                <LinearLayout
+                    android:id="@+id/layout_person"
+                    style="@style/MainNavItemLayout">
 
                     <ImageView
                         android:src="@mipmap/ic_launcher"
                         style="@style/MainNavItemImg" />
 
                     <TextView
+                        android:id="@+id/tv_person"
                         android:text="个人中心"
                         style="@style/MainNavItemText" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/MainNavItemLayout">
+                <LinearLayout
+                    android:id="@+id/layout_function"
+                    style="@style/MainNavItemLayout">
 
                     <ImageView
                         android:src="@mipmap/ic_launcher"
                         style="@style/MainNavItemImg" />
 
                     <TextView
-                        android:text="个人中心"
+                        android:id="@+id/tv_function"
+                        android:text="功能大全"
                         style="@style/MainNavItemText" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/MainNavItemLayout">
+                <LinearLayout
+                    android:id="@+id/layout_information"
+                    style="@style/MainNavItemLayout">
 
                     <ImageView
                         android:src="@mipmap/ic_launcher"
                         style="@style/MainNavItemImg" />
 
                     <TextView
+                        android:id="@+id/tv_information"
                         android:text="个人中心"
                         style="@style/MainNavItemText" />
                 </LinearLayout>
