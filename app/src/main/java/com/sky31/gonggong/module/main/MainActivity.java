@@ -409,7 +409,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
-
+                    if (positionOffset == 0.0f) {
+                        onChangeHeaderHeight(1.0f);
+                    }
                 } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
 
                 }
