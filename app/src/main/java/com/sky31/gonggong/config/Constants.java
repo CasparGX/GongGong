@@ -56,6 +56,9 @@ public class Constants {
         //校友信息
         public static final String CARD = "card";
         public static final String TYPE = "type";
+        public static final String SERVER = "server";
+        public static final String SERVER_LOCAL = "local";
+        public static final String SERVER_REMOTE = "remote";
 
         //校园卡信息
         public static final String ECARD_ID = "ecard_id";
