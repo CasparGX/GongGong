@@ -103,8 +103,11 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
         aCache = ACache.get(getActivity());
         initViewData();
         initCurrentCourse();
+
         return view;
     }
+
+
 
     private void initViewData() {
 
@@ -116,6 +119,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
             holidayNextModel.setData(data);
             finishGetHolidayNext(holidayNextModel);
         } else {
+
 
 
         }

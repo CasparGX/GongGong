@@ -4,34 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
-=======
->>>>>>> 353f55d2ff75905a7e00d1b136879c571b793298
-    android:background="@color/color_ef"
-    android:orientation="vertical"
-    tools:context=".module.main.fragment.FirstFragment">
 
     <LinearLayout
         android:id="@+id/blank_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
+
         android:orientation="vertical">
 
     </LinearLayout>
 
-=======
-        android:orientation="vertical"></LinearLayout>
->>>>>>> 353f55d2ff75905a7e00d1b136879c571b793298
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-<<<<<<< HEAD
+
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/project_layout">
@@ -70,14 +60,13 @@
             android:id="@+id/current_course_pager">
 
         </android.support.v4.view.ViewPager>
-=======
-        android:layout_height="wrap_content">
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Project List" />
->>>>>>> 353f55d2ff75905a7e00d1b136879c571b793298
+
     </LinearLayout>
 
     <LinearLayout

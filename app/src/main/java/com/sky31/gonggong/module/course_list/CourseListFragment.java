@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,7 +61,7 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
 
     List<TextView> textViewList;
 
-    private List<ListViewWithoutScroll> listViewWithoutScrolls;
+
     //private WindowManager manager = null;
 
     public CourseListFragment() {
@@ -100,10 +101,15 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
 
         View fragmentView = inflater.inflate(R.layout.fragment_course_list, container, false);
         //fragmentView.invalidate();
+
         ButterKnife.bind(this, fragmentView);
 
         initData();
+
         //initView();
+
+
+
         //manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Log.e("Fragment", "log!!!");
 
@@ -115,7 +121,6 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
     public void onResume() {
 
         super.onResume();
-        //initData();
     }
 
     /***
@@ -123,44 +128,40 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
      */
     private void initView() {
 
-        List<CourseListModel.DataBean> dataBeen = new ArrayList<>();
+        final List<CourseListModel.DataBean> dataBeen = new ArrayList<>();
 
         for (List<CourseListModel.DataBean> dataBeanList : courseList.getData()) {
             for (CourseListModel.DataBean bean : dataBeanList) {
 
-                if (bean.getWeek().contains(currentWeek + "")) {
-                    dataBeen.add(bean);
+                String strs[] = bean.getWeek().split(",");
+                for (String str : strs) {
+                    if (str.equals(currentWeek+"")){
+                        dataBeen.add(bean);
+                    }
                 }
 
             }
         }
 
-        List<TextView> textViewList = drawTextViewsByCourse(dataBeen);
-        Log.e("count", courseListContent.getChildCount() + "");
-        for (int i = 0; i < textViewList.size(); i++) {
-            courseListContent.addView(textViewList.get(i));
 
-            //courseListContent.updateViewLayout(textViewList.get(i),textViewList.get(i).getLayoutParams());
-            Log.d("text-content", i + "");
-        }
-        Log.e("count", courseListContent.getChildCount() + "");
 
-        courseListContent.invalidate();
-
-        //courseListContent.updateViewLayout(courseListContent,courseListContent.getLayoutParams());
     }
 
 
     //private  List<Integer>
 
-    private List<TextView> drawTextViewsByCourse(List<CourseListModel.DataBean> dataBeen) {
-        textViewList = new ArrayList<>();
+    private void drawTextViewsByCourse(List<CourseListModel.DataBean> dataBeen) {
+
         //设置每个格子宽度。
        // List<Integer> integers = new ArrayList<>();
 
-        int width = courseListContent.getWidth() / 7;
+        //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
+        int width = 150;
         int height = (int) CommonFunction.convertDpToPixel(68, getContext());
         int len = dataBeen.size();
+
+        Log.e("parm ->minheight", height + "");
+        Log.e("parm ->width", width + "");
         for (int i = 0; i < len; i++) {
 
             CourseListModel.DataBean bean = dataBeen.get(i);
@@ -169,20 +170,21 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
             int y = Integer.parseInt(bean.getSection_end());
             int day = Integer.parseInt(bean.getDay());
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height * (y - x + 1));
-
+            //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             //params.setMargins((day - 1) * width, (int) ((x - 1) * CommonFunction.convertDpToPixel(68, getContext())), 0, 0);
 
             TextView textView = new TextView(getContext());
             textView.setLayoutParams(params);
-            textView.setPadding(1, 1, 1, 1);
-
+            textView.getLayoutParams().width = 150;
+            //textView.setPadding(1, 1, 1, 1);
             //textView.setBackground(getResources().getDrawable(R.drawable.ic_course_bg_bohelv));
             textView.setBackgroundColor(Color.BLACK);
-            textView.setAlpha(0.5f);
+            //textView.setAlpha(0.5f);
             textView.setTextSize(getResources().getDimension(R.dimen.course_list_item_fontsize));
             textView.setTextColor(Color.WHITE);
             textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setVisibility(View.VISIBLE);
+            //textView.setVisibility(View.VISIBLE);
+
 
             textView.setText(bean.getCourse() + "#" + bean.getLocation());
 
@@ -192,13 +194,21 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
                     Toast.makeText(getContext(), "呵呵呵", Toast.LENGTH_SHORT).show();
                 }
             });
-            //textView.setY((int) );
-            textView.invalidate();
 
-            textViewList.add(textView);
+
+
+//            textView.setHeight(height);
+//            textView.setHeight(width);
+
+            //textView.setY((int) );
+
+            Log.e("textView ->minheight", textView.getMinimumWidth() + "");
+            Log.e("textView ->height", textView.getWidth() + "");
+            Log.e("textView ->Measured", textView.getMeasuredWidth() + "");
+            courseListContent.addView(textView);
+
         }
 
-        return textViewList;
 
     }
 
@@ -241,7 +251,7 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
         if (code == 0) {
             this.courseList = courseList;
             courseList.setCache();
-            initView();
+            initData();
         } else {
             CommonFunction.errorToast(getContext(), code);
         }

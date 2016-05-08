@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.sky31.gonggong.R;
 
+import com.sky31.gonggong.module.article.list.ArticleListActivity;
 import com.sky31.gonggong.module.course_list.CourseListActivity;
 
 import com.sky31.gonggong.module.grade.GradeActivity;
@@ -33,7 +34,8 @@ public class SecondFragment extends Fragment {
     Button btnNews;
     @Bind(R.id.btn_grade)
     Button btnGrade;
-
+    @Bind(R.id.btn_info)
+    Button btnInfo;
     public SecondFragment() {
         // Required empty public constructor
     }
@@ -72,6 +74,13 @@ public class SecondFragment extends Fragment {
         startActivity(intent);
     }
 
+    @OnClick(R.id.btn_info)
+    void onClickOpenInfoActivity(){
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), ArticleListActivity.class);
+        startActivity(intent);
+
+    }
 
     @Override
     public void onDestroyView() {

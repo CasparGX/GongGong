@@ -13,10 +13,8 @@ import com.sky31.gonggong.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 public class ArticleListActivity extends BaseActivity {
 
 
@@ -49,7 +47,7 @@ public class ArticleListActivity extends BaseActivity {
 
         List<Fragment> fragmentList = new ArrayList<>();
         ArticleListActivityFragment calendarFragment = new ArticleListActivityFragment("活动日历");
-        ArticleListActivityFragment infoFragment = new ArticleListActivityFragment("学习宝典");
+        ArticleListCommonFragment infoFragment = ArticleListCommonFragment.newInstance("学习宝典");
 
         fragmentList.add(calendarFragment);
         fragmentList.add(infoFragment);

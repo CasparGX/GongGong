@@ -126,6 +126,9 @@
 
     <string name="article_info_school">校内资讯</string>
     <string name="article_info_calender">活动日历</string>
+
+    <string name="article_activity_act_time">活动时间</string>
+    <string name="article_activity_introduction">活动简介</string>
     <!--course list  -->
     <string name="course_list_today">今日课程表</string>
     <string name="title_activity_course_week_selector">CourseWeekSelectorActivity</string>

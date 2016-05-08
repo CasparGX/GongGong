@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:configChanges="orientation|keyboardHidden"
             android:name=".module.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,14 +42,12 @@
             android:name=".module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
-
         <activity android:name=".module.swzl.SwzlDetailActivity" />
         <activity android:name=".module.course_list.CourseListActivity" />
-
         <activity
             android:name=".module.grade.GradeActivity"
-            android:label="@string/grade"></activity>
-
+            android:label="@string/grade" />
+        <activity android:name=".module.article.detail.ArticleDetailActivity"></activity>
     </application>
 
 </manifest>

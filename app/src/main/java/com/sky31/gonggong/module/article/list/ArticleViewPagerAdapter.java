@@ -3,13 +3,14 @@ package com.sky31.gonggong.module.article.list;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
 /**
  * Created by wukunguang on 16-5-3.
  */
-public class ArticleViewPagerAdapter extends FragmentPagerAdapter {
+public class ArticleViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> fragmentList;
 

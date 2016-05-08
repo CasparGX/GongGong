@@ -19,31 +19,51 @@ import com.sky31.gonggong.module.article.ArticlePresenter;
 import com.sky31.gonggong.module.article.detail.ArticleDetailActivity;
 import com.sky31.gonggong.util.Debug;
 
-import java.net.URL;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ArticleListActivityFragment extends Fragment implements ArticleListView {
+public class ArticleListCommonFragment extends Fragment implements ArticleListView{
 
     @Bind(R.id.article_listview)
     ListView articleListview;
 
 
     private ArticleListModel model;
-
+    private static final String ARG_STR = "title";
     private String initTitle;
     private  ArticleListQuery query;
 
-    public ArticleListActivityFragment(String title) {
+    public ArticleListCommonFragment() {
 
-        initTitle = title;
+
 
     }
 
+
+    public static ArticleListCommonFragment newInstance(String title){
+
+        ArticleListCommonFragment fragment = new ArticleListCommonFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_STR,title);
+        fragment.setArguments(bundle);
+        return fragment;
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            initTitle = getArguments().getString(ARG_STR);
+        }
+
+
+        //initData();
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,7 +87,6 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
         query.setCatname(initTitle);
         query.setLimit(50);
         query.setCheckID(0);
-        query.setCo("act_time");
         query.setOrder("id DESC");
         ArticlePresenter presenter = new ArticlePresenter(this);
         presenter.initReqService(query.getHashMap());
@@ -103,6 +122,10 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
             model.getMsg();
             Log.d("list_fragment",model.getMsg());
             Log.d("list_fragment",model.getData().size()+"");
+
+            articleListview.setHeaderDividersEnabled(false);
+
+            articleListview.setDividerHeight(10);
             ArticleCommonListAdapter adapter = new ArticleCommonListAdapter(getActivity(),model.getData());
             articleListview.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -111,14 +134,15 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
         articleListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String url = model.getData().get(position).getUrl();
 
                 Intent intent = new Intent(getContext(), ArticleDetailActivity.class);
                 intent.putExtra("url",url);
                 startActivity(intent);
+
             }
         });
-
 
     }
 

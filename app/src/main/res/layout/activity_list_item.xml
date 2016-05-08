@@ -9,12 +9,40 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.75"
+        android:layout_weight="0.30">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/article_act_time_margin"
+            android:textSize="@dimen/material_design_body_font_size"
+            android:id="@+id/article_activity_time"
+            android:gravity="center"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.10"
+        android:id="@+id/activity_time_line_container"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.65"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
         android:orientation="vertical"
+        android:background="@drawable/view_bottom_border"
         >
 
         <TextView
@@ -23,18 +51,19 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="@dimen/material_design_subhead_font_size"
-            android:id="@+id/article_info_title"
+            android:id="@+id/article_activity_title"
             android:textColor="@color/black"
             />
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginTop="16dp"
             android:textSize="@dimen/material_design_body_font_size"
-            android:id="@+id/article_info_introduction"
+            android:id="@+id/article_activity_introduction"
             android:textColor="@color/black"
             />
         <TextView
@@ -44,7 +73,7 @@
             android:ellipsize="end"
             android:layout_marginTop="16dp"
             android:textSize="@dimen/material_design_body_font_size"
-            android:id="@+id/article_info_update_time"
+            android:id="@+id/article_activity_update_time"
             android:textColor="@color/grey_c"
             android:gravity="right"
             />
