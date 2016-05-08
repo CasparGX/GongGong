@@ -4,25 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_ef"
-    android:orientation="vertical"
-    tools:context=".module.main.fragment.FirstFragment">
+    android:orientation="vertical">
+
 
     <LinearLayout
         android:id="@+id/blank_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"></LinearLayout>
+
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+
 
     <LinearLayout
-        android:id="@+id/project_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/project_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.90"
+                android:text="@string/course_list_today"
+                android:gravity="center_vertical"
+                android:paddingLeft="10sp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:text=">"
+                android:gravity="center"
+                android:textSize="25sp"
+                style="bold"
+                />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_course_pager">
+
+        </android.support.v4.view.ViewPager>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Project List" />
+
     </LinearLayout>
 
     <LinearLayout

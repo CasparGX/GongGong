@@ -17,8 +17,7 @@
         android:background="@color/color_0176da"
         android:layout_height="wrap_content"
         toolbar:title="@string/swzl_title"
-        toolbar:titleTextColor="@color/white"
-        >
+        toolbar:titleTextColor="@color/white">
 
     </android.support.v7.widget.Toolbar>
 
@@ -35,7 +34,7 @@
             android:layout_weight="0.5"
             android:text="@string/swzl_lost"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/viewpager_title_default"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -47,7 +46,7 @@
             android:layout_weight="0.5"
             android:text="@string/swzl_get"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/viewpager_title_default"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:textStyle="bold"

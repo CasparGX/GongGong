@@ -8,10 +8,13 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.sky31.gonggong.R;
+import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.module.main.MainActivity;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -20,6 +23,9 @@ import java.util.HashMap;
  */
 public class CommonFunction {
     private static final CommonFunction comminFunction = new CommonFunction();
+
+    public static final long ALL_SECOND_OF_MOUTH = 24*3600*30;
+    public static final long ALL_SECOND_OF_DAY = 3600*24;
 
     private CommonFunction() {
 
@@ -121,6 +127,82 @@ public class CommonFunction {
 
     public static void setHomeLayoutHeight(int i) {
         homeLayoutHeight = i;
+    }
+
+    // 获取今天是周几。
+
+    /***
+     *
+     * @param pushDay 往后推的天数
+     * @param currentWeek   当前周数
+     * @return  当前周数
+     */
+    public static int countCurrentWeek(int pushDay, int currentWeek){
+
+        int resultWeek = pushDay/7+currentWeek;
+
+        return resultWeek;
+    }
+
+    /**
+     *
+     * @param pushDay 往后推的天数
+     * @return 当前周几。7周日，1为周一，2周二
+     */
+    public static int countCurrentDay(int pushDay){
+
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK)+6)%7;
+        if (dayOfWeek == 0){
+            dayOfWeek = 7;
+        }
+        return (dayOfWeek + pushDay)%7;
+    }
+
+
+    /**
+     * 比较当前时间与输入时间。当前时间比较小返回 true否则返回false
+     * @param timestamp     //时间戳 格式为 yyyy-MM-dd;
+     * @return  boolean
+     */
+    public static boolean compareCurrentTimeByStr(String timestamp){
+
+        //如果当前时间大于事件时间，那么返回false，否则返回true，
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(timestamp);
+            return  System.currentTimeMillis() <=  date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public static String timeAgo(String timeStr){
+
+        long timeMi = Long.parseLong(timeStr);
+        long cTime = (long)System.currentTimeMillis()/1000 - timeMi;
+
+        if (cTime > 0 && cTime < 60){
+            return "发布于"+cTime+"之前";
+        }
+        else if(cTime >= 60 && cTime <3600){
+            return "发布于"+cTime/60+"分钟之前";
+        }
+        else if(cTime >=3600 && cTime < ALL_SECOND_OF_DAY){
+            return "发布于"+cTime/3600 + "小时之前";
+        }
+        else if (cTime >= ALL_SECOND_OF_DAY && cTime < ALL_SECOND_OF_MOUTH){
+            return "发布于"+cTime/ALL_SECOND_OF_DAY + "天之前";
+        }
+        else if (cTime >= ALL_SECOND_OF_MOUTH){
+            return "发布于"+cTime/ALL_SECOND_OF_MOUTH + "个月之前";
+        }
+        else {
+            return "N/A";
+        }
+
     }
 
 }

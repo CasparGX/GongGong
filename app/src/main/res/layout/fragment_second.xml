@@ -24,4 +24,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_grade"
         android:text="查成绩" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="资讯"
+        android:id="@+id/btn_info"
+        />
 </LinearLayout>

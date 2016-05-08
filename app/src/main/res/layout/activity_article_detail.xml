@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.sky31.gonggong.module.article.detail.ArticleDetailActivity"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_0176da"
+        toolbar:titleTextColor="@color/white"
+        android:id="@+id/article_detail_toolbar"
+        toolbar:title="文章详情"
+        toolbar:titleMarginStart="85dp"
+        android:gravity="center"
+        toolbar:navigationIcon="@drawable/ic_arrow_back">
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/article_show_detail_webview">
+
+    </WebView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/article_detail_progressbar"
+        android:visibility="gone"
+        />
+</LinearLayout>

@@ -79,6 +79,9 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
         });
     }
 
+
+
+
     private void initTitleStrip() {
 
 
