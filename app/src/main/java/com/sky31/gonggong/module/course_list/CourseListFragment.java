@@ -202,9 +202,7 @@ public class CourseListFragment extends Fragment implements CourseListView, Curr
 
             //textView.setY((int) );
 
-            Log.e("textView ->minheight", textView.getMinimumWidth() + "");
-            Log.e("textView ->height", textView.getWidth() + "");
-            Log.e("textView ->Measured", textView.getMeasuredWidth() + "");
+
             courseListContent.addView(textView);
 
         }
