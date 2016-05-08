@@ -32,7 +32,7 @@ public class Constants {
         public static final String CMS_LIST = "cms_list.php";   //文章列表
 
         public static final String SWZL_ACTION = "lost_found.php";
-
+        public static final String CURRENT_WEEK = "current_week.php";
     }
 
     public final class Key {
@@ -81,6 +81,9 @@ public class Constants {
         public static final String HOLIDAY_ACTION_ALL = "all";
         public static final String HOLIDAY_CACHE_NEXT = "holidayCacheNext";
         public static final String HOLIDAY_CACHE_ALL = "holidayCacheAll";
+
+        //课表
+        public static final String COURSE_LIST = "course_list";
 
     }
 

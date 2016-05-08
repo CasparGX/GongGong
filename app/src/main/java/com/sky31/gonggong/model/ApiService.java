@@ -2,9 +2,12 @@ package com.sky31.gonggong.model;
 
 import com.sky31.gonggong.config.Constants;
 
+import java.util.Map;
+
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Query;
+import retrofit.http.QueryMap;
 
 /**
  * Created by root on 16-2-28.
@@ -44,12 +47,24 @@ public interface ApiService {
     @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
     Call<HolidayAllModel> getHolidayAll();
 
+
+
+    //课表请求。
+    @GET(Constants.Api.COURSE+"?"+defaultParam)
+    Call<CourseListModel> getCourse(@QueryMap Map<String,String> map);
+
+    //查询当前第几周。
+    @GET(Constants.Api.CURRENT_WEEK+"?"+defaultParam)
+    Call<CurrentWeekModel> getCurrentWeek();
+
     //成绩报表
     @GET(Constants.Api.GRADE_REPORT + "?" + defaultParam)
     Call<GradeReportModel> getGradeReport(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+
     //成绩祥单
     @GET(Constants.Api.GRADE_DETAILS + "?" + defaultParam)
     Call<GradeDetailsModel> getGradeDetails(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
 
 }
