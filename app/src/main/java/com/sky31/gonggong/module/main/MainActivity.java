@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,9 +53,11 @@ import com.sky31.gonggong.module.library.LibraryView;
 import com.sky31.gonggong.module.login.LoginActivity;
 import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.module.main.fragment.FirstFragment;
+import com.sky31.gonggong.module.main.fragment.InformationFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
 
 import java.util.ArrayList;
@@ -133,6 +136,18 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     NavigationView drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
+    @Bind(R.id.tv_person)
+    TextView tvPerson;
+    @Bind(R.id.layout_person)
+    LinearLayout layoutPerson;
+    @Bind(R.id.tv_function)
+    TextView tvFunction;
+    @Bind(R.id.layout_function)
+    LinearLayout layoutFunction;
+    @Bind(R.id.tv_information)
+    TextView tvInformation;
+    @Bind(R.id.layout_information)
+    LinearLayout layoutInformation;
 
 
     /* 变量 */
@@ -142,6 +157,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int homeLayoutHeight = -1;
     private Context context;
     private Resources resources;
+    private float defualtTextSize;
+    private ScaleAnimation showAnimation;
+    private ScaleAnimation hiddenAnimation;
 
     //头像被点击
     @OnClick(R.id.header_avatar)
@@ -358,8 +376,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         List<Fragment> mDatas = new ArrayList<Fragment>();
         final FirstFragment mFirstFragment = new FirstFragment();
         SecondFragment mSecondFragment = new SecondFragment();
+        InformationFragment mInformationFagment = new InformationFragment();
         mDatas.add(mFirstFragment);
         mDatas.add(mSecondFragment);
+        mDatas.add(mInformationFagment);
+
+        //从username view获取默认text大小
+        float scale = resources.getDisplayMetrics().density;
+        defualtTextSize = username.getTextSize() / scale;
+
+        showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f);
+        showAnimation.setDuration(500);
+        hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f);
+        showAnimation.setDuration(500);
+        //bottom nav text
+        tvPerson.setTextSize(defualtTextSize);
+        tvFunction.setTextSize(defualtTextSize);
+        tvInformation.setTextSize(defualtTextSize);
+        tvPerson.setVisibility(View.GONE);
+        tvFunction.setVisibility(View.GONE);
+        tvInformation.setVisibility(View.GONE);
 
         //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
@@ -369,15 +405,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
                 if (mCurrentPageIndex == 0 && position == 0) { //0->1
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
+                } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
+                    if (positionOffset == 0.0f) {
+                        onChangeHeaderHeight(1.0f);
+                    }
+                } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
+
                 }
             }
 
             @Override
             public void onPageSelected(int position) {
+                if (mCurrentPageIndex != position) {
+                    onChangeNavText(mCurrentPageIndex, position);
+                }
                 mCurrentPageIndex = position;
             }
 
@@ -386,6 +433,19 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
             }
         });
+    }
+
+    /* 改变底部导航 */
+    public void onChangeNavText(int mCurrentPageIndex, int position) {
+        List<TextView> mTextViewList = new ArrayList<>();
+        mTextViewList.add(tvPerson);
+        mTextViewList.add(tvFunction);
+        mTextViewList.add(tvInformation);
+        mTextViewList.get(mCurrentPageIndex).startAnimation(hiddenAnimation);
+        mTextViewList.get(mCurrentPageIndex).setVisibility(View.GONE);
+        mTextViewList.get(position).startAnimation(showAnimation);
+        mTextViewList.get(position).setVisibility(View.VISIBLE);
+
     }
 
     /**
