@@ -265,6 +265,22 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         showPopupWindowXtuNetInfo(view);
     }
 
+    //底部nav点击
+    @OnClick(R.id.layout_person)
+    void onClickLayoutPerson() {
+        pager.setCurrentItem(0, true);
+    }
+
+    @OnClick(R.id.layout_function)
+    void onClickLayoutFunction() {
+        pager.setCurrentItem(1, true);
+    }
+
+    @OnClick(R.id.layout_information)
+    void onClickLayoutInformation() {
+        pager.setCurrentItem(2, true);
+    }
+
     private void showPopupWindowXtuNetInfo(View view) {
         //自定义布局
         View contentView = LayoutInflater.from(context).inflate(
