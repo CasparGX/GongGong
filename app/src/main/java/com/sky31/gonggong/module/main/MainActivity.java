@@ -3,7 +3,6 @@ package com.sky31.gonggong.module.main;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -159,6 +158,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private float defualtTextSize;
     private ScaleAnimation showAnimation;
     private ScaleAnimation hiddenAnimation;
+
+    //header
+    private ViewGroup.LayoutParams headerParam;
 
     //头像被点击
     @OnClick(R.id.header_avatar)
@@ -425,9 +427,21 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
                 Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
                 if (mCurrentPageIndex == 0 && position == 0) { //0->1
-                    onChangeHeaderHeight(positionOffset);
+                    //onChangeHeaderHeight(positionOffset);
+                    Debug.i("--", "--");
+                    if (headerHeight != -1) {
+                        headerParam.height = (int) (headerHeight * (1 - positionOffset));
+                        header.setLayoutParams(headerParam);
+                        Debug.i("height", headerParam.height + "");
+                    }
+                    Debug.i("--", "--");
                 } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
-                    onChangeHeaderHeight(positionOffset);
+                    //onChangeHeaderHeight(positionOffset);
+                    if (headerHeight != -1) {
+
+                        headerParam.height = (int) (headerHeight * (1 - positionOffset));
+                        header.setLayoutParams(headerParam);
+                    }
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
                     if (positionOffset == 0.0f) {
                         onChangeHeaderHeight(1.0f);
@@ -440,7 +454,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public void onPageSelected(int position) {
                 if (mCurrentPageIndex != position) {
-                    onChangeNavText(mCurrentPageIndex, position);
+                    //onChangeNavText(mCurrentPageIndex, position);
                 }
                 mCurrentPageIndex = position;
             }
@@ -465,36 +479,36 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     }
 
+
     /**
      * @param param ViewPager切换的进度
      *              改变头部高度，内容透明度
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            float b, y = 2.8f;
+            /*float b, y = 2.8f;
             float c, x = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
             c = (1.0f - y * param) <= 0 ? 0 : (1.0f - y * param);
             float height = c * headerAvatarSize;
+*/
+            //headerAvatarParam.height = (int) height;
+            //headerAvatarParam.width = headerAvatarParam.height;
+            //headerAvatar.setLayoutParams(headerAvatarParam);
 
-            headerAvatarParam.height = (int) height;
-            headerAvatarParam.width = headerAvatarParam.height;
-            headerAvatar.setLayoutParams(headerAvatarParam);
-
-            ViewGroup.LayoutParams headerParam = header.getLayoutParams();
             headerParam.height = (int) (headerHeight * (1 - param));
             header.setLayoutParams(headerParam);
-
+/*
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 //userAvatar.setRotation(480 * (1 - b));
-                headerContent.setAlpha(c);
-                headerInfo.setAlpha(b);
+                //headerContent.setAlpha(c);
+                //headerInfo.setAlpha(b);
             }
             //销毁内存
             headerParam = null;
-            headerAvatarParam = null;
+            headerAvatarParam = null;*/
         }
     }
 
@@ -523,7 +537,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         //首页头部高度
         if (pager != null && pager.getCurrentItem() == 0) {
             homeLayoutHeight = homeLayout.getHeight();
-            ViewGroup.LayoutParams headerParam = header.getLayoutParams();
+            headerParam = header.getLayoutParams();
             headerParam.height = homeLayoutHeight / 3;
             header.setLayoutParams(headerParam);
             headerHeight = homeLayoutHeight / 3;
