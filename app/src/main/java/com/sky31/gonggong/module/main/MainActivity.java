@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -404,7 +405,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         float scale = resources.getDisplayMetrics().density;
         defualtTextSize = username.getTextSize() / scale;
 
-        showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, 0.5f, 0.5f);
+        showAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.0f);
         showAnimation.setDuration(500);
         hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f);
         showAnimation.setDuration(500);
@@ -451,7 +452,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public void onPageSelected(int position) {
                 if (mCurrentPageIndex != position) {
-                    //onChangeNavText(mCurrentPageIndex, position);
+                    onChangeNavText(mCurrentPageIndex, position);
                 }
                 mCurrentPageIndex = position;
             }
@@ -469,9 +470,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         mTextViewList.add(tvPerson);
         mTextViewList.add(tvFunction);
         mTextViewList.add(tvInformation);
-        mTextViewList.get(mCurrentPageIndex).startAnimation(hiddenAnimation);
         mTextViewList.get(mCurrentPageIndex).setVisibility(View.GONE);
-        mTextViewList.get(position).startAnimation(showAnimation);
         mTextViewList.get(position).setVisibility(View.VISIBLE);
 
     }
