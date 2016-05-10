@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_e"
+    android:background="@color/color_ef"
     android:orientation="vertical"
     tools:context="com.sky31.gonggong.module.main.fragment.InformationFragment">
 
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:layout_marginTop="@dimen/info_page_margin_default"
         android:paddingLeft="@dimen/activity_padding"
         android:paddingRight="@dimen/activity_padding"
         android:id="@+id/second_hand"
@@ -91,6 +92,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="28dp"
+            android:background="@drawable/view_bottom_border"
             android:id="@+id/activity_title_tip"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             >
@@ -176,6 +178,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="28dp"
+            android:background="@drawable/view_bottom_border"
             android:id="@+id/info_title_tip"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             >
