@@ -426,22 +426,18 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
                 Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
-                if (mCurrentPageIndex == 0 && position == 0) { //0->1
-                    //onChangeHeaderHeight(positionOffset);
-                    Debug.i("--", "--");
-                    if (headerHeight != -1) {
-                        headerParam.height = (int) (headerHeight * (1 - positionOffset));
-                        header.setLayoutParams(headerParam);
-                        Debug.i("height", headerParam.height + "");
-                    }
-                    Debug.i("--", "--");
-                } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
-                    //onChangeHeaderHeight(positionOffset);
-                    if (headerHeight != -1) {
+                /*if (positionOffset>=0 && (position == 0) && headerHeight!=-1){
+                    ViewGroup.LayoutParams headerParam = header.getLayoutParams();
+                    headerParam.height = (int) (headerHeight - (headerHeight * positionOffset));
+                    header.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerParam.height));
+                    headerParam = null;
 
-                        headerParam.height = (int) (headerHeight * (1 - positionOffset));
-                        header.setLayoutParams(headerParam);
-                    }
+                }*/
+                int x = 0;
+                if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
+                    onChangeHeaderHeight(positionOffset);
+                } else if (mCurrentPageIndex == 1 && position == 0 && x % 2 == 0) {    //1->0
+                    onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
                     if (positionOffset == 0.0f) {
                         onChangeHeaderHeight(1.0f);
@@ -449,6 +445,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
 
                 }
+                x++;
             }
 
             @Override
@@ -486,29 +483,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
      */
     public void onChangeHeaderHeight(float param) {
         if (headerHeight != -1) {
-            /*float b, y = 2.8f;
+            float b, y = 2.8f;
             float c, x = 1.2f;
             ViewGroup.LayoutParams headerAvatarParam = headerAvatar.getLayoutParams();
             float headerAvatarSize = getResources().getDimension(R.dimen.avatar_bg_size);
             b = (1.0f - x * param) <= 0 ? 0 : (1.0f - x * param);
             c = (1.0f - y * param) <= 0 ? 0 : (1.0f - y * param);
             float height = c * headerAvatarSize;
-*/
-            //headerAvatarParam.height = (int) height;
-            //headerAvatarParam.width = headerAvatarParam.height;
-            //headerAvatar.setLayoutParams(headerAvatarParam);
+            headerAvatarParam.height = (int) height;
+            headerAvatarParam.width = headerAvatarParam.height;
+            headerAvatar.setLayoutParams(headerAvatarParam);
 
-            headerParam.height = (int) (headerHeight * (1 - param));
-            header.setLayoutParams(headerParam);
-/*
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                //userAvatar.setRotation(480 * (1 - b));
-                //headerContent.setAlpha(c);
-                //headerInfo.setAlpha(b);
-            }
+            //headerParam.height = (int) (headerHeight * (1 - param));
+            header.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (headerHeight * (1 - param))));
+
+            //userAvatar.setRotation(480 * (1 - b));
+            headerContent.setAlpha(c);
+            headerInfo.setAlpha(b);
+
             //销毁内存
-            headerParam = null;
-            headerAvatarParam = null;*/
+            headerAvatarParam = null;
         }
     }
 
