@@ -43,6 +43,24 @@
 
     <color name="swzl_item_text_grey">#767474</color>
 
+
+    <!-- course list bg color-->
+
+    <array name="course_list_bg_color">
+        <item>#ec407a</item>
+        <item>#ab47bc</item>
+        <item>#3f51b5</item>
+        <item>#5677fc</item>
+        <item>#03a9f4</item>
+        <item>#00bcd4</item>
+        <item>#009688</item>
+        <item>#259b24</item>
+        <item>#8bc34a</item>
+        <item>#ffee58</item>
+        <item>#ffca28</item>
+        <item>#ff7043</item>
+    </array>
+
     <!--material library-->
     <array name="in_colors_light">
         <item>#4B03A9F4</item>

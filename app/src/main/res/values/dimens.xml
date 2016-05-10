@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
+    <dimen name="activity_padding">16dp</dimen>
     <dimen name="drawer_margin_right">50dp</dimen>
 
     <dimen name="dp_24">24dp</dimen>
@@ -72,7 +72,7 @@
 
 
     <!--Course List  -->
-    <dimen name="course_list_item_fontsize">5sp</dimen>
+    <dimen name="course_list_item_fontsize">6sp</dimen>
 
 
     <!--week select popWindows -->
@@ -94,4 +94,9 @@
 
     <!--article  -->
     <dimen name="article_act_time_margin">18dp</dimen>
+
+
+    <!-- info page default-->
+
+    <dimen name="info_page_margin_default">5dp</dimen>
 </resources>

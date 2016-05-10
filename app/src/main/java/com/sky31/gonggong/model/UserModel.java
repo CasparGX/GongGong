@@ -65,5 +65,6 @@ public class UserModel {
         aCache.remove(Constants.Key.PASSWORD);
         aCache.remove(Constants.Key.LIBRARY_PASSWORD);
         aCache.remove(Constants.Key.ECARD_PASSWORD);
+        aCache.remove(Constants.Key.COURSE_LIST);
     }
 }

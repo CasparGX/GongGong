@@ -3,32 +3,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".module.main.fragment.SecondFragment">
 
-    <Button
-        android:id="@+id/btn_cha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cha" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/header_scrolling_image">
+
+        </android.support.v4.view.ViewPager>
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/openNews"
-        android:text="新闻"
-        />
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="14dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_alignBottom="@+id/header_scrolling_image"
+            android:id="@+id/header_image_pos"
+            android:orientation="horizontal"
+            android:background="@drawable/header_image_dot_content"
+            android:alpha="0.4"
+            android:layout_centerHorizontal="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_grade"
-        android:text="查成绩" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="资讯"
-        android:id="@+id/btn_info"
-        />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:id="@+id/header_image_dot1"
+                android:background="@drawable/header_image_dot_shape_selector"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="@string/search" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:id="@+id/header_image_dot2"
+                android:background="@drawable/header_image_dot_shape"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:contentDescription="@string/search" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:id="@+id/header_image_dot3"
+                android:background="@drawable/header_image_dot_shape"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:contentDescription="@string/search" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:id="@+id/header_image_dot4"
+                android:background="@drawable/header_image_dot_shape"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:contentDescription="@string/search" />
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:id="@+id/header_image_dot5"
+                android:background="@drawable/header_image_dot_shape"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:contentDescription="@string/search" />
+
+            </LinearLayout>
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/arrow_left"-->
+            <!--android:background="@color/black"-->
+            <!--android:id="@+id/pre_header_view"-->
+            <!--android:alpha="0.2"-->
+            <!--/>-->
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/arrow_right"-->
+            <!--android:layout_alignRight="@+id/header_scrolling_image"-->
+            <!--android:background="@color/black"-->
+            <!--android:id="@+id/next_header_view"-->
+            <!--android:alpha="0.2"-->
+            <!--/>-->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        >
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:verticalSpacing="0dp"
+            android:horizontalSpacing="0dp"
+            android:padding="0dp"
+            android:id="@+id/function_grid_view"
+            >
+
+        </GridView>
+    </LinearLayout>
+
 </LinearLayout>
