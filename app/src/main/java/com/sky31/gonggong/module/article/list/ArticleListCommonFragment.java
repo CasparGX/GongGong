@@ -139,6 +139,7 @@ public class ArticleListCommonFragment extends Fragment implements ArticleListVi
 
                 Intent intent = new Intent(getContext(), ArticleDetailActivity.class);
                 intent.putExtra("url",url);
+                intent.putExtra("title","文章详情");
                 startActivity(intent);
 
             }
