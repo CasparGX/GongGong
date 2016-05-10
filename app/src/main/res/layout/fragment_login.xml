@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".module.login.LoginFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/activity_login_bg"
         android:clickable="true"
         android:foreground="?selectableItemBackground">
 
@@ -63,16 +62,6 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/password" />
                 </android.support.design.widget.TextInputLayout>
-
-                <com.rey.material.widget.EditText
-                    android:id="@+id/til_password2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="@string/password"
-                    app:et_inputId="@+id/et_password"
-                    app:et_supportMode="none"
-                    app:v_styleId="@style/Material.Widget.EditText.Light"/>
 
                 <com.rey.material.widget.Button
                     style="@style/LightRaiseColorButtonRippleStyle"

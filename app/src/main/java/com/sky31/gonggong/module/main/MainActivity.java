@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     //校园卡信息
     @OnClick(R.id.ecard)
     void onCLickEcard(View view) {
-        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) == null) {
+        if (aCache.getAsString(Constants.Key.ECARD_PASSWORD) != null) {
             EcardPresenter ecardPresenter = new EcardPresenter(this);
             ecardPresenter.getBalance();
         } else {
@@ -388,6 +388,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
         //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
+        library.setClickable(false);
+        xtuNet.setClickable(false);
 
         //DrawerLayout
         drawer.setStatusBarBackground(R.color.colorPrimaryDark);
