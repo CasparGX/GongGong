@@ -10,10 +10,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@color/grey_c"
+        android:background="@color/white"
+        android:alpha="0.5"
         android:gravity="center"
         android:id="@+id/course_item_title"
-        android:textSize="20sp">
+        android:textSize="@dimen/material_design_button_font_size">
 
     </TextView>
 </LinearLayout>

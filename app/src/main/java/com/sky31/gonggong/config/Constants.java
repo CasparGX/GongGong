@@ -1,5 +1,7 @@
 package com.sky31.gonggong.config;
 
+import retrofit.http.PUT;
+
 /**
  * Created by root on 16-2-28.
  */
@@ -9,6 +11,8 @@ public class Constants {
 
         public static final String URL = "http://api.sky31.com";
 
+        public static final String SECOND_HAND = "http://buy.sky31.com";
+        public static final String SECOND_HAND_URL ="http://buy.sky31.com/fleaapi/index.php/Admin/Goods/query";
         public static final String STU_INFO = "edu_student_info.php";
         public static final String COURSE = "edu_course.php";
         public static final String GRADE_REPORT = "edu_grade_report.php";
@@ -84,6 +88,15 @@ public class Constants {
 
         //课表
         public static final String COURSE_LIST = "course_list";
+        public static final String CURRENT_WEEK = "currentWeek";
+
+        //焦点图缓存
+        public static final String HEADER_IMAGE = "header_image_";
+
+        //二手街
+        public static final String S_TYPE = "type";
+        public static final String S_TITLE = "title";
+        public static final String S_LIMIT_ID = "limitID";
 
     }
 

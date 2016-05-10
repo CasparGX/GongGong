@@ -2,41 +2,46 @@ package com.sky31.gonggong.module.course_list;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.CommonFunction;
+import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CourseListModel;
 import com.sky31.gonggong.model.CurrentWeekModel;
-import com.sky31.gonggong.module.current_week.CurrentWeekPresent;
+import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
+import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.widget.ListViewWithoutScroll;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CourseListActivity extends BaseActivity implements CourseListView,CurrentWeekView {
+public class CourseListActivity extends BaseActivity implements CourseListView, CurrentWeekView {
 
 
     @Bind(R.id.course_list_week_title)
@@ -44,11 +49,22 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
     @Bind(R.id.course_list_toolbar)
     Toolbar courseListToolbar;
     Dialog weekSelectorDialog;
-    List<String> weekList ;
+    List<String> weekList;
+    @Bind(R.id.course_list_timeline)
+    ListViewWithoutScroll courseListTimeline;
+    @Bind(R.id.course_list_content)
+    RelativeLayout courseListContent;
+    @Bind(R.id.day_of_week_grid)
+    GridView dayOfWeekGrid;
+    private CourseListModel courseList;
 
+    private ListView weekSelectorList;
+    List<TextView> textViewList;
     private int currentWeek = 0;
+    private int currenTrueWeek = 0;
 
-    CourseListFragment fragment;
+    private Map<String, Integer> courseToColor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,64 +72,34 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
         ButterKnife.bind(this);
 
         initData();
-        //initFragment();
-
-
-
-
-
-
-    }
-
-    private void initFragment(int week) {
-
-        fragment = CourseListFragment.newInstance(week);
-        FragmentManager manager = getSupportFragmentManager();
-
-        manager.beginTransaction().add(R.id.course_list_fragment, fragment).commit();
-        Log.e("Activity","log!!!");
 
     }
 
 
     private void initPopWindow() {
-//        LinearLayout.LayoutParams params =
-//                new LinearLayout.LayoutParams(300,
-//                        400);
-//
-//        params.setMargins(0,0,0,0);
-        weekSelectorDialog = new Dialog(this,R.style.dialog);
+        weekSelectorDialog = new Dialog(this, R.style.dialog);
         //LayoutInflater inflater = LayoutInflater.from(this);
-
 
         weekSelectorDialog.setContentView(R.layout.popupwindow_week_selector);
         Window window = weekSelectorDialog.getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         window.setGravity(Gravity.TOP);
-        //Log.d("height",courseListToolbar.getMinimumHeight()+"");
+
         params.y = courseListToolbar.getMinimumHeight();
         window.setAttributes(params);
-        //WindowManager.LayoutParams lp = window.getAttributes();
-        //window.setGravity(Gravity.CENTER_HORIZONTAL);
-        //window.setContentView(R.layout.popupwindow_week_selector);
-
-        //lp.width = (int) getResources().getDimension(R.dimen.week_select_dialog_width);
-        //lp.height = (int) getResources().getDimension(R.dimen.week_select_dialog_height);
-        //window.setAttributes(lp);
-
 
 
         weekList = new ArrayList<>();
-        for (int i = 1;i <=25;i++){
+        for (int i = 1; i <= 25; i++) {
 
-            weekList.add("第"+i+"周");
+            weekList.add("第" + i + "周");
 
         }
-        ListView weekSelectorList = (ListView) window.findViewById(R.id.course_week_selector);
+        weekSelectorList = (ListView) window.findViewById(R.id.course_week_selector);
 
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>
-                        (this,R.layout.week_selector_item,weekList);
+                        (this, R.layout.week_selector_item, weekList);
 
         weekSelectorList.setAdapter(arrayAdapter);
 
@@ -124,12 +110,14 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
                 //重新设置
                 //fragment.resetWeek(position+1);
 
-                int pos = position+1;
-                initFragment(pos);
-                courseListWeekTitle.setText("第"+pos+"周");
+                int pos = position + 1;
+                courseListWeekTitle.setText("第" + pos + "周");
 
-                Toast.makeText(CourseListActivity.this,weekList.get(position),
+                Toast.makeText(CourseListActivity.this, weekList.get(position),
                         Toast.LENGTH_SHORT).show();
+                currentWeek = pos;
+                courseListContent.removeAllViews();
+                initCourseData();
                 weekSelectorDialog.dismiss();
             }
         });
@@ -138,8 +126,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
 
 
     //请求当前为第X周
-    private void initData(){
-        CurrentWeekProxy proxy = new CurrentWeekProxy(this,this);
+    private void initData() {
+        CurrentWeekProxy proxy = new CurrentWeekProxy(this, this);
         proxy.setRequestProxy();
     }
 
@@ -153,7 +141,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
             }
         });
 
-        courseListWeekTitle.setText("第"+currentWeek+"周");
+        courseListWeekTitle.setText("第" + currenTrueWeek + "周");
 
         //点击周数开头设置，
         courseListWeekTitle.setOnClickListener(new View.OnClickListener() {
@@ -168,16 +156,18 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
         weekSelectorDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                for (int i = 0; i <25;i++){
-                    int w = 1+i;
+                for (int i = 0; i < 25; i++) {
+                    int w = 1 + i;
 
-                    if (currentWeek==w){
-                        weekList.set(i,"第"+w+"周"+"(当前)");
-                    }
-                    else {
-                        weekList.set(i,"第"+w+"周");
+                    if (currenTrueWeek == w) {
+                        weekList.set(i, "第" + w + "周" + "(当前)");
+                    } else {
+                        weekList.set(i, "第" + w + "周");
                     }
                 }
+
+                weekSelectorList.setSelection(currentWeek - 3);
+
             }
         });
     }
@@ -185,37 +175,170 @@ public class CourseListActivity extends BaseActivity implements CourseListView,C
     @Override
     public CourseListModel courseList(CourseListModel courseList, int code) {
 
-//        if (code == 0) {
-//            for (List<CourseListModel.DataBean> listModels : courseList.getData()) {
-//
-//                for (CourseListModel.DataBean data : listModels) {
-//
-//                    Log.d("list", data.getWeek());
-//                    Log.d("list", data.getCourse());
-//
-//                }
-//            }
-//        } else {
-//            CommonFunction.errorToast(CourseListActivity.this, code);
-//        }
+        if (code == 0) {
+            this.courseList = courseList;
+            courseList.setCache();
+            initView();
+        } else {
+            CommonFunction.errorToast(CourseListActivity.this, code);
+        }
+
         return courseList;
     }
 
 
     //回调借口。即请求完成后执行fragment加载。当前课表。
+
+    /***
+     * 首先优先获取当前第几周。如果出现错误再读取缓存内的第几周。
+     *
+     * @param model
+     * @param code
+     */
     @Override
     public void currentWeek(CurrentWeekModel model, int code) {
 
-        if (code==0){
+        ACache aCache = UserModel.getaCache();
+        if (code == 0) {
             currentWeek = model.getData().getWeek();
+            currenTrueWeek = currentWeek;
+            aCache.put(Constants.Key.CURRENT_WEEK, currenTrueWeek + "", ACache.TIME_DAY);
+
+            Log.d("current_week", aCache.getAsString(Constants.Key.CURRENT_WEEK));
             initPopWindow();
             initToolBar();
-            initFragment(currentWeek);
+            initGridView();
+            initCourseData();
+        } else {
+            if (aCache.getAsString(Constants.Key.CURRENT_WEEK) == null) {
+                CommonFunction.errorToast(this, code);
+            } else {
+                currentWeek = Integer.parseInt(aCache.getAsString(Constants.Key.CURRENT_WEEK));
+                initPopWindow();
+                initToolBar();
+                initGridView();
+                initCourseData();
+            }
 
         }
-        else {
-            CommonFunction.errorToast(this,code);
+
+    }
+
+    private void initGridView() {
+
+        WeekTimeLineAdapter adapter  = new WeekTimeLineAdapter(this);
+        dayOfWeekGrid.setAdapter(adapter);
+
+    }
+
+    private void initView() {
+
+        List<CourseListModel.DataBean> dataBeen = new ArrayList<>();
+
+        int[] colors = getResources().getIntArray(R.array.course_list_bg_color);
+        int arrPosition = 1;
+        int lenth = colors.length;
+        courseToColor = new HashMap<>();
+        for (List<CourseListModel.DataBean> dataBeanList : courseList.getData()) {
+            for (CourseListModel.DataBean bean : dataBeanList) {
+                String strs[] = bean.getWeek().split(",");
+                for (String str : strs) {
+                    if (str.equals(currentWeek + "")) {
+                        //设置一个 k,v形式。课程对应一种背景色。
+                        if (!courseToColor.containsKey(bean.getCourse())) {
+                            courseToColor.put(bean.getCourse(), colors[arrPosition % lenth]);
+                            arrPosition++;
+                        }
+                        dataBeen.add(bean);
+                    }
+                }
+
+            }
         }
 
+        drawTextViewsByCourse(dataBeen);
+
+    }
+
+
+    //private  List<Integer>
+
+    private void drawTextViewsByCourse(List<CourseListModel.DataBean> dataBeen) {
+
+        //设置每个格子宽度。
+        // List<Integer> integers = new ArrayList<>();
+
+        //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
+        int width = courseListContent.getWidth() / 7;
+        int height = (int) CommonFunction.convertDpToPixel(68, CourseListActivity.this);
+        int len = dataBeen.size();
+
+        Log.e("parm ->minheight", height + "");
+        Log.e("parm ->width", width + "");
+        for (int i = 0; i < len; i++) {
+            CourseListModel.DataBean bean = dataBeen.get(i);
+            int x = Integer.parseInt(bean.getSection_start());
+            int y = Integer.parseInt(bean.getSection_end());
+            int day = Integer.parseInt(bean.getDay());
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
+            //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            params.setMargins((day - 1) * width, (int) ((x - 1) * CommonFunction.convertDpToPixel(68, CourseListActivity.this)), 0, 0);
+
+            TextView textView = new TextView(CourseListActivity.this);
+            textView.setLayoutParams(params);
+            textView.setPadding(13, 5, 5, 5);
+            //textView.setBackground(getResources().getDrawable(R.drawable.ic_course_bg_bohelv));
+            textView.setBackgroundColor(courseToColor.get(bean.getCourse()));
+            textView.setAlpha(0.8f);
+            textView.setTextSize(getResources().getDimension(R.dimen.course_list_item_fontsize));
+
+            textView.setTextColor(Color.WHITE);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            //textView.setVisibility(View.VISIBLE);
+
+
+            textView.setText(bean.getCourse() + "#" + bean.getLocation());
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(CourseListActivity.this, "呵呵呵", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+            courseListContent.addView(textView);
+
+        }
+
+
+    }
+
+    /****
+     * 首先获取课表数据，再根据周数加载视图。
+     */
+    private void initCourseData() {
+        courseList = new CourseListModel();
+        ACache aCache = UserModel.getaCache();
+
+
+        if (aCache.getAsString(Constants.Key.COURSE_LIST) != null) {
+            Gson gson = new Gson();
+            Log.w("Course_list", aCache.getAsString(Constants.Key.COURSE_LIST));
+            List<List<CourseListModel.DataBean>> dataList = gson.fromJson(
+                    aCache.getAsString(Constants.Key.COURSE_LIST),
+                    new TypeToken<List<List<CourseListModel.DataBean>>>() {
+                    }.getType());
+
+            courseList.setData(dataList);
+            //View view = LayoutInflater.from(getContext()).inflate(R.layout.course_list_timeline_header, null);
+            //courseListTimeline.addHeaderView(view);
+            CourseTimeHeaderAdapter adapter = new CourseTimeHeaderAdapter(CourseListActivity.this);
+            courseListTimeline.setAdapter(adapter);
+            initView();
+        } else {
+            CourseListRequestProxy requestProxy = new CourseListRequestProxy(CourseListActivity.this, this);
+            requestProxy.setReauestProxy();
+        }
     }
 }

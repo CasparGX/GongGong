@@ -189,11 +189,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 */
     //@OnClick(R.id.function)
-    void jumpToLostAndFound() {
-        //调转到失物招领
-        Intent intent = new Intent(MainActivity.this, SwzlActivity.class);
-        startActivity(intent);
-    }
+
 
     //校园卡信息
     @OnClick(R.id.ecard)
@@ -354,7 +350,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
                         break;
                     case R.id.menu_function:
-                        jumpToLostAndFound();
+
                         break;
                     case R.id.menu_navigation_item_2:
 
@@ -512,6 +508,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             headerHeight = homeLayoutHeight / 3;
             CommonFunction.setHomeLayoutHeight(homeLayoutHeight);
             FirstFragment.getInstance().initLayoutHeight();
+            InformationFragment.newInstance();
+            InformationFragment.getInstance().layoutInit();
+
         }
         //抽屉菜单宽度
         int w = (int) (homeLayout.getWidth() - convertDpToPixel(resources.getDimension(R.dimen.drawer_margin_right), context));

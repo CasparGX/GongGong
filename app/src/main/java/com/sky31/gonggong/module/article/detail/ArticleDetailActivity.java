@@ -18,6 +18,10 @@ import butterknife.ButterKnife;
 
 public class ArticleDetailActivity extends BaseActivity {
 
+
+    /***
+     *  本 Activity主要用于网页跳转。所有必须通过该网页跳转的详情页都可以通过此Activity打开。
+     */
     @Bind(R.id.article_detail_toolbar)
     Toolbar articleDetailToolbar;
     @Bind(R.id.article_show_detail_webview)
@@ -26,6 +30,7 @@ public class ArticleDetailActivity extends BaseActivity {
     ProgressBar articleDetailProgressbar;
 
 
+    ProgressDialog progressDialog;
     private String url = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class ArticleDetailActivity extends BaseActivity {
         }
 
 
+        progressDialog = new ProgressDialog(this,"翼宝在拼命地加载");
+        //progressDialog.setTitle("");
 
     }
 
@@ -52,6 +59,7 @@ public class ArticleDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
         articleShowDetailWebview.loadUrl(url);
+        articleDetailToolbar.setTitle(intent.getStringExtra("title"));
         articleShowDetailWebview.getSettings().setJavaScriptEnabled(true);
         articleShowDetailWebview.setWebViewClient(new WebViewClient() {
 
@@ -60,7 +68,7 @@ public class ArticleDetailActivity extends BaseActivity {
 
 
                 super.onPageStarted(view, url, favicon);
-                articleDetailProgressbar.setVisibility(View.VISIBLE);
+                progressDialog.show();
                 articleShowDetailWebview.setClickable(false);
             }
 
@@ -68,7 +76,7 @@ public class ArticleDetailActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                articleDetailProgressbar.setVisibility(View.GONE);
+                progressDialog.dismiss();
                 articleShowDetailWebview.setClickable(true);
             }
         });

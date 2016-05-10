@@ -16,6 +16,7 @@ public interface ApiService {
     String defaultParam = Constants.Key.ROLE + "=" + Constants.Value.ROLE + "&"
             + Constants.Key.HASH + "=" + Constants.Value.HASH;
 
+    String secondhandDefaultParm = Constants.Key.S_TYPE+"=&"+Constants.Key.S_TITLE+"=&"+Constants.Key.S_LIMIT_ID+"=0";
     //获取校园卡余额
     @GET(Constants.Api.ECARD + "?" + defaultParam)
     Call<EcardModel> getBalance(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
@@ -66,5 +67,9 @@ public interface ApiService {
     @GET(Constants.Api.GRADE_DETAILS + "?" + defaultParam)
     Call<GradeDetailsModel> getGradeDetails(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
+
+    //二手街
+    @GET(Constants.Api.SECOND_HAND_URL+"?"+secondhandDefaultParm)
+    Call<SecondhandModelList> getScondModelList();
 
 }

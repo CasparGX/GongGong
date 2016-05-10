@@ -115,6 +115,7 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
 
                 Intent intent = new Intent(getContext(), ArticleDetailActivity.class);
                 intent.putExtra("url",url);
+                intent.putExtra("title","文章详情");
                 startActivity(intent);
             }
         });

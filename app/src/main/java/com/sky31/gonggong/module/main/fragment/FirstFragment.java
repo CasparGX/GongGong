@@ -121,7 +121,6 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
         } else {
 
 
-
         }
     }
 
