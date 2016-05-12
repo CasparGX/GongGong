@@ -6,13 +6,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/activity_login_bg"
         android:clickable="true"
-        android:foreground="?selectableItemBackground">
-
-
-        <LinearLayout
+        android:foregroundyout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
