@@ -1,11 +1,10 @@
 package com.sky31.gonggong.module.secondhand;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
-import com.sky31.gonggong.model.SecondhandModelList;
+import com.sky31.gonggong.model.UserModel;
+
+import org.json.JSONArray;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -33,15 +32,15 @@ public class SecondhandPresent {
 
     public void requestServer(){
 
-        Call<SecondhandModelList> call = apiService.getScondModelList();
+        Call<JSONArray> call = apiService.getScondModelList();
 
-        call.enqueue(new Callback<SecondhandModelList>() {
+        call.enqueue(new Callback<JSONArray>() {
             @Override
-            public void onResponse(Response<SecondhandModelList> response, Retrofit retrofit) {
-                SecondhandModelList modelList = response.body();
+            public void onResponse(Response<JSONArray> response, Retrofit retrofit) {
+                JSONArray modelList = response.body();
 
-
-                Log.e("TAG",response.body().getModels().size()+"");
+                UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
+                //Log.e("TAG",response.body().getModels().size()+"");
                     secondhandView.getSecondhandData(modelList,0);
 
 

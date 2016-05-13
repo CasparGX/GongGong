@@ -1,7 +1,5 @@
 package com.sky31.gonggong.config;
 
-import retrofit.http.PUT;
-
 /**
  * Created by root on 16-2-28.
  */
@@ -97,6 +95,7 @@ public class Constants {
         public static final String HEADER_IMAGE = "header_image_";
 
         //二手街
+        public static final String S_GOODS_LIST = "s_goods_list";
         public static final String S_TYPE = "type";
         public static final String S_TITLE = "title";
         public static final String S_LIMIT_ID = "limitID";
