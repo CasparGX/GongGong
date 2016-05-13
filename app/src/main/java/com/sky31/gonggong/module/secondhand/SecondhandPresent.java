@@ -3,6 +3,7 @@ package com.sky31.gonggong.module.secondhand;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.util.Debug;
 
 import org.json.JSONArray;
 
@@ -23,7 +24,7 @@ public class SecondhandPresent {
     public SecondhandPresent(SecondhandView secondhandView) {
         this.secondhandView = secondhandView;
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.Api.URL)
+                .baseUrl(Constants.Api.SECOND_HAND)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
@@ -47,7 +48,7 @@ public class SecondhandPresent {
 
             @Override
             public void onFailure(Throwable t) {
-
+                Debug.d("secondhand", t.getCause() + "   " + t.getMessage());
                 secondhandView.getSecondhandData(null,2);
             }
         });
