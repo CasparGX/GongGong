@@ -10,6 +10,7 @@ public class Constants {
         public static final String URL = "http://api.sky31.com";
 
         public static final String SECOND_HAND = "http://buy.sky31.com";
+        public static final String SECOND_HAND_API = "http://buy.sky31.com/fleaapi";
         public static final String SECOND_HAND_URL ="http://buy.sky31.com/fleaapi/index.php/Admin/Goods/query";
         public static final String STU_INFO = "edu_student_info.php";
         public static final String COURSE = "edu_course.php";
@@ -97,6 +98,8 @@ public class Constants {
         //二手街
         public static final String S_GOODS_LIST = "s_goods_list";
         public static final String S_TYPE = "type";
+        public static final String S_PICNAME = "picname";
+        public static final String S_PICSRC = "picsrc";
         public static final String S_TITLE = "title";
         public static final String S_LIMIT_ID = "limitID";
 

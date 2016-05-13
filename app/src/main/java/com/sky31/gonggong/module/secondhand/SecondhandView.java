@@ -1,11 +1,11 @@
 package com.sky31.gonggong.module.secondhand;
 
-import com.sky31.gonggong.model.SecondhandModelList;
+import org.json.JSONArray;
 
 /**
  * Created by wukunguang on 16-5-10.
  */
 public interface SecondhandView {
 
-    void getSecondhandData(SecondhandModelList secondHandModelList, int code);
+    void getSecondhandData(JSONArray secondHandModelList, int code);
 }

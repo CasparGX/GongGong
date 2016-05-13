@@ -41,8 +41,7 @@ public class SecondhandPresent {
 
                 UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
                 //Log.e("TAG",response.body().getModels().size()+"");
-                    secondhandView.getSecondhandData(modelList,0);
-
+                secondhandView.getSecondhandData(modelList, 0);
 
             }
 

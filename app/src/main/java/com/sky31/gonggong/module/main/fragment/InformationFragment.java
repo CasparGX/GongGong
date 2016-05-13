@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ArticleListModel;
-import com.sky31.gonggong.model.SecondhandModelList;
 import com.sky31.gonggong.model.SecondhandModel;
 import com.sky31.gonggong.module.article.ArticlePresenter;
 import com.sky31.gonggong.module.article.detail.ArticleDetailActivity;
@@ -28,6 +26,12 @@ import com.sky31.gonggong.module.secondhand.SecondhandPresent;
 import com.sky31.gonggong.module.secondhand.SecondhandView;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -84,6 +88,7 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
     private ArticleListModel.Data activityData;
     private List<SecondhandModel> secondhandData;
     private static InformationFragment fragment;
+    private List<ImageView> imgViewList;
 
     // TODO: Rename and change types of parameters
 
@@ -163,6 +168,11 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         initSecondhandData();
         initInfoData();
         initActivityData();
+
+        imgViewList = new ArrayList<>();
+        imgViewList.add(secondHandImg1);
+        imgViewList.add(secondHandImg2);
+        imgViewList.add(secondHandImg3);
 
     }
 
@@ -279,29 +289,70 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
     private void initsecondhandView() {
 
         int len = this.secondhandData.size();
-            SecondhandModel model1 = secondhandData.get(0);
-            SecondhandModel model2 = secondhandData.get(1);
-            SecondhandModel model3 = secondhandData.get(2);
-        String imgUrl = Constants.Api.SECOND_HAND+"/fleaapi"+model1.getPicsrc()+model1.getPicname().getValue1();
-        Log.e("URL_TAG",imgUrl);
+        for (int i = 0; i < len; i++) {
+            SecondhandModel model = secondhandData.get(i);
+            String imgUrl = Constants.Api.SECOND_HAND + "/fleaapi" + model.getPicsrc() + model.getPicname().getValue1();
             Picasso.with(getContext()).
                     load(imgUrl
-                    ).into(secondHandImg1);
-        Picasso.with(getContext()).
-                load(Constants.Api.SECOND_HAND+"/fleaapi"+model2.getPicsrc()+model2.getPicname().getValue1()
-                ).into(secondHandImg2);
-        Picasso.with(getContext()).
-                load(Constants.Api.SECOND_HAND+"/fleaapi"+model3.getPicsrc()+model3.getPicname().getValue1()
-                ).into(secondHandImg3);
+                    ).into(imgViewList.get(i)); //imgViewList包含了三个ImageView;
+        }
 
         //整个模块监听。用于直接跳转。
         secondHand.setOnClickListener(this);
     }
     @Override
-    public void getSecondhandData(SecondhandModelList secondHandModelList, int code) {
-
+    public void getSecondhandData(JSONArray secondHandModelList, int code) {
         if (code==0){
-           this.secondhandData = secondHandModelList.getModels();
+            //this.secondhandData = secondHandModelList.getModels();
+            for (int i = 0; i < secondHandModelList.length(); i++) {
+                try {
+                    String imgUrl = null;
+                    SecondhandModel secondhandModel = new SecondhandModel();
+                    //获取picname
+                    JSONObject good = secondHandModelList.getJSONObject(i);
+                    JSONObject imgUrlObj = good.getJSONObject(Constants.Key.S_PICNAME);
+                    Iterator x = imgUrlObj.keys();
+                    imgUrl = Constants.Api.SECOND_HAND_API + good.getString(Constants.Key.S_PICSRC);
+                    SecondhandModel.PicnameBean picnameBean = new SecondhandModel.PicnameBean();
+                    int j = 0;
+                    while (x.hasNext()) {
+                        String key = (String) x.next();
+                        switch (j) {
+                            case 0:
+                                picnameBean.setValue1(imgUrlObj.getString(key));
+                                break;
+                            case 1:
+                                picnameBean.setValue2(imgUrlObj.getString(key));
+                                break;
+                            case 2:
+                                picnameBean.setValue3(imgUrlObj.getString(key));
+                                break;
+                        }
+                        j++;
+                    }
+                    //设置商品信息
+                    secondhandModel.setBargain(good.getString("bargain"));
+                    secondhandModel.setCreat_time(good.getString("creat_time"));
+                    secondhandModel.setDescribe(good.getString("describe"));
+                    secondhandModel.setId(good.getString("id"));
+                    secondhandModel.setTitle(good.getString("title"));
+                    secondhandModel.setSeller(good.getString("seller"));
+                    secondhandModel.setType(good.getString("type"));
+                    secondhandModel.setPhone(good.getString("phone"));
+                    secondhandModel.setQq(good.getString("qq"));
+                    secondhandModel.setPrice(good.getString("price"));
+                    secondhandModel.setTrading(good.getString("trading"));
+                    secondhandModel.setPicname(picnameBean);
+                    secondhandModel.setPicsrc(imgUrl);
+                    this.secondhandData.add(secondhandModel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                //如果i等于2,表示记录了三个，就跳出循环，避免加载之后的数据
+                if (i == 2) break;
+            }//for end
+            //循环完之后初始化视图
             initsecondhandView();
         }
         else {
