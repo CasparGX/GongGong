@@ -205,6 +205,9 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
         }
+        else {
+            listView = new RefreshListView(getContext());
+        }
 
     }
 
@@ -212,6 +215,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
     @Override
     public void onResume() {
         super.onResume();
+        initData();
         Log.i("Fragment", "onResume->>" + code);
 
 

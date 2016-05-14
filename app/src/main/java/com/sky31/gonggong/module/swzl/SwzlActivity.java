@@ -127,6 +127,7 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
 
 
         viewPager.setCurrentItem(0);
+        getTextView.setTextColor(getResources().getColor(R.color.grey_c));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -147,10 +148,16 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
                 if (position == 0){
                     getTextView.setClickable(true);
                     lostTextVIew.setClickable(false);
+                    lostTextVIew.setTextColor(getResources().getColor(R.color.white));
+                    getTextView.setTextColor(getResources().getColor(R.color.grey_c));
+
                 }
                 else if (position == 1){
                     getTextView.setClickable(false);
                     lostTextVIew.setClickable(true);
+                    getTextView.setTextColor(getResources().getColor(R.color.white));
+                    lostTextVIew.setTextColor(getResources().getColor(R.color.grey_c));
+
                 }
 
                 Log.d("page selected",position+"");
@@ -186,7 +193,10 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
                         Toast.makeText(SwzlActivity.this,"搜索",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.swzl_refresh:
+                        swzlFragmentOfGet.initData();
+                        swzlFragmentOfLost.initData();
                         Toast.makeText(SwzlActivity.this,"刷新",Toast.LENGTH_SHORT).show();
+
                 }
                 return false;
             }

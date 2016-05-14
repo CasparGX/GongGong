@@ -1,0 +1,102 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="drawer_margin_right">50dp</dimen>
+
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_36">36dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+
+    <dimen name="avatar_size">56dp</dimen>
+    <dimen name="avatar_size_mini">46dp</dimen>
+    <dimen name="avatar_bg_size">76dp</dimen>
+    <dimen name="avatar_bg_size_mini">66dp</dimen>
+
+    <dimen name="stroke_default">2dp</dimen>
+    <dimen name="stroke_mini">1dp</dimen>
+    <dimen name="stroke_blod">4dp</dimen>
+
+    <dimen name="radius_default">4dp</dimen>
+    <dimen name="radius_2">2dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
+    <dimen name="radius_20">20dp</dimen>
+
+    <dimen name="interval_default">20dp</dimen>
+    <dimen name="interval_10">10dp</dimen>
+    <dimen name="interval_15">15dp</dimen>
+    <dimen name="interval_5">5dp</dimen>
+    <dimen name="interval_3">3dp</dimen>
+    <dimen name="img_btn_size_mini">20dp</dimen>
+
+    <dimen name="img_icon_size_mini">20dp</dimen>
+
+
+    <!-- SWZL form size -->
+    <dimen name="swzl_title_size">35sp</dimen>
+    <dimen name="swzl_attention_size">20sp</dimen>
+    <dimen name="swzl_util_marginTop">20dp</dimen>
+    <dimen name="swzl_publish_mar">10dp</dimen>
+    <dimen name="swzl_publish_text_indent">30dp</dimen>
+
+    <dimen name="swzl_viewpager_title">40dp</dimen>
+
+    <dimen name="fab_size_normal">100dp</dimen>
+    <dimen name="fab_size_mini">150dp</dimen>
+
+
+    <dimen name="viewpager_title_default">14sp</dimen>
+
+    <!-- SWZL item  -->
+
+    <dimen name="swzl_item_thing_title">15sp</dimen>
+    <dimen name="swzl_item_thing_padding">10dp</dimen>
+    <dimen name="swzl_item_normal_textsize">12sp</dimen>
+    <dimen name="swzl_search_textsize_default">20sp</dimen>
+
+
+    <!-- SWZL floating Btn -->
+    <dimen name="swzl_floationg_btn_marginTop">-90dp</dimen>
+    <dimen name="swzl_floationg_btn_size">70dp</dimen>
+    <dimen name="swzl_floationg_btn_marginRight">50dp</dimen>
+
+
+    <!--swzl font size -->
+
+    <dimen name="swzl_detail_font_title">20sp</dimen>
+    <dimen name="swzl_detail_font_etc">12sp</dimen>
+
+
+    <!--Course List  -->
+    <dimen name="course_list_item_fontsize">4.5sp</dimen>
+
+
+    <!--week select popWindows -->
+    <dimen name="week_select_dialog_width">150dp</dimen>
+    <dimen name="week_select_dialog_height">250dp</dimen>
+
+
+    <!-- padding default-->
+
+
+    <!-- Material design Font format-->
+    <dimen name="material_design_headline_font_size">24sp</dimen>
+    <dimen name="material_design_title_font_size">20sp</dimen>
+    <dimen name="material_design_subhead_font_size">16sp</dimen>
+    <dimen name="material_design_body_font_size">14sp</dimen>
+    <dimen name="material_design_menu_font_size">14sp</dimen>
+    <dimen name="material_design_button_font_size">14sp</dimen>
+
+
+    <!--article  -->
+    <dimen name="article_act_time_margin">18dp</dimen>
+
+
+    <!-- info page default-->
+
+    <dimen name="info_page_margin_default">5dp</dimen>
+</resources>

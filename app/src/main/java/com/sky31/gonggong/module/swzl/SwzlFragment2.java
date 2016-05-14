@@ -197,8 +197,13 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
                 }
             });
+
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
+        }
+        else {
+            //View view  = LayoutInflater.from(getContext()).inflate(R.layout.swzl_nomore_data,null);
+            listView = new RefreshListView(getContext());
         }
 
 
@@ -208,6 +213,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     @Override
     public void onResume() {
         super.onResume();
+        initData();
         Log.i("Fragment", "onResume->>" + code);
 
 

@@ -42,8 +42,7 @@
             android:id="@+id/swzl_list_view"
             android:dividerHeight="@dimen/swzl_publish_mar"
             android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false"
-            android:layout_margin="@dimen/swzl_publish_mar">
+            android:headerDividersEnabled="false">
 
         </com.sky31.gonggong.widget.RefreshListView>
 
