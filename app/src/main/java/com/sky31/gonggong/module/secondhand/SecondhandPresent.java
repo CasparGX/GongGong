@@ -5,7 +5,7 @@ import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.util.Debug;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -33,16 +33,23 @@ public class SecondhandPresent {
 
     public void requestServer(){
 
-        Call<JSONArray> call = apiService.getScondModelList();
+        Call<JSONObject> call = apiService.getScondModelList();
 
-        call.enqueue(new Callback<JSONArray>() {
+        call.enqueue(new Callback<JSONObject>() {
             @Override
-            public void onResponse(Response<JSONArray> response, Retrofit retrofit) {
-                JSONArray modelList = response.body();
+            public void onResponse(Response<JSONObject> response, Retrofit retrofit) {
+                JSONObject modelList = response.body();
 
                 UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
                 //Log.e("TAG",response.body().getModels().size()+"");
-                secondhandView.getSecondhandData(modelList, 0);
+                /*JSONObject jsonArray = null;
+                try {
+                    jsonArray = new JSONArray(modelList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
+
+                //secondhandView.getSecondhandData(jsonArray, 0);
 
             }
 

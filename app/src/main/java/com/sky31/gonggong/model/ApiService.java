@@ -2,7 +2,7 @@ package com.sky31.gonggong.model;
 
 import com.sky31.gonggong.config.Constants;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -72,6 +72,6 @@ public interface ApiService {
 
     //二手街
     @GET(secondhandDefaultParm)
-    Call<JSONArray> getScondModelList();
+    Call<JSONObject> getScondModelList();
 
 }
