@@ -1,11 +1,9 @@
 package com.sky31.gonggong.module.secondhand;
 
+import com.google.gson.JsonArray;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
-import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.util.Debug;
-
-import org.json.JSONObject;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -33,14 +31,14 @@ public class SecondhandPresent {
 
     public void requestServer(){
 
-        Call<JSONObject> call = apiService.getScondModelList();
+        Call<JsonArray> call = apiService.getScondModelList();
 
-        call.enqueue(new Callback<JSONObject>() {
+        call.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Response<JSONObject> response, Retrofit retrofit) {
-                JSONObject modelList = response.body();
+            public void onResponse(Response<JsonArray> response, Retrofit retrofit) {
+                JsonArray modelList = response.body();
 
-                UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
+                //UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
                 //Log.e("TAG",response.body().getModels().size()+"");
                 /*JSONObject jsonArray = null;
                 try {
@@ -49,7 +47,7 @@ public class SecondhandPresent {
                     e.printStackTrace();
                 }*/
 
-                //secondhandView.getSecondhandData(jsonArray, 0);
+                //secondhandView.getSecondhandData(modelList, 0);
 
             }
 
