@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
@@ -26,27 +28,19 @@ import com.sky31.gonggong.module.secondhand.SecondhandPresent;
 import com.sky31.gonggong.module.secondhand.SecondhandView;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class InformationFragment extends Fragment implements ArticleListView,SecondhandView,View.OnClickListener{
+public class InformationFragment extends Fragment implements ArticleListView, SecondhandView, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-
-    private int infofragmentHeight;
-
+    private static InformationFragment fragment;
     @Bind(R.id.second_hand_img1)
     ImageView secondHandImg1;
     @Bind(R.id.second_hand_img2)
@@ -81,13 +75,10 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
     LinearLayout activityInfoFirst;
     @Bind(R.id.info)
     LinearLayout info;
-
-
-
+    private int infofragmentHeight;
     private ArticleListModel.Data infoData;
     private ArticleListModel.Data activityData;
-    private List<SecondhandModel> secondhandData;
-    private static InformationFragment fragment;
+    private List<SecondhandModel> secondhandData = new ArrayList<>();
     private List<ImageView> imgViewList;
 
     // TODO: Rename and change types of parameters
@@ -109,8 +100,12 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         Bundle args = new Bundle();
 
 
-
         fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static InformationFragment getInstance() {
+
         return fragment;
     }
 
@@ -134,14 +129,6 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         return view;
     }
 
-
-
-    public static InformationFragment getInstance(){
-
-        return fragment;
-    }
-
-
     /***
      * 初始化容器。位于MainActivity加载时候调用。
      */
@@ -150,7 +137,7 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         ViewGroup.LayoutParams paramsSecondhand = secondHand.getLayoutParams();
         ViewGroup.LayoutParams paramsInfo = info.getLayoutParams();
         ViewGroup.LayoutParams paramsActivity = activityInfoFirst.getLayoutParams();
-        int height = (int) (CommonFunction.homeLayoutHeight - CommonFunction.convertDpToPixel((1+8),getContext()))/3-10;
+        int height = (int) (CommonFunction.homeLayoutHeight - CommonFunction.convertDpToPixel((1 + 8), getContext())) / 3 - 10;
 
         paramsSecondhand.height = height;
         paramsInfo.height = height;
@@ -234,19 +221,17 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
     @Override
     public void getAriticleList(int code, ArticleListModel model) {
 
-        if (code==0){
+        if (code == 0) {
             ArticleListModel.Data data = model.getData().get(0);
-            if (data.getAct_time()==null || data.getAct_time().equals("")){
+            if (data.getAct_time() == null || data.getAct_time().equals("")) {
                 infoData = data;
                 initInfoView();
-            }
-            else {
+            } else {
                 activityData = data;
                 initActivityView();
             }
-        }
-        else {
-            CommonFunction.errorToast(getContext(),code);
+        } else {
+            CommonFunction.errorToast(getContext(), code);
         }
 
     }
@@ -291,7 +276,7 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         int len = this.secondhandData.size();
         for (int i = 0; i < len; i++) {
             SecondhandModel model = secondhandData.get(i);
-            String imgUrl = Constants.Api.SECOND_HAND + "/fleaapi" + model.getPicsrc() + model.getPicname().getValue1();
+            String imgUrl = model.getPicsrc() + "m_" + model.getPicname().getValue1();
             Picasso.with(getContext()).
                     load(imgUrl
                     ).into(imgViewList.get(i)); //imgViewList包含了三个ImageView;
@@ -300,63 +285,61 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
         //整个模块监听。用于直接跳转。
         secondHand.setOnClickListener(this);
     }
+
     @Override
-    public void getSecondhandData(JSONArray secondHandModelList, int code) {
-        if (code==0){
+    public void getSecondhandData(JsonArray secondHandModelList, int code) {
+        if (code == 0) {
             //this.secondhandData = secondHandModelList.getModels();
-            for (int i = 0; i < secondHandModelList.length(); i++) {
-                try {
-                    String imgUrl = null;
-                    SecondhandModel secondhandModel = new SecondhandModel();
-                    //获取picname
-                    JSONObject good = secondHandModelList.getJSONObject(i);
-                    JSONObject imgUrlObj = good.getJSONObject(Constants.Key.S_PICNAME);
-                    Iterator x = imgUrlObj.keys();
-                    imgUrl = Constants.Api.SECOND_HAND_API + good.getString(Constants.Key.S_PICSRC);
-                    SecondhandModel.PicnameBean picnameBean = new SecondhandModel.PicnameBean();
-                    int j = 0;
-                    while (x.hasNext()) {
-                        String key = (String) x.next();
-                        switch (j) {
-                            case 0:
-                                picnameBean.setValue1(imgUrlObj.getString(key));
-                                break;
-                            case 1:
-                                picnameBean.setValue2(imgUrlObj.getString(key));
-                                break;
-                            case 2:
-                                picnameBean.setValue3(imgUrlObj.getString(key));
-                                break;
-                        }
-                        j++;
+            for (int i = 0; i < secondHandModelList.size(); i++) {
+                String imgUrl = null;
+                SecondhandModel secondhandModel = new SecondhandModel();
+                //获取picname
+                JsonObject good = secondHandModelList.get(i).getAsJsonObject();
+                JsonObject imgUrlObj = good.get(Constants.Key.S_PICNAME).getAsJsonObject();
+                imgUrl = Constants.Api.SECOND_HAND_API + good.get(Constants.Key.S_PICSRC).getAsString();
+                SecondhandModel.PicnameBean picnameBean = new SecondhandModel.PicnameBean();
+                int j = 0;
+                while (j < 3) {
+                    String key = (j + 1) + "";
+                    switch (j) {
+                        case 0:
+                            if (imgUrlObj.has(key))
+                                picnameBean.setValue1(imgUrlObj.get(key).getAsString());
+                            break;
+                        case 1:
+                            if (imgUrlObj.has(key))
+                                picnameBean.setValue2(imgUrlObj.get(key).getAsString());
+                            break;
+                        case 2:
+                            if (imgUrlObj.has(key))
+                                picnameBean.setValue3(imgUrlObj.get(key).getAsString());
+                            break;
                     }
-                    //设置商品信息
-                    secondhandModel.setBargain(good.getString("bargain"));
-                    secondhandModel.setCreat_time(good.getString("creat_time"));
-                    secondhandModel.setDescribe(good.getString("describe"));
-                    secondhandModel.setId(good.getString("id"));
-                    secondhandModel.setTitle(good.getString("title"));
-                    secondhandModel.setSeller(good.getString("seller"));
-                    secondhandModel.setType(good.getString("type"));
-                    secondhandModel.setPhone(good.getString("phone"));
-                    secondhandModel.setQq(good.getString("qq"));
-                    secondhandModel.setPrice(good.getString("price"));
-                    secondhandModel.setTrading(good.getString("trading"));
-                    secondhandModel.setPicname(picnameBean);
-                    secondhandModel.setPicsrc(imgUrl);
-                    this.secondhandData.add(secondhandModel);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    j++;
                 }
+                //设置商品信息
+                secondhandModel.setBargain(good.get("bargain").getAsString());
+                secondhandModel.setCreat_time(good.get("creat_time").getAsString());
+                secondhandModel.setDescribe(good.get("describe").getAsString());
+                secondhandModel.setId(good.get("id").getAsString());
+                secondhandModel.setTitle(good.get("title").getAsString());
+                secondhandModel.setSeller(good.get("seller").getAsString());
+                secondhandModel.setType(good.get("type").getAsString());
+                secondhandModel.setPhone(good.get("phone").getAsString());
+                secondhandModel.setQq(good.get("qq").getAsString());
+                secondhandModel.setPrice(good.get("price").getAsString());
+                secondhandModel.setTrading(good.get("trading").getAsString());
+                secondhandModel.setPicname(picnameBean);
+                secondhandModel.setPicsrc(imgUrl);
+                this.secondhandData.add(secondhandModel);
 
                 //如果i等于2,表示记录了三个，就跳出循环，避免加载之后的数据
                 if (i == 2) break;
             }//for end
             //循环完之后初始化视图
             initsecondhandView();
-        }
-        else {
-            CommonFunction.errorToast(getContext(),code);
+        } else {
+            CommonFunction.errorToast(getContext(), code);
         }
     }
 
@@ -364,10 +347,10 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.activity_title_tip:
-            //打开资讯的viewpager页面
+                //打开资讯的viewpager页面
             case R.id.info_title_tip:
                 //打开资讯的viewpager页面
                 Intent intent = new Intent(getContext(), ArticleListActivity.class);
@@ -377,22 +360,22 @@ public class InformationFragment extends Fragment implements ArticleListView,Sec
             case R.id.second_hand:
                 //打开二手街
                 Intent intent1 = new Intent(getContext(), ArticleDetailActivity.class);
-                intent1.putExtra("url","http://bug.sky31.com");
-                intent1.putExtra("title","二手街");
+                intent1.putExtra("url", "http://bug.sky31.com");
+                intent1.putExtra("title", "二手街");
                 startActivity(intent1);
                 break;
             case R.id.activity_first:
                 //打开第一条文章页
-                Intent intent2 = new Intent(getContext(),ArticleDetailActivity.class);
-                intent2.putExtra("url",activityData.getUrl());
-                intent2.putExtra("title","文章详情");
+                Intent intent2 = new Intent(getContext(), ArticleDetailActivity.class);
+                intent2.putExtra("url", activityData.getUrl());
+                intent2.putExtra("title", "文章详情");
                 startActivity(intent2);
                 break;
             case R.id.info_first:
                 //打开第一条文章页
-                Intent intent3 = new Intent(getContext(),ArticleDetailActivity.class);
-                intent3.putExtra("url",infoData.getUrl());
-                intent3.putExtra("title","文章详情");
+                Intent intent3 = new Intent(getContext(), ArticleDetailActivity.class);
+                intent3.putExtra("url", infoData.getUrl());
+                intent3.putExtra("title", "文章详情");
                 startActivity(intent3);
         }
     }
