@@ -37,7 +37,7 @@ public class SecondhandPresent {
             @Override
             public void onResponse(Response<JsonArray> response, Retrofit retrofit) {
                 JsonArray modelList = response.body();
-
+                Debug.i("secondlist", modelList + "");
                 //UserModel.getaCache().put(Constants.Key.S_GOODS_LIST, modelList);
                 //Log.e("TAG",response.body().getModels().size()+"");
                 /*JSONObject jsonArray = null;
@@ -47,7 +47,7 @@ public class SecondhandPresent {
                     e.printStackTrace();
                 }*/
 
-                //secondhandView.getSecondhandData(modelList, 0);
+                secondhandView.getSecondhandData(modelList, 0);
 
             }
 
