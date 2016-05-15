@@ -360,7 +360,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
             case R.id.second_hand:
                 //打开二手街
                 Intent intent1 = new Intent(getContext(), ArticleDetailActivity.class);
-                intent1.putExtra("url", "http://bug.sky31.com");
+                intent1.putExtra("url", "http://buy.sky31.com");
                 intent1.putExtra("title", "二手街");
                 startActivity(intent1);
                 break;
