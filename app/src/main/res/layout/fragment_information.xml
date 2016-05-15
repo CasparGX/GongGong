@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginTop="@dimen/info_page_margin_default"
+        android:layout_marginTop="@dimen/interval_10"
         android:paddingLeft="@dimen/activity_padding"
         android:paddingRight="@dimen/activity_padding"
         android:id="@+id/second_hand"

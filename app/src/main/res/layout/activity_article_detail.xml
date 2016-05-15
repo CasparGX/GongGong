@@ -11,7 +11,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_0176da"
+        android:background="@color/colorPrimary"
         toolbar:titleTextColor="@color/white"
         android:id="@+id/article_detail_toolbar"
         toolbar:title="文章详情"
