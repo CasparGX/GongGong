@@ -538,7 +538,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
         }
         //抽屉菜单宽度
-        int w = (int) (homeLayout.getWidth() - convertDpToPixel(resources.getDimension(R.dimen.drawer_margin_right), context));
+        int w = (int) (homeLayout.getWidth() - convertDpToPixel(android.R.attr.actionBarSize, context));
         if (drawerMenu != null && drawerMenu.getWidth() != w) {
             ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
             param.width = w;
