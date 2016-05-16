@@ -54,7 +54,6 @@ import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.module.main.fragment.FirstFragment;
 import com.sky31.gonggong.module.main.fragment.InformationFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
-import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
@@ -424,26 +423,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
-                /*if (positionOffset>=0 && (position == 0) && headerHeight!=-1){
-                    ViewGroup.LayoutParams headerParam = header.getLayoutParams();
-                    headerParam.height = (int) (headerHeight - (headerHeight * positionOffset));
-                    header.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerParam.height));
-                    headerParam = null;
-
-                }*/
+                Debug.i("positionOffset", mCurrentPageIndex + "---" + position + "---" + positionOffset + "---" + positionOffsetPixels);
                 int x = 0;
-                if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
+                if (position == 0 && x % 2 == 0) { //0->1--" + positionOffsetPixels+"---");
+                    onChangeHeaderHeight(positionOffset);
+                } else if (position == 1) {
+                    onChangeHeaderHeight(1.0f);
+                }
+                /*if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
+                    Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels+"---");
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 0 && x % 2 == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
+                    Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels+"---");
                     if (positionOffset == 0.0f) {
-                        onChangeHeaderHeight(1.0f);
+                        //onChangeHeaderHeight(1.0f);
                     }
                 } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
-
-                }
+                    onChangeHeaderHeight(positionOffset);
+                }*/
                 x++;
             }
 
