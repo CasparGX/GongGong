@@ -407,12 +407,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f);
         showAnimation.setDuration(500);
         //bottom nav text
-        tvPerson.setTextSize(defualtTextSize);
-        tvFunction.setTextSize(defualtTextSize);
-        tvInformation.setTextSize(defualtTextSize);
-        tvPerson.setVisibility(View.GONE);
-        tvFunction.setVisibility(View.GONE);
-        tvInformation.setVisibility(View.GONE);
+        tvPerson.setTextSize(0);
+        tvFunction.setTextSize(0);
+        tvInformation.setTextSize(0);
+        //tvPerson.setVisibility(View.GONE);
+        //tvFunction.setVisibility(View.GONE);
+        //tvInformation.setVisibility(View.GONE);
 
         //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
@@ -427,8 +427,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 int x = 0;
                 if (position == 0 && x % 2 == 0) { //0->1--" + positionOffsetPixels+"---");
                     onChangeHeaderHeight(positionOffset);
+                    onChangeNavText(position, positionOffset);
                 } else if (position == 1) {
                     onChangeHeaderHeight(1.0f);
+                    onChangeNavText(position, positionOffset);
+                } else if (position == 2) {
+                    onChangeNavText(position, positionOffset);
                 }
                 /*if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
                     Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels+"---");
@@ -448,9 +452,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
             @Override
             public void onPageSelected(int position) {
-                if (mCurrentPageIndex != position) {
-                    onChangeNavText(mCurrentPageIndex, position);
-                }
                 mCurrentPageIndex = position;
             }
 
@@ -462,13 +463,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     /* 改变底部导航 */
-    public void onChangeNavText(int mCurrentPageIndex, int position) {
+    public void onChangeNavText(int position, float positionOffset) {
         List<TextView> mTextViewList = new ArrayList<>();
         mTextViewList.add(tvPerson);
         mTextViewList.add(tvFunction);
         mTextViewList.add(tvInformation);
-        mTextViewList.get(mCurrentPageIndex).setVisibility(View.GONE);
-        mTextViewList.get(position).setVisibility(View.VISIBLE);
+        switch (position) {
+            case 0:
+                mTextViewList.get(0).setTextSize(defualtTextSize * (1 - positionOffset));
+                mTextViewList.get(1).setTextSize(defualtTextSize * (positionOffset));
+                break;
+            case 1:
+                mTextViewList.get(1).setTextSize(defualtTextSize * (1 - positionOffset));
+                mTextViewList.get(2).setTextSize(defualtTextSize * (positionOffset));
+                break;
+            /*case 2:
+                mTextViewList.get(2).setTextSize(defualtTextSize*(1-positionOffset));
+                mTextViewList.get(1).setTextSize(defualtTextSize*(positionOffset));
+                break;*/
+
+        }
 
     }
 
