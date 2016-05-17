@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layerType="software"
-    android:clipChildren="false"
     android:background="@color/color_ef"
+    android:clipChildren="false"
+    android:layerType="software"
     android:orientation="vertical">
 
 
@@ -19,16 +19,16 @@
     <FrameLayout
         android:id="@+id/project_layout"
         android:layout_width="match_parent"
-        android:clipChildren="false"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clipChildren="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/interval_10"
             android:layout_marginBottom="1dp"
-            android:clipChildren="false"
+            android:layout_marginTop="@dimen/interval_10"
             android:background="@color/white"
+            android:clipChildren="false"
             android:orientation="vertical">
 
             <View
@@ -64,25 +64,30 @@
                 android:layout_height="1px"
                 android:background="@color/grey_c" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/current_course_pager"
+            <FrameLayout
+                android:clipChildren="false"
+                android:id="@+id/layout_course_vp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:clipChildren="false">
+                android:layout_height="match_parent">
 
-            </android.support.v4.view.ViewPager>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/current_course_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="@dimen/interval_10"
+                    android:layout_marginBottom="@dimen/interval_10"
+                    android:clipChildren="false" />
+            </FrameLayout>
 
         </LinearLayout>
 
         <View
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_gravity="bottom"
             android:background="@drawable/shadow" />
     </FrameLayout>
 
@@ -95,8 +100,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/interval_10"
             android:layout_marginBottom="1px"
+            android:layout_marginTop="@dimen/interval_10"
             android:background="@color/white"
             android:orientation="vertical">
 
@@ -104,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/grey_c" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -220,9 +226,9 @@
         </LinearLayout>
 
         <View
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_gravity="bottom"
             android:background="@drawable/shadow" />
     </FrameLayout>
 

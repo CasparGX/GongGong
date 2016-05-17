@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -60,6 +61,8 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     TextView tvHolidayDays;
     @Bind(R.id.countdown_layout)
     FrameLayout countdownLayout;
+    @Bind(R.id.layout_course_vp)
+    FrameLayout layoutCourseVp;
     private int homeLayoutHeight;
     private ACache aCache;
 
@@ -185,6 +188,14 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         currentCoursePager.setAdapter(adapter);
         currentCoursePager.setOffscreenPageLimit(lenth);
         currentCoursePager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.interval_10));
+        layoutCourseVp.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // dispatch the events to the ViewPager, to solve the problem that we can swipe only the middle view.
+                return currentCoursePager.dispatchTouchEvent(event);
+            }
+        });
 
 
     }
