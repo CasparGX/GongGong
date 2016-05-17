@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layerType="software"
+    android:clipChildren="false"
     android:background="@color/color_ef"
     android:orientation="vertical">
 
@@ -16,200 +16,215 @@
 
     </LinearLayout>
 
-
-
-
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/project_layout"
         android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/project_layout">
+        android:clipChildren="false"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.90"
-                android:text="@string/course_list_today"
-                android:gravity="center_vertical"
-                android:paddingLeft="10sp"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text=">"
-                android:gravity="center"
-                android:textSize="25sp"
-                style="bold"
-                />
-        </LinearLayout>
-
-        <android.support.v4.view.ViewPager
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/current_course_pager">
-
-        </android.support.v4.view.ViewPager>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Project List" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/countdown_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/interval_10"
-            android:clickable="true"
-            card_view:cardBackgroundColor="#FFFFFF"
-            card_view:cardCornerRadius="@dimen/radius_2"
-            card_view:cardPreventCornerOverlap="false"
-            card_view:cardUseCompatPadding="true"
-            card_view:contentPadding="@dimen/interval_5">
+            android:layout_marginTop="@dimen/interval_10"
+            android:layout_marginBottom="1dp"
+            android:clipChildren="false"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_c" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10sp"
+                    android:text="@string/course_list_today" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_keyboard_arrow_right_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_c" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/current_course_pager"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:clipChildren="false">
+
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+
+        <View
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/shadow" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/countdown_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/interval_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/interval_10"
+            android:layout_marginBottom="1px"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_c" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10sp"
+                    android:text="@string/count_down_title" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_keyboard_arrow_right_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_c" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/interval_default"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/count_down" />
+                        android:text="距离" />
 
-                    <FrameLayout
+                    <TextView
+                        android:id="@+id/tv_holiday_name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="清明节" />
 
-                        <ImageView
-                            android:id="@+id/img_btn_refresh"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="right"
-                            android:src="@drawable/refresh" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="还有" />
 
-                        <com.rey.material.widget.ProgressView
-                            android:id="@+id/pv_holiday"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="right"
-                            android:visibility="gone"
-                            app:pv_autostart="true"
-                            app:pv_circular="true"
-                            app:pv_progressMode="indeterminate"
-                            app:pv_progressStyle="@style/Material.Drawable.CircularProgress" />
-                    </FrameLayout>
+                    <TextView
+                        android:id="@+id/tv_holiday_interval"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="清明节" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="天" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:text="时间：" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="距离" />
+                    <TextView
+                        android:id="@+id/tv_holiday_start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="清明节" />
 
-                        <TextView
-                            android:id="@+id/tv_holiday_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="清明节" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="还有" />
-
-                        <TextView
-                            android:id="@+id/tv_holiday_interval"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="清明节" />
-
-                        <TextView
-                            android:text="天"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text=" - " />
 
-                        <TextView
-                            android:text="时间："
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_holiday_end"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="清明节" />
 
-                        <TextView
-                            android:id="@+id/tv_holiday_start"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="清明节" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/interval_default"
+                        android:text="共" />
 
-                        <TextView
-                            android:text=" - "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_holiday_days"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="清明节" />
 
-                        <TextView
-                            android:id="@+id/tv_holiday_end"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="清明节" />
-
-                        <TextView
-                            android:layout_marginLeft="@dimen/interval_default"
-                            android:text="共"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/tv_holiday_days"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="清明节" />
-
-                        <TextView
-                            android:text="天"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="天" />
                 </LinearLayout>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/shadow" />
+    </FrameLayout>
+
+
 </LinearLayout>

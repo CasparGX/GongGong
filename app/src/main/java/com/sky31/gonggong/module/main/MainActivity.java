@@ -55,7 +55,6 @@ import com.sky31.gonggong.module.login.LoginView;
 import com.sky31.gonggong.module.main.fragment.FirstFragment;
 import com.sky31.gonggong.module.main.fragment.InformationFragment;
 import com.sky31.gonggong.module.main.fragment.SecondFragment;
-import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.sky31.gonggong.util.ACache;
 import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.InputPassPopupwindow;
@@ -324,7 +323,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -338,15 +336,17 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
         initToolbar();
         initView();
-        autoLogin();
-        aCache.put("123", "1");
-        int i = Integer.parseInt(aCache.getAsString("123"));
-        Debug.i("123", i + "");
         //} else {
         //    Debug.i("savedInstanceState", "not null");
 
         //}
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        autoLogin();
     }
 
     //初始化控件
@@ -410,12 +410,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         hiddenAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, 0.5f, 0.5f);
         showAnimation.setDuration(500);
         //bottom nav text
-        tvPerson.setTextSize(defualtTextSize);
-        tvFunction.setTextSize(defualtTextSize);
-        tvInformation.setTextSize(defualtTextSize);
-        tvPerson.setVisibility(View.GONE);
-        tvFunction.setVisibility(View.GONE);
-        tvInformation.setVisibility(View.GONE);
+        tvPerson.setTextSize(0);
+        tvFunction.setTextSize(0);
+        tvInformation.setTextSize(0);
+        //tvPerson.setVisibility(View.GONE);
+        //tvFunction.setVisibility(View.GONE);
+        //tvInformation.setVisibility(View.GONE);
 
         //ViewPager
         pager.setOffscreenPageLimit(mDatas.size());
@@ -426,34 +426,35 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels);
-                /*if (positionOffset>=0 && (position == 0) && headerHeight!=-1){
-                    ViewGroup.LayoutParams headerParam = header.getLayoutParams();
-                    headerParam.height = (int) (headerHeight - (headerHeight * positionOffset));
-                    header.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerParam.height));
-                    headerParam = null;
-
-                }*/
+                Debug.i("positionOffset", mCurrentPageIndex + "---" + position + "---" + positionOffset + "---" + positionOffsetPixels);
                 int x = 0;
-                if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
+                if (position == 0 && x % 2 == 0) { //0->1--" + positionOffsetPixels+"---");
+                    onChangeHeaderHeight(positionOffset);
+                    onChangeNavText(position, positionOffset);
+                } else if (position == 1) {
+                    onChangeHeaderHeight(1.0f);
+                    onChangeNavText(position, positionOffset);
+                } else if (position == 2) {
+                    onChangeNavText(position, positionOffset);
+                }
+                /*if (mCurrentPageIndex == 0 && position == 0 && x % 2 == 0) { //0->1
+                    Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels+"---");
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 0 && x % 2 == 0) {    //1->0
                     onChangeHeaderHeight(positionOffset);
                 } else if (mCurrentPageIndex == 1 && position == 1) {    //1->2
+                    Debug.i("positionOffset", position + "---" + positionOffset + "---" + positionOffsetPixels+"---");
                     if (positionOffset == 0.0f) {
-                        onChangeHeaderHeight(1.0f);
+                        //onChangeHeaderHeight(1.0f);
                     }
                 } else if (mCurrentPageIndex == 2 && position == 1) {    //2->1
-
-                }
+                    onChangeHeaderHeight(positionOffset);
+                }*/
                 x++;
             }
 
             @Override
             public void onPageSelected(int position) {
-                if (mCurrentPageIndex != position) {
-                    onChangeNavText(mCurrentPageIndex, position);
-                }
                 mCurrentPageIndex = position;
             }
 
@@ -465,13 +466,26 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     /* 改变底部导航 */
-    public void onChangeNavText(int mCurrentPageIndex, int position) {
+    public void onChangeNavText(int position, float positionOffset) {
         List<TextView> mTextViewList = new ArrayList<>();
         mTextViewList.add(tvPerson);
         mTextViewList.add(tvFunction);
         mTextViewList.add(tvInformation);
-        mTextViewList.get(mCurrentPageIndex).setVisibility(View.GONE);
-        mTextViewList.get(position).setVisibility(View.VISIBLE);
+        switch (position) {
+            case 0:
+                mTextViewList.get(0).setTextSize(defualtTextSize * (1 - positionOffset));
+                mTextViewList.get(1).setTextSize(defualtTextSize * (positionOffset));
+                break;
+            case 1:
+                mTextViewList.get(1).setTextSize(defualtTextSize * (1 - positionOffset));
+                mTextViewList.get(2).setTextSize(defualtTextSize * (positionOffset));
+                break;
+            /*case 2:
+                mTextViewList.get(2).setTextSize(defualtTextSize*(1-positionOffset));
+                mTextViewList.get(1).setTextSize(defualtTextSize*(positionOffset));
+                break;*/
+
+        }
 
     }
 
@@ -541,7 +555,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
         }
         //抽屉菜单宽度
-        int w = (int) (homeLayout.getWidth() - convertDpToPixel(resources.getDimension(R.dimen.drawer_margin_right), context));
+        int w = (int) (homeLayout.getWidth() - convertDpToPixel(android.R.attr.actionBarSize, context));
         if (drawerMenu != null && drawerMenu.getWidth() != w) {
             ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
             param.width = w;
@@ -661,26 +675,28 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     @Override
     public void doneGetBalance(int code, EcardModel ecardModel) {
-        if (code == 0) {
-            try {
+        try {
+            if (code == 0) {
+
                 ecardBalance.setText(aCache.getAsString(Constants.Key.BALANCE));
                 ecardUnclaimed.setText(aCache.getAsString(Constants.Key.UNCLAIMED));
-            } catch (NullPointerException e) {
+
+            } else if (code == 1) {
                 ecardBalance.setText(R.string.default_money);
                 ecardUnclaimed.setText(R.string.default_money);
+            } else {
+                ecardBalance.setText(R.string.default_money);
+                ecardUnclaimed.setText(R.string.default_money);
+                errorToast(this, code);
             }
-        } else if (code == 1) {
-            ecardBalance.setText(R.string.default_money);
-            ecardUnclaimed.setText(R.string.default_money);
-        } else {
-            ecardBalance.setText(R.string.default_money);
-            ecardUnclaimed.setText(R.string.default_money);
-            errorToast(this, code);
+            ecardBalance.setVisibility(View.VISIBLE);
+            ecardUnclaimed.setVisibility(View.VISIBLE);
+            pbEcardBalance.setVisibility(View.GONE);
+            pbEcardUnclaimed.setVisibility(View.GONE);
+        } catch (NullPointerException e) {
+            //ecardBalance.setText(R.string.default_money);
+            //ecardUnclaimed.setText(R.string.default_money);
         }
-        ecardBalance.setVisibility(View.VISIBLE);
-        ecardUnclaimed.setVisibility(View.VISIBLE);
-        pbEcardBalance.setVisibility(View.GONE);
-        pbEcardUnclaimed.setVisibility(View.GONE);
     }
 
     @Override

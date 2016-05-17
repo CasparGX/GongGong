@@ -13,7 +13,7 @@
         android:id="@+id/course_list_toolbar"
         toolbar:titleTextColor="@color/white"
         toolbar:navigationIcon="@drawable/ic_arrow_back"
-        android:background="@color/color_0176da">
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="wrap_content"

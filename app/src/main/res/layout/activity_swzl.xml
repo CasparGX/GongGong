@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".module.swzl.SwzlActivity"
@@ -14,7 +13,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_swzl"
         android:layout_width="match_parent"
-        android:background="@color/color_0176da"
+        android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
         toolbar:title="@string/swzl_title"
         toolbar:titleTextColor="@color/white">
@@ -25,7 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:background="@color/color_0176da"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <TextView
@@ -56,7 +55,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_0176da"
+        android:background="@color/colorPrimary"
         >
 
         <ImageView
@@ -86,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:background="@color/color_0176da"
+            android:background="@color/colorPrimary"
             android:id="@+id/swzl_pager_title"
             >
         </android.support.v4.view.PagerTabStrip>-->
