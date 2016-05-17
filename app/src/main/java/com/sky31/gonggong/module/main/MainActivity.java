@@ -322,7 +322,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -336,15 +335,17 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
         initToolbar();
         initView();
-        autoLogin();
-        aCache.put("123", "1");
-        int i = Integer.parseInt(aCache.getAsString("123"));
-        Debug.i("123", i + "");
         //} else {
         //    Debug.i("savedInstanceState", "not null");
 
         //}
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        autoLogin();
     }
 
     //初始化控件
@@ -672,26 +673,28 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     @Override
     public void doneGetBalance(int code, EcardModel ecardModel) {
-        if (code == 0) {
-            try {
+        try {
+            if (code == 0) {
+
                 ecardBalance.setText(aCache.getAsString(Constants.Key.BALANCE));
                 ecardUnclaimed.setText(aCache.getAsString(Constants.Key.UNCLAIMED));
-            } catch (NullPointerException e) {
+
+            } else if (code == 1) {
                 ecardBalance.setText(R.string.default_money);
                 ecardUnclaimed.setText(R.string.default_money);
+            } else {
+                ecardBalance.setText(R.string.default_money);
+                ecardUnclaimed.setText(R.string.default_money);
+                errorToast(this, code);
             }
-        } else if (code == 1) {
-            ecardBalance.setText(R.string.default_money);
-            ecardUnclaimed.setText(R.string.default_money);
-        } else {
-            ecardBalance.setText(R.string.default_money);
-            ecardUnclaimed.setText(R.string.default_money);
-            errorToast(this, code);
+            ecardBalance.setVisibility(View.VISIBLE);
+            ecardUnclaimed.setVisibility(View.VISIBLE);
+            pbEcardBalance.setVisibility(View.GONE);
+            pbEcardUnclaimed.setVisibility(View.GONE);
+        } catch (NullPointerException e) {
+            //ecardBalance.setText(R.string.default_money);
+            //ecardUnclaimed.setText(R.string.default_money);
         }
-        ecardBalance.setVisibility(View.VISIBLE);
-        ecardUnclaimed.setVisibility(View.VISIBLE);
-        pbEcardBalance.setVisibility(View.GONE);
-        pbEcardUnclaimed.setVisibility(View.GONE);
     }
 
     @Override

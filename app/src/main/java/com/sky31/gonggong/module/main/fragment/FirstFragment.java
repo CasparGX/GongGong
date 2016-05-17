@@ -183,6 +183,8 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
                 new CurrentCoursePageAdapter(getActivity().getSupportFragmentManager(), fragmentList);
 
         currentCoursePager.setAdapter(adapter);
+        currentCoursePager.setOffscreenPageLimit(lenth);
+        currentCoursePager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.interval_10));
 
 
     }
