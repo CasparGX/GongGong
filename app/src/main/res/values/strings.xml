@@ -153,4 +153,13 @@
     <string name="about_us_detail">关于我们</string>
     <string name="about_us_join_us">加入我们</string>
     <string name="about_us">关于</string>
+    
+    
+    <!-- grade detail -->
+    <string name="grade_detail_course_name">课程名称</string>
+    <string name="grade_detail_type">课程类型：</string>
+    <string name="grade_detail_credit">学分：</string>
+    <string name="grade_detail_daily_grade">平时成绩：</string>
+    <string name="grade_detail_exam_grade">考试成绩：</string>
+    <string name="grade_detail_comp_grade">最终成绩：</string>
 </resources>

@@ -10,7 +10,6 @@ import android.view.View;
 import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
-import com.sky31.gonggong.module.grade.details.DetailsFragment;
 import com.sky31.gonggong.module.grade.rank.RankFragment;
 import com.sky31.gonggong.module.grade.report.GradeReportFragment;
 import com.sky31.gonggong.module.main.HomeViewPagerAdapter;
@@ -44,15 +43,13 @@ public class GradeActivity extends BaseActivity {
         //Fragment
         List<Fragment> mFragmentList = new ArrayList<>();
         GradeReportFragment gradeReportFragment = new GradeReportFragment();
-        DetailsFragment detailsFragment = new DetailsFragment();
         RankFragment rankFragment = new RankFragment();
         mFragmentList.add(gradeReportFragment);
-        mFragmentList.add(detailsFragment);
         mFragmentList.add(rankFragment);
         //ViewPager
         vpGrade.setOffscreenPageLimit(mFragmentList.size());
         HomeViewPagerAdapter mAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
-        String titles[] = new String[]{"成绩报表", "成绩祥单", "绩点排名"};
+        String titles[] = new String[]{"成绩祥单", "绩点排名"};
         mAdapter.setTitles(titles);
         vpGrade.setAdapter(mAdapter);
         //TabLayout
