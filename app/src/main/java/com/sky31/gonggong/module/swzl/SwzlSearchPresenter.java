@@ -77,4 +77,35 @@ public class SwzlSearchPresenter {
 
 
     }
+
+
+    public void doSearchByKey(String key){
+
+        Call<SwzlSearchResult> call = service.getSearchResult(key);
+
+        call.enqueue(new Callback<SwzlSearchResult>() {
+            @Override
+            public void onResponse(Response<SwzlSearchResult> response, Retrofit retrofit) {
+                if (response.body().getCode().equals("0")){
+
+                    int code = Integer.parseInt(response.body().getCode());
+                    searchView.getSearchData(code , response.body());
+
+                }
+                else {
+                    int code = Integer.parseInt(response.body().getCode());
+                    searchView.getSearchData(code,null);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+                t.printStackTrace();
+                Toast.makeText(context,"网络请求出错，请稍后再试",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
 }

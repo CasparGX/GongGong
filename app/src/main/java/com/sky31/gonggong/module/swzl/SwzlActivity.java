@@ -12,12 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rey.material.widget.FloatingActionButton;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.module.swzl.publish.PublishSwzlActivity;
+import com.sky31.gonggong.module.swzl.search.SwzlSearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +128,7 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
 
 
         viewPager.setCurrentItem(0);
+        getTextView.setTextColor(getResources().getColor(R.color.grey_c));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -147,10 +149,16 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
                 if (position == 0){
                     getTextView.setClickable(true);
                     lostTextVIew.setClickable(false);
+                    lostTextVIew.setTextColor(getResources().getColor(R.color.white));
+                    getTextView.setTextColor(getResources().getColor(R.color.grey_c));
+
                 }
                 else if (position == 1){
                     getTextView.setClickable(false);
                     lostTextVIew.setClickable(true);
+                    getTextView.setTextColor(getResources().getColor(R.color.white));
+                    lostTextVIew.setTextColor(getResources().getColor(R.color.grey_c));
+
                 }
 
                 Log.d("page selected",position+"");
@@ -183,16 +191,27 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.swzl_search:
-                        Toast.makeText(SwzlActivity.this,"搜索",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(SwzlActivity.this, SwzlSearchActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.swzl_refresh:
-                        Toast.makeText(SwzlActivity.this,"刷新",Toast.LENGTH_SHORT).show();
+                        swzlFragmentOfGet.initData();
+                        swzlFragmentOfLost.initData();
+
+
                 }
                 return false;
             }
         });
     }
 
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
 
     @Override
     public void onFragmentInteraction(SwzlFragment fragment) {

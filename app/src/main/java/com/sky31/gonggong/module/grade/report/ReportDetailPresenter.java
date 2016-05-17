@@ -2,6 +2,7 @@ package com.sky31.gonggong.module.grade.report;
 
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
+import com.sky31.gonggong.model.GradeDetailsModel;
 import com.sky31.gonggong.model.GradeReportModel;
 import com.sky31.gonggong.model.UserModel;
 
@@ -14,40 +15,40 @@ import retrofit.Retrofit;
 /**
  * Created by root on 16-4-29.
  */
-public class ReportPresenter {
-    private ReportView reportView;
+public class ReportDetailPresenter {
+    private ReportDetailView ReportDetailView;
     private ApiService apiService;
     private String sid, password;
 
-    public ReportPresenter(ReportView reportView) {
+    public ReportDetailPresenter(ReportDetailView ReportDetailView) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(ApiService.class);
-        this.reportView = reportView;
+        this.ReportDetailView = ReportDetailView;
         sid = UserModel.getaCache().getAsString(Constants.Key.SID);
         password = UserModel.getaCache().getAsString(Constants.Key.PASSWORD);
     }
 
     public void getGradeReport() {
-        reportView.onGetReport();
-        Call<GradeReportModel> call = apiService.getGradeReport(sid, password);
-        call.enqueue(new Callback<GradeReportModel>() {
+        ReportDetailView.onGetReport();
+        Call<GradeDetailsModel> call = apiService.getGradeDetails(sid, password);
+        call.enqueue(new Callback<GradeDetailsModel>() {
             @Override
-            public void onResponse(Response<GradeReportModel> response, Retrofit retrofit) {
+            public void onResponse(Response<GradeDetailsModel> response, Retrofit retrofit) {
                 int code = response.body().getCode();
                 if (code == 0) {
-                    GradeReportModel gradeReportModel = response.body();
-                    reportView.finishGetReport(code, gradeReportModel);
+                    GradeDetailsModel gradeDetailsModel = response.body();
+                    ReportDetailView.finishGetReport(code, gradeDetailsModel);
                 } else {
-                    reportView.finishGetReport(1, null);
+                    ReportDetailView.finishGetReport(1, null);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                reportView.finishGetReport(1, null);
+                ReportDetailView.finishGetReport(1, null);
             }
         });
     }

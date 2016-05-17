@@ -11,7 +11,6 @@
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_100">100dp</dimen>
-    <dimen name="dp_240">240dp</dimen>
 
     <dimen name="avatar_size">56dp</dimen>
     <dimen name="avatar_size_mini">46dp</dimen>
@@ -73,7 +72,7 @@
 
 
     <!--Course List  -->
-    <dimen name="course_list_item_fontsize">6sp</dimen>
+    <dimen name="course_list_item_fontsize">4.5sp</dimen>
 
 
     <!--week select popWindows -->
@@ -95,8 +94,8 @@
     <dimen name="material_design_body_font_size">14sp</dimen>
     <dimen name="material_design_menu_font_size">14sp</dimen>
     <dimen name="material_design_button_font_size">14sp</dimen>
-    <dimen name="material_design_button_font_size_mini">12sp</dimen>
 
+    <dimen name="material_design_button_font_size_min">12sp</dimen>
     <!--article  -->
     <dimen name="article_act_time_margin">18dp</dimen>
 

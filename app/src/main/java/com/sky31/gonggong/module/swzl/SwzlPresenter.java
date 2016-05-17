@@ -6,6 +6,7 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
 import com.sky31.gonggong.model.SwzlService;
+import com.sky31.gonggong.module.swzl.publish.SwzlPublishView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -114,5 +115,8 @@ public class SwzlPresenter {
 
         return map;
     }
+
+
+
 
 }

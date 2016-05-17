@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/activity_padding"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/grade_course_name"
+            android:maxLines="2"
+            android:textSize="@dimen/material_design_subhead_font_size"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/material_design_body_font_size"
+                android:text="@string/grade_detail_type"
+                android:maxLines="1"
+                android:layout_weight="0.5"
+                android:id="@+id/grade_detail_type"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/material_design_body_font_size"
+                android:layout_weight="0.5"
+                android:text="@string/grade_detail_credit"
+                android:id="@+id/grade_detail_credit"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/material_design_body_font_size"
+                android:text="@string/grade_detail_daily_grade"
+                android:id="@+id/grade_detail_daily_grade"
+                android:layout_weight="0.5"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/material_design_body_font_size"
+                android:layout_weight="0.5"
+                android:text="@string/grade_detail_exam_grade"
+                android:id="@+id/grade_detail_exam_grade"
+                />
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/grade_detail_comp_grade"
+            android:id="@+id/grade_detail_comp_grade"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/interval_5"
+            android:id="@+id/grade_under_line"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

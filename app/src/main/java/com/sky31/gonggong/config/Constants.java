@@ -120,7 +120,9 @@ public class Constants {
         public static final String SWZL_SUBMIT_FOUND = "submit_found";
         public static final String SWZL_SEARCH_LOST = "search_lost";
         public static final String SWZL_SEARCH_FOUND = "search_found";
+        public static final String SWZL_SEARCH = "search";
 
-
+        public static final String SWZL_SEARCH_TAG_LOST = "lost_info";
+        public static final String SWZL_SEARCH_TAG_FOUND = "found_info";
     }
 }

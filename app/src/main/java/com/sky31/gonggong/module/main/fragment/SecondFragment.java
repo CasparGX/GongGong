@@ -171,6 +171,9 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
                 dotView[(position-1)%imageViews.length].
                         setBackgroundDrawable(getResources().
                                 getDrawable(R.drawable.header_image_dot_shape));
+                dotView[(position+1)%imageViews.length].
+                        setBackgroundDrawable(getResources().
+                                getDrawable(R.drawable.header_image_dot_shape));
                 dotView[(position)%imageViews.length].
                         setBackgroundDrawable(getResources().
                                 getDrawable(R.drawable.header_image_dot_shape_selector));
