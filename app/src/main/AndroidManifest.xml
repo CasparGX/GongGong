@@ -33,7 +33,7 @@
             android:theme="@style/ColorTranslucentTheme" />
         <activity android:name=".module.swzl.SwzlActivity" />
         <activity
-            android:name=".module.swzl.PublishSwzlActivity"
+            android:name=".module.swzl.publish.PublishSwzlActivity"
             android:label="@string/title_activity_publish_swzl" />
         <activity
             android:name=".module.article.list.ArticleListActivity"
@@ -47,7 +47,10 @@
         <activity
             android:name=".module.grade.GradeActivity"
             android:label="@string/grade" />
-        <activity android:name=".module.article.detail.ArticleDetailActivity"></activity>
+        <activity android:name=".module.article.detail.ArticleDetailActivity" />
+        <activity android:name=".module.swzl.search.SwzlSearchActivity" />
+        <activity android:name=".module.about_us.AboutUsActivity" />
+        <activity android:name=".module.about_us.OpenSourceShowActivity"></activity>
     </application>
 
 </manifest>

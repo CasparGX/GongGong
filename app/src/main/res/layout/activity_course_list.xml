@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:numColumns="7"
             android:id="@+id/day_of_week_grid"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             >
 
         </GridView>
@@ -69,10 +69,9 @@
                 android:orientation="horizontal">
 
                 <com.sky31.gonggong.widget.ListViewWithoutScroll
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/course_list_timeline"
-                    android:background="@drawable/view_border">
+                    android:id="@+id/course_list_timeline">
 
                 </com.sky31.gonggong.widget.ListViewWithoutScroll>
 

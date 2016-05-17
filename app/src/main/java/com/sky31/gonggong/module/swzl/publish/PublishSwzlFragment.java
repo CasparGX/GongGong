@@ -1,18 +1,16 @@
-package com.sky31.gonggong.module.swzl;
+package com.sky31.gonggong.module.swzl.publish;
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlResModel;
+import com.sky31.gonggong.module.swzl.SwzlPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

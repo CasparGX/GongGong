@@ -9,6 +9,7 @@ import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
 import retrofit.http.GET;
+import retrofit.http.Query;
 
 
 /**
@@ -22,8 +23,7 @@ public interface SwzlService {
 
     String search_lost_thing = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&action="+Constants.Value.SWZL_SEARCH_LOST+defaultParm;
     String search_get_thing = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&action="+Constants.Value.SWZL_SEARCH_FOUND+defaultParm;
-
-
+    String search = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&action="+Constants.Value.SWZL_SEARCH+defaultParm;
 
     @GET(Constants.Api.SWZL_ACTION+"?"+search_get_thing)
     Call<SwzlSearchResult> getSerResultByGet( );
@@ -42,7 +42,10 @@ public interface SwzlService {
     @POST(Constants.Api.SWZL_ACTION+"?"+submitGetParm)
     Call<SwzlResModel> getSubResultByGet(@FieldMap  Map<String,String> map);
 
-    @GET(Constants.Api.SWZL_ACTION+"?"+submitGetParm)
-    Call<SwzlSearchResult> getSubResultByNull();
+
+    @GET(Constants.Api.SWZL_ACTION+"?"+search)
+    Call<SwzlSearchResult> getSearchResult(@Query("key") String key);
+
+
 
 }

@@ -42,6 +42,7 @@ import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.StudentInfoModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.module.about_us.AboutUsActivity;
 import com.sky31.gonggong.module.campusnet.CampusNetPresenter;
 import com.sky31.gonggong.module.campusnet.CampusNetView;
 import com.sky31.gonggong.module.ecard.EcardPresenter;
@@ -367,10 +368,11 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
                 String top = resources.getString(R.string.top_index);
                 switch (menuItem.getItemId()) {
                     case R.id.menu_top_index:
-
                         break;
                     case R.id.menu_function:
-
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, AboutUsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.menu_navigation_item_2:
 

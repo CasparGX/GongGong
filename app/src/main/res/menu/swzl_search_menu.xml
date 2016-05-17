@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module.swzl.search.SwzlSearchActivity">
+    <item
+        android:id="@+id/swzl_search_by_key"
+        android:orderInCategory="80"
+        android:title="@string/swzl_search"
+        android:icon="@drawable/ic_action_search"
+        app:showAsAction="ifRoom" />
+</menu>

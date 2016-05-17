@@ -12,12 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rey.material.widget.FloatingActionButton;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.module.swzl.publish.PublishSwzlActivity;
+import com.sky31.gonggong.module.swzl.search.SwzlSearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -190,12 +191,14 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.swzl_search:
-                        Toast.makeText(SwzlActivity.this,"搜索",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(SwzlActivity.this, SwzlSearchActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.swzl_refresh:
                         swzlFragmentOfGet.initData();
                         swzlFragmentOfLost.initData();
-                        Toast.makeText(SwzlActivity.this,"刷新",Toast.LENGTH_SHORT).show();
+
 
                 }
                 return false;
@@ -203,6 +206,12 @@ public class SwzlActivity extends BaseActivity implements SwzlFragment.OnFragmen
         });
     }
 
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
 
     @Override
     public void onFragmentInteraction(SwzlFragment fragment) {

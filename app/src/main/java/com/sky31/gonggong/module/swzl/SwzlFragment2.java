@@ -88,7 +88,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
             code = getArguments().getInt(ARG_PARAM1);
         }
 
-
+        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
         initData();
 
     }
@@ -151,7 +151,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
 
     public void initData(){
-        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
+
         waitDialog.show();
 
         // 向服务器请求数据。
