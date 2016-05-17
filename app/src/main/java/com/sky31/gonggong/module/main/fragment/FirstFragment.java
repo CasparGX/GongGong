@@ -1,21 +1,18 @@
 package com.sky31.gonggong.module.main.fragment;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
@@ -24,7 +21,6 @@ import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.model.HolidayNextModel;
 import com.sky31.gonggong.module.course_list.CourseListRequestProxy;
 import com.sky31.gonggong.module.course_list.CourseListView;
-import com.sky31.gonggong.module.course_list.CoursePresent;
 import com.sky31.gonggong.module.course_list.CurrentCourseItemFragment;
 import com.sky31.gonggong.module.current_week.CurrentWeekPresent;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
@@ -34,46 +30,36 @@ import com.sky31.gonggong.module.holiday.HolidayView;
 import com.sky31.gonggong.module.main.CurrentCoursePageAdapter;
 import com.sky31.gonggong.util.ACache;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FirstFragment extends Fragment implements HolidayView,CourseListView,CurrentWeekView {
+public class FirstFragment extends Fragment implements HolidayView, CourseListView, CurrentWeekView {
 
 
     @Bind(R.id.blank_layout)
     LinearLayout blankLayout;
+    @Bind(R.id.current_course_pager)
+    ViewPager currentCoursePager;
     @Bind(R.id.project_layout)
-    LinearLayout projectLayout;
-    @Bind(R.id.countdown_layout)
-    LinearLayout countdownLayout;
+    FrameLayout projectLayout;
     @Bind(R.id.tv_holiday_name)
     TextView tvHolidayName;
+    @Bind(R.id.tv_holiday_interval)
+    TextView tvHolidayInterval;
     @Bind(R.id.tv_holiday_start)
     TextView tvHolidayStart;
     @Bind(R.id.tv_holiday_end)
     TextView tvHolidayEnd;
     @Bind(R.id.tv_holiday_days)
     TextView tvHolidayDays;
-    @Bind(R.id.tv_holiday_interval)
-    TextView tvHolidayInterval;
-    @Bind(R.id.img_btn_refresh)
-    ImageView imgBtnRefresh;
-    @Bind(R.id.pv_holiday)
-    ProgressView pvHoliday;
-    @Bind(R.id.current_course_pager)
-    ViewPager currentCoursePager;
-
-
+    @Bind(R.id.countdown_layout)
+    FrameLayout countdownLayout;
     private int homeLayoutHeight;
     private ACache aCache;
 
@@ -84,6 +70,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     private int currentWeek = 0;
 
     private List<CourseListModel.DataBean> resultList;
+
     public static FirstFragment getInstance() {
         return instance;
     }
@@ -108,7 +95,6 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     }
 
 
-
     private void initViewData() {
 
         if (aCache.getAsJSONObject(Constants.Key.HOLIDAY_CACHE_NEXT) != null) {
@@ -124,30 +110,27 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
         }
     }
 
-    private void initCurrentCourse(){
+    private void initCurrentCourse() {
 
         courseListModel = new CourseListModel();
-        if (aCache.getAsJSONObject(Constants.Key.COURSE_LIST)!=null){
+        if (aCache.getAsJSONObject(Constants.Key.COURSE_LIST) != null) {
             Gson gson = new Gson();
 
             List<List<CourseListModel.DataBean>> dataList = gson.fromJson(
                     aCache.getAsString(Constants.Key.COURSE_LIST),
-                    new TypeToken<List<List<CourseListModel.DataBean>>>(){}.getType());
+                    new TypeToken<List<List<CourseListModel.DataBean>>>() {
+                    }.getType());
 
             courseListModel.setData(dataList);
 
-            CurrentWeekPresent present = new CurrentWeekPresent(this,getContext());
+            CurrentWeekPresent present = new CurrentWeekPresent(this, getContext());
             present.requestServer();
 
-        }
-        else {
+        } else {
 
             //设置代理请求模式。
-            CourseListRequestProxy proxy = new CourseListRequestProxy(getContext(),this);
+            CourseListRequestProxy proxy = new CourseListRequestProxy(getContext(), this);
             proxy.setReauestProxy();
-
-
-
 
 
         }
@@ -156,22 +139,23 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
 
     /***
      * 解析返回字符串。获取当天上的课程。
+     *
      * @return
      */
-    private void getCurrentCourse(List<List<CourseListModel.DataBean>> dataList){
+    private void getCurrentCourse(List<List<CourseListModel.DataBean>> dataList) {
 
 
         int pushDayOfWeek = CommonFunction.countCurrentDay(clickCount);
-        int pushWeek = CommonFunction.countCurrentWeek(clickCount,currentWeek);
+        int pushWeek = CommonFunction.countCurrentWeek(clickCount, currentWeek);
 
         resultList = new ArrayList<>();
-        for (List<CourseListModel.DataBean>  modelList : dataList){
+        for (List<CourseListModel.DataBean> modelList : dataList) {
 
-            for (CourseListModel.DataBean dataBean : modelList){
+            for (CourseListModel.DataBean dataBean : modelList) {
 
                 //首先对周进行判定，再对当天进行判定。
-                if (dataBean.getWeek().contains(pushWeek+"") &&
-                        dataBean.getDay().equals(pushDayOfWeek+"")){
+                if (dataBean.getWeek().contains(pushWeek + "") &&
+                        dataBean.getDay().equals(pushDayOfWeek + "")) {
                     resultList.add(dataBean);
                 }
 
@@ -182,13 +166,13 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     }
 
     /***
-     *  加载当日课程表视图。
+     * 加载当日课程表视图。
      */
-    private void initCurrentCourseView(){
+    private void initCurrentCourseView() {
 
         List<Fragment> fragmentList = new ArrayList<>();
         int lenth = resultList.size();
-        for (int i=0; i < lenth;i++){
+        for (int i = 0; i < lenth; i++) {
             CurrentCourseItemFragment fragment =
                     CurrentCourseItemFragment.newInstance(resultList.get(i));
             fragmentList.add(fragment);
@@ -196,7 +180,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
         }
 
         CurrentCoursePageAdapter adapter =
-                new CurrentCoursePageAdapter(getActivity().getSupportFragmentManager(),fragmentList);
+                new CurrentCoursePageAdapter(getActivity().getSupportFragmentManager(), fragmentList);
 
         currentCoursePager.setAdapter(adapter);
 
@@ -226,10 +210,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     }
 
     /* onClick */
-    @OnClick(R.id.img_btn_refresh)
-    void onClickImgBtnRefresh(View view) {
-        getHoliday(Constants.Key.HOLIDAY_ACTION_NEXT);
-    }
+
 
     @Override
     public void onDestroyView() {
@@ -239,8 +220,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
 
     @Override
     public void onGetHolidayNext() {
-        imgBtnRefresh.setVisibility(View.GONE);
-        pvHoliday.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -254,9 +234,6 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
             tvHolidayStart.setText(data.getStart_date() + "");
         }
 
-
-        imgBtnRefresh.setVisibility(View.VISIBLE);
-        pvHoliday.setVisibility(View.GONE);
     }
 
     @Override
@@ -271,6 +248,7 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
 
     /**
      * 当缓存数据不存在时候。调用该回调接口。
+     *
      * @param courseList
      * @param code
      * @return
@@ -278,20 +256,20 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     @Override
     public CourseListModel courseList(CourseListModel courseList, int code) {
 
-        if (code==0){
+        if (code == 0) {
             courseListModel = courseList;
             courseListModel.setCache();
-            CurrentWeekProxy weekProxy = new CurrentWeekProxy(getContext(),this);
+            CurrentWeekProxy weekProxy = new CurrentWeekProxy(getContext(), this);
             weekProxy.setRequestProxy();
-        }
-        else {
-            CommonFunction.errorToast(getContext(),code);
+        } else {
+            CommonFunction.errorToast(getContext(), code);
         }
         return courseList;
     }
 
     /***
      * //用于请求当前周数的回调接口。
+     *
      * @param model
      * @param code
      */
@@ -299,15 +277,14 @@ public class FirstFragment extends Fragment implements HolidayView,CourseListVie
     @Override
     public void currentWeek(CurrentWeekModel model, int code) {
 
-        if (code==0){
+        if (code == 0) {
             currentWeek = model.getData().getWeek();
-            if (courseListModel.getData()!=null){
+            if (courseListModel.getData() != null) {
                 getCurrentCourse(courseListModel.getData());
             }
 
-        }
-        else {
-            CommonFunction.errorToast(getContext(),code);
+        } else {
+            CommonFunction.errorToast(getContext(), code);
         }
 
     }
