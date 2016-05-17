@@ -24,7 +24,6 @@
             android:layout_height="28dp"
             android:id="@+id/second_hand_title_tip"
             android:background="@drawable/view_bottom_border"
-            android:layout_marginTop="5dp"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -118,7 +117,7 @@
             android:paddingLeft="@dimen/activity_padding"
             android:paddingRight="@dimen/activity_padding"
             android:paddingBottom="@dimen/activity_vertical_margin"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             >
 
             <ImageView
@@ -148,7 +147,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="4"
+                    android:maxLines="2"
                     android:ellipsize="end"
                     android:text=""
                     android:id="@+id/activity_description_first"
@@ -204,12 +203,13 @@
             android:paddingRight="@dimen/activity_padding"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:id="@+id/info_first"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             >
 
             <ImageView
                 android:layout_width="90dp"
                 android:layout_height="90dp"
+                android:scaleType="centerCrop"
                 android:layout_gravity="left"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:id="@+id/info_thumb_first"
@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="4"
+                    android:maxLines="2"
                     android:ellipsize="end"
                     android:text=""
                     android:id="@+id/info_description_first"

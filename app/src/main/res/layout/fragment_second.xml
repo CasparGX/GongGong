@@ -30,7 +30,7 @@
             android:id="@+id/header_image_pos"
             android:orientation="horizontal"
             android:background="@drawable/header_image_dot_content"
-            android:alpha="0.4"
+            android:alpha="0.7"
             android:layout_centerHorizontal="true">
 
 
