@@ -361,7 +361,7 @@
 
                     <TextView
                         android:id="@+id/tv_information"
-                        android:text="资讯频道"
+                        android:text="发现身边"
                         style="@style/MainNavItemText" />
                 </LinearLayout>
             </LinearLayout>
