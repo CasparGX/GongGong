@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/about_us_layout"
+    tools:context="com.sky31.gonggong.module.about_us.AboutUsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about_us_toolbar"
+        android:background="@color/color_0176da"
+        toolbar:title="关于"
+        toolbar:titleTextColor="@color/white"
+        toolbar:navigationIcon="@drawable/ic_arrow_back"
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/about_us_logo"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/view_grey_border"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/about_us_check_update"
+                android:background="@drawable/view_grey_border"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/about_us_check_update"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/interval_15"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_black"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.2"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/about_us_open_source"
+                android:background="@drawable/view_grey_border"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/about_us_open_source_permission"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/interval_15"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_black"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.2"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/about_us_detail"
+                android:background="@drawable/view_grey_border"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/about_us_detail"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/interval_15"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_black"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.2"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/about_us_join_us"
+                android:background="@drawable/view_grey_border"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/about_us_join_us"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/interval_15"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_black"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.2"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/about"
+                android:background="@drawable/view_grey_border"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="@string/about"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/interval_15"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_right_black"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.2"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/material_design_button_font_size"
+        android:layout_gravity="center"
+        android:text="\@翼工坊"
+        />
+
+
+
+</LinearLayout>

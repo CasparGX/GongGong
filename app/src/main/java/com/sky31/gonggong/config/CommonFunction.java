@@ -3,6 +3,8 @@ package com.sky31.gonggong.config;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -203,6 +205,23 @@ public class CommonFunction {
             return "N/A";
         }
 
+    }
+
+
+    /***
+     * 用于图片压缩，减少内存消耗。
+     * @param ResID  资源ID
+     * @param scalSize  压缩倍数
+     * @param res   Resource
+     * @return  bitmap
+     */
+    public static Bitmap getBitmapByRes(int ResID, int scalSize, Resources res){
+        BitmapFactory.Options factory = new BitmapFactory.Options();
+        factory.inJustDecodeBounds = false;
+        factory.inSampleSize = scalSize;
+        Bitmap bitmap = BitmapFactory.decodeResource(res,ResID,factory);
+
+        return bitmap;
     }
 
 }

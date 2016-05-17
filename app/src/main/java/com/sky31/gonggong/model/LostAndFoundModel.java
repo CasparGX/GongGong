@@ -22,7 +22,15 @@ public class LostAndFoundModel implements Serializable{
     private String mobile ; //手机号码
     private String bank_card;   //当丢失物品为校园卡时候，必须非空。
 
+    private String data_type;
 
+    public String getData_type() {
+        return data_type;
+    }
+
+    public void setData_type(String data_type) {
+        this.data_type = data_type;
+    }
     //private int expireDays = 5;//默认为5天。
 
 

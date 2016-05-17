@@ -1,4 +1,4 @@
-package com.sky31.gonggong.module.swzl;
+package com.sky31.gonggong.module.swzl.publish;
 
 import com.sky31.gonggong.model.SwzlResModel;
 

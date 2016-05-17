@@ -33,7 +33,7 @@
             android:theme="@style/ColorTranslucentTheme" />
         <activity android:name=".module.swzl.SwzlActivity" />
         <activity
-            android:name=".module.swzl.PublishSwzlActivity"
+            android:name=".module.swzl.publish.PublishSwzlActivity"
             android:label="@string/title_activity_publish_swzl" />
         <activity
             android:name=".module.article.list.ArticleListActivity"
@@ -51,6 +51,9 @@
         <activity
             android:label="@string/count_down_title"
             android:name=".module.holiday.HolidayActivity"></activity>
+        <activity android:name=".module.swzl.search.SwzlSearchActivity" />
+        <activity android:name=".module.about_us.AboutUsActivity" />
+        <activity android:name=".module.about_us.OpenSourceShowActivity"></activity>
     </application>
 
 </manifest>

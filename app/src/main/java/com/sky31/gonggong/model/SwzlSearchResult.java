@@ -18,8 +18,25 @@ public class SwzlSearchResult {
     private ArrayList<LostAndFoundModel> data;
     private String total;
 
+    private ArrayList<LostAndFoundModel> data_2;
 
+    private ArrayList<LostAndFoundModel> data_1;
 
+    public ArrayList<LostAndFoundModel> getData_1() {
+        return data_1;
+    }
+
+    public void setData_1(ArrayList<LostAndFoundModel> data_1) {
+        this.data_1 = data_1;
+    }
+
+    public ArrayList<LostAndFoundModel> getData_2() {
+        return data_2;
+    }
+
+    public void setData_2(ArrayList<LostAndFoundModel> data_2) {
+        this.data_2 = data_2;
+    }
 
     public String getTotal() {
         return total;

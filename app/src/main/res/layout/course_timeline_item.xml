@@ -4,16 +4,17 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/view_border">
+    android:alpha="0.3"
+    android:background="@drawable/view_grey_border_right">
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@color/white"
-        android:alpha="0.5"
+        android:background="@color/black"
+        android:layout_height="@dimen/course_list_item_height"
         android:gravity="center"
         android:id="@+id/course_item_title"
+        android:textColor="@color/white"
         android:textSize="@dimen/material_design_button_font_size">
 
     </TextView>
