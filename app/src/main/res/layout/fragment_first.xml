@@ -21,11 +21,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/interval_10"
             android:layout_marginBottom="1dp"
             android:background="@color/white"
             android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_c" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,12 +86,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/interval_10"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="1px"
             android:background="@color/white"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_c" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -100,7 +109,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:paddingLeft="10sp"
-                    android:text="@string/course_list_today" />
+                    android:text="@string/count_down_title" />
 
 
                 <ImageView
