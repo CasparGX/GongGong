@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.main.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -20,12 +21,14 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CourseListModel;
 import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.model.HolidayNextModel;
+import com.sky31.gonggong.module.course_list.CourseListActivity;
 import com.sky31.gonggong.module.course_list.CourseListRequestProxy;
 import com.sky31.gonggong.module.course_list.CourseListView;
 import com.sky31.gonggong.module.course_list.CurrentCourseItemFragment;
 import com.sky31.gonggong.module.current_week.CurrentWeekPresent;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
+import com.sky31.gonggong.module.holiday.HolidayActivity;
 import com.sky31.gonggong.module.holiday.HolidayPresenter;
 import com.sky31.gonggong.module.holiday.HolidayView;
 import com.sky31.gonggong.module.main.CurrentCoursePageAdapter;
@@ -36,6 +39,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -223,6 +227,19 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     }
 
     /* onClick */
+    @OnClick(R.id.project_layout)
+    void onClickProjrctLayout() {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), CourseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.countdown_layout)
+    void onCLickCountdownLayout() {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), HolidayActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override

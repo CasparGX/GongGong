@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".module.login.LoginFragment">
 
     <ScrollView
@@ -57,6 +58,15 @@
                         android:hint="@string/sid" />
                 </android.support.design.widget.TextInputLayout>
 
+                <com.rey.material.widget.EditText
+                    android:id="@+id/textfield_et_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/sid"
+                    app:et_inputId="@+id/textfield_et_label_input"
+                    app:et_supportMode="none"
+                    style="@style/LightEditText" />
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_password"
                     android:layout_width="match_parent"
