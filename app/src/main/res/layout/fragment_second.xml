@@ -107,7 +107,7 @@
             android:background="@color/colorPrimary"
             android:verticalSpacing="1px"
             android:horizontalSpacing="1px"
-            android:padding="0px"
+            android:scrollbars="none"
             android:id="@+id/function_grid_view"
             >
 
