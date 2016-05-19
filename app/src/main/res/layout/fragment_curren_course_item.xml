@@ -31,10 +31,11 @@
             android:orientation="horizontal"
             >
 
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/current_course_teacher"
+                android:id="@+id/current_course_cost"
                 android:layout_marginTop="10dp"
                 android:maxLines="1"
                 android:textSize="15sp"
@@ -53,10 +54,11 @@
                 android:layout_weight="0.6"
                 />
         </LinearLayout>
-            <TextView
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/current_course_cost"
+            android:id="@+id/current_course_teacher"
             android:layout_marginTop="10dp"
             android:maxLines="1"
             android:textSize="15sp"

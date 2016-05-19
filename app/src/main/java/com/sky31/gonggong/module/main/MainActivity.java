@@ -654,6 +654,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         //btnLogin.setText(resources.getString(R.string.login));
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);
+        UserModel.getaCache().clear();
         //校园卡
         ecard.setClickable(false);
         ecardBalance.setText(R.string.default_money);
