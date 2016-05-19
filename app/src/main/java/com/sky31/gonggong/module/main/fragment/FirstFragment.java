@@ -206,13 +206,13 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
 
     public void initLayoutHeight() {
         homeLayoutHeight = CommonFunction.getHomeLayoutHeight();
-        ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
+        //ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
         ViewGroup.LayoutParams projectLayoutParam = projectLayout.getLayoutParams();
         ViewGroup.LayoutParams countdownLayoutParam = countdownLayout.getLayoutParams();
-        blankLayoutParam.height = homeLayoutHeight / 3;
+        //blankLayoutParam.height = homeLayoutHeight / 3;
         projectLayoutParam.height = homeLayoutHeight / 3;
         countdownLayoutParam.height = homeLayoutHeight / 3;
-        blankLayout.setLayoutParams(blankLayoutParam);
+        //blankLayout.setLayoutParams(blankLayoutParam);
         projectLayout.setLayoutParams(projectLayoutParam);
         countdownLayout.setLayoutParams(countdownLayoutParam);
     }

@@ -191,8 +191,8 @@
     </style>
 
     <style name="LightDeterminateLinearProgressDrawable" parent="Material.Drawable.LinearProgress.Determinate">
-        <item name="lpd_strokeColor">@color/colorPrimary</item>
-        <item name="lpd_strokeSecondaryColor">@color/colorPrimaryQuarter</item>
+        <item name="lpd_strokeColor">@color/colorAccent</item>
+        <item name="lpd_strokeSecondaryColor">@color/white</item>
     </style>
 
 

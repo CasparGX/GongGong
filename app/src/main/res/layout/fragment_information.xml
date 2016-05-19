@@ -22,6 +22,7 @@
         <RelativeLayout
             android:id="@+id/second_hand_title_tip"
             android:layout_width="match_parent"
+            android:paddingTop="@dimen/interval_5"
             android:layout_height="28dp"
             android:background="@drawable/view_bottom_border">
 
@@ -89,6 +90,7 @@
             android:id="@+id/activity_title_tip"
             android:layout_width="match_parent"
             android:layout_height="28dp"
+            android:paddingTop="@dimen/interval_5"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:background="@drawable/view_bottom_border">
 
@@ -182,6 +184,7 @@
         <RelativeLayout
             android:id="@+id/info_title_tip"
             android:layout_width="match_parent"
+            android:paddingTop="@dimen/interval_5"
             android:layout_height="28dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:background="@drawable/view_bottom_border">

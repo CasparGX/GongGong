@@ -13,6 +13,7 @@ import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
+import com.sky31.gonggong.util.Debug;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ public class ArticleDetailActivity extends BaseActivity {
 
 
     /***
-     *  本 Activity主要用于网页跳转。所有必须通过该网页跳转的详情页都可以通过此Activity打开。
+     * 本 Activity主要用于网页跳转。所有必须通过该网页跳转的详情页都可以通过此Activity打开。
      */
     @Bind(R.id.article_detail_toolbar)
     Toolbar articleDetailToolbar;
@@ -33,6 +34,7 @@ public class ArticleDetailActivity extends BaseActivity {
 
     ProgressDialog progressDialog;
     private String url = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +42,15 @@ public class ArticleDetailActivity extends BaseActivity {
         ButterKnife.bind(this);
 
 
-        if (getIntent()!=null){
+        if (getIntent() != null) {
             initToolbar();
             initWebView();
-        }
-        else {
+        } else {
             finish();
         }
 
 
-        progressDialog = new ProgressDialog(this,"翼宝在拼命地加载");
+        progressDialog = new ProgressDialog(this, "翼宝在拼命地加载");
         //progressDialog.setTitle("");
 
     }
@@ -61,6 +62,8 @@ public class ArticleDetailActivity extends BaseActivity {
         url = intent.getStringExtra("url");
         articleShowDetailWebview.loadUrl(url);
 
+        articleDetailProgressbar.setProgress(0f);
+        articleDetailProgressbar.start();
 
         articleDetailToolbar.setTitle(intent.getStringExtra("title"));
         articleShowDetailWebview.getSettings().setJavaScriptEnabled(true);
@@ -68,7 +71,8 @@ public class ArticleDetailActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                articleDetailProgressbar.setProgress(newProgress);
+                articleDetailProgressbar.setProgress(((float) newProgress / 100f));
+                Debug.i("progress", newProgress + "");
             }
 
 
@@ -81,8 +85,6 @@ public class ArticleDetailActivity extends BaseActivity {
 
 
                 super.onPageStarted(view, url, favicon);
-                articleDetailProgressbar.setProgress(0f);
-                articleDetailProgressbar.start();
             }
 
             @Override

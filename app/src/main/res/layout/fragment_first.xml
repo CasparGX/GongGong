@@ -4,6 +4,7 @@
     android:background="@color/color_ef"
     android:clipChildren="false"
     android:layerType="software"
+    android:gravity="bottom"
     android:orientation="vertical">
 
 
@@ -19,7 +20,7 @@
     <FrameLayout
         android:id="@+id/project_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:clipChildren="false">
 
         <LinearLayout
@@ -100,7 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="1px"
+            android:layout_marginBottom="1dp"
             android:layout_marginTop="@dimen/interval_10"
             android:background="@color/white"
             android:orientation="vertical">
