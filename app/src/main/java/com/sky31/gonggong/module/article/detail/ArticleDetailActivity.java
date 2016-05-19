@@ -5,11 +5,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 
 import com.gc.materialdesign.widgets.ProgressDialog;
+import com.rey.material.widget.ProgressView;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 
@@ -27,7 +28,7 @@ public class ArticleDetailActivity extends BaseActivity {
     @Bind(R.id.article_show_detail_webview)
     WebView articleShowDetailWebview;
     @Bind(R.id.article_detail_progressbar)
-    ProgressBar articleDetailProgressbar;
+    ProgressView articleDetailProgressbar;
 
 
     ProgressDialog progressDialog;
@@ -59,25 +60,36 @@ public class ArticleDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
         articleShowDetailWebview.loadUrl(url);
+
+
         articleDetailToolbar.setTitle(intent.getStringExtra("title"));
         articleShowDetailWebview.getSettings().setJavaScriptEnabled(true);
+        articleShowDetailWebview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                articleDetailProgressbar.setProgress(newProgress);
+            }
+
+
+        });
         articleShowDetailWebview.setWebViewClient(new WebViewClient() {
+
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
 
 
                 super.onPageStarted(view, url, favicon);
-                progressDialog.show();
-                articleShowDetailWebview.setClickable(false);
+                articleDetailProgressbar.setProgress(0f);
+                articleDetailProgressbar.start();
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                progressDialog.dismiss();
-                articleShowDetailWebview.setClickable(true);
+                articleDetailProgressbar.stop();
             }
         });
 

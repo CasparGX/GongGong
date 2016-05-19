@@ -8,19 +8,28 @@
     tools:context="com.sky31.gonggong.module.article.detail.ArticleDetailActivity"
     android:background="@color/white">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        toolbar:titleTextColor="@color/white"
-        android:id="@+id/article_detail_toolbar"
-        toolbar:title="文章详情"
-        toolbar:titleMarginStart="85dp"
-        android:gravity="center"
-        toolbar:navigationIcon="@drawable/ic_arrow_back">
+        android:layout_height="wrap_content">
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            toolbar:titleTextColor="@color/white"
+            android:id="@+id/article_detail_toolbar"
+            toolbar:title="文章详情"
+            toolbar:titleMarginStart="85dp"
+            android:gravity="center"
+            toolbar:navigationIcon="@drawable/ic_arrow_back"></android.support.v7.widget.Toolbar>
 
-    </android.support.v7.widget.Toolbar>
+        <com.rey.material.widget.ProgressView
+            android:id="@+id/article_detail_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            style="@style/LightDeterminateLinearProgressView" />
+    </android.support.design.widget.AppBarLayout>
 
 
     <WebView
@@ -30,11 +39,4 @@
 
     </WebView>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/article_detail_progressbar"
-        android:visibility="gone"
-        />
 </LinearLayout>
