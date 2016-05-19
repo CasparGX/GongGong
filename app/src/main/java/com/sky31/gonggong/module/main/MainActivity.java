@@ -539,7 +539,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         //首页头部高度
-        if (pager != null && pager.getCurrentItem() == 0) {
+        if (pager != null && mCurrentPageIndex == 0) {
             homeLayoutHeight = homeLayout.getHeight();
             headerParam = header.getLayoutParams();
             headerParam.height = homeLayoutHeight / 3;

@@ -122,6 +122,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- article list -->
+    <string name="data_loding">数据加载中...</string>
     <string name="article_info_title">资讯</string>
     <string name="article_item__testStr">HHHHHHHHHH</string>
     <string name="article_item_user">发布人：</string>
