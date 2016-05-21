@@ -172,7 +172,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
         //加载活动日历数据
         ArticleListQuery query = new ArticleListQuery();
         query.setOrder("id DESC");
-        query.setLimit(1);
+        query.setLimit(2);
         query.setCatname("活动日历");
         query.setCheckID(0);
         query.setCo("act_time");
@@ -252,6 +252,8 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
             activityTitleSecond.setText(activityData.get(1).getTitle());
             activityDescriptionSecond.setText(activityData.get(1).getDescription());
             activitySecond.setOnClickListener(this);
+        } else {
+            activityTitleSecond.setText("");
         }
 
         //上边标题监听。用于进入资讯列表页
