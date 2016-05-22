@@ -6,9 +6,6 @@
     android:orientation="vertical"
     tools:context="com.sky31.gonggong.module.main.fragment.InformationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
     <LinearLayout
         android:id="@+id/second_hand"
         android:layout_width="match_parent"
