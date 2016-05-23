@@ -59,7 +59,12 @@ public class HolidayPresenter {
         call.enqueue(new Callback<HolidayAllModel>() {
             @Override
             public void onResponse(Response<HolidayAllModel> response, Retrofit retrofit) {
-
+                int code = response.body().getCode();
+                if (code == 0) {
+                    HolidayAllModel holidayAllModel = response.body();
+                    //holidayNextModel.setCache();
+                    holidayView.finishGetHolidayAll(holidayAllModel);
+                }
             }
 
             @Override
