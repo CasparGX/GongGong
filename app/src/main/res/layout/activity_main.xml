@@ -328,7 +328,7 @@
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_geren1"
                         style="@style/MainNavItemImg" />
 
                     <TextView
@@ -342,7 +342,7 @@
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_gongneng1"
                         style="@style/MainNavItemImg" />
 
                     <TextView
@@ -356,7 +356,7 @@
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/ic_faxian1"
                         style="@style/MainNavItemImg" />
 
                     <TextView

@@ -28,7 +28,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/interval_default"
-            android:src="@drawable/icon_exit" />
+            android:src="@drawable/ic_exit" />
 
     </RelativeLayout>
 </FrameLayout>

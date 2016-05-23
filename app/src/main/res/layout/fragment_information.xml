@@ -31,10 +31,11 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
+                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black" />
+                android:src="@drawable/ic_more" />
         </RelativeLayout>
 
         <LinearLayout
@@ -98,10 +99,11 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
+                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black" />
+                android:src="@drawable/ic_more" />
         </RelativeLayout>
 
 
@@ -195,10 +197,11 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
+                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black" />
+                android:src="@drawable/ic_more" />
         </RelativeLayout>
 
         <LinearLayout

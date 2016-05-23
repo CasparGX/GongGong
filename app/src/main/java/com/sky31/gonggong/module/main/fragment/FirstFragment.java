@@ -20,6 +20,7 @@ import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CourseListModel;
 import com.sky31.gonggong.model.CurrentWeekModel;
+import com.sky31.gonggong.model.HolidayAllModel;
 import com.sky31.gonggong.model.HolidayNextModel;
 import com.sky31.gonggong.module.course_list.CourseListActivity;
 import com.sky31.gonggong.module.course_list.CourseListRequestProxy;
@@ -272,7 +273,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     }
 
     @Override
-    public void finishGetHolidayAll(HolidayNextModel holidayNextModel) {
+    public void finishGetHolidayAll(HolidayAllModel holidayAllModel) {
 
     }
 
