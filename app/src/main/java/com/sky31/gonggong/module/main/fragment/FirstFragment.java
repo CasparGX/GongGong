@@ -98,6 +98,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         aCache = ACache.get(getActivity());
         initViewData();
         initCurrentCourse();
+        getHoliday("next");
 
         return view;
     }
@@ -227,7 +228,6 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         }
     }
 
-    /* onClick */
     @OnClick(R.id.project_layout)
     void onClickProjrctLayout() {
         Intent intent = new Intent();
