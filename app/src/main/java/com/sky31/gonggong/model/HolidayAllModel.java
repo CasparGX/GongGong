@@ -1,5 +1,7 @@
 package com.sky31.gonggong.model;
 
+import java.util.List;
+
 /**
  * Created by root on 16-4-11.
  */
@@ -7,21 +9,21 @@ public class HolidayAllModel {
 
     /**
      * code : 0
-     * msg : OK
-     * data : {"name":"清明节","start_date":"2016-04-02","end_date":"2016-04-04","total_days":3,"interval":11}
+     * msg : 成功
+     * data : [{"name":"元旦","start_date":"2016-01-01","end_date":"2016-01-03","total_days":3,"interval":-81},{"name":"春节","start_date":"2016-02-07","end_date":"2016-02-13","total_days":7,"interval":-44},{"name":"清明节","start_date":"2016-04-02","end_date":"2016-04-04","total_days":3,"interval":11},{"name":"劳动节","start_date":"2016-04-30","end_date":"2016-05-02","total_days":3,"interval":39},{"name":"端午节","start_date":"2016-06-09","end_date":"2016-06-11","total_days":3,"interval":79},{"name":"中秋节","start_date":"2016-09-15","end_date":"2016-09-17","total_days":3,"interval":177},{"name":"国庆节","start_date":"2016-10-01","end_date":"2016-10-07","total_days":7,"interval":193}]
      */
 
     private int code;
     private String msg;
     /**
-     * name : 清明节
-     * start_date : 2016-04-02
-     * end_date : 2016-04-04
+     * name : 元旦
+     * start_date : 2016-01-01
+     * end_date : 2016-01-03
      * total_days : 3
-     * interval : 11
+     * interval : -81
      */
 
-    private DataEntity data;
+    private List<DataEntity> data;
 
     public void setCode(int code) {
         this.code = code;
@@ -31,7 +33,7 @@ public class HolidayAllModel {
         this.msg = msg;
     }
 
-    public void setData(DataEntity data) {
+    public void setData(List<DataEntity> data) {
         this.data = data;
     }
 
@@ -43,7 +45,7 @@ public class HolidayAllModel {
         return msg;
     }
 
-    public DataEntity getData() {
+    public List<DataEntity> getData() {
         return data;
     }
 

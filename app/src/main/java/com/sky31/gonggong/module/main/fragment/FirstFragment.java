@@ -224,7 +224,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         if (action.equals(Constants.Key.HOLIDAY_ACTION_NEXT)) {
             holidayPresenter.getHolidayNext();
         } else if (action.equals(Constants.Key.HOLIDAY_ACTION_ALL)) {
-            holidayPresenter.getHolidayNext();
+            holidayPresenter.getHolidayAll();
         }
     }
 
