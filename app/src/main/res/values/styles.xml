@@ -137,6 +137,7 @@
     </style>
 
     <style name="MainNavItemImg">
+        <item name="android:padding">@dimen/interval_3</item>
         <item name="android:layout_width">32dp</item>
         <item name="android:layout_height">32dp</item>
     </style>
