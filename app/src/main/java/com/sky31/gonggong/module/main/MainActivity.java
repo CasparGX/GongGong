@@ -129,12 +129,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     LinearLayout header;
     @Bind(R.id.home_layout)
     RelativeLayout homeLayout;
-    @Bind(R.id.home_content)
-    LinearLayout homeContent;
-    @Bind(R.id.drawer_menu)
-    NavigationView drawerMenu;
-    @Bind(R.id.drawer)
-    DrawerLayout drawer;
     @Bind(R.id.tv_person)
     TextView tvPerson;
     @Bind(R.id.layout_person)
@@ -147,6 +141,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     TextView tvInformation;
     @Bind(R.id.layout_information)
     LinearLayout layoutInformation;
+    @Bind(R.id.home_content)
+    LinearLayout homeContent;
+    @Bind(R.id.drawer_menu)
+    NavigationView drawerMenu;
+    @Bind(R.id.drawer)
+    DrawerLayout drawer;
 
 
     /* 变量 */
@@ -169,13 +169,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         autoGetData();
     }
 
-    //侧滑菜单上的退出按钮
-    @Nullable
-    @OnClick(R.id.img_btn_exit)
-    void onClickImgBtnExit() {
-        drawer.closeDrawers();
-        logout();
-    }
 
     //登录按钮
     @OnClick(R.id.btn_login)
@@ -353,10 +346,12 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private void initView() {
         //抽屉菜单
         View drawerMenuHeader = drawerMenu.inflateHeaderView(R.layout.main_drawer_header);
+        //侧滑菜单上的退出按钮
         ImageView imgBtnExit = (ImageView) drawerMenuHeader.findViewById(R.id.img_btn_exit);
         imgBtnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drawer.closeDrawers();
                 logout();
             }
         });
@@ -475,8 +470,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             case 0:
                 mTextViewList.get(0).setTextSize(defualtTextSize * (1 - positionOffset));
                 mTextViewList.get(1).setTextSize(defualtTextSize * (positionOffset));
+                mTextViewList.get(2).setTextSize(0);
                 break;
             case 1:
+                mTextViewList.get(0).setTextSize(0);
                 mTextViewList.get(1).setTextSize(defualtTextSize * (1 - positionOffset));
                 mTextViewList.get(2).setTextSize(defualtTextSize * (positionOffset));
                 break;
@@ -542,7 +539,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         //首页头部高度
-        if (pager != null && pager.getCurrentItem() == 0) {
+        if (pager != null && mCurrentPageIndex == 0) {
             homeLayoutHeight = homeLayout.getHeight();
             headerParam = header.getLayoutParams();
             headerParam.height = homeLayoutHeight / 3;
@@ -657,6 +654,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         //btnLogin.setText(resources.getString(R.string.login));
         stuNum.setVisibility(View.GONE);
         UserModel.setCacheNone(this);
+        UserModel.getaCache().clear();
         //校园卡
         ecard.setClickable(false);
         ecardBalance.setText(R.string.default_money);

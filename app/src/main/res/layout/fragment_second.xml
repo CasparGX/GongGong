@@ -30,7 +30,7 @@
             android:id="@+id/header_image_pos"
             android:orientation="horizontal"
             android:background="@drawable/header_image_dot_content"
-            android:alpha="0.4"
+            android:alpha="0.7"
             android:layout_centerHorizontal="true">
 
 
@@ -107,7 +107,7 @@
             android:background="@color/colorPrimary"
             android:verticalSpacing="1px"
             android:horizontalSpacing="1px"
-            android:padding="0px"
+            android:scrollbars="none"
             android:id="@+id/function_grid_view"
             >
 

@@ -1,5 +1,6 @@
 package com.sky31.gonggong.module.holiday;
 
+import com.sky31.gonggong.model.HolidayAllModel;
 import com.sky31.gonggong.model.HolidayNextModel;
 
 /**
@@ -10,5 +11,6 @@ public interface HolidayView {
     void finishGetHolidayNext(HolidayNextModel holidayNextModel);
 
     void onGetHolidayAll();
-    void finishGetHolidayAll(HolidayNextModel holidayNextModel);
+
+    void finishGetHolidayAll(HolidayAllModel holidayAllModel);
 }

@@ -48,6 +48,9 @@
             android:name=".module.grade.GradeActivity"
             android:label="@string/grade" />
         <activity android:name=".module.article.detail.ArticleDetailActivity" />
+        <activity
+            android:label="@string/count_down_title"
+            android:name=".module.holiday.HolidayActivity"></activity>
         <activity android:name=".module.swzl.search.SwzlSearchActivity" />
         <activity android:name=".module.about_us.AboutUsActivity" />
         <activity android:name=".module.about_us.OpenSourceShowActivity"></activity>

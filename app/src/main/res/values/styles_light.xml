@@ -97,8 +97,8 @@
 
     <style  name="LightEditText"  parent="Material.Widget.EditText.Light">
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Body1</item>
-        <item name="android:textColor">@color/abc_primary_text_material_light</item>
-        <item name="android:textColorHint">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
         <item name="et_dividerColor">@drawable/color_divider_light</item>
         <item name="et_labelTextColor">@drawable/color_label_light</item>
         <item name="et_supportTextErrorColor">#FFFF0000</item>
@@ -171,6 +171,28 @@
 
     <style name="LightDeterminateInCircularProgressView" parent="LightDeterminateCircularProgressView">
         <item name="pv_progressStyle">@style/LightDeterminateInCircularProgressDrawable</item>
+    </style>
+
+    <style name="LightDeterminateLinearProgressView" parent="LightLinearProgressView">
+        <item name="pv_progressStyle">@style/LightDeterminateLinearProgressDrawable</item>
+        <item name="pv_progressMode">determinate</item>
+    </style>
+
+    <style name="LightLinearProgressView">
+        <item name="pv_autostart">false</item>
+        <item name="pv_circular">false</item>
+        <item name="pv_progressStyle">@style/LightLinearProgressDrawable</item>
+        <item name="pv_progressMode">indeterminate</item>
+    </style>
+
+    <style name="LightLinearProgressDrawable" parent="Material.Drawable.LinearProgress">
+        <item name="lpd_strokeColor">@color/colorPrimary</item>
+        <item name="lpd_strokeSecondaryColor">@android:color/transparent</item>
+    </style>
+
+    <style name="LightDeterminateLinearProgressDrawable" parent="Material.Drawable.LinearProgress.Determinate">
+        <item name="lpd_strokeColor">@color/colorAccent</item>
+        <item name="lpd_strokeSecondaryColor">@color/white</item>
     </style>
 
 

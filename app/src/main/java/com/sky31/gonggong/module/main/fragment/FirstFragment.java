@@ -1,10 +1,12 @@
 package com.sky31.gonggong.module.main.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,13 +20,16 @@ import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.CourseListModel;
 import com.sky31.gonggong.model.CurrentWeekModel;
+import com.sky31.gonggong.model.HolidayAllModel;
 import com.sky31.gonggong.model.HolidayNextModel;
+import com.sky31.gonggong.module.course_list.CourseListActivity;
 import com.sky31.gonggong.module.course_list.CourseListRequestProxy;
 import com.sky31.gonggong.module.course_list.CourseListView;
 import com.sky31.gonggong.module.course_list.CurrentCourseItemFragment;
 import com.sky31.gonggong.module.current_week.CurrentWeekPresent;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
+import com.sky31.gonggong.module.holiday.HolidayActivity;
 import com.sky31.gonggong.module.holiday.HolidayPresenter;
 import com.sky31.gonggong.module.holiday.HolidayView;
 import com.sky31.gonggong.module.main.CurrentCoursePageAdapter;
@@ -35,6 +40,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +66,8 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     TextView tvHolidayDays;
     @Bind(R.id.countdown_layout)
     FrameLayout countdownLayout;
+    @Bind(R.id.layout_course_vp)
+    FrameLayout layoutCourseVp;
     private int homeLayoutHeight;
     private ACache aCache;
 
@@ -185,19 +193,27 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         currentCoursePager.setAdapter(adapter);
         currentCoursePager.setOffscreenPageLimit(lenth);
         currentCoursePager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.interval_10));
+        layoutCourseVp.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // dispatch the events to the ViewPager, to solve the problem that we can swipe only the middle view.
+                return currentCoursePager.dispatchTouchEvent(event);
+            }
+        });
 
 
     }
 
     public void initLayoutHeight() {
         homeLayoutHeight = CommonFunction.getHomeLayoutHeight();
-        ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
+        //ViewGroup.LayoutParams blankLayoutParam = blankLayout.getLayoutParams();
         ViewGroup.LayoutParams projectLayoutParam = projectLayout.getLayoutParams();
         ViewGroup.LayoutParams countdownLayoutParam = countdownLayout.getLayoutParams();
-        blankLayoutParam.height = homeLayoutHeight / 3;
+        //blankLayoutParam.height = homeLayoutHeight / 3;
         projectLayoutParam.height = homeLayoutHeight / 3;
         countdownLayoutParam.height = homeLayoutHeight / 3;
-        blankLayout.setLayoutParams(blankLayoutParam);
+        //blankLayout.setLayoutParams(blankLayoutParam);
         projectLayout.setLayoutParams(projectLayoutParam);
         countdownLayout.setLayoutParams(countdownLayoutParam);
     }
@@ -212,6 +228,19 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     }
 
     /* onClick */
+    @OnClick(R.id.project_layout)
+    void onClickProjrctLayout() {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), CourseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.countdown_layout)
+    void onCLickCountdownLayout() {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), HolidayActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -244,7 +273,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     }
 
     @Override
-    public void finishGetHolidayAll(HolidayNextModel holidayNextModel) {
+    public void finishGetHolidayAll(HolidayAllModel holidayAllModel) {
 
     }
 

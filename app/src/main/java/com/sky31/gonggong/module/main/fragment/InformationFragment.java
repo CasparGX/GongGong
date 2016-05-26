@@ -51,8 +51,6 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
     LinearLayout secondHand;
     @Bind(R.id.activity_title_tip)
     RelativeLayout activityTitleTip;
-    @Bind(R.id.activity_thumb_first)
-    ImageView activityThumbFirst;
     @Bind(R.id.activity_title_first)
     TextView activityTitleFirst;
     @Bind(R.id.activity_description_first)
@@ -75,9 +73,15 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
     LinearLayout activityInfoFirst;
     @Bind(R.id.info)
     LinearLayout info;
+    @Bind(R.id.activity_title_second)
+    TextView activityTitleSecond;
+    @Bind(R.id.activity_description_second)
+    TextView activityDescriptionSecond;
+    @Bind(R.id.activity_second)
+    LinearLayout activitySecond;
     private int infofragmentHeight;
     private ArticleListModel.Data infoData;
-    private ArticleListModel.Data activityData;
+    private List<ArticleListModel.Data> activityData;
     private List<SecondhandModel> secondhandData = new ArrayList<>();
     private List<ImageView> imgViewList;
 
@@ -168,7 +172,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
         //加载活动日历数据
         ArticleListQuery query = new ArticleListQuery();
         query.setOrder("id DESC");
-        query.setLimit(1);
+        query.setLimit(2);
         query.setCatname("活动日历");
         query.setCheckID(0);
         query.setCo("act_time");
@@ -227,7 +231,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
                 infoData = data;
                 initInfoView();
             } else {
-                activityData = data;
+                activityData = model.getData();
                 initActivityView();
             }
         } else {
@@ -241,10 +245,16 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
      * 加载活动日历视图
      */
     private void initActivityView() {
+        activityTitleFirst.setText(activityData.get(0).getTitle());
+        activityDescriptionFirst.setText(activityData.get(0).getDescription());
 
-
-        activityTitleFirst.setText(activityData.getTitle());
-        activityDescriptionFirst.setText(activityData.getDescription());
+        if (activityData.size() >= 2) {
+            activityTitleSecond.setText(activityData.get(1).getTitle());
+            activityDescriptionSecond.setText(activityData.get(1).getDescription());
+            activitySecond.setOnClickListener(this);
+        } else {
+            activityTitleSecond.setText("");
+        }
 
         //上边标题监听。用于进入资讯列表页
         activityTitleTip.setOnClickListener(this);
@@ -367,9 +377,16 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
             case R.id.activity_first:
                 //打开第一条文章页
                 Intent intent2 = new Intent(getContext(), ArticleDetailActivity.class);
-                intent2.putExtra("url", activityData.getUrl());
+                intent2.putExtra("url", activityData.get(0).getUrl());
                 intent2.putExtra("title", "文章详情");
                 startActivity(intent2);
+                break;
+            case R.id.activity_second:
+                //打开第一条文章页
+                Intent intent4 = new Intent(getContext(), ArticleDetailActivity.class);
+                intent4.putExtra("url", activityData.get(1).getUrl());
+                intent4.putExtra("title", "文章详情");
+                startActivity(intent4);
                 break;
             case R.id.info_first:
                 //打开第一条文章页
