@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     tools:context=".module.swzl.publish.PublishSwzlActivity">
 

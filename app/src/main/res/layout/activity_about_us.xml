@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:background="@color/white"
     android:id="@+id/about_us_layout"
     tools:context="com.sky31.gonggong.module.about_us.AboutUsActivity">
