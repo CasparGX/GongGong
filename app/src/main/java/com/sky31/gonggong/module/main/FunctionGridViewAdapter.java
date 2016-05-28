@@ -74,18 +74,6 @@ public class FunctionGridViewAdapter extends BaseAdapter {
             case 4:
                 imageView.setImageResource(R.drawable.lost_and_found_page);
                 break;
-            case 5:
-                imageView.setImageResource(R.drawable.theater_page);
-                break;
-            case 6:
-                imageView.setImageResource(R.drawable.redio_page);
-                break;
-            case 7:
-                imageView.setImageResource(R.drawable.kuaidi_page);
-                break;
-            case 8:
-                imageView.setImageResource(R.drawable.yellow_page);
-                break;
         }
 
         return convertView;

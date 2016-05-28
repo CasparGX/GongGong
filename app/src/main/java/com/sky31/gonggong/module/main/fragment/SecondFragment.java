@@ -4,7 +4,6 @@ package com.sky31.gonggong.module.main.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.ArticleListModel;
-import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.article.ArticlePresenter;
 import com.sky31.gonggong.module.article.detail.ArticleDetailActivity;
 import com.sky31.gonggong.module.article.list.ArticleListQuery;
@@ -30,7 +28,6 @@ import com.sky31.gonggong.module.library.LibraryActivity;
 import com.sky31.gonggong.module.main.FunctionGridViewAdapter;
 import com.sky31.gonggong.module.main.HeaderImagesViewPagesAdapter;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
-import com.sky31.gonggong.util.ACache;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -274,18 +271,6 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
                     case 4:
                         intent.setClass(getContext(), SwzlActivity.class);
                         startActivity(intent);
-                        break;
-                    case 5:
-                        Toast.makeText(getContext(), "羊牯塘大剧院", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 6:
-                        Toast.makeText(getContext(), "四季电台", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 7:
-                        Toast.makeText(getContext(), "快递分布", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 8:
-                        Toast.makeText(getContext(), "校园黄页", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
