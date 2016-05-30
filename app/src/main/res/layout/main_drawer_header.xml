@@ -21,14 +21,5 @@
             <include layout="@layout/include_user_avatar" />
         </FrameLayout>
 
-        <ImageView
-            android:id="@+id/img_btn_exit"
-            android:layout_width="@dimen/img_btn_size_mini"
-            android:layout_height="@dimen/img_btn_size_mini"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/interval_default"
-            android:src="@drawable/ic_exit" />
-
     </RelativeLayout>
 </FrameLayout>

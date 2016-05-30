@@ -14,7 +14,7 @@
         android:id="@+id/about_us_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_0176da"
+        android:background="@color/colorPrimary"
         toolbar:navigationIcon="@drawable/ic_arrow_back"
         toolbar:title="关于"
         toolbar:titleTextColor="@color/white">

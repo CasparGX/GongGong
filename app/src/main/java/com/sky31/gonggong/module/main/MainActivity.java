@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -147,6 +148,8 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     NavigationView drawerMenu;
     @Bind(R.id.drawer)
     DrawerLayout drawer;
+    @Bind(R.id.btn_exit)
+    TableRow btnExit;
 
 
     /* 变量 */
@@ -169,6 +172,13 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         autoGetData();
     }
 
+
+    //退出登录
+    @OnClick(R.id.btn_exit)
+    void onClickBtnExit() {
+        drawer.closeDrawers();
+        logout();
+    }
 
     //登录按钮
     @OnClick(R.id.btn_login)
@@ -346,15 +356,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private void initView() {
         //抽屉菜单
         View drawerMenuHeader = drawerMenu.inflateHeaderView(R.layout.main_drawer_header);
-        //侧滑菜单上的退出按钮
-        ImageView imgBtnExit = (ImageView) drawerMenuHeader.findViewById(R.id.img_btn_exit);
-        imgBtnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.closeDrawers();
-                logout();
-            }
-        });
 
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
