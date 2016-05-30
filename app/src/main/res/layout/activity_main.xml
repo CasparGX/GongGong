@@ -83,8 +83,17 @@
                             android:textColor="@color/white"
                             android:visibility="gone" />
 
-
                         <com.rey.material.widget.Button
+                            style="@style/LightRaiseColorButtonRippleStyle"
+                            android:id="@+id/btn_login"
+                            android:layout_width="@dimen/dp_100"
+                            android:layout_height="@dimen/dp_32"
+                            android:layout_gravity="right"
+                            android:background="@drawable/btn_default"
+                            android:layout_margin="@dimen/interval_10"
+                            android:text="@string/login" />
+
+                        <!--<com.rey.material.widget.Button
                             android:id="@+id/btn_login"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp_36"
@@ -93,7 +102,7 @@
                             android:background="@drawable/btn_default"
                             android:text="@string/login"
                             android:textColor="@color/white"
-                            app:rd_enable="true" />
+                            app:rd_enable="true" />-->
 
                     </LinearLayout>
                 </LinearLayout>

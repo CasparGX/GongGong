@@ -56,7 +56,7 @@ public interface ApiService {
     Call<CourseListModel> getCourse(@QueryMap Map<String,String> map);
 
     //查询当前第几周。
-    @GET(Constants.Api.CURRENT_WEEK+"?"+defaultParam)
+    @GET(Constants.Api.CURRENT_WEEK + "?" + defaultParam + "&type=static")
     Call<CurrentWeekModel> getCurrentWeek();
 
     //成绩报表

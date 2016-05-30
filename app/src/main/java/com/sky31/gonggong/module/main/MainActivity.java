@@ -539,13 +539,20 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        //首页头部高度
-        if (pager != null && mCurrentPageIndex == 0) {
+        //首页头部高度,当控件不为null，当前页为第一页并且头部高度不等于总高度三分之一时，改变头部高度为总高度三分之一
+        if (pager != null && mCurrentPageIndex == 0 && homeLayoutHeight != 0 && homeLayout.getHeight() != homeLayoutHeight / 3) {
+            //改变头部高度
             homeLayoutHeight = homeLayout.getHeight();
             headerParam = header.getLayoutParams();
             headerParam.height = homeLayoutHeight / 3;
             header.setLayoutParams(headerParam);
             headerHeight = homeLayoutHeight / 3;
+
+            //改变头像部分高度
+            if (headerAvatar.getWidth() > headerContent.getHeight()) {
+
+            }
+
             CommonFunction.setHomeLayoutHeight(homeLayoutHeight);
             FirstFragment.getInstance().initLayoutHeight();
             InformationFragment.newInstance();
