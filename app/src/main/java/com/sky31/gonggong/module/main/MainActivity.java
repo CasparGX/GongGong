@@ -70,6 +70,7 @@ import butterknife.OnClick;
 import static com.sky31.gonggong.config.CommonFunction.backgroundAlpha;
 import static com.sky31.gonggong.config.CommonFunction.convertDpToPixel;
 import static com.sky31.gonggong.config.CommonFunction.errorToast;
+import static com.sky31.gonggong.config.CommonFunction.homeLayoutWidth;
 
 public class MainActivity extends BaseActivity implements ApiView, EcardView, CampusNetView, LoginView, LibraryView {
 
@@ -541,8 +542,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         super.onWindowFocusChanged(hasFocus);
         //首页头部高度,当控件不为null，当前页为第一页并且头部高度不等于总高度三分之一时，改变头部高度为总高度三分之一
         if (pager != null && mCurrentPageIndex == 0 && homeLayoutHeight != 0 && homeLayout.getHeight() != homeLayoutHeight / 3) {
-            //改变头部高度
             homeLayoutHeight = homeLayout.getHeight();
+            homeLayoutWidth = homeLayout.getWidth();
+            //改变头部高度
             headerParam = header.getLayoutParams();
             headerParam.height = homeLayoutHeight / 3;
             header.setLayoutParams(headerParam);
@@ -554,7 +556,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             }
 
             CommonFunction.setHomeLayoutHeight(homeLayoutHeight);
+            CommonFunction.setHomeLayoutWidth(homeLayoutWidth);
             FirstFragment.getInstance().initLayoutHeight();
+            SecondFragment.getInstance().initImgViewPagerHeight(homeLayoutWidth);
             InformationFragment.newInstance();
             InformationFragment.getInstance().layoutInit();
 
