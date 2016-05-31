@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.sky31.gonggong.module.course_list.CourseListActivity">
@@ -48,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/miku_2">
+        android:background="@drawable/bg_course">
         <GridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

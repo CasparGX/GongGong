@@ -4,7 +4,6 @@ package com.sky31.gonggong.module.main.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.model.ArticleListModel;
-import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.article.ArticlePresenter;
 import com.sky31.gonggong.module.article.detail.ArticleDetailActivity;
 import com.sky31.gonggong.module.article.list.ArticleListQuery;
@@ -30,7 +28,6 @@ import com.sky31.gonggong.module.library.LibraryActivity;
 import com.sky31.gonggong.module.main.FunctionGridViewAdapter;
 import com.sky31.gonggong.module.main.HeaderImagesViewPagesAdapter;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
-import com.sky31.gonggong.util.ACache;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,9 +38,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SecondFragment extends Fragment implements ArticleListView,Runnable {
+public class SecondFragment extends Fragment implements ArticleListView, Runnable {
 
 
+    private static SecondFragment instance;
     @Bind(R.id.function_grid_view)
     GridView functionGridView;
     //    @Bind(R.id.pre_header_view)
@@ -60,12 +58,11 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
     View headerImageDot3;
     @Bind(R.id.header_image_dot4)
     View headerImageDot4;
-    @Bind(R.id.header_image_dot5)
-    View headerImageDot5;
 
 
     // private static final String TAG = "SecondFragment";
-
+    @Bind(R.id.header_image_dot5)
+    View headerImageDot5;
     //private int startX;
     private ArticleListModel model;
     private ImageView[] imageViews;
@@ -79,6 +76,10 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
     }
 
 
+    public static SecondFragment getInstance() {
+        return instance;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
         View view = inflater.inflate(R.layout.fragment_second, container, false);
         ButterKnife.bind(this, view);
 
+        instance = this;
         initDontView();
         initPagerData();
 
@@ -120,18 +122,28 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
 
     }
 
+    public void initImgViewPagerHeight(float width) {
+        //改变viewpager高度
+        ViewGroup.LayoutParams param = headerScrollingImage.getLayoutParams();
+        param.height = (int) (width / 2.25);
+        headerScrollingImage.setLayoutParams(param);
+    }
+
     private void initViewPagerImage() {
+
 
         final List<ArticleListModel.Data> dataList = model.getData();
 
         for (int i = 0; i < imageViews.length; i++) {
 
-            ViewPager.LayoutParams params = new ViewPager.LayoutParams();
+            ViewPager.LayoutParams imgParam = new ViewPager.LayoutParams();
             imageViews[i] = new ImageView(getContext());
-            imageViews[i].setLayoutParams(params);
+            imageViews[i].setLayoutParams(imgParam);
             //获取bitmap
+            int thumbWidth = headerScrollingImage.getWidth() > 720 ? 720 : headerScrollingImage.getWidth();
+            int thumbHeight = (int) (thumbWidth / 2.25);
             Picasso.with(getContext()).load(dataList.get(i).getThumb()).
-                    resize(headerScrollingImage.getWidth(), headerScrollingImage.getHeight()).
+                    resize(thumbWidth, thumbHeight).
                     into(imageViews[i]);
 
             final int w = i;
@@ -142,8 +154,8 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
                 public void onClick(View v) {
                     //用于导图监听跳转
                     Intent intent = new Intent(getContext(), ArticleDetailActivity.class);
-                    intent.putExtra("url",dataList.get(w).getUrl());
-                    intent.putExtra("title","文章详情");
+                    intent.putExtra("url", dataList.get(w).getUrl());
+                    intent.putExtra("title", "文章详情");
                     startActivity(intent);
                 }
             });
@@ -157,24 +169,22 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 
-
-
             }
 
             @Override
             public void onPageSelected(int position) {
 
-                if (position==0){
+                if (position == 0) {
                     position = 6;
                 }
 
-                dotView[(position-1)%imageViews.length].
+                dotView[(position - 1) % imageViews.length].
                         setBackgroundDrawable(getResources().
                                 getDrawable(R.drawable.header_image_dot_shape));
-                dotView[(position+1)%imageViews.length].
+                dotView[(position + 1) % imageViews.length].
                         setBackgroundDrawable(getResources().
                                 getDrawable(R.drawable.header_image_dot_shape));
-                dotView[(position)%imageViews.length].
+                dotView[(position) % imageViews.length].
                         setBackgroundDrawable(getResources().
                                 getDrawable(R.drawable.header_image_dot_shape_selector));
             }
@@ -275,18 +285,6 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
                         intent.setClass(getContext(), SwzlActivity.class);
                         startActivity(intent);
                         break;
-                    case 5:
-                        Toast.makeText(getContext(), "羊牯塘大剧院", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 6:
-                        Toast.makeText(getContext(), "四季电台", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 7:
-                        Toast.makeText(getContext(), "快递分布", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 8:
-                        Toast.makeText(getContext(), "校园黄页", Toast.LENGTH_SHORT).show();
-                        break;
                 }
             }
         });
@@ -320,13 +318,13 @@ public class SecondFragment extends Fragment implements ArticleListView,Runnable
     public void run() {
         int currentPage = headerScrollingImage.getCurrentItem();
 
-       // Log.d("currentPage",currentPage+"");
+        // Log.d("currentPage",currentPage+"");
 
-       // Log.d(TAG, "run: "+imageViews.length);
+        // Log.d(TAG, "run: "+imageViews.length);
 
         //设置图片轮播。递归。
-        headerScrollingImage.setCurrentItem((currentPage+1),true);
-        scrollHandle.postDelayed(this,5000);
+        headerScrollingImage.setCurrentItem((currentPage + 1), true);
+        scrollHandle.postDelayed(this, 5000);
 
     }
 }

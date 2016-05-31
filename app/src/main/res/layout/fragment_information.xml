@@ -121,13 +121,13 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/data_loding"
-                android:textSize="@dimen/material_design_subhead_font_size" />
+                android:textStyle="bold"
+                android:textSize="@dimen/material_design_body_font_size" />
 
             <TextView
                 android:id="@+id/activity_description_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/interval_3"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text=""
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/activity_second"
             android:layout_marginBottom="@dimen/interval_10"
-            android:layout_marginTop="@dimen/interval_10"
+            android:layout_marginTop="@dimen/interval_5"
             android:orientation="vertical">
 
             <TextView
@@ -150,13 +150,13 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/data_loding"
-                android:textSize="@dimen/material_design_subhead_font_size" />
+                android:textStyle="bold"
+                android:textSize="@dimen/material_design_body_font_size" />
 
             <TextView
                 android:id="@+id/activity_description_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/interval_3"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text=""

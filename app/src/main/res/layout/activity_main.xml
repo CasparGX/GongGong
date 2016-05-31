@@ -83,8 +83,17 @@
                             android:textColor="@color/white"
                             android:visibility="gone" />
 
-
                         <com.rey.material.widget.Button
+                            style="@style/LightRaiseColorButtonRippleStyle"
+                            android:id="@+id/btn_login"
+                            android:layout_width="@dimen/dp_100"
+                            android:layout_height="@dimen/dp_32"
+                            android:layout_gravity="right"
+                            android:background="@drawable/btn_default"
+                            android:layout_margin="@dimen/interval_10"
+                            android:text="@string/login" />
+
+                        <!--<com.rey.material.widget.Button
                             android:id="@+id/btn_login"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dp_36"
@@ -93,7 +102,7 @@
                             android:background="@drawable/btn_default"
                             android:text="@string/login"
                             android:textColor="@color/white"
-                            app:rd_enable="true" />
+                            app:rd_enable="true" />-->
 
                     </LinearLayout>
                 </LinearLayout>
@@ -303,10 +312,10 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"
@@ -319,22 +328,22 @@
                             android:background="@drawable/ic_tab_triangle" />-->
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/layout_person"
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@drawable/ic_geren1"
-                        style="@style/MainNavItemImg" />
+                        style="@style/MainNavItemImg"
+                        android:src="@drawable/ic_geren1" />
 
                     <TextView
                         android:id="@+id/tv_person"
-                        android:text="个人中心"
-                        style="@style/MainNavItemText" />
+                        style="@style/MainNavItemText"
+                        android:text="个人中心" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -342,13 +351,13 @@
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@drawable/ic_gongneng1"
-                        style="@style/MainNavItemImg" />
+                        style="@style/MainNavItemImg"
+                        android:src="@drawable/ic_gongneng1" />
 
                     <TextView
                         android:id="@+id/tv_function"
-                        android:text="功能大全"
-                        style="@style/MainNavItemText" />
+                        style="@style/MainNavItemText"
+                        android:text="功能大全" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -356,13 +365,13 @@
                     style="@style/MainNavItemLayout">
 
                     <ImageView
-                        android:src="@drawable/ic_faxian1"
-                        style="@style/MainNavItemImg" />
+                        style="@style/MainNavItemImg"
+                        android:src="@drawable/ic_faxian1" />
 
                     <TextView
                         android:id="@+id/tv_information"
-                        android:text="发现身边"
-                        style="@style/MainNavItemText" />
+                        style="@style/MainNavItemText"
+                        android:text="发现身边" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -376,7 +385,33 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white"
-        app:menu="@menu/main_drawer" />
+        app:menu="@menu/main_drawer">
+
+        <TableRow
+            android:id="@+id/btn_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="right"
+            android:paddingBottom="@dimen/interval_10"
+            android:paddingRight="@dimen/interval_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/textColorPrimary"
+                android:text="@string/logout" />
+
+            <ImageView
+                android:layout_width="@dimen/img_btn_size_mini"
+                android:layout_height="@dimen/img_btn_size_mini"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/interval_5"
+                android:src="@drawable/ic_exit" />
+        </TableRow>
+    </android.support.design.widget.NavigationView>
 
     <!--<include layout="@layout/include_drawer_menu" />-->
 

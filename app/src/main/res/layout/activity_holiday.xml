@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.sky31.gonggong.module.holiday.HolidayActivity">
 
     <include layout="@layout/include_toolbar" />

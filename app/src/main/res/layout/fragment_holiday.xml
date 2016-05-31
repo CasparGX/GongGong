@@ -2,11 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
     tools:context="com.sky31.gonggong.module.holiday.HolidayFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_holiday"
         android:layout_width="match_parent"
+        android:background="@color/color_ef"
+        android:paddingTop="@dimen/interval_10"
+        android:clipToPadding="true"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

@@ -98,6 +98,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         aCache = ACache.get(getActivity());
         initViewData();
         initCurrentCourse();
+        getHoliday("next");
 
         return view;
     }
@@ -223,11 +224,10 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         if (action.equals(Constants.Key.HOLIDAY_ACTION_NEXT)) {
             holidayPresenter.getHolidayNext();
         } else if (action.equals(Constants.Key.HOLIDAY_ACTION_ALL)) {
-            holidayPresenter.getHolidayNext();
+            holidayPresenter.getHolidayAll();
         }
     }
 
-    /* onClick */
     @OnClick(R.id.project_layout)
     void onClickProjrctLayout() {
         Intent intent = new Intent();
