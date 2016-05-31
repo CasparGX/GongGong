@@ -155,7 +155,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
     }
 
     private void initData() {
-        if (this.secondhandData.size() == 0) {
+        if (this.secondhandData == null || this.secondhandData.size() == 0) {
             initSecondhandData();
             imgViewList = new ArrayList<>();
             imgViewList.add(secondHandImg1);
@@ -165,7 +165,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
         if (this.infoData == null) {
             initInfoData();
         }
-        if (this.activityData.size() == 0) {
+        if (this.activityData == null || this.activityData.size() == 0) {
             initActivityData();
         }
     }

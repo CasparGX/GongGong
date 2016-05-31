@@ -89,7 +89,10 @@ public class SecondFragment extends Fragment implements ArticleListView, Runnabl
 
         instance = this;
         initDontView();
-        initPagerData();
+
+        if (imageViews == null) {
+            initPagerData();
+        }
 
         initGridView();
 

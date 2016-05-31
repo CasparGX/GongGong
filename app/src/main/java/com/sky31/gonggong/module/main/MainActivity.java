@@ -336,23 +336,24 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         instance = this;
         resources = getResources();
         aCache = ACache.get(this);
-
         inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
         initToolbar();
         initView();
+        Debug.d("MainActivity", "onCreate");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        initView();
         onWindowFocusChanged(true);
+        Debug.d("MainActivity", "onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         autoLogin();
+        Debug.d("MainActivity", "onResume");
     }
 
     //初始化控件
