@@ -27,6 +27,7 @@
     <color name="black">#000000</color>
     <color name="black_transparent_9">#99000000</color>
     <color name="black_transparent_3">#33000000</color>
+    <color name="black_transparent_1">#11000000</color>
     <color name="grey_9">#999</color>
     <color name="grey_a">#aaa</color>
     <color name="grey_c">#ccc</color>
