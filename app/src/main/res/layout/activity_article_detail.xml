@@ -20,7 +20,6 @@
             toolbar:titleTextColor="@color/white"
             android:id="@+id/article_detail_toolbar"
             toolbar:title="文章详情"
-            toolbar:titleMarginStart="85dp"
             android:gravity="center"
             toolbar:navigationIcon="@drawable/ic_arrow_back"></android.support.v7.widget.Toolbar>
 
