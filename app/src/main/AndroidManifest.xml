@@ -34,26 +34,42 @@
         <activity android:name=".module.swzl.SwzlActivity" />
         <activity
             android:name=".module.swzl.publish.PublishSwzlActivity"
-            android:label="@string/title_activity_publish_swzl" />
+            android:label="@string/title_activity_publish_swzl"
+            android:theme="@style/ColorTranslucentTheme" />
         <activity
             android:name=".module.article.list.ArticleListActivity"
-            android:label="@string/title_activity_article_list" />
+            android:label="@string/title_activity_article_list"
+            android:theme="@style/ColorTranslucentTheme" />
         <activity
             android:name=".module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity android:name=".module.swzl.SwzlDetailActivity" />
-        <activity android:name=".module.course_list.CourseListActivity" />
+        <activity
+            android:name=".module.swzl.SwzlDetailActivity"
+            android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.course_list.CourseListActivity"
+            android:theme="@style/ColorTranslucentTheme" />
         <activity
             android:name=".module.grade.GradeActivity"
-            android:label="@string/grade" />
-        <activity android:name=".module.article.detail.ArticleDetailActivity" />
+            android:label="@string/grade"
+            android:theme="@style/ColorTranslucentTheme" />
         <activity
+            android:name=".module.article.detail.ArticleDetailActivity"
+            android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.holiday.HolidayActivity"
             android:label="@string/count_down_title"
-            android:name=".module.holiday.HolidayActivity"></activity>
-        <activity android:name=".module.swzl.search.SwzlSearchActivity" />
-        <activity android:name=".module.about_us.AboutUsActivity" />
-        <activity android:name=".module.about_us.OpenSourceShowActivity"></activity>
+            android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.swzl.search.SwzlSearchActivity"
+            android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.about_us.AboutUsActivity"
+            android:theme="@style/ColorTranslucentTheme" />
+        <activity
+            android:name=".module.about_us.OpenSourceShowActivity"
+            android:theme="@style/ColorTranslucentTheme" />
     </application>
 
 </manifest>

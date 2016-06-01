@@ -352,7 +352,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     protected void onResume() {
         super.onResume();
-        autoLogin();
+        //autoLogin();
         Debug.d("MainActivity", "onResume");
     }
 

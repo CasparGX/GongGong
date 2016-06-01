@@ -2,7 +2,10 @@ package com.sky31.gonggong.module.course_list;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -14,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,6 +45,8 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.sky31.gonggong.config.CommonFunction.readBitMap;
+
 public class CourseListActivity extends BaseActivity implements CourseListView, CurrentWeekView {
 
 
@@ -56,6 +62,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     RelativeLayout courseListContent;
     @Bind(R.id.day_of_week_grid)
     GridView dayOfWeekGrid;
+    @Bind(R.id.course_content)
+    LinearLayout courseContent;
     private CourseListModel courseList;
 
     private ListView weekSelectorList;
@@ -70,9 +78,15 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
         ButterKnife.bind(this);
-
+        init();
         initData();
 
+    }
+
+    private void init() {
+        Bitmap bm = readBitMap(getApplicationContext(), R.drawable.bg_course);
+        Drawable drawable = new BitmapDrawable(bm);
+        courseContent.setBackground(drawable);
     }
 
 
@@ -226,7 +240,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     private void initGridView() {
 
-        WeekTimeLineAdapter adapter  = new WeekTimeLineAdapter(this);
+        WeekTimeLineAdapter adapter = new WeekTimeLineAdapter(this);
         dayOfWeekGrid.setAdapter(adapter);
 
     }
@@ -271,7 +285,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
         int width = courseListContent.getWidth() / 7;
         int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f,this);
+        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -283,7 +297,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int day = Integer.parseInt(bean.getDay());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins((day - 1) * width, (int) ((x - 1) * (height+borderHeight)), 0, 0);
+            params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
             TextView textView = new TextView(CourseListActivity.this);
             textView.setLayoutParams(params);
