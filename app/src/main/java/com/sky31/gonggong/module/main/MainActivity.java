@@ -336,28 +336,31 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         instance = this;
         resources = getResources();
         aCache = ACache.get(this);
-        //if (savedInstanceState == null) {
         inputPasswordPopupwindowContentView = LayoutInflater.from(context).inflate(R.layout.popupwindow_input_password, null);
         initToolbar();
         initView();
-        //} else {
-        //    Debug.i("savedInstanceState", "not null");
+        Debug.d("MainActivity", "onCreate");
+    }
 
-        //}
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        onWindowFocusChanged(true);
+        Debug.d("MainActivity", "onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         autoLogin();
+        Debug.d("MainActivity", "onResume");
     }
 
     //初始化控件
     private void initView() {
         //抽屉菜单
         View drawerMenuHeader = drawerMenu.inflateHeaderView(R.layout.main_drawer_header);
-
+        drawerMenu.setItemIconTintList(null);
         drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {

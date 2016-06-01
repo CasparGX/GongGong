@@ -155,16 +155,19 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
     }
 
     private void initData() {
-
-        initSecondhandData();
-        initInfoData();
-        initActivityData();
-
-        imgViewList = new ArrayList<>();
-        imgViewList.add(secondHandImg1);
-        imgViewList.add(secondHandImg2);
-        imgViewList.add(secondHandImg3);
-
+        if (this.secondhandData == null || this.secondhandData.size() == 0) {
+            initSecondhandData();
+            imgViewList = new ArrayList<>();
+            imgViewList.add(secondHandImg1);
+            imgViewList.add(secondHandImg2);
+            imgViewList.add(secondHandImg3);
+        }
+        if (this.infoData == null) {
+            initInfoData();
+        }
+        if (this.activityData == null || this.activityData.size() == 0) {
+            initActivityData();
+        }
     }
 
     private void initActivityData() {
@@ -300,6 +303,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
     public void getSecondhandData(JsonArray secondHandModelList, int code) {
         if (code == 0) {
             //this.secondhandData = secondHandModelList.getModels();
+            this.secondhandData.clear();
             for (int i = 0; i < secondHandModelList.size(); i++) {
                 String imgUrl = null;
                 SecondhandModel secondhandModel = new SecondhandModel();

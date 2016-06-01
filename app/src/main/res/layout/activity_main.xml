@@ -84,13 +84,13 @@
                             android:visibility="gone" />
 
                         <com.rey.material.widget.Button
-                            style="@style/LightRaiseColorButtonRippleStyle"
                             android:id="@+id/btn_login"
+                            style="@style/LightRaiseColorButtonRippleStyle"
                             android:layout_width="@dimen/dp_100"
                             android:layout_height="@dimen/dp_32"
                             android:layout_gravity="right"
-                            android:background="@drawable/btn_default"
                             android:layout_margin="@dimen/interval_10"
+                            android:background="@drawable/btn_default"
                             android:text="@string/login" />
 
                         <!--<com.rey.material.widget.Button
@@ -138,52 +138,62 @@
                                 android:id="@+id/ecard_none"
                                 style="@style/HeaderInfoTitle"
                                 android:text="@string/click_get" />-->
-
                             <LinearLayout
-                                android:id="@+id/ecard_info"
-                                style="@style/HeaderInfoInnerLayout"
-                                android:orientation="vertical">
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    style="@style/HeaderInfoIcon"
+                                    android:src="@drawable/ic_ecard" />
 
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:id="@+id/ecard_info"
+                                    style="@style/HeaderInfoInnerLayout"
+                                    android:orientation="vertical">
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/balance" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/ecard_balance"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/balance" />
 
-                                    <ProgressBar
-                                        android:id="@+id/pb_ecard_balance"
-                                        android:layout_width="18sp"
-                                        android:layout_height="18sp"
-                                        android:visibility="gone" />
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/ecard_balance"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                        <ProgressBar
+                                            android:id="@+id/pb_ecard_balance"
+                                            android:layout_width="18sp"
+                                            android:layout_height="18sp"
+                                            android:visibility="gone" />
+                                    </LinearLayout>
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/unclaimed" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/ecard_unclaimed"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/unclaimed" />
 
-                                    <ProgressBar
-                                        android:id="@+id/pb_ecard_unclaimed"
-                                        android:layout_width="18sp"
-                                        android:layout_height="18sp"
-                                        android:visibility="gone" />
+                                        <TextView
+                                            android:id="@+id/ecard_unclaimed"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
+
+                                        <ProgressBar
+                                            android:id="@+id/pb_ecard_unclaimed"
+                                            android:layout_width="18sp"
+                                            android:layout_height="18sp"
+                                            android:visibility="gone" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -206,38 +216,49 @@
                                 android:text="@string/library" />
 
                             <LinearLayout
-                                android:id="@+id/library_info"
-                                style="@style/HeaderInfoInnerLayout"
-                                android:orientation="vertical">
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    style="@style/HeaderInfoIcon"
+                                    android:src="@drawable/ic_library" />
 
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:id="@+id/library_info"
+                                    style="@style/HeaderInfoInnerLayout"
+                                    android:orientation="vertical">
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/library_debt" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/library_debt"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
-                                </LinearLayout>
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/library_debt" />
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/library_debt"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
+                                    </LinearLayout>
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/library_rent" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/library_rent_num"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/library_rent" />
+
+                                        <TextView
+                                            android:id="@+id/library_rent_num"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -260,38 +281,49 @@
                                 android:text="@string/xtu_network" />
 
                             <LinearLayout
-                                android:id="@+id/xtu_network_info"
-                                style="@style/HeaderInfoInnerLayout"
-                                android:orientation="vertical">
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    style="@style/HeaderInfoIcon"
+                                    android:src="@drawable/ic_xtu_net" />
 
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:id="@+id/xtu_network_info"
+                                    style="@style/HeaderInfoInnerLayout"
+                                    android:orientation="vertical">
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/xtu_network_status" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/xtu_network_status"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
-                                </LinearLayout>
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/xtu_network_status" />
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/xtu_network_status"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
+                                    </LinearLayout>
 
-                                    <TextView
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/xtu_network_balance" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/xtu_network_balance"
-                                        style="@style/HeaderInfoContent"
-                                        android:text="@string/default_money" />
+                                        <TextView
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/xtu_network_balance" />
+
+                                        <TextView
+                                            android:id="@+id/xtu_network_balance"
+                                            style="@style/HeaderInfoContent"
+                                            android:text="@string/default_money" />
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -389,9 +421,9 @@
 
         <TableRow
             android:id="@+id/btn_exit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|right"
             android:gravity="right"
             android:paddingBottom="@dimen/interval_10"
             android:paddingRight="@dimen/interval_10">
@@ -400,8 +432,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/textColorPrimary"
-                android:text="@string/logout" />
+                android:text="@string/logout"
+                android:textColor="@color/textColorPrimary" />
 
             <ImageView
                 android:layout_width="@dimen/img_btn_size_mini"
