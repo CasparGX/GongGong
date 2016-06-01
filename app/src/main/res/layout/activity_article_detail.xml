@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.sky31.gonggong.module.article.detail.ArticleDetailActivity"
-    android:background="@color/white">
+    android:background="@color/colorPrimary">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
