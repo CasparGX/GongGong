@@ -45,7 +45,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.sky31.gonggong.config.CommonFunction.readBitMap;
+import static com.sky31.gonggong.config.CommonFunction.resToBitmap;
 
 public class CourseListActivity extends BaseActivity implements CourseListView, CurrentWeekView {
 
@@ -84,7 +84,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     }
 
     private void init() {
-        Bitmap bm = readBitMap(getApplicationContext(), R.drawable.bg_course);
+        Bitmap bm = resToBitmap(getApplicationContext(), R.drawable.bg_course);
         Drawable drawable = new BitmapDrawable(bm);
         courseContent.setBackground(drawable);
     }
