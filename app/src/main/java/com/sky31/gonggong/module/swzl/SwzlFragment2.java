@@ -4,17 +4,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.gc.materialdesign.widgets.ProgressDialog;
-import com.rey.material.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 
-
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.model.LostAndFoundModel;
@@ -34,7 +30,7 @@ import butterknife.ButterKnife;
  * Use the {@link SwzlFragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SwzlFragment2 extends android.support.v4.app.Fragment implements SwzlSearchView,Runnable{
+public class SwzlFragment2 extends android.support.v4.app.Fragment implements SwzlSearchView, Runnable {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -42,26 +38,24 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
     // TODO: Rename and change types of parameters
     private static int code;
+    @Bind(R.id.swzl_list_view)
+    RefreshListView listView;
     private String mParam2;
-
     private View mFragmentView = null;
     private SwzlSearchResult result;
-
-
     private ProgressDialog waitDialog;
     private OnFragmentInteractionListener mListener;
 
-    @Bind(R.id.swzl_list_view)
-    RefreshListView listView;
 
-
+    public SwzlFragment2() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param actionCode Parameter 1.
-     *
      * @return A new instance of fragment SwzlFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -77,10 +71,6 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
         return fragment;
     }
 
-    public SwzlFragment2() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,11 +78,10 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
             code = getArguments().getInt(ARG_PARAM1);
         }
 
-        waitDialog = new ProgressDialog(getContext(),"正在获取数据");
+        waitDialog = new ProgressDialog(getContext(), "正在获取数据");
         initData();
 
     }
-
 
 
     @Override
@@ -105,7 +94,6 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
         listView.initRunable(this);
         mListener.onFragmentInteraction(this);
-
 
 
 //        SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result);
@@ -150,26 +138,27 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     }
 
 
-    public void initData(){
+    public void initData() {
 
         waitDialog.show();
 
         // 向服务器请求数据。
-        SwzlSearchPresenter presenter = new SwzlSearchPresenter(this,getActivity());
+        SwzlSearchPresenter presenter = new SwzlSearchPresenter(this, getActivity());
         presenter.getSearchResult(code);
 
     }
 
     @Override
-    public void getSearchData(int code ,SwzlSearchResult data) {
+    public void getSearchData(int code, SwzlSearchResult data) {
         waitDialog.dismiss();
         // 回调借口。传入data
-        switch (code){
-            case 0:this.result = data;
-                   setData();
+        switch (code) {
+            case 0:
+                this.result = data;
+                setData();
                 break;
             default:
-                CommonFunction.errorToast(getActivity(),code);
+                CommonFunction.errorToast(getActivity().getApplicationContext(), code);
         }
 
     }
@@ -178,9 +167,9 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
     /**
      * 加载 ListView
      */
-    private void setData(){
-        if (result.getData() != null){
-            SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(),result.getData());
+    private void setData() {
+        if (result.getData() != null) {
+            SwzlListviewAdapter adapter = new SwzlListviewAdapter(getActivity(), result.getData());
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -189,10 +178,10 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
                     //position起始下标为1.
                     //谨防越界
                     List<LostAndFoundModel> list = result.getData();
-                    LostAndFoundModel model = list.get(position-1);
+                    LostAndFoundModel model = list.get(position - 1);
 
-                    Intent intent = new Intent(getContext(),SwzlDetailActivity.class);
-                    intent.putExtra("model",model);
+                    Intent intent = new Intent(getContext(), SwzlDetailActivity.class);
+                    intent.putExtra("model", model);
                     startActivity(intent);
 
                 }
@@ -200,8 +189,7 @@ public class SwzlFragment2 extends android.support.v4.app.Fragment implements Sw
 
             adapter.notifyDataSetChanged();
             listView.dismissHeaderView();
-        }
-        else {
+        } else {
             //View view  = LayoutInflater.from(getContext()).inflate(R.layout.swzl_nomore_data,null);
             listView = new RefreshListView(getContext());
         }

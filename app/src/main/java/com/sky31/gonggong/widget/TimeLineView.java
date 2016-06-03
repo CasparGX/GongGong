@@ -1,11 +1,8 @@
 package com.sky31.gonggong.widget;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +17,7 @@ public class TimeLineView extends View {
 
 
     private Context context;
+    private Context appContext;
 
     private boolean isPast = true;
 
@@ -33,8 +31,8 @@ public class TimeLineView extends View {
         //获取颜色
         int width = getWidth();
         int height = getHeight();
-        float piex = CommonFunction.convertDpToPixel(26.0f,context);
-        float lineWidth = CommonFunction.convertDpToPixel(2.0f,context);
+        float piex = CommonFunction.convertDpToPixel(26.0f, appContext);
+        float lineWidth = CommonFunction.convertDpToPixel(2.0f, appContext);
         paint.setColor(context.getResources().getColor(R.color.color_0176da));
         paint.setStrokeWidth(lineWidth);
         canvas.drawLine(width/2,0,width/2,piex-15,paint);
@@ -65,6 +63,7 @@ public class TimeLineView extends View {
         Log.d("customerView",isPast+"");
         this.isPast = isPast;
         this.context = context;
+        appContext = context.getApplicationContext();
     }
 
 
@@ -72,11 +71,13 @@ public class TimeLineView extends View {
     public TimeLineView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        appContext = context.getApplicationContext();
     }
 
     public TimeLineView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
+        appContext = context.getApplicationContext();
     }
 
 }

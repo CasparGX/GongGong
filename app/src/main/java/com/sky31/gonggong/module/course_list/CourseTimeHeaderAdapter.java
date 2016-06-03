@@ -4,13 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.config.CommonFunction;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -71,7 +68,8 @@ public class CourseTimeHeaderAdapter extends BaseAdapter {
         return convertView;
     }
 
-    static class ViewHolder {
+
+    public class ViewHolder {
         @Bind(R.id.course_item_title)
         TextView courseItemTitle;
 

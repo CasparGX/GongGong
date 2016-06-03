@@ -166,7 +166,7 @@ public class SwzlFragment extends android.support.v4.app.Fragment implements Swz
                 setData();
                 break;
             default:
-                CommonFunction.errorToast(getActivity(), code);
+                CommonFunction.errorToast(getActivity().getApplicationContext(), code);
 
         }
 

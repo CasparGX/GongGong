@@ -71,6 +71,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private int currentWeek = 0;
     private int currenTrueWeek = 0;
 
+    private Bitmap bmBg = null;
+
     private Map<String, Integer> courseToColor;
 
     @Override
@@ -80,13 +82,24 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         ButterKnife.bind(this);
         init();
         initData();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void init() {
-        Bitmap bm = resToBitmap(getApplicationContext(), R.drawable.bg_course);
-        Drawable drawable = new BitmapDrawable(bm);
-        courseContent.setBackground(drawable);
+        if (bmBg == null) {
+            bmBg = resToBitmap(getApplicationContext(), R.drawable.bg_course);
+            Drawable drawable = new BitmapDrawable(bmBg);
+            courseContent.setBackground(drawable);
+        }
     }
 
 
@@ -194,7 +207,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             courseList.setCache();
             initView();
         } else {
-            CommonFunction.errorToast(CourseListActivity.this, code);
+            CommonFunction.errorToast(getApplicationContext(), code);
         }
 
         return courseList;
@@ -225,7 +238,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             initCourseData();
         } else {
             if (aCache.getAsString(Constants.Key.CURRENT_WEEK) == null) {
-                CommonFunction.errorToast(this, code);
+                CommonFunction.errorToast(getApplicationContext(), code);
             } else {
                 currentWeek = Integer.parseInt(aCache.getAsString(Constants.Key.CURRENT_WEEK));
                 initPopWindow();
@@ -284,8 +297,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
         //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
         int width = courseListContent.getWidth() / 7;
+        //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
         int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
+        //int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -297,7 +311,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int day = Integer.parseInt(bean.getDay());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
+            //params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
             TextView textView = new TextView(CourseListActivity.this);
             textView.setLayoutParams(params);

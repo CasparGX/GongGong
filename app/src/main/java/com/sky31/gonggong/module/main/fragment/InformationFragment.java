@@ -141,7 +141,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
         ViewGroup.LayoutParams paramsSecondhand = secondHand.getLayoutParams();
         ViewGroup.LayoutParams paramsInfo = info.getLayoutParams();
         ViewGroup.LayoutParams paramsActivity = activityInfoFirst.getLayoutParams();
-        int height = (int) (CommonFunction.homeLayoutHeight - CommonFunction.convertDpToPixel((1 + 8), getContext())) / 3 - 20;
+        int height = (int) (CommonFunction.homeLayoutHeight - CommonFunction.convertDpToPixel((1 + 8), getActivity().getApplicationContext())) / 3 - 20;
 
         paramsSecondhand.height = height;
         paramsInfo.height = height;
@@ -238,7 +238,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
                 initActivityView();
             }
         } else {
-            CommonFunction.errorToast(getContext(), code);
+            CommonFunction.errorToast(getContext().getApplicationContext(), code);
         }
 
     }
@@ -353,7 +353,7 @@ public class InformationFragment extends Fragment implements ArticleListView, Se
             //循环完之后初始化视图
             initsecondhandView();
         } else {
-            CommonFunction.errorToast(getContext(), code);
+            CommonFunction.errorToast(getContext().getApplicationContext(), code);
         }
     }
 
