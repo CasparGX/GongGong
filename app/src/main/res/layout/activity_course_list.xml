@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/course_list_week_title"
                 android:text="课程表"
-                android:textSize="20sp"
+                android:textSize="@dimen/material_design_title_font_size"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_gravity="center"

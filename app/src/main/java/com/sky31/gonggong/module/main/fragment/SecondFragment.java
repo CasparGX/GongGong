@@ -314,7 +314,10 @@ public class SecondFragment extends Fragment implements ArticleListView, Runnabl
     @Override
     public void onDestroy() {
         super.onDestroy();
-        scrollHandle.removeCallbacks(this);
+        if (scrollHandle!=null){
+            scrollHandle.removeCallbacks(this);
+        }
+
     }
 
     @Override

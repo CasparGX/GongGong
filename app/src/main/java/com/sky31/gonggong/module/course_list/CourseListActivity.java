@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sky31.gonggong.R;
@@ -63,6 +65,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private int currentWeek = 0;
     private int currenTrueWeek = 0;
 
+
+    private ProgressDialog dialog;
+
     private Map<String, Integer> courseToColor;
 
     @Override
@@ -71,6 +76,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         setContentView(R.layout.activity_course_list);
         ButterKnife.bind(this);
 
+        dialog = new ProgressDialog(this,getResources().getString(R.string.get_data_now));
         initData();
 
     }
@@ -129,11 +135,12 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private void initData() {
         CurrentWeekProxy proxy = new CurrentWeekProxy(this, this);
         proxy.setRequestProxy();
+        dialog.show();
     }
 
     private void initToolBar() {
 
-        setSupportActionBar(courseListToolbar);
+        //setSupportActionBar(courseListToolbar);
         courseListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +148,18 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             }
         });
 
+        courseListToolbar.inflateMenu(R.menu.base_toolbar_menu);
+        courseListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_refresh:
+                        initData();
+
+                }
+                return false;
+            }
+        });
         courseListWeekTitle.setText("第" + currenTrueWeek + "周");
 
         //点击周数开头设置，
@@ -150,6 +169,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
                 weekSelectorDialog.show();
             }
         });
+
 
 
         //设置当时展开周数选择时候，设置当前周数。
@@ -198,6 +218,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     @Override
     public void currentWeek(CurrentWeekModel model, int code) {
 
+        dialog.dismiss();
         ACache aCache = UserModel.getaCache();
         if (code == 0) {
             currentWeek = model.getData().getWeek();
@@ -303,7 +324,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(CourseListActivity.this, "呵呵呵", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CourseListActivity.this, "courseList", Toast.LENGTH_SHORT).show();
                 }
             });
 

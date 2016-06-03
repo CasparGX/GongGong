@@ -38,7 +38,7 @@ public class GradeReportFragment extends Fragment implements ReportDetailView{
     private ProgressDialog dialog;
 
     private int expandCount = 0;
-    
+
 
 
     public GradeReportFragment() {
