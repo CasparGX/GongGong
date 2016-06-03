@@ -231,7 +231,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     @OnClick(R.id.project_layout)
     void onClickProjrctLayout() {
         Intent intent = new Intent();
-        intent.setClass(getContext(), CourseListActivity.class);
+        intent.setClass(getContext().getApplicationContext(), CourseListActivity.class);
         startActivity(intent);
     }
 

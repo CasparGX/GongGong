@@ -48,6 +48,7 @@
             android:name=".module.swzl.SwzlDetailActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
+            android:launchMode="singleTask"
             android:name=".module.course_list.CourseListActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity

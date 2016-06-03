@@ -35,6 +35,7 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.ListViewWithoutScroll;
 
 import java.util.ArrayList;
@@ -87,6 +88,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ButterKnife.unbind(this);
+        Debug.i("CourseListActivity", "onDestroy");
+        setContentView(R.layout.view_null);
     }
 
     @Override
@@ -154,7 +158,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     //请求当前为第X周
     private void initData() {
-        CurrentWeekProxy proxy = new CurrentWeekProxy(this, this);
+        CurrentWeekProxy proxy = new CurrentWeekProxy(getApplicationContext(), this);
         proxy.setRequestProxy();
     }
 

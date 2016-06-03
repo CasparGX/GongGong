@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -82,7 +81,7 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
         aboutUsLogo.setLayoutParams(params);
 
         aboutUsLogo.setImageBitmap(CommonFunction.
-                getBitmapByRes(R.drawable.about_us_logo, 4, getResources()));
+                resToBitmap(getApplicationContext(), R.drawable.about_us_logo));
 
 
 
