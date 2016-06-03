@@ -2,7 +2,10 @@ package com.sky31.gonggong.module.course_list;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -15,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import com.sky31.gonggong.model.UserModel;
 import com.sky31.gonggong.module.current_week.CurrentWeekProxy;
 import com.sky31.gonggong.module.current_week.CurrentWeekView;
 import com.sky31.gonggong.util.ACache;
+import com.sky31.gonggong.util.Debug;
 import com.sky31.gonggong.widget.ListViewWithoutScroll;
 
 import java.util.ArrayList;
@@ -42,6 +47,8 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static com.sky31.gonggong.config.CommonFunction.resToBitmap;
 
 public class CourseListActivity extends BaseActivity implements CourseListView, CurrentWeekView {
 
@@ -58,6 +65,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     RelativeLayout courseListContent;
     @Bind(R.id.day_of_week_grid)
     GridView dayOfWeekGrid;
+    @Bind(R.id.course_content)
+    LinearLayout courseContent;
     private CourseListModel courseList;
 
     private ListView weekSelectorList;
@@ -66,7 +75,11 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private int currenTrueWeek = 0;
 
 
+
     private ProgressDialog dialog;
+
+    private Bitmap bmBg = null;
+
 
     private Map<String, Integer> courseToColor;
 
@@ -76,9 +89,33 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         setContentView(R.layout.activity_course_list);
         ButterKnife.bind(this);
 
-        dialog = new ProgressDialog(this,getResources().getString(R.string.get_data_now));
-        initData();
 
+        dialog = new ProgressDialog(this,getResources().getString(R.string.get_data_now));
+
+        init();
+
+        initData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+        Debug.i("CourseListActivity", "onDestroy");
+        setContentView(R.layout.view_null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void init() {
+        if (bmBg == null) {
+            bmBg = resToBitmap(getApplicationContext(), R.drawable.bg_course);
+            Drawable drawable = new BitmapDrawable(bmBg);
+            courseContent.setBackground(drawable);
+        }
     }
 
 
@@ -133,7 +170,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     //请求当前为第X周
     private void initData() {
-        CurrentWeekProxy proxy = new CurrentWeekProxy(this, this);
+        CurrentWeekProxy proxy = new CurrentWeekProxy(getApplicationContext(), this);
         proxy.setRequestProxy();
         dialog.show();
     }
@@ -200,7 +237,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             courseList.setCache();
             initView();
         } else {
-            CommonFunction.errorToast(CourseListActivity.this, code);
+            CommonFunction.errorToast(getApplicationContext(), code);
         }
 
         return courseList;
@@ -232,7 +269,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             initCourseData();
         } else {
             if (aCache.getAsString(Constants.Key.CURRENT_WEEK) == null) {
-                CommonFunction.errorToast(this, code);
+                CommonFunction.errorToast(getApplicationContext(), code);
             } else {
                 currentWeek = Integer.parseInt(aCache.getAsString(Constants.Key.CURRENT_WEEK));
                 initPopWindow();
@@ -247,7 +284,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     private void initGridView() {
 
-        WeekTimeLineAdapter adapter  = new WeekTimeLineAdapter(this);
+        WeekTimeLineAdapter adapter = new WeekTimeLineAdapter(this);
         dayOfWeekGrid.setAdapter(adapter);
 
     }
@@ -291,8 +328,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
         //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
         int width = courseListContent.getWidth() / 7;
+        //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
         int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f,this);
+        //int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -304,7 +342,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int day = Integer.parseInt(bean.getDay());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins((day - 1) * width, (int) ((x - 1) * (height+borderHeight)), 0, 0);
+            //params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
             TextView textView = new TextView(CourseListActivity.this);
             textView.setLayoutParams(params);

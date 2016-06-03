@@ -231,7 +231,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
     @OnClick(R.id.project_layout)
     void onClickProjrctLayout() {
         Intent intent = new Intent();
-        intent.setClass(getContext(), CourseListActivity.class);
+        intent.setClass(getContext().getApplicationContext(), CourseListActivity.class);
         startActivity(intent);
     }
 
@@ -293,7 +293,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
             CurrentWeekProxy weekProxy = new CurrentWeekProxy(getContext(), this);
             weekProxy.setRequestProxy();
         } else {
-            CommonFunction.errorToast(getContext(), code);
+            CommonFunction.errorToast(getContext().getApplicationContext(), code);
         }
         return courseList;
     }
@@ -315,7 +315,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
             }
 
         } else {
-            CommonFunction.errorToast(getContext(), code);
+            CommonFunction.errorToast(getContext().getApplicationContext(), code);
         }
 
     }

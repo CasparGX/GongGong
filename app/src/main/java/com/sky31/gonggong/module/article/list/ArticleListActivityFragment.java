@@ -2,7 +2,6 @@ package com.sky31.gonggong.module.article.list;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,9 +16,6 @@ import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.model.ArticleListModel;
 import com.sky31.gonggong.module.article.ArticlePresenter;
 import com.sky31.gonggong.module.article.detail.ArticleDetailActivity;
-import com.sky31.gonggong.util.Debug;
-
-import java.net.URL;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -84,7 +80,7 @@ public class ArticleListActivityFragment extends Fragment implements ArticleList
                 setData();
                 break;
             default:
-                CommonFunction.errorToast(getActivity(),code);
+                CommonFunction.errorToast(getActivity().getApplicationContext(), code);
         }
 
     }

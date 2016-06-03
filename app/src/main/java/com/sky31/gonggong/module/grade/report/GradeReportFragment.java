@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.gc.materialdesign.widgets.ProgressDialog;
 import com.sky31.gonggong.R;
@@ -19,7 +17,6 @@ import com.sky31.gonggong.model.GradeDetailsModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -163,7 +160,7 @@ public class GradeReportFragment extends Fragment implements ReportDetailView{
 
         }
         else {
-            CommonFunction.errorToast(getContext(),code);
+            CommonFunction.errorToast(getContext().getApplicationContext(), code);
         }
     }
 }

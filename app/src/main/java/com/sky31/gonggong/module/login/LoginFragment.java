@@ -165,7 +165,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
             this.getActivity().finish();
             onDetach();
         } else {
-            errorToast(this.getActivity(), code);
+            errorToast(this.getActivity().getApplicationContext(), code);
         }
     }
 

@@ -13,6 +13,8 @@ import com.sky31.gonggong.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.sky31.gonggong.config.CommonFunction.resToBitmap;
+
 /**
  * Created by wukunguang on 16-5-9.
  */
@@ -60,19 +62,19 @@ public class FunctionGridViewAdapter extends BaseAdapter {
         ImageView imageView = viewHolder.functionItem;
         switch (position){
             case 0:
-                imageView.setImageResource(R.drawable.course_list_page);
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.course_list_page));
                 break;
             case 1:
-                imageView.setImageResource(R.drawable.grade_page);
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.grade_page));
                 break;
             case 2:
-                imageView.setImageResource(R.drawable.library_page);
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.library_page));
                 break;
             case 3:
-                imageView.setImageResource(R.drawable.xuanxiu_page);
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.xuanxiu_page));
                 break;
             case 4:
-                imageView.setImageResource(R.drawable.lost_and_found_page);
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.lost_and_found_page));
                 break;
         }
 

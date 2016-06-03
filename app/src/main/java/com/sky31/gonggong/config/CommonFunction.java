@@ -10,10 +10,9 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.sky31.gonggong.R;
-import com.sky31.gonggong.model.CurrentWeekModel;
 import com.sky31.gonggong.module.main.MainActivity;
 
-import java.text.DateFormat;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -80,7 +79,7 @@ public class CommonFunction {
     public static float convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float px = dp * ((float) metrics.densityDpi / (float) DisplayMetrics.DENSITY_DEFAULT);
         return px;
     }
 
@@ -88,7 +87,7 @@ public class CommonFunction {
     public static float convertPixelsToDp(float px, Context context) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float dp = px / ((float) metrics.densityDpi / (float) DisplayMetrics.DENSITY_DEFAULT);
         return dp;
     }
 
@@ -222,6 +221,23 @@ public class CommonFunction {
         Bitmap bitmap = BitmapFactory.decodeResource(res,ResID,factory);
 
         return bitmap;
+    }
+
+    /**
+     * 以最省内存的方式读取本地资源的图片
+     *
+     * @param context
+     * @param resId
+     * @return
+     */
+    public static Bitmap resToBitmap(Context context, int resId) {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        opt.inPurgeable = true;
+        opt.inInputShareable = true;
+        //获取资源图片
+        InputStream is = context.getResources().openRawResource(resId);
+        return BitmapFactory.decodeStream(is, null, opt);
     }
 
 }

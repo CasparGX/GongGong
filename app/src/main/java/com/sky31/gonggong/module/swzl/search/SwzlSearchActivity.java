@@ -20,14 +20,16 @@ import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.config.CommonFunction;
 import com.sky31.gonggong.model.LostAndFoundModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
-import com.sky31.gonggong.module.swzl.*;
+import com.sky31.gonggong.module.swzl.SwzlDetailActivity;
+import com.sky31.gonggong.module.swzl.SwzlSearchPresenter;
+import com.sky31.gonggong.module.swzl.SwzlSearchView;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
+public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView {
 
     @Bind(R.id.swzl_search_edit_text)
     EditText swzlSearchEditText;
@@ -50,7 +52,7 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
         setContentView(R.layout.activity_swzl_search);
         ButterKnife.bind(this);
 
-        progressDialog = new ProgressDialog(this,"正在加载");
+        progressDialog = new ProgressDialog(this, "正在加载");
         searchView = this;
         initToolBar();
 
@@ -82,7 +84,7 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s.toString().trim().length() >0){
+                if (s.toString().trim().length() > 0) {
                     initData();
                 }
             }
@@ -97,7 +99,7 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
         swzlSearchToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
                     case R.id.swzl_search_by_key:
                         initData();
@@ -115,18 +117,17 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
     /***
      * 加载数据请求。
      */
-    void initData(){
+    void initData() {
 
-        if (TextUtils.isEmpty(swzlSearchEditText.getText().toString().trim())){
+        if (TextUtils.isEmpty(swzlSearchEditText.getText().toString().trim())) {
             //用户必须输入
-            Toast.makeText(getBaseContext(),getResources().
-                    getString(R.string.swzl_search_non_input),Toast.LENGTH_SHORT).
+            Toast.makeText(getBaseContext(), getResources().
+                    getString(R.string.swzl_search_non_input), Toast.LENGTH_SHORT).
                     show();
-        }
-        else {
+        } else {
             key = swzlSearchEditText.getText().toString().trim();
             //key = key.replaceAll("(>)+","");
-            SwzlSearchPresenter presenter = new SwzlSearchPresenter(searchView,getBaseContext());
+            SwzlSearchPresenter presenter = new SwzlSearchPresenter(searchView, getBaseContext());
             presenter.doSearchByKey(key);
 
         }
@@ -136,27 +137,26 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
     @Override
     public void getSearchData(int code, SwzlSearchResult data) {
 
-        Log.d("Search_TAG",code+"");
+        Log.d("Search_TAG", code + "");
 
-        if (code==0){
+        if (code == 0) {
 
             models = data.getData_2();
-            if (models != null){
-                Log.d("Search_TAG",models.size()+"");
+            if (models != null) {
+                Log.d("Search_TAG", models.size() + "");
                 initListViewDataAndView();
             }
 
 
-        }
-        else {
-            CommonFunction.errorToast(this,code);
+        } else {
+            CommonFunction.errorToast(getApplicationContext(), code);
         }
 
     }
 
     private void initListViewDataAndView() {
 
-        SwzlSearchResultListAdapter adapter = new SwzlSearchResultListAdapter(getBaseContext(),models);
+        SwzlSearchResultListAdapter adapter = new SwzlSearchResultListAdapter(getBaseContext(), models);
 
         swzlSearchResult.setAdapter(adapter);
 
@@ -165,8 +165,8 @@ public class SwzlSearchActivity extends BaseActivity implements SwzlSearchView{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent();
-                intent.putExtra("model",models.get(position));
-                intent.setClass(SwzlSearchActivity.this,SwzlDetailActivity.class);
+                intent.putExtra("model", models.get(position));
+                intent.setClass(SwzlSearchActivity.this, SwzlDetailActivity.class);
                 startActivity(intent);
 
             }

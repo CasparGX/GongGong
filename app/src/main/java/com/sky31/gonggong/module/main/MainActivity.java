@@ -159,6 +159,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int headerHeight = -1;
     private int homeLayoutHeight = -1;
     private Context context;
+    private Context appContext;
     private Resources resources;
     private float defualtTextSize;
     private ScaleAnimation showAnimation;
@@ -333,6 +334,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         context = MainActivity.this;
+        appContext = getApplicationContext();
         instance = this;
         resources = getResources();
         aCache = ACache.get(this);
@@ -352,7 +354,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     protected void onResume() {
         super.onResume();
-        autoLogin();
+        //autoLogin();
         Debug.d("MainActivity", "onResume");
     }
 
@@ -567,7 +569,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
         }
         //抽屉菜单宽度
-        int w = (int) (homeLayout.getWidth() - convertDpToPixel(android.R.attr.actionBarSize, context));
+        int w = (int) (homeLayout.getWidth() - convertDpToPixel(android.R.attr.actionBarSize, appContext));
         if (drawerMenu != null && drawerMenu.getWidth() != w) {
             ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
             param.width = w;
@@ -700,7 +702,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             } else {
                 ecardBalance.setText(R.string.default_money);
                 ecardUnclaimed.setText(R.string.default_money);
-                errorToast(this, code);
+                errorToast(getApplicationContext(), code);
             }
             ecardBalance.setVisibility(View.VISIBLE);
             ecardUnclaimed.setVisibility(View.VISIBLE);
@@ -725,7 +727,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         if (code == 0) {
             isLogined(studentInfoModel.getData().getName());
         } else {
-            errorToast(this, code);
+            errorToast(getApplicationContext(), code);
         }
     }
 
@@ -738,7 +740,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             } catch (NullPointerException e) {
             }
         } else {
-            errorToast(this, code);
+            errorToast(getApplicationContext(), code);
         }
     }
 
@@ -752,7 +754,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         } else if (code == 1) {
             Toast.makeText(context, resources.getString(R.string.library) + resources.getString(R.string.password_is_wrong), Toast.LENGTH_SHORT);
         } else {
-            errorToast(this, code);
+            errorToast(getApplicationContext(), code);
         }
     }
 
@@ -764,7 +766,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             } catch (NullPointerException e) {
             }
         } else {
-            errorToast(this, code);
+            errorToast(getApplicationContext(), code);
         }
     }
 
