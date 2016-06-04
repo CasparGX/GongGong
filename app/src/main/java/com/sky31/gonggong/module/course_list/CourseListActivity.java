@@ -73,6 +73,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private int currenTrueWeek = 0;
 
     private Bitmap bmBg = null;
+    private Drawable bgDrawable = null;
 
     private Map<String, Integer> courseToColor;
 
@@ -91,6 +92,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         ButterKnife.unbind(this);
         Debug.i("CourseListActivity", "onDestroy");
         setContentView(R.layout.view_null);
+        bgDrawable = null;
+        bmBg.recycle();
+        bmBg = null;
     }
 
     @Override
@@ -101,8 +105,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private void init() {
         if (bmBg == null) {
             bmBg = resToBitmap(getApplicationContext(), R.drawable.bg_course);
-            Drawable drawable = new BitmapDrawable(bmBg);
-            courseContent.setBackground(drawable);
+            bgDrawable = new BitmapDrawable(bmBg);
+            courseContent.setBackground(bgDrawable);
         }
     }
 
