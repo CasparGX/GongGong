@@ -95,6 +95,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         init();
 
         initData();
+
     }
 
     @Override
@@ -116,6 +117,19 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             Drawable drawable = new BitmapDrawable(bmBg);
             courseContent.setBackground(drawable);
         }
+        courseListToolbar.inflateMenu(R.menu.base_toolbar_menu);
+        courseListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_refresh:
+                        initData();
+
+                }
+                return false;
+            }
+        });
+
     }
 
 
@@ -185,18 +199,10 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             }
         });
 
-        courseListToolbar.inflateMenu(R.menu.base_toolbar_menu);
-        courseListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_refresh:
-                        initData();
 
-                }
-                return false;
-            }
-        });
+
+
+
         courseListWeekTitle.setText("第" + currenTrueWeek + "周");
 
         //点击周数开头设置，
@@ -276,6 +282,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
                 initToolBar();
                 initGridView();
                 initCourseData();
+
             }
 
         }
@@ -330,7 +337,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         int width = courseListContent.getWidth() / 7;
         //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
         int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        //int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
+        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -340,9 +347,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int x = Integer.parseInt(bean.getSection_start());
             int y = Integer.parseInt(bean.getSection_end());
             int day = Integer.parseInt(bean.getDay());
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1)+5);
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            //params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
+            params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
             TextView textView = new TextView(CourseListActivity.this);
             textView.setLayoutParams(params);
