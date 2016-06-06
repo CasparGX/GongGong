@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gc.materialdesign.widgets.ProgressDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sky31.gonggong.R;
@@ -72,8 +74,13 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private int currentWeek = 0;
     private int currenTrueWeek = 0;
 
+
+
+    private ProgressDialog dialog;
+
     private Bitmap bmBg = null;
     private Drawable bgDrawable = null;
+
 
     private Map<String, Integer> courseToColor;
 
@@ -82,8 +89,14 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
         ButterKnife.bind(this);
+
+
+        dialog = new ProgressDialog(this,getResources().getString(R.string.get_data_now));
+
         init();
+
         initData();
+
     }
 
     @Override
@@ -109,6 +122,19 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             bgDrawable = new BitmapDrawable(bmBg);
             courseContent.setBackground(bgDrawable);
         }
+        courseListToolbar.inflateMenu(R.menu.base_toolbar_menu);
+        courseListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_refresh:
+                        initData();
+
+                }
+                return false;
+            }
+        });
+
     }
 
 
@@ -165,17 +191,22 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     private void initData() {
         CurrentWeekProxy proxy = new CurrentWeekProxy(getApplicationContext(), this);
         proxy.setRequestProxy();
+        dialog.show();
     }
 
     private void initToolBar() {
 
-        setSupportActionBar(courseListToolbar);
+        //setSupportActionBar(courseListToolbar);
         courseListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
+
+
 
         courseListWeekTitle.setText("第" + currenTrueWeek + "周");
 
@@ -186,6 +217,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
                 weekSelectorDialog.show();
             }
         });
+
 
 
         //设置当时展开周数选择时候，设置当前周数。
@@ -234,6 +266,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
     @Override
     public void currentWeek(CurrentWeekModel model, int code) {
 
+        dialog.dismiss();
         ACache aCache = UserModel.getaCache();
         if (code == 0) {
             currentWeek = model.getData().getWeek();
@@ -254,6 +287,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
                 initToolBar();
                 initGridView();
                 initCourseData();
+
             }
 
         }
@@ -308,7 +342,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         int width = courseListContent.getWidth() / 7;
         //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
         int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        //int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
+        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -318,9 +352,9 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int x = Integer.parseInt(bean.getSection_start());
             int y = Integer.parseInt(bean.getSection_end());
             int day = Integer.parseInt(bean.getDay());
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1));
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1)+5);
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            //params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
+            params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
             TextView textView = new TextView(CourseListActivity.this);
             textView.setLayoutParams(params);
@@ -340,7 +374,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(CourseListActivity.this, "呵呵呵", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CourseListActivity.this, "courseList", Toast.LENGTH_SHORT).show();
                 }
             });
 

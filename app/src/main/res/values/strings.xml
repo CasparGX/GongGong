@@ -166,4 +166,7 @@
     <string name="grade_detail_daily_grade">平时成绩：</string>
     <string name="grade_detail_exam_grade">考试成绩：</string>
     <string name="grade_detail_comp_grade">最终成绩：</string>
+
+
+    <string name="get_data_now">翼宝正在获取数据。</string>
 </resources>
