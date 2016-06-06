@@ -72,7 +72,7 @@
 
 
     <!--Course List  -->
-    <dimen name="course_list_item_fontsize">4.5sp</dimen>
+    <dimen name="course_list_item_fontsize">6sp</dimen>
 
 
     <!--week select popWindows -->
