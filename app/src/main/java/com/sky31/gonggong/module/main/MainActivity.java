@@ -772,6 +772,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     @Override
     public Context getViewContext() {
-        return context;
+        return appContext;
     }
 }
