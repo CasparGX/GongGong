@@ -354,7 +354,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     @Override
     protected void onResume() {
         super.onResume();
-        //autoLogin();
+        if (aCache.getAsString(Constants.Key.NAME) != null) {
+            isLogined(aCache.getAsString(Constants.Key.NAME));
+        }
         Debug.d("MainActivity", "onResume");
     }
 
@@ -624,12 +626,16 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
         //校园卡
         ecard.setClickable(true);
+        doneGetBalance(0, null);
 
         //图书馆
         library.setClickable(true);
+        getLibraryRentLsit(0, null);
+        onGetLibraryReaderInfo(0, null);
 
         //校园网
         xtuNet.setClickable(true);
+        getCampusNetwork(0, null);
     }
 
     //自动登录，如果有缓存
@@ -689,7 +695,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     }
 
     @Override
-    public void doneGetBalance(int code, EcardModel ecardModel) {
+    public void doneGetBalance(int code, @Nullable EcardModel ecardModel) {
         try {
             if (code == 0) {
 
