@@ -22,7 +22,7 @@
 
         <com.rey.material.widget.EditText
             android:id="@+id/til_sid"
-            style="@style/LightEditText"
+            style="@style/BlackColorLightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/sid"
@@ -32,7 +32,7 @@
 
         <com.rey.material.widget.EditText
             android:id="@+id/til_name"
-            style="@style/LightEditText"
+            style="@style/BlackColorLightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
@@ -42,7 +42,7 @@
 
         <com.rey.material.widget.EditText
             android:id="@+id/til_card"
-            style="@style/LightEditText"
+            style="@style/BlackColorLightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/card"

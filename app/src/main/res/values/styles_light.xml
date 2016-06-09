@@ -105,6 +105,11 @@
         <item name="et_dividerErrorColor">#FFFF0000</item>
     </style>
 
+    <style name="BlackColorLightEditText" parent="LightEditText">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/textColorPrimary</item>
+    </style>
+
     <!-- Circular Progress Style -->
 
     <style name="LightCircularProgressDrawable" parent="Material.Drawable.CircularProgress">
