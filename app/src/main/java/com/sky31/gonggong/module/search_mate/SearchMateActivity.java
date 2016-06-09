@@ -49,8 +49,8 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
             type = "xx";
         Debug.i("searchMate",sid+" "+name+" "+card);
         //onGetSearchMate();
-        //SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
-        //searchMatePresenter.getMateInfo(sid, name, card, type);
+        SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
+        searchMatePresenter.getMateInfo(sid, name, card, type);
     }
 
     @Override

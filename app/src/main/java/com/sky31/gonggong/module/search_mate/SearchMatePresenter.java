@@ -34,6 +34,7 @@ public class SearchMatePresenter {
 
 
     public void getMateInfo(String sid, String name, String card, String type) {
+        searchMateView.onGetSearchMate();
         Call<MateInfoModel> call = apiService.getMateInfo(sid, name, card, type);
         call.enqueue(new Callback<MateInfoModel>() {
             @Override

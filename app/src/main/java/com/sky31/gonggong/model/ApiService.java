@@ -39,7 +39,7 @@ public interface ApiService {
     Call<LibraryRentListModel> getLibraryRentList(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     //获取校友信息
-    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam)
+    @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&server=remote")
     Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.NAME) String name, @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
 
     //获取节假日信息
