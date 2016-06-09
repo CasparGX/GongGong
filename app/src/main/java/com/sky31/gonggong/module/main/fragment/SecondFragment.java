@@ -27,6 +27,7 @@ import com.sky31.gonggong.module.grade.GradeActivity;
 import com.sky31.gonggong.module.library.LibraryActivity;
 import com.sky31.gonggong.module.main.FunctionGridViewAdapter;
 import com.sky31.gonggong.module.main.HeaderImagesViewPagesAdapter;
+import com.sky31.gonggong.module.search_mate.SearchMateActivity;
 import com.sky31.gonggong.module.swzl.SwzlActivity;
 import com.squareup.picasso.Picasso;
 
@@ -286,6 +287,10 @@ public class SecondFragment extends Fragment implements ArticleListView, Runnabl
                         break;
                     case 4:
                         intent.setClass(getContext(), SwzlActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 5:
+                        intent.setClass(getContext(), SearchMateActivity.class);
                         startActivity(intent);
                         break;
                 }

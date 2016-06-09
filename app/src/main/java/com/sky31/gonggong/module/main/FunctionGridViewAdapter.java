@@ -76,6 +76,9 @@ public class FunctionGridViewAdapter extends BaseAdapter {
             case 4:
                 imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.lost_and_found_page));
                 break;
+            case 5:
+                imageView.setImageBitmap(resToBitmap(context.getApplicationContext(), R.drawable.redio_page));
+                break;
         }
 
         return convertView;
