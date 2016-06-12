@@ -1,10 +1,12 @@
 package com.sky31.gonggong.module.search_mate;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
@@ -24,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.sky31.gonggong.config.CommonFunction.hiddenKeyboard;
+import static com.sky31.gonggong.module.main.MainActivity.resources;
 
 /**
  * Created by root on 16-3-18.
@@ -70,7 +72,9 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
         SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
         searchMatePresenter.getMateInfo(sid, name, card, type);
 
-        hiddenKeyboard(getApplicationContext());
+        //hiddenKeyboard(getApplicationContext());
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(btnSearch.getWindowToken(), 0);
     }
 
     @Override
@@ -117,8 +121,14 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
     protected void onTitleChanged(CharSequence title, int color) {
         super.onTitleChanged(title, color);
 
-        //toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);//设置导航栏图标
-        toolbar.setTitle(R.string.app_name);//设置主标题
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);//设置导航栏图标
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        toolbar.setTitle(title);//设置主标题
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
     }
 
@@ -141,18 +151,15 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
             }
             //rvSearchmateAdapter.notifyDataSetChanged();
         } else {
-            SnackBar.make(this)
-                    .textColor(getResources().getColor(R.color.white))
+            SnackBar snackBar = new SnackBar(this);
+            snackBar.applyStyle(R.style.SnackBarDefault);
+            snackBar.make(this)
                     .text(R.string.no_result)
+                    .textColor(resources.getColor(R.color.white))
                     .actionText("知道了")
-                    .actionClickListener(new SnackBar.OnActionClickListener() {
-                        @Override
-                        public void onActionClick(SnackBar sb, int actionId) {
-                            sb.dismiss();
-                        }
-                    })
-                    .duration(1000)
-                    .show();
+                    .actionTextColor(resources.getColor(R.color.colorAccent))
+                    .duration(3000)
+                    .show(SearchMateActivity.this);
         }
 
         btnSearch.setVisibility(View.VISIBLE);

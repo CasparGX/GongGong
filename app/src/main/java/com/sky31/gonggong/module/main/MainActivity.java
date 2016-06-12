@@ -160,7 +160,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     private int homeLayoutHeight = -1;
     private Context context;
     private Context appContext;
-    private Resources resources;
+    public static Resources resources;
     private float defualtTextSize;
     private ScaleAnimation showAnimation;
     private ScaleAnimation hiddenAnimation;

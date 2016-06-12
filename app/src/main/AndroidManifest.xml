@@ -29,6 +29,8 @@
             android:label="@string/login"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
+            android:label="@string/cha"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:name=".module.search_mate.SearchMateActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity android:name=".module.swzl.SwzlActivity" />
