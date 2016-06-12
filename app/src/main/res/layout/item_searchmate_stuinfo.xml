@@ -2,17 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="@dimen/interval_10"
     android:background="@color/white">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/searchmate_item_name"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="姓名" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/searchmate_item_stunum"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="学号" />
+
+    <TextView
+        android:id="@+id/searchmate_item_classx"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="班级" />
 </LinearLayout>
