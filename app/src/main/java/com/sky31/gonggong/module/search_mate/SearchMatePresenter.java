@@ -44,23 +44,19 @@ public class SearchMatePresenter {
                 Debug.i("code", code + "");
                 if (code == 0) {
                     MateInfoModel mateInfoModel = response.body();
-                    for (MateInfoModel.DataEntity item : mateInfoModel.getData()) {
-                        Debug.i("MateInfo", item.getName());
-                    }
-                } else if (code == 1) {
-
-
+                    searchMateView.finishGetSearchMate(mateInfoModel);
+                } else if (code == 5) {
+                    searchMateView.finishGetSearchMate(null);
                 } else {
 
                 }
-                searchMateView.finishGetSearchMate();
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.printStackTrace();
                 Debug.i("onFailue", t.getCause() + "\n" + t.getMessage());
-                searchMateView.finishGetSearchMate();
+                searchMateView.finishGetSearchMate(null);
             }
         });
     }

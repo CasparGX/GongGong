@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.sky31.gonggong.R;
@@ -238,6 +239,14 @@ public class CommonFunction {
         //获取资源图片
         InputStream is = context.getResources().openRawResource(resId);
         return BitmapFactory.decodeStream(is, null, opt);
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    public static void hiddenKeyboard(Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }
