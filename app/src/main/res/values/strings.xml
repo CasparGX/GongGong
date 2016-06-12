@@ -52,6 +52,7 @@
     <string name="benbu">本部</string>
     <string name="xingxiang">兴湘</string>
     <string name="search">查找</string>
+    <string name="no_result">无搜索结果</string>
 
     <!--查成绩-->
     <string name="grade">查成绩</string>

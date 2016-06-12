@@ -48,7 +48,7 @@ public class SearchMatePresenter {
                 } else if (code == 5) {
                     searchMateView.finishGetSearchMate(null);
                 } else {
-
+                    searchMateView.finishGetSearchMate(null);
                 }
             }
 

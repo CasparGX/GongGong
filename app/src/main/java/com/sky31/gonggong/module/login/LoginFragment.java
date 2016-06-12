@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -33,6 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.sky31.gonggong.config.CommonFunction.errorToast;
+import static com.sky31.gonggong.config.CommonFunction.hiddenKeyboard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,9 +101,7 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
         LoginPresenter loginPresenter = new LoginPresenter(this);
         loginPresenter.login(sid.getText() + "", password.getText() + "");
 
-        //隐藏键盘
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        hiddenKeyboard(getActivity().getApplicationContext());
     }
 
     @Override

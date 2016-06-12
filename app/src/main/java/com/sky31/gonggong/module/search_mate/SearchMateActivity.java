@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import com.rey.material.widget.Button;
 import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.EditText;
+import com.rey.material.widget.SnackBar;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.model.MateInfoModel;
@@ -46,6 +48,8 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
     Button btnSearch;
     @Bind(R.id.rv_searchmate)
     RecyclerView rvSearchmate;
+    @Bind(R.id.searchmate_body)
+    LinearLayout searchmateBody;
 
 
     private SearchMateListAdapter rvSearchmateAdapter;
@@ -125,15 +129,31 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
 
     @Override
     public void finishGetSearchMate(MateInfoModel mateInfoModel) {
-        rvSearchmateAdapter.clearData();
-        //mateinfoList.addAll(1,mateInfoModel.getData());
-        mateinfoList = mateInfoModel.getData();
-        for (MateInfoModel.DataEntity item : mateinfoList) {
-            int position = rvSearchmateAdapter.getData().size();
-            rvSearchmateAdapter.add(position, item);
-            rvSearchmateAdapter.notifyItemInserted(position);
+        if (mateInfoModel != null) {
+
+            rvSearchmateAdapter.clearData();
+            //mateinfoList.addAll(1,mateInfoModel.getData());
+            mateinfoList = mateInfoModel.getData();
+            for (MateInfoModel.DataEntity item : mateinfoList) {
+                int position = rvSearchmateAdapter.getData().size();
+                rvSearchmateAdapter.add(position, item);
+                rvSearchmateAdapter.notifyItemInserted(position);
+            }
+            //rvSearchmateAdapter.notifyDataSetChanged();
+        } else {
+            SnackBar.make(this)
+                    .textColor(getResources().getColor(R.color.white))
+                    .text(R.string.no_result)
+                    .actionText("知道了")
+                    .actionClickListener(new SnackBar.OnActionClickListener() {
+                        @Override
+                        public void onActionClick(SnackBar sb, int actionId) {
+                            sb.dismiss();
+                        }
+                    })
+                    .duration(1000)
+                    .show();
         }
-        //rvSearchmateAdapter.notifyDataSetChanged();
 
         btnSearch.setVisibility(View.VISIBLE);
     }
