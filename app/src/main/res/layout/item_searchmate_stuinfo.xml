@@ -8,21 +8,21 @@
 
     <TextView
         android:id="@+id/searchmate_item_name"
-        android:layout_weight="1"
+        android:layout_weight="0.2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="姓名" />
 
     <TextView
         android:id="@+id/searchmate_item_stunum"
-        android:layout_weight="1"
+        android:layout_weight="0.35"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="学号" />
 
     <TextView
         android:id="@+id/searchmate_item_classx"
-        android:layout_weight="1"
+        android:layout_weight="0.35"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="班级" />

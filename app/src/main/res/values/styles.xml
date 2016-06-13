@@ -149,5 +149,13 @@
         <item name="android:layout_height">32dp</item>
     </style>
 
+    <!-- snack bar -->
+    <style name="SnackBarDefault" parent="Material.Widget.SnackBar">
+        <item name="sb_marginStart">0dp</item>
+        <item name="sb_marginBottom">0dp</item>
+        <item name="sb_width">match_parent</item>
+        <item name="sb_height">48dp</item>
+        <item name="sb_singleLine">true</item>
+    </style>
 
 </resources>
