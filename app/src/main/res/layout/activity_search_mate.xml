@@ -84,7 +84,7 @@
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="@dimen/dp_32"
                 android:layout_gravity="right"
-                android:layout_margin="@dimen/interval_10"
+                android:layout_marginLeft="@dimen/interval_10"
                 android:background="@drawable/btn_with_bgcolor"
                 android:text="@string/search" />
 

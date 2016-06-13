@@ -134,7 +134,8 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
 
     @Override
     public void onGetSearchMate() {
-        btnSearch.setVisibility(View.GONE);
+        //btnSearch.setVisibility(View.GONE);
+        btnSearch.setClickable(false);
     }
 
     @Override
@@ -160,7 +161,8 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
                     .show(SearchMateActivity.this);
         }
 
-        btnSearch.setVisibility(View.VISIBLE);
+        //btnSearch.setVisibility(View.VISIBLE);
+        btnSearch.setClickable(true);
     }
 
 
