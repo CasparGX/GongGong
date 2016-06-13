@@ -153,9 +153,7 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
         } else {
             SnackBar snackBar = new SnackBar(this);
             snackBar.applyStyle(R.style.SnackBarDefault);
-            snackBar.make(this)
-                    .text(R.string.no_result)
-                    .textColor(resources.getColor(R.color.white))
+            snackBar.text(R.string.no_result)
                     .actionText("知道了")
                     .actionTextColor(resources.getColor(R.color.colorAccent))
                     .duration(3000)
