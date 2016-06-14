@@ -80,6 +80,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     private Bitmap bmBg = null;
     private Drawable bgDrawable = null;
+    private WeekTimeLineAdapter weekTimeLineAdapter;
 
 
     private Map<String, Integer> courseToColor;
@@ -296,8 +297,8 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
 
     private void initGridView() {
 
-        WeekTimeLineAdapter adapter = new WeekTimeLineAdapter(this);
-        dayOfWeekGrid.setAdapter(adapter);
+        weekTimeLineAdapter = new WeekTimeLineAdapter(this);
+        dayOfWeekGrid.setAdapter(weekTimeLineAdapter);
 
     }
 
@@ -341,8 +342,10 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
         int width = courseListContent.getWidth() / 7;
         //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
+        int height = (int) getResources().getDimension(R.dimen.course_list_item_height) + 2;
+        //int height = WeekTimeLineAdapter.ViewHolder.getInstance().getTextViewHeight();
         int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
+        //int borderHeight = 0;
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -407,6 +410,12 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             //courseListTimeline.addHeaderView(view);
             CourseTimeHeaderAdapter adapter = new CourseTimeHeaderAdapter(CourseListActivity.this);
             courseListTimeline.setAdapter(adapter);
+            courseListTimeline.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Debug.d("itemHeight", adapterView.getHeight() + "-" + view.getHeight());
+                }
+            });
             initView();
         } else {
             CourseListRequestProxy requestProxy = new CourseListRequestProxy(CourseListActivity.this, this);

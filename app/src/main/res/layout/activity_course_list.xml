@@ -71,6 +71,8 @@
                 <com.sky31.gonggong.widget.ListViewWithoutScroll
                     android:id="@+id/course_list_timeline"
                     android:layout_width="30dp"
+                    android:divider="null"
+                    android:dividerHeight="0dp"
                     android:layout_height="match_parent">
 
                 </com.sky31.gonggong.widget.ListViewWithoutScroll>
