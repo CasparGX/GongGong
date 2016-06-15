@@ -342,10 +342,10 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         //courseListContent.measure(View.MeasureSpec.UNSPECIFIED,View.MeasureSpec.UNSPECIFIED);
         int width = courseListContent.getWidth() / 7;
         //int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
-        int height = (int) getResources().getDimension(R.dimen.course_list_item_height) + 2;
+        int height = (int) getResources().getDimension(R.dimen.course_list_item_height);
         //int height = WeekTimeLineAdapter.ViewHolder.getInstance().getTextViewHeight();
-        int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
-        //int borderHeight = 0;
+        //int borderHeight = (int) CommonFunction.convertDpToPixel(1.0f, this);
+        int borderHeight = 2;
         int len = dataBeen.size();
 
         Log.e("parm ->minheight", height + "");
@@ -355,7 +355,7 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
             int x = Integer.parseInt(bean.getSection_start());
             int y = Integer.parseInt(bean.getSection_end());
             int day = Integer.parseInt(bean.getDay());
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1)+5);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height * (y - x + 1) + borderHeight);
             //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             params.setMargins((day - 1) * width, (int) ((x - 1) * (height + borderHeight)), 0, 0);
 
