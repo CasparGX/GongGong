@@ -181,11 +181,17 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
 
         List<Fragment> fragmentList = new ArrayList<>();
         int lenth = resultList.size();
+        if (lenth == 0) {
+            CourseListModel.DataBean data = new CourseListModel.DataBean();
+            data.setCourse("今天没有课哟");
+            CurrentCourseItemFragment fragment =
+                    CurrentCourseItemFragment.newInstance(data);
+            fragmentList.add(fragment);
+        }
         for (int i = 0; i < lenth; i++) {
             CurrentCourseItemFragment fragment =
                     CurrentCourseItemFragment.newInstance(resultList.get(i));
             fragmentList.add(fragment);
-
         }
 
         CurrentCoursePageAdapter adapter =
@@ -228,7 +234,14 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         }
     }
 
-    @OnClick(R.id.project_layout)
+    @OnClick(R.id.current_course_pager)
+    void onClickCurrentCoursePager() {
+        Intent intent = new Intent();
+        intent.setClass(getContext().getApplicationContext(), CourseListActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.project_layout_title)
     void onClickProjrctLayout() {
         Intent intent = new Intent();
         intent.setClass(getContext().getApplicationContext(), CourseListActivity.class);
@@ -290,6 +303,7 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
         if (code == 0) {
             courseListModel = courseList;
             courseListModel.setCache();
+            //initCurrentCourse();
             CurrentWeekProxy weekProxy = new CurrentWeekProxy(getContext(), this);
             weekProxy.setRequestProxy();
         } else {
