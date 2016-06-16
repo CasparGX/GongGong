@@ -27,12 +27,12 @@
                     android:src="@drawable/ic_gongmen" />
 
                 <TextView
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_gravity="bottom|center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="便捷生活，尽在湘大拱拱！" />
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="便捷生活，尽在湘大拱拱！"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
             </FrameLayout>
 
 
@@ -75,12 +75,13 @@
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password" />
+                        android:hint="@string/password"
+                        android:inputType="textPassword" />
                 </android.support.design.widget.TextInputLayout>
 
                 <com.rey.material.widget.Button
-                    style="@style/LightRaiseColorButtonRippleStyle"
                     android:id="@+id/btn_login"
+                    style="@style/LightRaiseColorButtonRippleStyle"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_40"
                     android:layout_gravity="right"

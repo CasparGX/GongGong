@@ -92,14 +92,17 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
 
     @OnClick(R.id.btn_login)
     void btnLogin(View view) {
-        /*LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_wait, null);
-        dialogWait = new AlertDialog.Builder(this.getActivity()).create();
-        dialogWait.setView(dialogView);
-        dialogWait.show();*/
-        showPopupWindowWait(view);
-        LoginPresenter loginPresenter = new LoginPresenter(this);
-        loginPresenter.login(sid.getText() + "", password.getText() + "");
+        String sidText = sid.getText() + "";
+        String passwordText = password.getText() + "";
+        if (sidText.equals("")) {
+            tilSid.setError("请输入学号");
+        } else if (passwordText.equals("")) {
+            tilPassword.setError("请输入密码");
+        } else {
+            showPopupWindowWait(view);
+            LoginPresenter loginPresenter = new LoginPresenter(this);
+            loginPresenter.login(sidText + "", passwordText + "");
+        }
 
         hiddenKeyboard(getActivity().getApplicationContext());
     }

@@ -19,9 +19,9 @@
         <RelativeLayout
             android:id="@+id/second_hand_title_tip"
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/interval_5"
             android:layout_height="28dp"
-            android:background="@drawable/view_bottom_border">
+            android:background="@drawable/view_bottom_border"
+            android:paddingTop="@dimen/interval_5">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,21 +31,19 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
-                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:padding="@dimen/interval_5"
                 android:src="@drawable/ic_more" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/activity_vertical_margin">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/second_hand_img1"
@@ -88,8 +86,8 @@
             android:id="@+id/activity_title_tip"
             android:layout_width="match_parent"
             android:layout_height="28dp"
-            android:paddingTop="@dimen/interval_5"
-            android:background="@drawable/view_bottom_border">
+            android:background="@drawable/view_bottom_border"
+            android:paddingTop="@dimen/interval_5">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,69 +97,75 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
-                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:padding="@dimen/interval_5"
                 android:src="@drawable/ic_more" />
         </RelativeLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/interval_10"
-            android:id="@+id/activity_first"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/activity_title_first"
+            <LinearLayout
+                android:id="@+id/activity_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/data_loding"
-                android:textStyle="bold"
-                android:textSize="@dimen/material_design_body_font_size" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/activity_description_first"
+                <TextView
+                    android:id="@+id/activity_title_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/data_loding"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/activity_description_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textSize="@dimen/material_design_body_font_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text=""
-                android:textSize="@dimen/material_design_body_font_size" />
+                android:layout_marginBottom="@dimen/interval_10"
+                android:layout_marginTop="@dimen/interval_5"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/activity_title_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/data_loding"
+                    android:textSize="@dimen/material_design_body_font_size"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/activity_second"
-            android:layout_marginBottom="@dimen/interval_10"
-            android:layout_marginTop="@dimen/interval_5"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/activity_description_second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textSize="@dimen/material_design_body_font_size" />
 
-            <TextView
-                android:id="@+id/activity_title_second"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/data_loding"
-                android:textStyle="bold"
-                android:textSize="@dimen/material_design_body_font_size" />
-
-            <TextView
-                android:id="@+id/activity_description_second"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text=""
-                android:textSize="@dimen/material_design_body_font_size" />
-
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -184,10 +188,9 @@
         <RelativeLayout
             android:id="@+id/info_title_tip"
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/interval_5"
             android:layout_height="28dp"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:background="@drawable/view_bottom_border">
+            android:background="@drawable/view_bottom_border"
+            android:paddingTop="@dimen/interval_5">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -197,33 +200,33 @@
                 android:textSize="@dimen/material_design_subhead_font_size" />
 
             <ImageView
-                android:padding="@dimen/interval_5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:padding="@dimen/interval_5"
                 android:src="@drawable/ic_more" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/info_first"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:gravity="center"
             android:paddingLeft="@dimen/activity_padding"
-            android:paddingRight="@dimen/activity_padding">
+            android:paddingRight="@dimen/activity_padding"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/info_thumb_first"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_gravity="left"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView

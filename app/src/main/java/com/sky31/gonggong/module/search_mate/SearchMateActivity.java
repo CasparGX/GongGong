@@ -17,7 +17,6 @@ import com.rey.material.widget.SnackBar;
 import com.sky31.gonggong.R;
 import com.sky31.gonggong.base.BaseActivity;
 import com.sky31.gonggong.model.MateInfoModel;
-import com.sky31.gonggong.util.Debug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +55,7 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
 
     private SearchMateListAdapter rvSearchmateAdapter;
     private List<MateInfoModel.DataEntity> mateinfoList = new ArrayList<>();
+    private SnackBar snackBar;
 
     @OnClick(R.id.btn_search)
     void onClickBtnSearch() {
@@ -67,12 +67,17 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
             type = "xtu";
         else
             type = "xx";
-        Debug.i("searchMate", sid + " " + name + " " + card);
-        //onGetSearchMate();
-        SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
-        searchMatePresenter.getMateInfo(sid, name, card, type);
 
-        //hiddenKeyboard(getApplicationContext());
+        if (sid.equals("") && name.equals("") && card.equals("")) {
+            snackBar.text("请输入搜索内容")
+                    .actionTextColor(resources.getColor(R.color.colorAccent))
+                    .duration(3000)
+                    .show(SearchMateActivity.this);
+        } else {
+            SearchMatePresenter searchMatePresenter = new SearchMatePresenter(this);
+            searchMatePresenter.getMateInfo(sid, name, card, type);
+        }
+
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(btnSearch.getWindowToken(), 0);
     }
@@ -100,6 +105,8 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
         rvSearchmate.setLayoutManager(new LinearLayoutManager(this));
         rvSearchmateAdapter = new SearchMateListAdapter(this, mateinfoList);
         rvSearchmate.setAdapter(rvSearchmateAdapter);
+        snackBar = new SnackBar(this);
+        snackBar.applyStyle(R.style.SnackBarDefault);
     }
 
     private void initCheckBox() {
@@ -152,8 +159,6 @@ public class SearchMateActivity extends BaseActivity implements SearchMateView {
             }
             //rvSearchmateAdapter.notifyDataSetChanged();
         } else {
-            SnackBar snackBar = new SnackBar(this);
-            snackBar.applyStyle(R.style.SnackBarDefault);
             snackBar.text(R.string.no_result)
                     .actionText("知道了")
                     .actionTextColor(resources.getColor(R.color.colorAccent))
