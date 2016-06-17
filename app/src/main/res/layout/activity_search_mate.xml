@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/sid"
-            android:inputType="text"
+            android:inputType="number"
             app:et_inputId="@+id/et_sid"
             app:et_supportMode="none" />
 
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/card"
-            android:inputType="text"
+            android:inputType="number"
             app:et_inputId="@+id/et_card"
             app:et_supportMode="none" />
 
