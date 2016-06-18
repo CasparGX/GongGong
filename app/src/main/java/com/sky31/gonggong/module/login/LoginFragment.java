@@ -43,8 +43,7 @@ import static com.sky31.gonggong.config.CommonFunction.hiddenKeyboard;
  * create an instance of this fragment.
  */
 public class LoginFragment extends Fragment implements ApiView, LoginView, EcardView {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     @Bind(R.id.sid)
@@ -61,7 +60,6 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     private AlertDialog dialogWait;
     private ACache aCache;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private Context context;
@@ -129,12 +127,10 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
     }
 
     private void init() {
-        //btnLogin.setRippleSpeed(1000);
         tilSid.setHint(getResources().getString(R.string.sid));
         tilPassword.setHint(getResources().getString(R.string.password));
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -222,7 +218,6 @@ public class LoginFragment extends Fragment implements ApiView, LoginView, Ecard
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
