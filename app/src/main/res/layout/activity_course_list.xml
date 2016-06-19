@@ -31,8 +31,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="课程表"
-                android:textSize="@dimen/material_design_title_font_size"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/material_design_title_font_size" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -55,13 +55,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:cacheColorHint="#00000000"
+            android:fadingEdge="none"
             android:numColumns="7">
 
         </GridView>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:fadingEdge="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,9 +75,11 @@
                 <com.sky31.gonggong.widget.ListViewWithoutScroll
                     android:id="@+id/course_list_timeline"
                     android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="#00000000"
                     android:divider="@null"
                     android:dividerHeight="0dp"
-                    android:layout_height="match_parent">
+                    android:fadingEdge="none">
 
                 </com.sky31.gonggong.widget.ListViewWithoutScroll>
 
