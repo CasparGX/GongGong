@@ -23,19 +23,11 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LibraryActivity extends BaseActivity implements LibraryView{
+public class LibraryActivity extends BaseActivity implements LibraryView {
 
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-
-    @Override
-    public void finish() {
-        Intent intent = new Intent();
-        setResult(RESULT_OK,intent);
-        super.finish();
-    }
-
     @Bind(R.id.rec_library_list)
     RecyclerView recLibraryList;
     @Bind(R.id.pv_refresh)
@@ -58,6 +50,7 @@ public class LibraryActivity extends BaseActivity implements LibraryView{
         LibraryRentListModel.DataEntity item = new LibraryRentListModel.DataEntity();
         recLibraryListAdapter = new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
         recLibraryList.setAdapter(recLibraryListAdapter);
+
     }
 
     @Override
@@ -97,17 +90,25 @@ public class LibraryActivity extends BaseActivity implements LibraryView{
     }
 
     @Override
+    public void finish() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        super.finish();
+    }
+
+    @Override
     public void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
-        recLibraryListAdapter.updateData((ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
-        refreshMenuItem.setActionView(null);
-        pvRefresh.setVisibility(View.GONE);
-        pvRefresh.stop();
+
+
     }
 
 
     @Override
     public void getLibraryRentLsit(int code, @Nullable LibraryRentListModel libraryRentListModel) {
-
+        recLibraryListAdapter.updateData((ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
+        refreshMenuItem.setActionView(null);
+        pvRefresh.setVisibility(View.GONE);
+        pvRefresh.stop();
     }
 
     @Override
