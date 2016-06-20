@@ -31,7 +31,10 @@
     <string name="default_money">-- --</string>
 
     <string name="library">图书馆</string>
+    <string name="library_name">姓名：</string>
     <string name="library_debt">欠款：</string>
+    <string name="library_start_time">办卡时间：</string>
+    <string name="library_end_time">到期时间：</string>
     <string name="library_rent">借书：</string>
     <string name="library_status_0">本馆借出</string>
     <string name="library_status_1">本馆续借</string>

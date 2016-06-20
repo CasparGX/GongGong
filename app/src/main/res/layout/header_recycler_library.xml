@@ -20,29 +20,67 @@
         android:orientation="vertical"
         android:padding="@dimen/interval_5">
 
-        <TextView
-            android:id="@+id/library_name"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/library_start_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_name" />
 
-        <TextView
-            android:id="@+id/library_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name" />
+            <TextView
+                android:id="@+id/library_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/library_debt"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_debt" />
+
+            <TextView
+                android:id="@+id/library_debt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_start_time" />
+
+            <TextView
+                android:id="@+id/library_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_end_time" />
+
+            <TextView
+                android:id="@+id/library_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
