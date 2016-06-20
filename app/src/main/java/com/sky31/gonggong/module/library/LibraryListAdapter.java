@@ -28,7 +28,7 @@ public class LibraryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     private Resources resources;
     private View headerView;
-    private LibraryReaderInfoModel headerInfo;
+    private LibraryReaderInfoModel.DataEntity headerInfo;
 
     public LibraryListAdapter(Context context, ArrayList<LibraryRentListModel.DataEntity> rentList) {
         this.rentList = new ArrayList<LibraryRentListModel.DataEntity>();
@@ -42,16 +42,13 @@ public class LibraryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void setHeaderView(View headerView) {
-        headerView = headerView;
+        this.headerView = headerView;
         notifyItemInserted(0);
     }
 
-    public LibraryReaderInfoModel getHeaderInfo() {
-        return headerInfo;
-    }
-
-    public void setHeaderInfo(LibraryReaderInfoModel headerInfo) {
+    public void setHeaderInfo(LibraryReaderInfoModel.DataEntity headerInfo) {
         this.headerInfo = headerInfo;
+        notifyItemChanged(0);
     }
 
     @Override
@@ -121,13 +118,20 @@ public class LibraryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.tvBookCountdown.setText(book.getInterval() + "");
         } else if (viewHolder instanceof HeadViewHolder && headerInfo != null) {
             HeadViewHolder holder = ((HeadViewHolder) viewHolder);
-            holder.libraryName.setText(headerInfo.getData().getName());
+            holder.libraryName.setText(headerInfo.getName());
+            holder.libraryStartTime.setText(headerInfo.getValid_date_start());
+            holder.libraryEndTime.setText(headerInfo.getValid_date_end());
+            holder.libraryDebt.setText(headerInfo.getDebt());
         }
     }
 
     @Override
     public int getItemCount() {
-        return rentList == null ? 0 : rentList.size();
+        int count = rentList == null ? 0 : rentList.size();
+        if (headerView != null) {
+            count += 1;
+        }
+        return count;
     }
 
     public static class HeadViewHolder extends RecyclerView.ViewHolder {
@@ -137,6 +141,8 @@ public class LibraryListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView libraryStartTime;
         @Bind(R.id.library_end_time)
         TextView libraryEndTime;
+        @Bind(R.id.library_debt)
+        TextView libraryDebt;
 
         public HeadViewHolder(View itemView) {
             super(itemView);

@@ -17,6 +17,7 @@ import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.util.ACache;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,8 @@ public class LibraryActivity extends BaseActivity implements LibraryView {
 
     private LibraryListAdapter recLibraryListAdapter;
     private MenuItem refreshMenuItem;
+    private ACache aCache;
+    private LibraryReaderInfoModel.DataEntity readerInfo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +48,24 @@ public class LibraryActivity extends BaseActivity implements LibraryView {
     }
 
     private void init() {
+        aCache = UserModel.getaCache();
+
         recLibraryList.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<LibraryRentListModel.DataEntity> list = new ArrayList<>();
         LibraryRentListModel.DataEntity item = new LibraryRentListModel.DataEntity();
-        recLibraryListAdapter = new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) UserModel.getaCache().getAsObject(Constants.Key.LIBRARY_RENT_LIST));
+        recLibraryListAdapter = new LibraryListAdapter(this, (ArrayList<LibraryRentListModel.DataEntity>) aCache.getAsObject(Constants.Key.LIBRARY_RENT_LIST));
         recLibraryList.setAdapter(recLibraryListAdapter);
 
+        //读取缓存->用户信息
+        readerInfo = new LibraryReaderInfoModel.DataEntity();
+        readerInfo.setName(aCache.getAsString(Constants.Key.NAME));
+        readerInfo.setValid_date_start(aCache.getAsString(Constants.Key.LIBRARY_VALID_DATE_START));
+        readerInfo.setValid_date_end(aCache.getAsString(Constants.Key.LIBRARY_VALID_DATE_START));
+        readerInfo.setDebt(aCache.getAsString(Constants.Key.LIBRARY_DEBT));
+
+        //设置列表头部信息
+        recLibraryListAdapter.setHeaderView(new View(this));
+        recLibraryListAdapter.setHeaderInfo(readerInfo);
     }
 
     @Override
@@ -98,8 +113,10 @@ public class LibraryActivity extends BaseActivity implements LibraryView {
 
     @Override
     public void onGetLibraryReaderInfo(int code, @Nullable LibraryReaderInfoModel libraryReaderInfoModel) {
-
-
+        if (libraryReaderInfoModel != null) {
+            readerInfo = libraryReaderInfoModel.getData();
+        }
+        recLibraryListAdapter.setHeaderInfo(readerInfo);
     }
 
 
