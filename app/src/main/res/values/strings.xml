@@ -41,6 +41,7 @@
     <string name="library_status_2">过期暂停</string>
     <string name="library_renew">续借</string>
     <string name="library_renewed">已续借</string>
+    <string name="library_tip">Tip：借书超过规定时间未还，图书馆将扣费，0.01元/天</string>
 
     <string name="xtu_network">校园网</string>
     <string name="xtu_network_status">状态：</string>
