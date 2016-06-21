@@ -2,6 +2,8 @@ package com.sky31.gonggong.app;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 /**
  * Created by root on 16-2-24.
  */
@@ -14,6 +16,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        LeakCanary.install(this);
     }
 
     public static App getApp() {
