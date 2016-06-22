@@ -73,4 +73,9 @@ public interface ApiService {
     @GET(secondhandDefaultParm)
     Call<JsonArray> getScondModelList();
 
+    //获取学期代码
+    @GET(Constants.Api.TERM_CODE + "?" + defaultParam)
+    Call<TermCodeModel> getTermCode(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+
+
 }
