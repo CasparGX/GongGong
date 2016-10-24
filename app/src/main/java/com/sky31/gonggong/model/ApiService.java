@@ -5,10 +5,10 @@ import com.sky31.gonggong.config.Constants;
 
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Query;
-import retrofit.http.QueryMap;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by root on 16-2-28.

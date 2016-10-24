@@ -1,6 +1,8 @@
 package com.sky31.gonggong.util;
 
 import com.sky31.gonggong.BuildConfig;
+import com.sky31.gonggong.config.Constants;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -17,7 +19,7 @@ public class RetrofitUtils {
 
 
     //private final String baseUrl = "https://api.douban.com/v2/movie/";
-    private final String baseUrl = "http://10.0.2.2/";
+    private final String baseUrl = Constants.Api.URL;
 
     private RetrofitUtils(){
         if (mRetrofit==null) {
