@@ -276,6 +276,12 @@ public class FirstFragment extends Fragment implements HolidayView, CourseListVi
             tvHolidayInterval.setText(data.getInterval() + "");
             tvHolidayName.setText(data.getName());
             tvHolidayStart.setText(data.getStart_date() + "");
+        } else {
+            tvHolidayDays.setText("");
+            tvHolidayEnd.setText("");
+            tvHolidayInterval.setText("");
+            tvHolidayName.setText("无剩余节假日");
+            tvHolidayStart.setText("");
         }
 
     }

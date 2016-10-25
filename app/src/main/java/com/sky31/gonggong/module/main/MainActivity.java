@@ -430,7 +430,7 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                Debug.i("positionOffset", mCurrentPageIndex + "---" + position + "---" + positionOffset + "---" + positionOffsetPixels);
+                //Debug.i("positionOffset", mCurrentPageIndex + "---" + position + "---" + positionOffset + "---" + positionOffsetPixels);
                 int x = 0;
                 if (position == 0 && x % 2 == 0) { //0->1--" + positionOffsetPixels+"---");
                     onChangeHeaderHeight(positionOffset);

@@ -21,6 +21,8 @@ public interface ApiErrorCode {
     int ERROR_ACTIONED = 6;
     /** 无此图书号*/
     int ERROR_BOOK_ID = 7;
+    /** 无剩余节假日*/
+    int ERROR_NO_HOLIDAY = 8;
     /** 缺少参数*/
     int ERROR_NO_PARAM = 65535;
     /** 没有网络*/

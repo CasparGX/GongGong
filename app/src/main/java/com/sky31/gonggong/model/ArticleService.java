@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
+import rx.Observable;
 
 /**
  * Created by wukunguang on 16-3-26.
@@ -18,5 +19,5 @@ public interface ArticleService {
             "&"+Constants.Key.HASH + "=" + Constants.Value.HASH;
 
     @GET(Constants.Api.CMS_LIST+"?"+defaultParm)
-    Call<ArticleListModel> getArticleList(@QueryMap HashMap<String,String> map);
+    Observable<ArticleListModel> getArticleList(@QueryMap HashMap<String,String> map);
 }

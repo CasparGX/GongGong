@@ -21,7 +21,7 @@ public interface ApiService {
     String secondhandDefaultParm = Constants.Api.SECOND_HAND_URL_PARAM + "?" + Constants.Key.S_TYPE + "=&" + Constants.Key.S_TITLE + "=&" + Constants.Key.S_LIMIT_ID + "=0";
     //获取校园卡余额
     @GET(Constants.Api.ECARD + "?" + defaultParam)
-    Call<EcardModel> getBalance(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<EcardModel> getBalance(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     //获取个人信息
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
@@ -29,54 +29,54 @@ public interface ApiService {
 
     //获取校园网余额
     @GET(Constants.Api.CAMPUS_NET_BALANCE + "?" + defaultParam)
-    Call<CampusNetwork> getCampusNetwork(@Query(Constants.Key.SID) String sid);
+    Observable<CampusNetwork> getCampusNetwork(@Query(Constants.Key.SID) String sid);
 
     //获取图书馆读者信息
     @GET(Constants.Api.LIBRARY_READER_INFO + "?" + defaultParam)
-    Call<LibraryReaderInfoModel> getLibraryReaderInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<LibraryReaderInfoModel> getLibraryReaderInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     //获取图书馆借书列表
     @GET(Constants.Api.LIBRARY_RENT_LIST + "?" + defaultParam)
-    Call<LibraryRentListModel> getLibraryRentList(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<LibraryRentListModel> getLibraryRentList(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     //获取校友信息
     @GET(Constants.Api.SEARCH_MATE + "?" + defaultParam + "&server=remote")
-    Call<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.NAME) String name, @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
+    Observable<MateInfoModel> getMateInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.NAME) String name, @Query(Constants.Key.CARD) String card, @Query(Constants.Key.TYPE) String type);
 
     //获取节假日信息
     @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_NEXT)
-    Call<HolidayNextModel> getHolidayNext();
+    Observable<HolidayNextModel> getHolidayNext();
 
     @GET(Constants.Api.HOLIDAY + "?" + defaultParam + "&" + Constants.Key.HOLIDAY_ACTION + "=" + Constants.Key.HOLIDAY_ACTION_ALL)
-    Call<HolidayAllModel> getHolidayAll();
+    Observable<HolidayAllModel> getHolidayAll();
 
 
 
     //课表请求。
     @GET(Constants.Api.COURSE+"?"+defaultParam)
-    Call<CourseListModel> getCourse(@QueryMap Map<String,String> map);
+    Observable<CourseListModel> getCourse(@QueryMap Map<String,String> map);
 
     //查询当前第几周。
     @GET(Constants.Api.CURRENT_WEEK + "?" + defaultParam + "&type=static")
-    Call<CurrentWeekModel> getCurrentWeek();
+    Observable<CurrentWeekModel> getCurrentWeek();
 
     //成绩报表
     @GET(Constants.Api.GRADE_REPORT + "?" + defaultParam)
-    Call<GradeReportModel> getGradeReport(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<GradeReportModel> getGradeReport(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 
     //成绩祥单
     @GET(Constants.Api.GRADE_DETAILS + "?" + defaultParam)
-    Call<GradeDetailsModel> getGradeDetails(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<GradeDetailsModel> getGradeDetails(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 
     //二手街
     @GET(secondhandDefaultParm)
-    Call<JsonArray> getScondModelList();
+    Observable<JsonArray> getScondModelList();
 
     //获取学期代码
     @GET(Constants.Api.TERM_CODE + "?" + defaultParam)
-    Call<TermCodeModel> getTermCodes(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<TermCodeModel> getTermCodes(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
 
 }

@@ -4,20 +4,27 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.sky31.gonggong.base.BasePresenter;
 import com.sky31.gonggong.config.Constants;
+import com.sky31.gonggong.model.SwzlResModel;
 import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.model.SwzlService;
+import com.sky31.gonggong.util.ApiException;
+import com.sky31.gonggong.util.BaseSubscriber;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by wukunguang on 16-3-17.
  */
-public class SwzlSearchPresenter {
+public class SwzlSearchPresenter extends BasePresenter {
 
 
     private SwzlSearchView searchView;
@@ -27,11 +34,11 @@ public class SwzlSearchPresenter {
     public SwzlSearchPresenter(SwzlSearchView searchView,Context context) {
         this.searchView = searchView;
         this.context = context;
-        Retrofit retrofit  = new Retrofit.Builder()
+        /*Retrofit retrofit  = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(SwzlService.class);
+                .build();*/
+        service = mRetrofit.create(SwzlService.class);
 
     }
     /***
@@ -40,9 +47,33 @@ public class SwzlSearchPresenter {
      *
      */
     public void getSearchResult(int actionCode){
+        Observable resultCall;
+        if (actionCode==0) {
+            Log.d("action:",actionCode+"");
+            resultCall = service.getSerResultByLost();
+        }
+        else {
+            Log.d("action:",actionCode+"");
+            resultCall = service.getSerResultByGet();
+        }
+        resultCall
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<SwzlSearchResult>() {
 
+                    @Override
+                    public void onNext(SwzlSearchResult swzlSearchResult) {
+                        // 回调函数传入参数
+                        searchView.getSearchData(Integer.parseInt(swzlSearchResult.getCode()),swzlSearchResult);
+                    }
 
-        Call<SwzlSearchResult> resultCall;
+                    @Override
+                    public void onApiException(ApiException e) {
+                        searchView.getSearchData(-1, null);
+                    }
+
+                });
+        /*Call<SwzlSearchResult> resultCall;
         if (actionCode==0) {
             Log.d("action:",actionCode+"");
             resultCall = service.getSerResultByLost();
@@ -70,7 +101,7 @@ public class SwzlSearchPresenter {
                 t.printStackTrace();
                 searchView.getSearchData(-1, null);
             }
-        });
+        });*/
 
 
 
@@ -81,7 +112,24 @@ public class SwzlSearchPresenter {
 
     public void doSearchByKey(String key){
 
-        Call<SwzlSearchResult> call = service.getSearchResult(key);
+        service.getSearchResult(key)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<SwzlSearchResult>() {
+
+                    @Override
+                    public void onNext(SwzlSearchResult swzlSearchResult) {
+                        searchView.getSearchData(Integer.parseInt(swzlSearchResult.getCode()), swzlSearchResult);
+                    }
+
+                    @Override
+                    public void onApiException(ApiException e) {
+                        searchView.getSearchData(e.getErrorCode(),null);
+                    }
+
+                });
+
+        /*Call<SwzlSearchResult> call = service.getSearchResult(key);
 
         call.enqueue(new Callback<SwzlSearchResult>() {
             @Override
@@ -105,7 +153,7 @@ public class SwzlSearchPresenter {
                 Toast.makeText(context,"网络请求出错，请稍后再试",Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
     }
 
 }

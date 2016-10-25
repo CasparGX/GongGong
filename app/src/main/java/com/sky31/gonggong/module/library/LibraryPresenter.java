@@ -1,39 +1,68 @@
 package com.sky31.gonggong.module.library;
 
+import android.widget.Toast;
+
+import com.sky31.gonggong.base.BasePresenter;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
+import com.sky31.gonggong.model.EcardModel;
 import com.sky31.gonggong.model.LibraryReaderInfoModel;
 import com.sky31.gonggong.model.LibraryRentListModel;
 import com.sky31.gonggong.model.UserModel;
+import com.sky31.gonggong.util.ApiException;
+import com.sky31.gonggong.util.BaseSubscriber;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by root on 16-3-17.
  */
-public class LibraryPresenter {
+public class LibraryPresenter extends BasePresenter {
     private ApiService apiService;
     private String sid, password;
     private LibraryView libraryView;
 
     public LibraryPresenter(LibraryView libraryView) {
         //init Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.Api.URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        apiService = retrofit.create(ApiService.class);
+                .build();*/
+        apiService = mRetrofit.create(ApiService.class);
         sid = UserModel.getaCache().getAsString(Constants.Key.SID);
         password = UserModel.getaCache().getAsString(Constants.Key.LIBRARY_PASSWORD);
         this.libraryView = libraryView;
     }
 
     public void getLibraryReaderInfo() {
-        Call<LibraryReaderInfoModel> call = apiService.getLibraryReaderInfo(sid, password);
+        apiService.getLibraryReaderInfo(sid, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<LibraryReaderInfoModel>() {
+
+                    @Override
+                    public void onNext(LibraryReaderInfoModel libraryReaderInfoModel) {
+                        libraryReaderInfoModel.setCache();
+                        libraryView.onGetLibraryReaderInfo(libraryReaderInfoModel.getCode(), libraryReaderInfoModel);
+                    }
+
+                    @Override
+                    public void onApiException(ApiException e) {
+                        if (e.getErrorCode()==1) {
+                            UserModel.getaCache().remove(Constants.Key.LIBRARY_PASSWORD);
+                        }
+                        libraryView.onGetLibraryReaderInfo(e.getErrorCode(), null);
+                    }
+
+                });
+
+        /*Call<LibraryReaderInfoModel> call = apiService.getLibraryReaderInfo(sid, password);
         call.enqueue(new Callback<LibraryReaderInfoModel>() {
             @Override
             public void onResponse(Response<LibraryReaderInfoModel> response, Retrofit retrofit) {
@@ -54,11 +83,33 @@ public class LibraryPresenter {
             public void onFailure(Throwable t) {
 
             }
-        });
+        });*/
     }
 
     public void getLibraryRentList() {
-        Call<LibraryRentListModel> call = apiService.getLibraryRentList(sid, password);
+
+        apiService.getLibraryRentList(sid, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<LibraryRentListModel>() {
+
+                    @Override
+                    public void onNext(LibraryRentListModel libraryRentListModel) {
+                        libraryRentListModel.setCache();
+                        libraryView.getLibraryRentLsit(libraryRentListModel.getCode(), libraryRentListModel);
+                    }
+
+                    @Override
+                    public void onApiException(ApiException e) {
+                        if (e.getErrorCode()==1) {
+                            UserModel.getaCache().remove(Constants.Key.LIBRARY_PASSWORD);
+                        }
+                        libraryView.getLibraryRentLsit(e.getErrorCode(), null);
+                    }
+
+                });
+
+        /*Call<LibraryRentListModel> call = apiService.getLibraryRentList(sid, password);
         call.enqueue(new Callback<LibraryRentListModel>() {
             @Override
             public void onResponse(Response<LibraryRentListModel> response, Retrofit retrofit) {
@@ -79,6 +130,6 @@ public class LibraryPresenter {
             public void onFailure(Throwable t) {
 
             }
-        });
+        });*/
     }
 }

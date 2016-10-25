@@ -10,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 
 /**
@@ -26,25 +27,25 @@ public interface SwzlService {
     String search = "ask_method="+Constants.Value.SWZL_ASK_METHOD_JSON+"&action="+Constants.Value.SWZL_SEARCH+defaultParm;
 
     @GET(Constants.Api.SWZL_ACTION+"?"+search_get_thing)
-    Call<SwzlSearchResult> getSerResultByGet( );
+    Observable<SwzlSearchResult> getSerResultByGet( );
 
 
 
     @GET(Constants.Api.SWZL_ACTION+"?"+search_lost_thing)
-    Call<SwzlSearchResult> getSerResultByLost( );
+    Observable<SwzlSearchResult> getSerResultByLost( );
 
     @FormUrlEncoded
     @POST(Constants.Api.SWZL_ACTION+"?"+submitLostParm)
-    Call<SwzlResModel> getSubResultByLost(@FieldMap Map<String,String> map);
+    Observable<SwzlResModel> getSubResultByLost(@FieldMap Map<String,String> map);
 
 
     @FormUrlEncoded
     @POST(Constants.Api.SWZL_ACTION+"?"+submitGetParm)
-    Call<SwzlResModel> getSubResultByGet(@FieldMap  Map<String,String> map);
+    Observable<SwzlResModel> getSubResultByGet(@FieldMap  Map<String,String> map);
 
 
     @GET(Constants.Api.SWZL_ACTION+"?"+search)
-    Call<SwzlSearchResult> getSearchResult(@Query("key") String key);
+    Observable<SwzlSearchResult> getSearchResult(@Query("key") String key);
 
 
 
