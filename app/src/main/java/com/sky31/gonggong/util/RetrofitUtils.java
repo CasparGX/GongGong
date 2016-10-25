@@ -19,7 +19,7 @@ public class RetrofitUtils {
 
 
     //private final String baseUrl = "https://api.douban.com/v2/movie/";
-    private final String baseUrl = Constants.Api.URL;
+    private final String baseUrl = Constants.Api.URL    ;
 
     private RetrofitUtils(){
         if (mRetrofit==null) {
