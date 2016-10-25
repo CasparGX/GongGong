@@ -4,12 +4,12 @@ import com.sky31.gonggong.config.Constants;
 
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.http.FieldMap;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.POST;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 
 /**

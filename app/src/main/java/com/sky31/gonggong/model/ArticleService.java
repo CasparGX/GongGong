@@ -4,10 +4,10 @@ import com.sky31.gonggong.config.Constants;
 
 import java.util.HashMap;
 
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.QueryMap;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 /**
  * Created by wukunguang on 16-3-26.

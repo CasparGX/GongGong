@@ -38,7 +38,8 @@ public class RetrofitUtils {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
+                //.addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MyGsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(httpClient)
                 .build();

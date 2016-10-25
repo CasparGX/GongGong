@@ -7,11 +7,11 @@ import com.sky31.gonggong.model.ApiService;
 import com.sky31.gonggong.model.CampusNetwork;
 import com.sky31.gonggong.model.UserModel;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by root on 16-2-29.

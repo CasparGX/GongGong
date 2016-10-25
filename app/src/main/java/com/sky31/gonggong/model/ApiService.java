@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import rx.Observable;
 
 /**
  * Created by root on 16-2-28.
@@ -24,7 +25,7 @@ public interface ApiService {
 
     //获取个人信息
     @GET(Constants.Api.STU_INFO + "?" + defaultParam)
-    Call<StudentInfoModel> getStudentInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
+    Observable<StudentInfoModel> getStudentInfo(@Query(Constants.Key.SID) String sid, @Query(Constants.Key.PASSWORD) String password);
 
     //获取校园网余额
     @GET(Constants.Api.CAMPUS_NET_BALANCE + "?" + defaultParam)

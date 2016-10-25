@@ -13,11 +13,11 @@ import com.sky31.gonggong.module.main.ApiView;
 import java.util.List;
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**

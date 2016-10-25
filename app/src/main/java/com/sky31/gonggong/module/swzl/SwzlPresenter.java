@@ -11,11 +11,11 @@ import com.sky31.gonggong.module.swzl.publish.SwzlPublishView;
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by wukunguang on 16-3-1.

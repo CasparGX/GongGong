@@ -8,11 +8,11 @@ import com.sky31.gonggong.module.article.list.ArticleListView;
 
 import java.util.HashMap;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by wukunguang on 16-3-26.
@@ -47,6 +47,16 @@ public class ArticlePresenter {
 
         Call<ArticleListModel> modelCall = service.getArticleList(map);
         modelCall.enqueue(new Callback<ArticleListModel>() {
+            @Override
+            public void onResponse(Call<ArticleListModel> call, Response<ArticleListModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ArticleListModel> call, Throwable t) {
+
+            }
+
             @Override
             public void onResponse(Response<ArticleListModel> response, Retrofit retrofit) {
                 ArticleListModel model = response.body();
