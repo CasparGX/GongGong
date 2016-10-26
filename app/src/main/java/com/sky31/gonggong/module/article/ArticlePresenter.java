@@ -31,14 +31,8 @@ public class ArticlePresenter extends BasePresenter {
     //请求参数的map
     private HashMap<String,String> map;
 
-
     public ArticlePresenter(ArticleListView listView) {
-
-
-
         this.listView = listView;
-
-
     }
 
     public void initReqService(HashMap<String,String> map){

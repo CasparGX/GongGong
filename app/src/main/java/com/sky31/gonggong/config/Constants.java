@@ -106,8 +106,8 @@ public class Constants {
     }
 
     public final class Value {
-        public static final String ROLE = "test";
-        public static final String HASH = "test";
+        public static final String ROLE = "gonggong-android";
+        public static final String HASH = "0c95c64db9e48afbdff87a3869386124";
 
 
         public static final int RESULT_LOGIN = 1;

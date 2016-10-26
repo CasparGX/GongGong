@@ -1,6 +1,7 @@
 package com.sky31.gonggong.module.secondhand;
 
 import com.google.gson.JsonArray;
+import com.sky31.gonggong.BuildConfig;
 import com.sky31.gonggong.base.BasePresenter;
 import com.sky31.gonggong.config.Constants;
 import com.sky31.gonggong.model.ApiService;
@@ -8,9 +9,13 @@ import com.sky31.gonggong.model.SwzlSearchResult;
 import com.sky31.gonggong.util.ApiException;
 import com.sky31.gonggong.util.BaseSubscriber;
 import com.sky31.gonggong.util.Debug;
+import com.sky31.gonggong.util.MyGsonConverterFactory;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -31,7 +36,20 @@ public class SecondhandPresent extends BasePresenter{
                 .baseUrl(Constants.Api.SECOND_HAND)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();*/
-        apiService = mRetrofit.create(ApiService.class);
+        OkHttpClient httpClient = new OkHttpClient();
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            httpClient = new OkHttpClient.Builder().addInterceptor(logging).build();
+        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.Api.SECOND_HAND)
+                //.addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MyGsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(httpClient)
+                .build();
+        apiService = retrofit.create(ApiService.class);
     }
 
 

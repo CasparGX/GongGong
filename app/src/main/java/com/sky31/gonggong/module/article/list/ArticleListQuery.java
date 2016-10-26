@@ -11,7 +11,7 @@ public class ArticleListQuery {
     private String catname;
     private Integer checkID;
     private Integer limit;
-    private String co;
+    private String co = "";
     private String order;
 
     public String getCatname() {

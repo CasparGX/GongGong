@@ -117,7 +117,7 @@ public class SecondFragment extends Fragment implements ArticleListView, Runnabl
         ArticlePresenter presenter = new ArticlePresenter(this);
         ArticleListQuery query = new ArticleListQuery();
 
-        query.setCatname("焦点图移动端");
+        query.setCatname("拱拱焦点图");
         query.setCheckID(0);
         query.setLimit(5);
         query.setOrder("id DESC");

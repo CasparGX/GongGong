@@ -20,9 +20,11 @@ public class ApiErrorHelper {
             //Toast.makeText(context, "连接失败", Toast.LENGTH_SHORT).show();
         } else if (e instanceof ApiException) {
             //ApiException处理
+            Debug.e("ApiException",e.getMessage());
             baseSubscriber.onApiException((ApiException)e);
         } else {
             //Toast.makeText(context, "未知错误", Toast.LENGTH_SHORT).show();
+            Debug.e("ApiErrorHelper", e.getMessage());
         }
     }
 

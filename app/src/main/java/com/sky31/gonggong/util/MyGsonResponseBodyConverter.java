@@ -41,12 +41,26 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
                 throw new ApiException(re.getCode(), re.getMsg());
             }
         } catch (Exception e) {
-            Result2 re = mGson.fromJson(response, Result2.class);
-            //关注的重点，自定义响应码中非0的情况，一律抛出ApiException异常。
-            //这样，我们就成功的将该异常交给onError()去处理了。
-            if (!re.isOk()) {
-                value.close();
-                throw new ApiException(Integer.parseInt(re.getCode()), re.getMsg());
+            try {
+                Result2 re = mGson.fromJson(response, Result2.class);
+                //关注的重点，自定义响应码中非0的情况，一律抛出ApiException异常。
+                //这样，我们就成功的将该异常交给onError()去处理了。
+                if (!re.isOk()) {
+                    value.close();
+                    throw new ApiException(Integer.parseInt(re.getCode()), re.getMsg());
+                }
+            } catch (Exception e2)  {
+
+                MediaType mediaType = value.contentType();
+                Charset charset = mediaType != null ? mediaType.charset(UTF_8) : UTF_8;
+                ByteArrayInputStream bis = new ByteArrayInputStream(response.getBytes());
+                InputStreamReader reader = new InputStreamReader(bis,charset);
+                JsonReader jsonReader = mGson.newJsonReader(reader);
+                try {
+                    return adapter.read(jsonReader);
+                } finally {
+                    value.close();
+                }
             }
         }
 
