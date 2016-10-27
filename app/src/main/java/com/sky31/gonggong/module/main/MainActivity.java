@@ -145,16 +145,9 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
     LinearLayout layoutInformation;
     @Bind(R.id.home_content)
     LinearLayout homeContent;
-    @Bind(R.id.drawer_menu)
-    NavigationView drawerMenu;
-    @Bind(R.id.drawer)
-    DrawerLayout drawer;
-    @Bind(R.id.btn_exit)
-    TableRow btnExit;
 
 
     /* 变量 */
-    private ActionBarDrawerToggle mDrawerToggle;
     private int mCurrentPageIndex;
     private int headerHeight = -1;
     private int homeLayoutHeight = -1;
@@ -176,11 +169,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
 
     //退出登录
-    @OnClick(R.id.btn_exit)
-    void onClickBtnExit() {
-        drawer.closeDrawers();
-        logout();
-    }
+//    @OnClick(R.id.btn_exit)
+//    void onClickBtnExit() {
+//        logout();
+//    }
 
     //登录按钮
     @OnClick(R.id.btn_login)
@@ -362,39 +354,10 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
 
     //初始化控件
     private void initView() {
-        //抽屉菜单
-        View drawerMenuHeader = drawerMenu.inflateHeaderView(R.layout.main_drawer_header);
-        drawerMenu.setItemIconTintList(null);
-        drawerMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                Snackbar.make(homeContent, menuItem.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
-                String top = resources.getString(R.string.top_index);
-                switch (menuItem.getItemId()) {
-                    case R.id.menu_top_index:
-                        break;
-                    case R.id.menu_function:
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, AboutUsActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.menu_navigation_item_2:
-
-                        break;
-                }
-                menuItem.setChecked(true);
-                drawer.closeDrawers();
-                return true;
-            }
-        });
-
         //ecardInfo.setVisibility(View.GONE);
         ecard.setClickable(false);
         library.setClickable(false);
         xtuNet.setClickable(false);
-
-        //DrawerLayout
-        drawer.setStatusBarBackground(R.color.colorPrimaryDark);
 
         //Fragment
         List<Fragment> mDatas = new ArrayList<Fragment>();
@@ -538,10 +501,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open,
-                R.string.drawer_close);
-        mDrawerToggle.syncState();
-        drawer.setDrawerListener(mDrawerToggle);
     }
 
     @Override
@@ -569,13 +528,6 @@ public class MainActivity extends BaseActivity implements ApiView, EcardView, Ca
             InformationFragment.newInstance();
             InformationFragment.getInstance().layoutInit();
 
-        }
-        //抽屉菜单宽度
-        int w = (int) (homeLayout.getWidth() - convertDpToPixel(android.R.attr.actionBarSize, appContext));
-        if (drawerMenu != null && drawerMenu.getWidth() != w) {
-            ViewGroup.LayoutParams param = drawerMenu.getLayoutParams();
-            param.width = w;
-            drawerMenu.setLayoutParams(param);
         }
     }
 
