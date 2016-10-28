@@ -109,7 +109,6 @@ public class CourseListActivity extends BaseActivity implements CourseListView, 
         bgDrawable = null;
         bmBg.recycle();
         bmBg = null;
-        System.gc();
     }
 
     @Override
