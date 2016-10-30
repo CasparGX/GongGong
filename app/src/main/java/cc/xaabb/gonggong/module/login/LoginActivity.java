@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

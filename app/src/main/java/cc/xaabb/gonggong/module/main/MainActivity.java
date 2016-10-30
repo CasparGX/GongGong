@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.rey.material.widget.Button;
 import com.rey.material.widget.ProgressView;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.config.CommonFunction;
 import cc.xaabb.gonggong.config.Constants;

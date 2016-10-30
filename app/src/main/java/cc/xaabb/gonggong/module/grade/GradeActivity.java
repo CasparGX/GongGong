@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.rey.material.widget.ProgressView;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.module.grade.rank.RankFragment;
 import cc.xaabb.gonggong.module.grade.report.GradeReportFragment;

@@ -1,6 +1,6 @@
 package cc.xaabb.gonggong.util;
 
-import com.sky31.gonggong.BuildConfig;
+import cc.xaabb.gonggong.BuildConfig;
 import cc.xaabb.gonggong.config.Constants;
 
 import okhttp3.OkHttpClient;

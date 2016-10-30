@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.config.CommonFunction;
 import cc.xaabb.gonggong.module.article.detail.ArticleDetailActivity;

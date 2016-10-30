@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 
 import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.ProgressView;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.util.Debug;
 

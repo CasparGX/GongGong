@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.module.main.MainActivity;
 
 import java.io.InputStream;

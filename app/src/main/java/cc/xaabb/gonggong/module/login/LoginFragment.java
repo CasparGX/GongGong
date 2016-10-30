@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.rey.material.widget.Button;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.model.EcardModel;
 import cc.xaabb.gonggong.model.StudentInfoModel;
 import cc.xaabb.gonggong.model.UserModel;

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rey.material.widget.Button;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.model.LibraryReaderInfoModel;
 import cc.xaabb.gonggong.model.LibraryRentListModel;
 

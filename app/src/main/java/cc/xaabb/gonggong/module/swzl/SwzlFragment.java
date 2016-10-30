@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.gc.materialdesign.widgets.ProgressDialog;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.config.CommonFunction;
 import cc.xaabb.gonggong.model.LostAndFoundModel;
 import cc.xaabb.gonggong.model.SwzlSearchResult;

@@ -14,7 +14,7 @@ import com.rey.material.widget.Button;
 import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.EditText;
 import com.rey.material.widget.SnackBar;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.model.MateInfoModel;
 

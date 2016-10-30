@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 
 /**
  * Created by wukunguang on 16-3-30.

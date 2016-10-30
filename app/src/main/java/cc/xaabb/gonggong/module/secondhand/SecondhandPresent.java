@@ -1,7 +1,7 @@
 package cc.xaabb.gonggong.module.secondhand;
 
 import com.google.gson.JsonArray;
-import com.sky31.gonggong.BuildConfig;
+import cc.xaabb.gonggong.BuildConfig;
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.config.Constants;
 import cc.xaabb.gonggong.model.ApiService;

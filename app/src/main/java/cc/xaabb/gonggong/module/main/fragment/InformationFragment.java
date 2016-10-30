@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.config.CommonFunction;
 import cc.xaabb.gonggong.config.Constants;
 import cc.xaabb.gonggong.model.ArticleListModel;

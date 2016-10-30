@@ -3,7 +3,7 @@ package cc.xaabb.gonggong.module.about_us;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 
 import butterknife.Bind;

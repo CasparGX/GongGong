@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.gc.materialdesign.widgets.ProgressDialog;
 import com.rey.material.widget.CheckBox;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.config.Constants;
 import cc.xaabb.gonggong.model.LostAndFoundModel;
 import cc.xaabb.gonggong.model.SwzlResModel;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.rey.material.widget.FloatingActionButton;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.module.swzl.publish.PublishSwzlActivity;
 import cc.xaabb.gonggong.module.swzl.search.SwzlSearchActivity;

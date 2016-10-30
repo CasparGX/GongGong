@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.rey.material.widget.Button;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 
 import cc.xaabb.gonggong.config.CommonFunction;
 

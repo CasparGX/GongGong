@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.model.HolidayAllModel;
 import cc.xaabb.gonggong.model.HolidayNextModel;
 import cc.xaabb.gonggong.util.Debug;

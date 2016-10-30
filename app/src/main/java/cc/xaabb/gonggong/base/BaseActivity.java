@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 
 public class BaseActivity extends AppCompatActivity {
     //手指向右滑动时的最小速度

@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 
 /**
  * Created by root on 16-3-20.

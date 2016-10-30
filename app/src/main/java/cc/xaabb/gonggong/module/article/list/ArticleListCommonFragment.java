@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.config.CommonFunction;
 import cc.xaabb.gonggong.model.ArticleListModel;
 import cc.xaabb.gonggong.module.article.ArticlePresenter;

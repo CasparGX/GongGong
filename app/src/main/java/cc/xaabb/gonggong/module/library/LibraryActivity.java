@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.rey.material.widget.ProgressView;
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.base.BaseActivity;
 import cc.xaabb.gonggong.config.Constants;
 import cc.xaabb.gonggong.model.LibraryReaderInfoModel;

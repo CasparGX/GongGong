@@ -16,7 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.sky31.gonggong.R;
+import cc.xaabb.gonggong.R;
 import cc.xaabb.gonggong.model.ArticleListModel;
 import cc.xaabb.gonggong.module.article.ArticlePresenter;
 import cc.xaabb.gonggong.module.article.detail.ArticleDetailActivity;
