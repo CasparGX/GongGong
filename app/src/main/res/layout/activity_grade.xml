@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.grade.GradeActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.grade.GradeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

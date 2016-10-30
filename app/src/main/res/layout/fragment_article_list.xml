@@ -5,7 +5,7 @@
     android:background="@color/grey_c"
     android:layout_margin="0dp"
     android:clipToPadding="false"
-    tools:context=".module.article.list.ArticleListActivityFragment">
+    tools:context="cc.xaabb.gonggong.module.article.list.ArticleListActivityFragment">
 
 
     <ListView

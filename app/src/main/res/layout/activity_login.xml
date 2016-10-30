@@ -6,7 +6,7 @@
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".module.login.LoginActivity">
+    tools:context="cc.xaabb.gonggong.module.login.LoginActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -15,6 +15,6 @@
         android:id="@+id/login_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sky31.gonggong.module.login.LoginFragment"
+        android:name="cc.xaabb.gonggong.module.login.LoginFragment"
         tools:layout="@layout/fragment_login" />
 </LinearLayout>

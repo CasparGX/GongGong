@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sky31.gonggong">
+    package="cc.xaabb.gonggong">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.App"
+        android:name="cc.xaabb.gonggong.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".module.main.MainActivity"
+            android:name="cc.xaabb.gonggong.module.main.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
@@ -22,56 +22,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".base.BaseActivity"
+            android:name="cc.xaabb.gonggong.base.BaseActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.login.LoginActivity"
+            android:name="cc.xaabb.gonggong.module.login.LoginActivity"
             android:label="@string/login"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
             android:label="@string/cha"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:name=".module.search_mate.SearchMateActivity"
+            android:name="cc.xaabb.gonggong.module.search_mate.SearchMateActivity"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity android:name=".module.swzl.SwzlActivity" />
+        <activity android:name="cc.xaabb.gonggong.module.swzl.SwzlActivity" />
         <activity
-            android:name=".module.swzl.publish.PublishSwzlActivity"
+            android:name="cc.xaabb.gonggong.module.swzl.publish.PublishSwzlActivity"
             android:label="@string/title_activity_publish_swzl"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.article.list.ArticleListActivity"
+            android:name="cc.xaabb.gonggong.module.article.list.ArticleListActivity"
             android:label="@string/title_activity_article_list"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.library.LibraryActivity"
+            android:name="cc.xaabb.gonggong.module.library.LibraryActivity"
             android:label="@string/library"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.swzl.SwzlDetailActivity"
+            android:name="cc.xaabb.gonggong.module.swzl.SwzlDetailActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
             android:launchMode="singleTask"
-            android:name=".module.course_list.CourseListActivity"
+            android:name="cc.xaabb.gonggong.module.course_list.CourseListActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.grade.GradeActivity"
+            android:name="cc.xaabb.gonggong.module.grade.GradeActivity"
             android:label="@string/grade"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.article.detail.ArticleDetailActivity"
+            android:name="cc.xaabb.gonggong.module.article.detail.ArticleDetailActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.holiday.HolidayActivity"
+            android:name="cc.xaabb.gonggong.module.holiday.HolidayActivity"
             android:label="@string/count_down_title"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.swzl.search.SwzlSearchActivity"
+            android:name="cc.xaabb.gonggong.module.swzl.search.SwzlSearchActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.about_us.AboutUsActivity"
+            android:name="cc.xaabb.gonggong.module.about_us.AboutUsActivity"
             android:theme="@style/ColorTranslucentTheme" />
         <activity
-            android:name=".module.about_us.OpenSourceShowActivity"
+            android:name="cc.xaabb.gonggong.module.about_us.OpenSourceShowActivity"
             android:theme="@style/ColorTranslucentTheme" />
     </application>
 

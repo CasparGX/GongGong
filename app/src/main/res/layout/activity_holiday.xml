@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.sky31.gonggong.module.holiday.HolidayActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.holiday.HolidayActivity">
 
     <include layout="@layout/include_toolbar" />
 
@@ -13,7 +13,7 @@
         android:id="@+id/holiday_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sky31.gonggong.module.holiday.HolidayFragment"
+        android:name="cc.xaabb.gonggong.module.holiday.HolidayFragment"
         tools:layout="@layout/fragment_holiday" />
 
 </LinearLayout>

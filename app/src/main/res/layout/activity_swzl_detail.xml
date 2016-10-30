@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/grey_c"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.swzl.SwzlDetailActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.swzl.SwzlDetailActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

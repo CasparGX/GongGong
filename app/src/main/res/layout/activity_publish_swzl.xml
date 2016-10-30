@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
-    tools:context=".module.swzl.publish.PublishSwzlActivity">
+    tools:context="cc.xaabb.gonggong.module.swzl.publish.PublishSwzlActivity">
 
 
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/swzl_publish_fragment"
-        android:name="com.sky31.gonggong.module.swzl.publish.PublishSwzlFragment"
+        android:name="cc.xaabb.gonggong.module.swzl.publish.PublishSwzlFragment"
         tools:layout="@layout/fragment_publish_swzl"/>
 
 

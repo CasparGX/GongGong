@@ -6,7 +6,7 @@
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.article.detail.ArticleDetailActivity"
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.article.detail.ArticleDetailActivity"
     android:background="@color/colorPrimaryDark">
 
     <android.support.design.widget.AppBarLayout

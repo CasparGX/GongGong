@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_ef"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.main.fragment.InformationFragment">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.main.fragment.InformationFragment">
 
     <LinearLayout
         android:id="@+id/second_hand"

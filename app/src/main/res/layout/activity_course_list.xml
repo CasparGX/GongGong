@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.course_list.CourseListActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.course_list.CourseListActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/course_list_toolbar"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.sky31.gonggong.widget.ListViewWithoutScroll
+                <cc.xaabb.gonggong.widget.ListViewWithoutScroll
                     android:id="@+id/course_list_timeline"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
@@ -81,7 +81,7 @@
                     android:dividerHeight="0dp"
                     android:fadingEdge="none">
 
-                </com.sky31.gonggong.widget.ListViewWithoutScroll>
+                </cc.xaabb.gonggong.widget.ListViewWithoutScroll>
 
                 <RelativeLayout
                     android:id="@+id/course_list_content"

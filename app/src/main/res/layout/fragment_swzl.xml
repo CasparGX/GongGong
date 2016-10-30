@@ -5,7 +5,7 @@
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey_d"
-    tools:context=".module.swzl.SwzlFragment"
+    tools:context="cc.xaabb.gonggong.module.swzl.SwzlFragment"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -37,7 +37,7 @@
         android:layout_height="match_parent"
         android:id="@+id/swzl_search_content"
         android:orientation="vertical">
-        <com.sky31.gonggong.widget.RefreshListView
+        <cc.xaabb.gonggong.widget.RefreshListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swzl_list_view"
@@ -45,7 +45,7 @@
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false">
 
-        </com.sky31.gonggong.widget.RefreshListView>
+        </cc.xaabb.gonggong.widget.RefreshListView>
 
         <ImageView
             android:layout_width="wrap_content"

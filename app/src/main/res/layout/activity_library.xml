@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.library.LibraryActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.library.LibraryActivity">
 
     <!--<include layout="@layout/library_cardview" />-->
 

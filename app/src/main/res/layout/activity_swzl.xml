@@ -7,7 +7,7 @@
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimaryDark"
-    tools:context=".module.swzl.SwzlActivity"
+    tools:context="cc.xaabb.gonggong.module.swzl.SwzlActivity"
     android:orientation="vertical">
 
 
@@ -98,7 +98,7 @@
                 android:id="@+id/swzl_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:name="com.sky31.gonggong.module.swzl.SwzlFragment"
+                android:name="cc.xaabb.gonggong.module.swzl.SwzlFragment"
                 tools:layout="@layout/fragment_swzl">
 
             </fragment>

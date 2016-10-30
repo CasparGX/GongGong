@@ -8,7 +8,7 @@
     android:background="@color/colorPrimaryDark"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.sky31.gonggong.module.about_us.AboutUsActivity">
+    tools:context="com.sky31.gonggong.cc.sky31.gonggong.module.about_us.AboutUsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/about_us_toolbar"
