@@ -1,4 +1,4 @@
-package cc.xaabb.gonggong.util;
+package cc.xaabb.gonggong.network;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

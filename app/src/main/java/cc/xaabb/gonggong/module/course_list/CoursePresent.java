@@ -4,10 +4,10 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import cc.xaabb.gonggong.base.BasePresenter;
-import cc.xaabb.gonggong.model.ApiService;
+import cc.xaabb.gonggong.network.ApiService;
 import cc.xaabb.gonggong.model.CourseListModel;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
 
 import java.util.Map;
 

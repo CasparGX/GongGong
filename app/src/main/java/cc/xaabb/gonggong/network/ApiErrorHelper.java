@@ -1,9 +1,10 @@
-package cc.xaabb.gonggong.util;
+package cc.xaabb.gonggong.network;
 
 import android.content.Context;
 
 import java.io.IOException;
 
+import cc.xaabb.gonggong.util.Debug;
 import retrofit2.adapter.rxjava.HttpException;
 
 /**

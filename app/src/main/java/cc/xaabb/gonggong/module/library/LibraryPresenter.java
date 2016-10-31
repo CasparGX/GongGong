@@ -2,12 +2,12 @@ package cc.xaabb.gonggong.module.library;
 
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.config.Constants;
-import cc.xaabb.gonggong.model.ApiService;
+import cc.xaabb.gonggong.network.ApiService;
 import cc.xaabb.gonggong.model.LibraryReaderInfoModel;
 import cc.xaabb.gonggong.model.LibraryRentListModel;
 import cc.xaabb.gonggong.model.UserModel;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

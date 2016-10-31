@@ -1,6 +1,6 @@
 package cc.xaabb.gonggong.base;
 
-import cc.xaabb.gonggong.util.RetrofitUtils;
+import cc.xaabb.gonggong.network.RetrofitUtils;
 import retrofit2.Retrofit;
 
 /**

@@ -2,10 +2,10 @@ package cc.xaabb.gonggong.module.article;
 
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.model.ArticleListModel;
-import cc.xaabb.gonggong.model.ArticleService;
+import cc.xaabb.gonggong.network.ArticleService;
 import cc.xaabb.gonggong.module.article.list.ArticleListView;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
 
 import java.util.HashMap;
 

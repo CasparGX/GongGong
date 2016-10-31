@@ -4,10 +4,10 @@ import com.google.gson.JsonArray;
 import cc.xaabb.gonggong.BuildConfig;
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.config.Constants;
-import cc.xaabb.gonggong.model.ApiService;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
-import cc.xaabb.gonggong.util.MyGsonConverterFactory;
+import cc.xaabb.gonggong.network.ApiService;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
+import cc.xaabb.gonggong.network.MyGsonConverterFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

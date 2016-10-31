@@ -1,4 +1,4 @@
-package cc.xaabb.gonggong.util;
+package cc.xaabb.gonggong.network;
 
 import cc.xaabb.gonggong.BuildConfig;
 import cc.xaabb.gonggong.config.Constants;

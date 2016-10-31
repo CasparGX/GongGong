@@ -1,4 +1,4 @@
-package cc.xaabb.gonggong.util;
+package cc.xaabb.gonggong.network;
 
 import android.content.Context;
 

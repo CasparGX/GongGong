@@ -1,10 +1,23 @@
-package cc.xaabb.gonggong.model;
+package cc.xaabb.gonggong.network;
 
 import com.google.gson.JsonArray;
 import cc.xaabb.gonggong.config.Constants;
 
 import java.util.Map;
 
+import cc.xaabb.gonggong.model.CampusNetwork;
+import cc.xaabb.gonggong.model.CourseListModel;
+import cc.xaabb.gonggong.model.CurrentWeekModel;
+import cc.xaabb.gonggong.model.EcardModel;
+import cc.xaabb.gonggong.model.GradeDetailsModel;
+import cc.xaabb.gonggong.model.GradeReportModel;
+import cc.xaabb.gonggong.model.HolidayAllModel;
+import cc.xaabb.gonggong.model.HolidayNextModel;
+import cc.xaabb.gonggong.model.LibraryReaderInfoModel;
+import cc.xaabb.gonggong.model.LibraryRentListModel;
+import cc.xaabb.gonggong.model.MateInfoModel;
+import cc.xaabb.gonggong.model.StudentInfoModel;
+import cc.xaabb.gonggong.model.TermCodeModel;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;

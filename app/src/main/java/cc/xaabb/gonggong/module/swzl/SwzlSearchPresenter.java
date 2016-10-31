@@ -5,9 +5,9 @@ import android.util.Log;
 
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.model.SwzlSearchResult;
-import cc.xaabb.gonggong.model.SwzlService;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
+import cc.xaabb.gonggong.network.SwzlService;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

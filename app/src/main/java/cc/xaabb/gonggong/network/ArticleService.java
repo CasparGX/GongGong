@@ -1,9 +1,10 @@
-package cc.xaabb.gonggong.model;
+package cc.xaabb.gonggong.network;
 
 import cc.xaabb.gonggong.config.Constants;
 
 import java.util.HashMap;
 
+import cc.xaabb.gonggong.model.ArticleListModel;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 import rx.Observable;

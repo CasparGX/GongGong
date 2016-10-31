@@ -1,9 +1,11 @@
-package cc.xaabb.gonggong.model;
+package cc.xaabb.gonggong.network;
 
 import cc.xaabb.gonggong.config.Constants;
 
 import java.util.Map;
 
+import cc.xaabb.gonggong.model.SwzlResModel;
+import cc.xaabb.gonggong.model.SwzlSearchResult;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;

@@ -3,12 +3,12 @@ package cc.xaabb.gonggong.module.holiday;
 import cc.xaabb.gonggong.base.BasePresenter;
 import cc.xaabb.gonggong.config.ApiErrorCode;
 import cc.xaabb.gonggong.config.Constants;
-import cc.xaabb.gonggong.model.ApiService;
+import cc.xaabb.gonggong.network.ApiService;
 import cc.xaabb.gonggong.model.HolidayAllModel;
 import cc.xaabb.gonggong.model.HolidayNextModel;
 import cc.xaabb.gonggong.model.UserModel;
-import cc.xaabb.gonggong.util.ApiException;
-import cc.xaabb.gonggong.util.BaseSubscriber;
+import cc.xaabb.gonggong.network.ApiException;
+import cc.xaabb.gonggong.network.BaseSubscriber;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
