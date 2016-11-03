@@ -1,7 +1,7 @@
 package cc.xaabb.gonggong.module.holiday;
 
 import cc.xaabb.gonggong.base.BasePresenter;
-import cc.xaabb.gonggong.config.ApiErrorCode;
+import cc.xaabb.gonggong.network.ApiErrorCode;
 import cc.xaabb.gonggong.config.Constants;
 import cc.xaabb.gonggong.network.ApiService;
 import cc.xaabb.gonggong.model.HolidayAllModel;

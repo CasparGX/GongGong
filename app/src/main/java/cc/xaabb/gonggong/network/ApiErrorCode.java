@@ -1,4 +1,4 @@
-package cc.xaabb.gonggong.config;
+package cc.xaabb.gonggong.network;
 
 /**
  * Created by caspar on 16-10-25.
